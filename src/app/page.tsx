@@ -3,6 +3,7 @@ import Winner from "@/components/Winner";
 import Table from "@/components/Table";
 import SearchBar from "@/components/SearchBar";
 import InfoBtn from "@/components/InfoBtn";
+import { groupName } from "@/data/data";
 
 export default function Home() {
     return (
@@ -11,7 +12,7 @@ export default function Home() {
                 <Winner group={`aespa`} singer={`karina`} />
                 <RankingSection />
                 <SearchSection />
-                <SearchGroup/>
+                <SearchGroup />
             </Inner>
         </div>
     );
@@ -29,7 +30,7 @@ function RankingSection() {
     return (
         <section className="page-section ranking-section">
             <div className="title-wrap">
-                <div className="section-title">현재 순위 TOP 5</div>
+                <div className="section-title">현재 TOP 5</div>
                 <div className="section-desc">
                     매 시간 정각에 순위가 업데이트 됩니다.
                 </div>
@@ -67,11 +68,13 @@ function SearchGroup() {
                 </div>
             </div>
             <div className="info-btn--wrap">
-                <InfoBtn groupEn={'aespa'} groupKo={'에스파'}/>
-                <InfoBtn groupEn={'aespa'} groupKo={'에스파'}/>
-                <InfoBtn groupEn={'aespa'} groupKo={'에스파'}/>
-                <InfoBtn groupEn={'aespa'} groupKo={'에스파'}/>
-                <InfoBtn groupEn={'aespa'} groupKo={'에스파'}/>
+                {groupName.map((group) => (
+                    <InfoBtn
+                        key={group.groupEn}
+                        groupEn={group.groupEn}
+                        groupKo={group.groupKo}
+                    />
+                ))}
             </div>
         </section>
     );

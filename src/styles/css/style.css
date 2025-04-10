@@ -86,13 +86,26 @@ html,
 body {
   background-color: #121212;
   color: #f5f7ff;
-  padding-bottom: 120px;
+}
+
+body {
+  background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
 }
 
 header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
   width: 100%;
   height: 120px;
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+header .inner h1 a {
   font-family: "pc-b";
+  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
   font-size: 48px;
   color: #f5f7ff;
 }
@@ -100,11 +113,31 @@ header .inner > div {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 32px;
+}
+header .inner > div .link-wrap a {
+  margin-right: 12px;
+  font-family: "gs-m";
+  font-size: 20px;
+  color: #d8dbe7;
+  transition: all 0.3s;
+}
+header .inner > div .link-wrap a:hover {
+  color: #0064ff;
+}
+header .inner > div .link-wrap a:last-child {
+  margin-right: 0;
 }
 header .inner > div .vote-timer {
   font-family: "gs-l";
   font-size: 18px;
+}
+
+footer {
+  width: 100%;
+  height: 240px;
+  margin-top: 80px;
+  background-color: #2e313d;
 }
 
 .page-section {
@@ -176,20 +209,35 @@ header .inner > div .vote-timer {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 120px;
+  flex-direction: column;
   margin-bottom: 80px;
 }
-.winner .winner-content .winner-img {
+.winner .winner-content > div {
+  position: relative;
+}
+.winner .winner-content > div .winner-img {
   border-radius: 40px;
 }
-.winner .winner-desc {
-  font-family: "gs-l";
-  font-size: 28px;
-  color: #bcc0cf;
+.winner .winner-content .winner-desc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
 }
-.winner .winner-desc .winner-singer {
+.winner .winner-content .winner-desc .winner-singer {
   font-family: "gs-b";
-  color: gold;
+  font-size: 48px;
+  color: #f5f7ff;
+}
+.winner .winner-content .winner-desc .winner-group {
+  font-family: "gs-l";
+  font-size: 32px;
+  color: #bcc0cf;
 }
 
 .music-player--wrap {
@@ -303,6 +351,7 @@ header .inner > div .vote-timer {
   align-items: center;
   justify-content: flex-start;
   gap: 16px;
+  flex-grow: 1;
   width: 80%;
   min-height: 32px;
 }
@@ -314,6 +363,7 @@ header .inner > div .vote-timer {
   cursor: pointer;
 }
 .search-bar > div input {
+  flex-grow: 1;
   width: 80%;
   height: 100%;
   border: none;
@@ -357,6 +407,9 @@ header .inner > div .vote-timer {
   color: #000;
 }
 
+.home {
+  padding-top: 120px;
+}
 .home .inner {
   gap: 160px;
 }

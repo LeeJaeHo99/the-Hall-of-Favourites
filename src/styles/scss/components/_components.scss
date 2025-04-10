@@ -37,25 +37,42 @@
     justify-content: center;
     flex-direction: column;
 
+    
     .winner-content {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 120px;
+        flex-direction: column;
         margin-bottom: 80px;
 
-        .winner-img {
-            border-radius: 40px;
-        }
-    }
-    .winner-desc {
-        font-family: "gs-l";
-        font-size: 28px;
-        color: #bcc0cf;
+        > div{
+            position: relative;
 
-        .winner-singer {
-            font-family: "gs-b";
-            color: gold;
+            .winner-img {
+                border-radius: 40px;
+            }
+        }
+        .winner-desc {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 12px;
+            position: absolute;
+            bottom: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+        
+            .winner-singer {
+                font-family: "gs-b";
+                font-size: 48px;
+                color: #f5f7ff;
+            }
+            .winner-group{
+                font-family: 'gs-l';
+                font-size: 32px;
+                color: #bcc0cf;
+            }
         }
     }
 }
@@ -188,6 +205,7 @@
         align-items: center;
         justify-content: flex-start;
         gap: 16px;
+        flex-grow: 1;
         width: 80%;
         min-height: 32px;
 
@@ -199,6 +217,7 @@
             cursor: pointer;
         }
         input {
+            flex-grow: 1;
             width: 80%;
             height: 100%;
             border: none;

@@ -26,15 +26,22 @@ export default function Winner({ group, singer }: Winner) {
     return (
         <div className="winner">
             <div className="winner-content">
-                <Image
-                    className="winner-img"
-                    ref={targetRef}
-                    src={`/images/${group}/${singer}-main.png`}
-                    width={560}
-                    height={560}
-                    alt="오늘의 우승자"
-                />
-                <motion.div
+                <p>오늘의 우승자</p>
+                <div>
+                    <Image
+                        className="winner-img"
+                        ref={targetRef}
+                        src={`/images/${group}/${singer}-main.png`}
+                        width={560}
+                        height={560}
+                        alt="오늘의 우승자"
+                    />
+                    <div className="winner-desc">
+                        <div className="winner-singer">{singer}</div>
+                        <div className="winner-group">{group}</div>
+                    </div>
+                </div>
+                {/* <motion.div
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{
@@ -43,12 +50,7 @@ export default function Winner({ group, singer }: Winner) {
                     }}
                 >
                     <MusicPlayer />
-                </motion.div>
-            </div>
-            <div className="winner-desc">
-                <p>
-                    오늘의 우승자는 <span className="winner-group">{group}</span>의 <span className="winner-singer">{singer}</span> 입니다.
-                </p>
+                </motion.div> */}
             </div>
         </div>
     );

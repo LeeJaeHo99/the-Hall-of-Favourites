@@ -1,3 +1,3 @@
-export default function Inner({ children, direction = 'center'}) {
-    return <div className={`inner ${direction}`}>{children}</div>;
+export default function Inner({ children, x = 'center', y = 'row'}) {
+    return <div className={`inner ${x} ${y}`}>{children}</div>;
 }

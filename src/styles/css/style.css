@@ -82,11 +82,55 @@ a {
   src: url("/fonts/GmarketSansLight.otf");
   font-family: "gs-l";
 }
+html,
+body {
+  background-color: #121212;
+  padding-bottom: 120px;
+}
+
 header {
   width: 100%;
-  height: 100px;
+  height: 120px;
   font-family: "pc-b";
   font-size: 48px;
+  color: #f5f7ff;
+}
+header .inner > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+header .inner > div .vote-timer {
+  font-family: "gs-l";
+  font-size: 18px;
+}
+
+.page-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.title-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 80px;
+}
+.title-wrap .section-title {
+  font-family: "gs-m";
+  font-size: 38px;
+  color: #f5f7ff;
+}
+.title-wrap .section-desc {
+  font-family: "gs-l";
+  font-size: 20px;
+  color: #6f7486;
 }
 
 .inner {
@@ -96,6 +140,14 @@ header {
   max-width: 1400px;
   height: 100%;
   margin: 0 auto;
+}
+
+.inner.row {
+  flex-direction: row;
+}
+
+.inner.column {
+  flex-direction: column;
 }
 
 .inner.center {
@@ -124,19 +176,16 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 80px;
+  gap: 120px;
+  margin-bottom: 40px;
+}
+.winner .winner-content .winner-img {
+  border-radius: 32px;
 }
 .winner .winner-desc {
   font-family: "gs-m";
-}
-
-.music-player {
-  width: 720px;
-  height: 440px;
-  width: 0;
-  height: 0;
-  overflow: hidden;
-  border-radius: 16px;
+  font-size: 28px;
+  color: #bcc0cf;
 }
 
 .music-player--wrap {
@@ -144,15 +193,16 @@ header {
 }
 .music-player--wrap .music-thumbnail--img {
   width: 100%;
-  max-width: 480px;
-  max-height: 480px;
+  max-width: 400px;
+  max-height: 400px;
   margin: 40px 0;
   border-radius: 50%;
   -o-object-fit: contain;
      object-fit: contain;
   background-color: #000;
-  box-shadow: 0px 0px 20px 16px rgba(0, 0, 0, 0.1882352941);
-  animation: musicStart infinite 10s linear;
+  box-shadow: 0px 0px 20px 16px rgba(76, 76, 76, 0.06);
+  animation: musicStart 10s linear infinite, glow 2s ease-in-out infinite;
+  animation-play-state: paused;
 }
 .music-player--wrap .music-thumbnail--img.play {
   animation-play-state: running;
@@ -168,13 +218,9 @@ header {
   z-index: 9;
   width: 60px;
   height: 60px;
-  background-image: url("/icons/play.png");
-  background-color: #000;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-}
-.music-player--wrap .play-btn.play {
   background-image: url("/icons/play.png");
 }
 .music-player--wrap .play-btn.play {
@@ -189,47 +235,40 @@ header {
     transform: rotate(360deg);
   }
 }
-.music-desc--wrap .music-desc li {
-  margin-bottom: 16px;
-  font-family: "p-700";
-  font-size: 36px;
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px 4px rgba(44, 53, 57, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px 8px rgba(44, 53, 57, 0.5);
+  }
 }
-.music-desc--wrap .music-desc li > div {
-  transform: translateY(-30px);
-  opacity: 0;
+.table-component {
+  width: 100%;
 }
-.music-desc--wrap .music-desc li > div.view {
-  transform: translateY(0px);
-  opacity: 1;
+.table-component thead {
+  background-color: #0064FF;
 }
-.music-desc--wrap .music-desc li .title {
-  transition: all 0.3s;
+.table-component thead tr th {
+  padding: 16px 0;
+  font-family: "gs-m";
 }
-.music-desc--wrap .music-desc li .singer {
-  margin-bottom: 0;
-  font-family: "p-400";
-  font-size: 24px;
-  color: #a5a5a5;
-  transition: all 0.6s;
+.table-component thead tr th:first-child {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
 }
-
-.music-btn--wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  position: absolute;
-  top: 5%;
-  right: 5%;
-  opacity: 0;
-  transform: translateX(-20px);
+.table-component thead tr th:last-child {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
-.music-btn--wrap > div {
-  cursor: pointer;
+.table-component tbody tr {
+  border-bottom: 1px solid #ddd;
+}
+.table-component tbody tr td {
+  padding: 16px 0;
+  text-align: center;
 }
 
-.music-btn--wrap.view {
-  transition: all 0.5s;
-  opacity: 1;
-  transform: translateX(0px);
+.home .inner {
+  gap: 80px;
 }/*# sourceMappingURL=style.css.map */

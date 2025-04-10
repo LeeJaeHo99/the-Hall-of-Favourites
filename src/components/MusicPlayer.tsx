@@ -5,9 +5,10 @@ import MusicThumbnail from "./MusicThumnail";
 import { useState, useEffect } from "react";
 
 export default function MusicPlayer() {
-    const videoId = "occxYSeXSJE";
-    const { playerRef, isReady } = useYoutubePlayer(videoId); // ✅ 구조 분해
+    const videoId = "vQkdt5txAcM";
+    const { playerRef, isReady } = useYoutubePlayer(videoId);
     const [isPlaying, setIsPlaying] = useState(false);
+    
 
     const clickPlayer = () => {
         if (!isReady || !playerRef.current) {

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import "@/styles/css/style.css";
-import Inner from "@/components/Inner";
 import Image from "next/image";
+import Inner from "@/components/Inner";
+import VoteTimer from '@/components/VoteTimer';
 
 export const metadata: Metadata = {
     title: "최애의 전당",
@@ -24,18 +25,22 @@ export default function RootLayout({
 }
 
 function Header() {
+
+
     return (
         <header>
-            <Inner direction="between">
-                <div></div>
-                <h1>🏆 최애의 전당 🏆</h1>
-                <div className="menu-btn">
-                    <Image
-                        src="/icons/hamburger.png"
-                        width="26"
-                        height="26"
-                        alt="메뉴버튼"
-                    />
+            <Inner x="between">
+                <h1>최애의 전당</h1>
+                <div>
+                    <VoteTimer/>
+                    <div className="menu-btn">
+                        <Image
+                            src="/icons/hamburger.png"
+                            width="26"
+                            height="26"
+                            alt="메뉴버튼"
+                        />
+                    </div>
                 </div>
             </Inner>
         </header>

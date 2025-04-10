@@ -89,7 +89,7 @@ body {
 }
 
 body {
-  background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+  background: linear-gradient(to bottom, #1e1b3a, #15132a, #0e0c1f);
 }
 
 header {
@@ -98,10 +98,13 @@ header {
   left: 0;
   z-index: 999;
   width: 100%;
-  height: 120px;
+  height: 100px;
   background-color: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+}
+header .inner {
+  position: relative;
 }
 header .inner h1 a {
   font-family: "pc-b";
@@ -114,6 +117,8 @@ header .inner > div {
   align-items: center;
   justify-content: center;
   gap: 32px;
+  position: absolute;
+  right: 0;
 }
 header .inner > div .link-wrap a {
   margin-right: 12px;
@@ -131,6 +136,10 @@ header .inner > div .link-wrap a:last-child {
 header .inner > div .vote-timer {
   font-family: "gs-l";
   font-size: 18px;
+}
+header .inner > div .vote-timer span {
+  font-family: "gs-m";
+  color: #a1a5b6;
 }
 
 footer {
@@ -204,50 +213,126 @@ footer {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  width: 100%;
 }
 .winner .winner-content {
   display: flex;
   align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+}
+.winner .winner-content .main-content {
+  display: flex;
+  align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-bottom: 80px;
+  gap: 32px;
 }
-.winner .winner-content > div {
-  position: relative;
+.winner .winner-content .main-content p {
+  font-family: "gs-m";
+  font-size: 28px;
+  text-align: center;
 }
-.winner .winner-content > div .winner-img {
-  border-radius: 40px;
+.winner .winner-content .main-content > div .winner-img {
+  border-radius: 50%;
+  box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.2509803922);
 }
-.winner .winner-content .winner-desc {
+.winner .winner-content .main-content .winner-desc {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 12px;
-  position: absolute;
-  bottom: 5%;
-  left: 50%;
-  transform: translateX(-50%);
 }
-.winner .winner-content .winner-desc .winner-singer {
+.winner .winner-content .main-content .winner-desc .winner-singer a {
   font-family: "gs-b";
-  font-size: 48px;
+  font-size: 40px;
   color: #f5f7ff;
+  transition: all 0.5s;
 }
-.winner .winner-content .winner-desc .winner-group {
+.winner .winner-content .main-content .winner-desc .winner-singer a:hover {
+  color: lightgoldenrodyellow;
+}
+.winner .winner-content .main-content .winner-desc .winner-group {
   font-family: "gs-l";
-  font-size: 32px;
+  font-size: 24px;
   color: #bcc0cf;
 }
+.winner .winner-content .left-content,
+.winner .winner-content .right-content {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-direction: column;
+  width: 25%;
+}
+.winner .winner-content .left-content > div,
+.winner .winner-content .right-content > div {
+  width: 80%;
+}
+.winner .winner-content .left-content .share-component {
+  padding: 16px;
+  background-color: rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border-radius: 12px;
+}
+.winner .winner-content .left-content .share-component .title {
+  margin-bottom: 20px;
+  font-family: "gs-m";
+  font-size: 16px;
+}
+.winner .winner-content .left-content .share-component .logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.winner .winner-content .left-content .share-component .logo-wrap img {
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.winner .winner-content .left-content .share-component .logo-wrap img:hover {
+  transform: scale(1.1);
+}
+.winner .winner-content .right-content > div {
+  padding: 16px;
+  background-color: rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border-radius: 12px;
+}
+.winner .winner-content .right-content > div .title {
+  margin-bottom: 40px;
+  font-family: "gs-m";
+  font-size: 16px;
+}
+.winner .winner-content .right-content > div .result {
+  font-family: "gs-l";
+  font-size: 14px;
+  text-align: right;
+}
+.winner .winner-content .right-content > div .result span {
+  font-family: "gs-b";
+  color: lightgoldenrodyellow;
+}
 
-.music-player--wrap {
+.player-wraper {
+  display: flex;
+  gap: 24px;
+  padding: 16px;
+  background-color: rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border-radius: 16px;
+}
+.player-wraper .music-player--wrap {
   position: relative;
 }
-.music-player--wrap .music-thumbnail--img {
+.player-wraper .music-player--wrap .music-thumbnail--img {
   width: 100%;
-  max-width: 400px;
-  max-height: 400px;
-  margin: 32px 0;
+  max-width: 120px;
+  max-height: 120px;
   border-radius: 50%;
   -o-object-fit: contain;
      object-fit: contain;
@@ -256,39 +341,44 @@ footer {
   animation: musicStart 10s linear infinite, glow 2s ease-in-out infinite;
   animation-play-state: paused;
 }
-.music-player--wrap .music-thumbnail--img.play {
+.player-wraper .music-player--wrap .music-thumbnail--img.play {
   animation-play-state: running;
 }
-.music-player--wrap .music-thumbnail--img.pause {
+.player-wraper .music-player--wrap .music-thumbnail--img.pause {
   animation-play-state: paused;
 }
-.music-player--wrap .play-btn {
+.player-wraper .music-player--wrap .play-btn {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 9;
-  width: 60px;
-  height: 60px;
+  width: 32px;
+  height: 32px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
   background-image: url("/icons/play.png");
 }
-.music-player--wrap .play-btn.play {
+.player-wraper .music-player--wrap .play-btn.play {
   background-image: url("/icons/pause.png");
 }
 
 .music-info {
-  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   text-align: center;
 }
 .music-info .music-title {
   margin-bottom: 8px;
-  font-size: 32px;
+  font-family: "gs-m";
+  font-size: 18px;
 }
 .music-info .music-singer {
-  font-size: 20px;
+  font-family: "gs-l";
+  font-size: 18px;
   color: #a5a5a5;
 }
 
@@ -302,10 +392,10 @@ footer {
 }
 @keyframes glow {
   0%, 100% {
-    box-shadow: 0 0 20px 4px rgba(44, 53, 57, 0.3);
+    box-shadow: 0 0 6px 2px rgba(58, 62, 64, 0.3);
   }
   50% {
-    box-shadow: 0 0 30px 8px rgba(44, 53, 57, 0.5);
+    box-shadow: 0 0 16px 6px rgba(88, 91, 92, 0.5);
   }
 }
 .table-component {
@@ -408,7 +498,8 @@ footer {
 }
 
 .home {
-  padding-top: 120px;
+  padding-top: 100px;
+  margin-top: 60px;
 }
 .home .inner {
   gap: 160px;

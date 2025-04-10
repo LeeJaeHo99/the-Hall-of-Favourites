@@ -26,7 +26,7 @@ export default function MusicPlayer() {
     };
 
     return (
-        <>
+        <div className="player-wraper">
             <div className="music-player--wrap">
                 <div id="youtube-player" style={{ display: "none" }} />
                 <button
@@ -39,6 +39,6 @@ export default function MusicPlayer() {
                 <div className="music-title">Supernova</div>
                 <div className="music-singer">에스파</div>
             </div>
-        </>
+        </div>
     );
 }

@@ -36,8 +36,8 @@ function Header() {
                     <div className="menu-btn">
                         <Image
                             src="/icons/hamburger.png"
-                            width="26"
-                            height="26"
+                            width="32"
+                            height="32"
                             alt="메뉴버튼"
                         />
                     </div>

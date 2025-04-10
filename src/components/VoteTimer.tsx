@@ -65,7 +65,7 @@ export default function VoteTimer() {
                 "투표 집계 중입니다."
             ) : (
                 <>
-                    투표 종료까지 남은시간: {format(statusInfo.timeLeft.hours)}:
+                    투표 종료까지: {format(statusInfo.timeLeft.hours)}:
                     {format(statusInfo.timeLeft.minutes)}:
                     {format(statusInfo.timeLeft.seconds)}
                 </>

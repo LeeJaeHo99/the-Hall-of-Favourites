@@ -1,6 +1,8 @@
 import Inner from "@/components/Inner";
 import Winner from "@/components/Winner";
 import Table from "@/components/Table";
+import SearchBar from "@/components/SearchBar";
+import InfoBtn from "@/components/InfoBtn";
 
 export default function Home() {
     return (
@@ -9,6 +11,7 @@ export default function Home() {
                 <Winner group={`aespa`} singer={`karina`} />
                 <RankingSection />
                 <SearchSection />
+                <SearchGroup/>
             </Inner>
         </div>
     );
@@ -44,10 +47,27 @@ function SearchSection() {
     return (
         <section className="page-section search-section">
             <div className="title-wrap">
-                <div className="section-title">나의 최애 찾기</div>
+                <div className="section-title">나의 최애 검색</div>
                 <div className="section-desc">
                     검색하시면 최애의 페이지로 이동합니다.
                 </div>
+            </div>
+            <SearchBar />
+        </section>
+    );
+}
+
+function SearchGroup() {
+    return (
+        <section className="page-section search-group">
+            <div className="title-wrap">
+                <div className="section-title">그룹명으로 찾기</div>
+                <div className="section-desc">
+                    검색량이 많은 그룹순으로 표시됩니다.
+                </div>
+            </div>
+            <div className="info-btn--wrap">
+                <InfoBtn />
             </div>
         </section>
     );

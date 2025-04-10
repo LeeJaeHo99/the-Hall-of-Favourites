@@ -177,7 +177,7 @@ header .inner > div .vote-timer {
   align-items: center;
   justify-content: center;
   gap: 120px;
-  margin-bottom: 40px;
+  margin-bottom: 80px;
 }
 .winner .winner-content .winner-img {
   border-radius: 40px;
@@ -230,15 +230,16 @@ header .inner > div .vote-timer {
 .music-player--wrap .play-btn.play {
   background-image: url("/icons/pause.png");
 }
-.music-player--wrap .music-info {
+
+.music-info {
   width: 100%;
   text-align: center;
 }
-.music-player--wrap .music-info .music-title {
+.music-info .music-title {
   margin-bottom: 8px;
   font-size: 32px;
 }
-.music-player--wrap .music-info .music-singer {
+.music-info .music-singer {
   font-size: 20px;
   color: #a5a5a5;
 }
@@ -263,7 +264,7 @@ header .inner > div .vote-timer {
   width: 100%;
 }
 .table-component thead {
-  background-color: #0064FF;
+  background-color: #0064ff;
 }
 .table-component thead tr th {
   padding: 16px 0;
@@ -286,6 +287,57 @@ header .inner > div .vote-timer {
 .table-component tbody tr td {
   padding: 16px 0;
   text-align: center;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 60%;
+  padding: 16px;
+  margin-bottom: 120px;
+  background-color: #fff;
+  border-radius: 12px;
+}
+.search-bar > div {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+  width: 80%;
+  min-height: 32px;
+}
+.search-bar > div select {
+  border: none;
+  font-family: "gs-l";
+  font-size: 18px;
+  outline: none;
+  cursor: pointer;
+}
+.search-bar > div input {
+  width: 80%;
+  height: 100%;
+  border: none;
+  font-family: "gs-l";
+  font-size: 18px;
+  outline: none;
+}
+.search-bar button {
+  background-color: #fff;
+}
+
+.info-btn--wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+}
+.info-btn--wrap .info-btn {
+  width: 280px;
+  height: 200px;
+  background-color: #fff;
+  border-radius: 16px;
 }
 
 .home .inner {

@@ -25,7 +25,6 @@ export default function Table({ head, body, columns }) {
                     } else {
                         rankContent = i + 1;
                     }
-
                     return (
                         <tr key={data.id ?? i}>
                             <td>{rankContent}</td>

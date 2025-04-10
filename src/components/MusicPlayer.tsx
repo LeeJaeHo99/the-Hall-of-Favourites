@@ -34,6 +34,10 @@ export default function MusicPlayer() {
                 onClick={clickPlayer}
             ></button>
             <MusicThumbnail videoId={videoId} isPlaying={isPlaying} />
+            <div className="music-info">
+                <div className="music-title">Supernova</div>
+                <div className="music-singer">에스파</div>
+            </div>
         </div>
     );
 }

@@ -85,6 +85,7 @@ a {
 html,
 body {
   background-color: #121212;
+  color: #f5f7ff;
   padding-bottom: 120px;
 }
 
@@ -125,7 +126,6 @@ header .inner > div .vote-timer {
 .title-wrap .section-title {
   font-family: "gs-m";
   font-size: 38px;
-  color: #f5f7ff;
 }
 .title-wrap .section-desc {
   font-family: "gs-l";
@@ -180,12 +180,16 @@ header .inner > div .vote-timer {
   margin-bottom: 40px;
 }
 .winner .winner-content .winner-img {
-  border-radius: 32px;
+  border-radius: 40px;
 }
 .winner .winner-desc {
-  font-family: "gs-m";
+  font-family: "gs-l";
   font-size: 28px;
   color: #bcc0cf;
+}
+.winner .winner-desc .winner-singer {
+  font-family: "gs-b";
+  color: gold;
 }
 
 .music-player--wrap {
@@ -195,7 +199,7 @@ header .inner > div .vote-timer {
   width: 100%;
   max-width: 400px;
   max-height: 400px;
-  margin: 40px 0;
+  margin: 32px 0;
   border-radius: 50%;
   -o-object-fit: contain;
      object-fit: contain;
@@ -225,6 +229,18 @@ header .inner > div .vote-timer {
 }
 .music-player--wrap .play-btn.play {
   background-image: url("/icons/pause.png");
+}
+.music-player--wrap .music-info {
+  width: 100%;
+  text-align: center;
+}
+.music-player--wrap .music-info .music-title {
+  margin-bottom: 8px;
+  font-size: 32px;
+}
+.music-player--wrap .music-info .music-singer {
+  font-size: 20px;
+  color: #a5a5a5;
 }
 
 @keyframes musicStart {
@@ -264,11 +280,17 @@ header .inner > div .vote-timer {
 .table-component tbody tr {
   border-bottom: 1px solid #ddd;
 }
+.table-component tbody tr:last-child {
+  border-bottom: none;
+}
 .table-component tbody tr td {
   padding: 16px 0;
   text-align: center;
 }
 
 .home .inner {
-  gap: 80px;
+  gap: 160px;
+}
+.home .inner .ranking-section {
+  width: 80%;
 }/*# sourceMappingURL=style.css.map */

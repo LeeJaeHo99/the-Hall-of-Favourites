@@ -8,6 +8,7 @@ export default function Home() {
             <Inner x={"center"} y={"column"}>
                 <Winner group={`aespa`} singer={`karina`} />
                 <RankingSection />
+                <SearchSection />
             </Inner>
         </div>
     );
@@ -23,7 +24,7 @@ function RankingSection() {
     ];
 
     return (
-        <section className="page-section now-ranking">
+        <section className="page-section ranking-section">
             <div className="title-wrap">
                 <div className="section-title">현재 순위 TOP 5</div>
                 <div className="section-desc">
@@ -35,6 +36,19 @@ function RankingSection() {
                 body={rank}
                 columns={["name", "group", "voteCount"]}
             />
+        </section>
+    );
+}
+
+function SearchSection() {
+    return (
+        <section className="page-section search-section">
+            <div className="title-wrap">
+                <div className="section-title">나의 최애 찾기</div>
+                <div className="section-desc">
+                    검색하시면 최애의 페이지로 이동합니다.
+                </div>
+            </div>
         </section>
     );
 }

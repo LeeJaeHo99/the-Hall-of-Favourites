@@ -9,10 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "canvas-confetti": "^1.9.3",
     "motion": "^12.6.3",
     "next": "15.3.0",
+    "party-js": "^2.2.0",
     "react": "^19.0.0",
-    "react-confetti": "^6.4.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {

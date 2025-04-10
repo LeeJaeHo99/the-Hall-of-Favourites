@@ -1,0 +1,24 @@
+.inner{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.inner.center{
+    justify-content: center;
+}
+
+.inner.left{
+    justify-content: flex-start;
+}
+
+.inner.right{
+    justify-content: flex-end;
+}
+
+.inner.between{
+    justify-content: space-between;
+}

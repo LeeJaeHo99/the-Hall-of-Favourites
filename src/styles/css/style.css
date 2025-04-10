@@ -60,4 +60,49 @@ button {
 a {
   color: #000;
   text-decoration: none;
+}
+
+@font-face {
+  src: url("/fonts/PyeongChangPeace-Bold.otf");
+  font-family: "pc-b";
+}
+@font-face {
+  src: url("/fonts/PyeongChangPeace-Light.otf");
+  font-family: "pc-l";
+}
+html, body {
+  background-color: #000;
+}
+
+header {
+  width: 100%;
+  height: 100px;
+  font-family: "pc-b";
+  font-size: 48px;
+  color: #fff;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1400px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.inner.center {
+  justify-content: center;
+}
+
+.inner.left {
+  justify-content: flex-start;
+}
+
+.inner.right {
+  justify-content: flex-end;
+}
+
+.inner.between {
+  justify-content: space-between;
 }/*# sourceMappingURL=style.css.map */

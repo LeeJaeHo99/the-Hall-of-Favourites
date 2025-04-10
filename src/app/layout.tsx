@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import "@/styles/css/style.css";
+import Inner from "@/components/Inner";
+import Image from "next/image";
 
 export const metadata: Metadata = {
     title: "최애의 전당",
@@ -11,8 +14,30 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
-            <body>{children}</body>
+        <html lang="ko">
+            <body>
+                <Header />
+                {children}
+            </body>
         </html>
+    );
+}
+
+function Header() {
+    return (
+        <header>
+            <Inner direction="between">
+                <div></div>
+                <h1>🏆 최애의 전당 🏆</h1>
+                <div className="menu-btn">
+                    <Image
+                        src="/icons/hamburger.png"
+                        width="26"
+                        height="26"
+                        alt="메뉴버튼"
+                    />
+                </div>
+            </Inner>
+        </header>
     );
 }

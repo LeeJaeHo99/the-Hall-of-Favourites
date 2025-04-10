@@ -67,7 +67,11 @@ function SearchGroup() {
                 </div>
             </div>
             <div className="info-btn--wrap">
-                <InfoBtn />
+                <InfoBtn groupEn={'aespa'} groupKo={'에스파'}/>
+                <InfoBtn groupEn={'aespa'} groupKo={'에스파'}/>
+                <InfoBtn groupEn={'aespa'} groupKo={'에스파'}/>
+                <InfoBtn groupEn={'aespa'} groupKo={'에스파'}/>
+                <InfoBtn groupEn={'aespa'} groupKo={'에스파'}/>
             </div>
         </section>
     );

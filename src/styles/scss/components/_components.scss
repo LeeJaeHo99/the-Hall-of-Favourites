@@ -5,30 +5,30 @@
     max-width: 1400px;
     height: 100%;
     margin: 0 auto;
-}
 
-.inner.row {
-    flex-direction: row;
-}
+    &.row {
+        flex-direction: row;
+    }
 
-.inner.column {
-    flex-direction: column;
-}
+    &.column {
+        flex-direction: column;
+    }
 
-.inner.center {
-    justify-content: center;
-}
+    &.center {
+        justify-content: center;
+    }
 
-.inner.left {
-    justify-content: flex-start;
-}
+    &.left {
+        justify-content: flex-start;
+    }
 
-.inner.right {
-    justify-content: flex-end;
-}
+    &.right {
+        justify-content: flex-end;
+    }
 
-.inner.between {
-    justify-content: space-between;
+    &.between {
+        justify-content: space-between;
+    }
 }
 
 .winner {
@@ -57,9 +57,15 @@
                 text-align: center;
             }
             > div {
+                border-radius: 50%;
+                box-shadow: 0px 0px 20px 10px #00000040;
+                overflow: hidden;
+
                 .winner-img {
-                    border-radius: 50%;
-                    box-shadow: 0px 0px 20px 10px #00000040;
+                    transition: all 0.3s;
+                }
+                &:hover .winner-img {
+                    transform: scale(1.1);
                 }
             }
             .winner-desc {
@@ -68,16 +74,18 @@
                 justify-content: center;
                 flex-direction: column;
                 gap: 12px;
+                border-radius: 0;
+                box-shadow: none;
 
                 .winner-singer {
-                    a{
+                    a {
                         font-family: "gs-b";
                         font-size: 40px;
                         color: #f5f7ff;
                         transition: all 0.5s;
 
-                        &:hover{
-                            color: lightgoldenrodyellow;
+                        &:hover {
+                            color: $primary;
                         }
                     }
                 }
@@ -96,58 +104,60 @@
             flex-direction: column;
             width: 25%;
 
-            > div{
+            > div {
                 width: 80%;
             }
         }
-        .left-content{
-            .share-component{
+        .left-content {
+            .share-component {
                 padding: 16px;
                 background-color: rgba(255, 255, 255, 0.05);
                 backdrop-filter: blur(10px);
                 border-radius: 12px;
+                box-shadow: 0 0 20px 8px #00000030;
 
-                .title{
+                .title {
                     margin-bottom: 20px;
-                    font-family: 'gs-m';
+                    font-family: "gs-m";
                     font-size: 16px;
                 }
-                .logo-wrap{
+                .logo-wrap {
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     gap: 16px;
 
-                    img{
+                    img {
                         cursor: pointer;
                         transition: all 0.3s;
 
-                        &:hover{
+                        &:hover {
                             transform: scale(1.1);
                         }
                     }
                 }
             }
         }
-        .right-content{
-            > div{
+        .right-content {
+            > div {
                 padding: 16px;
                 background-color: rgba(255, 255, 255, 0.05);
                 backdrop-filter: blur(10px);
                 border-radius: 12px;
+                box-shadow: 0 0 20px 8px #00000030;
 
-                .title{
+                .title {
                     margin-bottom: 40px;
-                    font-family: 'gs-m';
+                    font-family: "gs-m";
                     font-size: 16px;
                 }
-                .result{
-                    font-family: 'gs-l';
+                .result {
+                    font-family: "gs-l";
                     font-size: 14px;
                     text-align: right;
 
-                    span{
-                        font-family: 'gs-b';
+                    span {
+                        font-family: "gs-b";
                         color: lightgoldenrodyellow;
                     }
                 }
@@ -163,6 +173,7 @@
     background-color: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
     border-radius: 16px;
+    box-shadow: 0 0 20px 8px #00000030;
 
     .music-player--wrap {
         position: relative;
@@ -175,7 +186,8 @@
             object-fit: contain;
             background-color: #000;
             box-shadow: 0px 0px 20px 16px rgb(76 76 76 / 6%);
-            animation: musicStart 10s linear infinite, glow 2s ease-in-out infinite;
+            animation: musicStart 10s linear infinite,
+                glow 2s ease-in-out infinite;
             animation-play-state: paused;
 
             &.play {
@@ -215,13 +227,13 @@
 
     .music-title {
         margin-bottom: 8px;
-        font-family: 'gs-m';
+        font-family: "gs-m";
         font-size: 18px;
     }
     .music-singer {
-        font-family: 'gs-l';
+        font-family: "gs-l";
         font-size: 18px;
-        color: #a5a5a5;
+        color: $gray-text;
     }
 }
 
@@ -248,7 +260,7 @@
     width: 100%;
 
     thead {
-        background-color: #0064ff;
+        background-color: $primary;
 
         tr {
             th {
@@ -288,8 +300,9 @@
     width: 60%;
     padding: 16px;
     margin-bottom: 80px;
-    background-color: #fff;
+    background-color: $white-text;
     border-radius: 12px;
+    box-shadow: 0 0 20px 8px #00000030;
 
     > div {
         display: flex;
@@ -301,8 +314,9 @@
         min-height: 32px;
 
         select {
+            background-color: $white-text;
             border: none;
-            font-family: "gs-l";
+            font-family: "gs-m";
             font-size: 18px;
             outline: none;
             cursor: pointer;
@@ -311,6 +325,7 @@
             flex-grow: 1;
             width: 80%;
             height: 100%;
+            background-color: $white-text;
             border: none;
             font-family: "gs-l";
             font-size: 18px;
@@ -319,11 +334,11 @@
     }
     button {
         padding: 6px;
-        background-color: #fff;
+        background-color: $white-text;
     }
 }
 
-.group-link-btn--wrap{
+.group-link-btn--wrap {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -331,14 +346,98 @@
     gap: 24px;
     width: 100%;
 
-    .group-link-btn{
+    .group-link-btn {
         width: 17%;
         padding: 16px;
         background-color: rgba(255, 255, 255, 0.05);
         backdrop-filter: blur(10px);
         border-radius: 8px;
-        font-family: 'gs-m';
+        font-family: "gs-m";
         color: #fff;
         text-align: center;
+        box-shadow: 0 0 20px 8px #00000030;
+    }
+}
+
+.board-preview {
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    box-shadow: 0 0 20px 8px #00000030;
+
+    .category-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 16px;
+        margin-bottom: 8px;
+
+        p {
+            font-family: "gs-l";
+            font-size: 14px;
+            cursor: pointer;
+            user-select: none;
+
+            &.selected {
+                font-family: "gs-m";
+                color: $primary;
+            }
+        }
+        p:first-child {
+            position: relative;
+
+            &:before {
+                content: "";
+                position: absolute;
+                right: -8px;
+                width: 0.5px;
+                height: 100%;
+                background-color: #a5a5a5;
+            }
+        }
+    }
+    .writing-wrap {
+        .writing {
+            display: flex;
+            justify-content: space-between;
+            padding: 24px 0;
+            border-bottom: 1px solid #a5a5a5;
+
+            &:last-child {
+                padding-bottom: 12px;
+                border: none;
+            }
+            .title {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 8px;
+                width: 80%;
+                font-family: "gs-m";
+                color: $white-text;
+                
+                span{
+                    max-width: 85%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+                .comment-num {
+                    font-family: "gs-l";
+                    font-size: 14px;
+                    color: lightcoral;
+                }
+            }
+            .date {
+                width: 20%;
+                font-family: "gs-l";
+                font-size: 14px;
+                color: $gray-text;
+                text-align: right;
+            }
+        }
     }
 }

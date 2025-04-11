@@ -120,19 +120,6 @@ header .inner > div {
   position: absolute;
   right: 0;
 }
-header .inner > div .link-wrap a {
-  margin-right: 12px;
-  font-family: "gs-m";
-  font-size: 20px;
-  color: #d8dbe7;
-  transition: all 0.3s;
-}
-header .inner > div .link-wrap a:hover {
-  color: #0064ff;
-}
-header .inner > div .link-wrap a:last-child {
-  margin-right: 0;
-}
 header .inner > div .vote-timer {
   font-family: "gs-l";
   font-size: 18px;
@@ -183,27 +170,21 @@ footer {
   height: 100%;
   margin: 0 auto;
 }
-
 .inner.row {
   flex-direction: row;
 }
-
 .inner.column {
   flex-direction: column;
 }
-
 .inner.center {
   justify-content: center;
 }
-
 .inner.left {
   justify-content: flex-start;
 }
-
 .inner.right {
   justify-content: flex-end;
 }
-
 .inner.between {
   justify-content: space-between;
 }
@@ -233,9 +214,16 @@ footer {
   font-size: 28px;
   text-align: center;
 }
-.winner .winner-content .main-content > div .winner-img {
+.winner .winner-content .main-content > div {
   border-radius: 50%;
   box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.2509803922);
+  overflow: hidden;
+}
+.winner .winner-content .main-content > div .winner-img {
+  transition: all 0.3s;
+}
+.winner .winner-content .main-content > div:hover .winner-img {
+  transform: scale(1.1);
 }
 .winner .winner-content .main-content .winner-desc {
   display: flex;
@@ -243,6 +231,8 @@ footer {
   justify-content: center;
   flex-direction: column;
   gap: 12px;
+  border-radius: 0;
+  box-shadow: none;
 }
 .winner .winner-content .main-content .winner-desc .winner-singer a {
   font-family: "gs-b";
@@ -251,7 +241,7 @@ footer {
   transition: all 0.5s;
 }
 .winner .winner-content .main-content .winner-desc .winner-singer a:hover {
-  color: lightgoldenrodyellow;
+  color: #8e65ab;
 }
 .winner .winner-content .main-content .winner-desc .winner-group {
   font-family: "gs-l";
@@ -276,6 +266,7 @@ footer {
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
   border-radius: 12px;
+  box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.1882352941);
 }
 .winner .winner-content .left-content .share-component .title {
   margin-bottom: 20px;
@@ -301,6 +292,7 @@ footer {
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
   border-radius: 12px;
+  box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.1882352941);
 }
 .winner .winner-content .right-content > div .title {
   margin-bottom: 40px;
@@ -325,6 +317,7 @@ footer {
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
   border-radius: 16px;
+  box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.1882352941);
 }
 .player-wraper .music-player--wrap {
   position: relative;
@@ -379,7 +372,7 @@ footer {
 .music-info .music-singer {
   font-family: "gs-l";
   font-size: 18px;
-  color: #a5a5a5;
+  color: #878c9e;
 }
 
 @keyframes musicStart {
@@ -402,7 +395,7 @@ footer {
   width: 100%;
 }
 .table-component thead {
-  background-color: #0064ff;
+  background-color: #8e65ab;
 }
 .table-component thead tr th {
   padding: 16px 0;
@@ -434,8 +427,9 @@ footer {
   width: 60%;
   padding: 16px;
   margin-bottom: 80px;
-  background-color: #fff;
+  background-color: #f5f7ff;
   border-radius: 12px;
+  box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.1882352941);
 }
 .search-bar > div {
   display: flex;
@@ -447,8 +441,9 @@ footer {
   min-height: 32px;
 }
 .search-bar > div select {
+  background-color: #f5f7ff;
   border: none;
-  font-family: "gs-l";
+  font-family: "gs-m";
   font-size: 18px;
   outline: none;
   cursor: pointer;
@@ -457,6 +452,7 @@ footer {
   flex-grow: 1;
   width: 80%;
   height: 100%;
+  background-color: #f5f7ff;
   border: none;
   font-family: "gs-l";
   font-size: 18px;
@@ -464,7 +460,7 @@ footer {
 }
 .search-bar button {
   padding: 6px;
-  background-color: #fff;
+  background-color: #f5f7ff;
 }
 
 .group-link-btn--wrap {
@@ -485,6 +481,85 @@ footer {
   font-family: "gs-m";
   color: #fff;
   text-align: center;
+  box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.1882352941);
+}
+
+.board-preview {
+  width: 100%;
+  height: auto;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border-radius: 12px;
+  box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.1882352941);
+}
+.board-preview .category-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+.board-preview .category-wrap p {
+  font-family: "gs-l";
+  font-size: 14px;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.board-preview .category-wrap p.selected {
+  font-family: "gs-m";
+  color: #8e65ab;
+}
+.board-preview .category-wrap p:first-child {
+  position: relative;
+}
+.board-preview .category-wrap p:first-child:before {
+  content: "";
+  position: absolute;
+  right: -8px;
+  width: 0.5px;
+  height: 100%;
+  background-color: #a5a5a5;
+}
+.board-preview .writing-wrap .writing {
+  display: flex;
+  justify-content: space-between;
+  padding: 24px 0;
+  border-bottom: 1px solid #a5a5a5;
+}
+.board-preview .writing-wrap .writing:last-child {
+  padding-bottom: 12px;
+  border: none;
+}
+.board-preview .writing-wrap .writing .title {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  width: 80%;
+  font-family: "gs-m";
+  color: #f5f7ff;
+}
+.board-preview .writing-wrap .writing .title span {
+  max-width: 85%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.board-preview .writing-wrap .writing .title .comment-num {
+  font-family: "gs-l";
+  font-size: 14px;
+  color: lightcoral;
+}
+.board-preview .writing-wrap .writing .date {
+  width: 20%;
+  font-family: "gs-l";
+  font-size: 14px;
+  color: #878c9e;
+  text-align: right;
 }
 
 .home {
@@ -496,4 +571,18 @@ footer {
 }
 .home .inner .ranking-section {
   width: 80%;
+}
+.home .inner .board-history-section {
+  align-items: flex-start;
+  flex-direction: row;
+  gap: 80px;
+}
+.home .inner .board-history-section > div {
+  width: 50%;
+}
+.home .inner .board-history-section > div .title-wrap {
+  align-items: flex-start;
+}
+.home .inner .board-history-section > div .title-wrap .section-title {
+  font-size: 28px;
 }/*# sourceMappingURL=style.css.map */

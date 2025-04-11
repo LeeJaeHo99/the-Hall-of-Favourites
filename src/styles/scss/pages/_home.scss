@@ -8,5 +8,22 @@
         .ranking-section{
             width: 80%;
         }
+        .board-history-section{
+            align-items: flex-start;
+            flex-direction: row;
+            gap: 80px;
+
+            > div{
+                width: 50%;
+
+                .title-wrap{
+                    align-items: flex-start;
+
+                    .section-title{
+                        font-size: 28px;
+                    }
+                }
+            }
+        }
     }
 }

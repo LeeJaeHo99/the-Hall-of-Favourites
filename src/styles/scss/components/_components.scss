@@ -554,6 +554,26 @@
     }
 }
 
+.chart-tooltip{
+    padding: 16px;
+    border-radius: 8px;
+
+    .time{
+        margin-bottom: 12px;
+        font-family: 'gs-l';
+        font-size: 20px;
+    }
+    > div{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 8px;
+        font-family: 'gs-m';
+        font-size: 14px;
+    }
+}
+
 .blind-content, .collecting-content{
     display: flex;
     align-items: center;

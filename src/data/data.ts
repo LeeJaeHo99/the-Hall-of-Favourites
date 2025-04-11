@@ -1,22 +1,22 @@
 export const groupName: {
     groupEn: string;
-    groupKo: string;
+    link: string;
 }[] = [
-    { groupEn: "AESPA", groupKo: "에스파" },
-    { groupEn: "LE SSERAFIM", groupKo: "르세라핌" },
-    { groupEn: "IVE", groupKo: "아이브" },
-    { groupEn: "FROMISE9", groupKo: "프로미스나인" },
-    { groupEn: "STACE", groupKo: "스테이시" },
-    { groupEn: "AESPA1", groupKo: "에스파" },
-    { groupEn: "LE SSERAFIM1", groupKo: "르세라핌" },
-    { groupEn: "IVE1", groupKo: "아이브" },
-    { groupEn: "FROMISE91", groupKo: "프로미스나인" },
-    { groupEn: "STACE1", groupKo: "스테이시" },
-    { groupEn: "AESPA2", groupKo: "에스파" },
-    { groupEn: "LE SSERAFIM2", groupKo: "르세라핌" },
-    { groupEn: "IVE2", groupKo: "아이브" },
-    { groupEn: "FROMISE92", groupKo: "프로미스나인" },
-    { groupEn: "STACE2", groupKo: "스테이시" },
+    { groupEn: "AESPA", link: 'aespa'},
+    { groupEn: "LE SSERAFIM", link: 'lesserafim' },
+    { groupEn: "IVE", link: 'ive' },
+    { groupEn: "FROMISE9", link: 'fromise9' },
+    { groupEn: "STACE", link: 'stace' },
+    { groupEn: "AESPA1",  link: 'aespa'},
+    { groupEn: "LE SSERAFIM1", link: 'lesserafim' },
+    { groupEn: "IVE1", link: 'ive' },
+    { groupEn: "FROMISE91", link: 'fromise9' },
+    { groupEn: "STACE1", link: 'stace' },
+    { groupEn: "AESPA2",  link: 'aespa'},
+    { groupEn: "LE SSERAFIM2", link: 'lesserafim' },
+    { groupEn: "IVE2", link: 'ive' },
+    { groupEn: "FROMISE92", link: 'fromise9' },
+    { groupEn: "STACE2", link: 'stace' },
 ];
 
 export const idol = [

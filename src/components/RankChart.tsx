@@ -10,8 +10,8 @@ import {
     Legend,
 } from "recharts";
 
-const colors = ["#ffcc49","#cdd0d4", "#c19a6b", "#d1de74", "#f1a183"];
-const emoji: string[] = ['🥇', '🥈', '🥉', '💪','💪',];
+const colors = ["#ffcc49", "#cdd0d4", "#c19a6b", "#d1de74", "#f1a183"];
+const emoji: string[] = ["🥇", "🥈", "🥉", "💪", "💪"];
 
 export default function RankChart({ data }) {
     const idolNames = Object.keys(data?.[0] || {}).filter(
@@ -22,12 +22,12 @@ export default function RankChart({ data }) {
         <ResponsiveContainer width="90%" height={440}>
             <LineChart data={data}>
                 <XAxis dataKey="time" />
-                <YAxis   
+                <YAxis
                     tick={{ fill: "#555", fontSize: 14, fontWeight: 500 }}
                     tickLine={true} // 눈금 선 없앰
                 />
-                <Tooltip cursor={false}/>
-                <Legend content={CustomLegend}/>
+                <Tooltip cursor={false} content={<CustomTooltip />} />
+                <Legend content={CustomLegend} />
                 {idolNames.map((name, index) => (
                     <Line
                         key={name}
@@ -49,9 +49,33 @@ function CustomLegend({ payload }) {
             {payload.map((entry, index) => (
                 <li key={`item-${index}`} className="">
                     <span>{emoji[index]}</span>
-                    <span style={{color: `${colors[index]}`}}>{entry.value}</span>
+                    <span style={{ color: `${colors[index]}` }}>
+                        {entry.value}
+                    </span>
                 </li>
             ))}
         </ul>
     );
+}
+
+function CustomTooltip({ active, payload, label }) {
+    if (active && payload && payload.length) {
+        return (
+            <div className="chart-tooltip blur-box">
+                <p className="time">⏰ {label} ⏰</p>
+                <div>
+                    {payload.map((entry, index) => (
+                        <p
+                            key={index}
+                            style={{ color: entry.color }}
+                        >
+                            <span>{entry.name}</span>
+                            <span>: {entry.value}</span>
+                        </p>
+                    ))}
+                </div>
+            </div>
+        );
+    }
+    return null;
 }

@@ -6,6 +6,11 @@ body {
 
 body{
     background: linear-gradient(to bottom, #1e1b3a, #15132a, #0e0c1f);
+
+    .home, .GroupPage{
+        padding-top: 100px;
+        margin-top: 60px;
+    }
 }
 
 header {

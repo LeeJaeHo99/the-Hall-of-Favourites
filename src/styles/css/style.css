@@ -91,6 +91,10 @@ body {
 body {
   background: linear-gradient(to bottom, #1e1b3a, #15132a, #0e0c1f);
 }
+body .home, body .GroupPage {
+  padding-top: 100px;
+  margin-top: 60px;
+}
 
 header {
   position: fixed;
@@ -667,6 +671,25 @@ footer {
   font-family: "gs-m";
 }
 
+.chart-tooltip {
+  padding: 16px;
+  border-radius: 8px;
+}
+.chart-tooltip .time {
+  margin-bottom: 12px;
+  font-family: "gs-l";
+  font-size: 20px;
+}
+.chart-tooltip > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+  font-family: "gs-m";
+  font-size: 14px;
+}
+
 .blind-content, .collecting-content {
   display: flex;
   align-items: center;
@@ -707,10 +730,6 @@ footer {
   font-size: 48px;
 }
 
-.home {
-  padding-top: 100px;
-  margin-top: 60px;
-}
 .home .inner {
   gap: 160px;
 }

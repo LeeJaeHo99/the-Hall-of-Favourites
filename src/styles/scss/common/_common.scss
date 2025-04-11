@@ -76,15 +76,8 @@ footer {
         font-family: "gs-m";
         font-size: 38px;
     }
-
-    .section-desc {
-        font-family: "gs-l";
-        font-size: 20px;
-        color: $gray-text;
-    }
-    .title-link{
+    .section-title:has(.more-view--btn){
         display: flex;
-        align-items: center;
         justify-content: space-between;
         width: 100%;
 
@@ -93,6 +86,11 @@ footer {
             font-size: 14px;
             color: $primary;
         }
+    }
+    .section-desc {
+        font-family: "gs-l";
+        font-size: 20px;
+        color: $gray-text;
     }
 }
 

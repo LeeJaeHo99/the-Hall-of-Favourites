@@ -7,9 +7,9 @@ declare global {
     }
 }
 
-export function useYoutubePlayer(videoId: string) {
+export function useYoutubePlayer(songId: string) {
     const playerRef = useRef<any>(null);
-    const [isReady, setIsReady] = useState(false); // ✅ 유튜브 플레이어 로드 완료 여부
+    const [isReady, setIsReady] = useState(false);
 
     useEffect(() => {
         const loadYouTubeIframeAPI = () => {
@@ -30,17 +30,17 @@ export function useYoutubePlayer(videoId: string) {
 
         const createPlayer = () => {
             playerRef.current = new window.YT.Player("youtube-player", {
-                videoId,
+                songId,
                 events: {
                     onReady: () => {
-                        setIsReady(true); // ✅ 로드 완료 표시
+                        setIsReady(true);
                     },
                 },
             });
         };
 
         loadYouTubeIframeAPI();
-    }, [videoId]);
+    }, [songId]);
 
     return { playerRef, isReady };
 }

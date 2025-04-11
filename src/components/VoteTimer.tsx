@@ -19,10 +19,8 @@ export default function VoteTimer() {
 
         const getTimeStatus = () => {
             const now = new Date();
-
             const voteEnd = new Date();
             voteEnd.setHours(23, 50, 0, 0);
-
             const voteEndLimit = new Date();
             voteEndLimit.setHours(23, 59, 59, 999);
 

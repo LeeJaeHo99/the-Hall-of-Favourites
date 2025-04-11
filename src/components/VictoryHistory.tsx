@@ -38,7 +38,7 @@ function Profile({name, group, history}) {
     return (
         <div className="profile">
             <Image
-                src={`/images/${group}/${name}-main.png`}
+                src={`/images/${group}/${name}.png`}
                 width={60}
                 height={60}
                 alt="프로필 이미지"

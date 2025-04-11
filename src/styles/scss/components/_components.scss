@@ -353,7 +353,7 @@
         transition: all 0.3s ease-in-out;
         cursor: pointer;
 
-        &:hover{
+        &:hover {
             background-color: #f3e8ff;
             color: $primary;
         }
@@ -417,8 +417,8 @@
                 width: 80%;
                 font-family: "gs-m";
                 color: $white-text;
-                
-                span{
+
+                span {
                     max-width: 85%;
                     overflow: hidden;
                     text-overflow: ellipsis;
@@ -441,9 +441,9 @@
     }
 }
 
-.victory-history{
+.victory-history {
     display: flex;
-    align-items:flex-end;
+    align-items: flex-end;
     justify-content: center;
     width: 100%;
     height: auto;
@@ -451,10 +451,10 @@
     padding: 140px 20px 50px;
     border-radius: 12px;
 
-    > div{
+    > div {
         width: 30%;
-        
-        .profile{
+
+        .profile {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -464,75 +464,137 @@
             margin-bottom: 20px;
             cursor: pointer;
 
-            img{
+            img {
                 border-radius: 50%;
             }
-            span{
-                font-family: 'gs-m';
+            span {
+                font-family: "gs-m";
                 font-size: 14px;
             }
-            .victory-num{
-                font-family: 'gs-l';
+            .victory-num {
+                font-family: "gs-l";
                 font-size: 14px;
             }
         }
-        .box{
+        .box {
             width: 100%;
             height: 60px;
             max-height: 60px;
             background-color: #c4bee2;
 
-            &:nth-child(2){
+            &:nth-child(2) {
                 padding-top: 12px;
                 font-size: 32px;
                 text-align: center;
             }
         }
     }
-    .silver{
-        .profile{
-            img{
-                box-shadow: 0 0 16px 6px #CDD0D430
+    .silver {
+        .profile {
+            img {
+                box-shadow: 0 0 16px 6px #cdd0d430;
             }
-            span{
-                color: #CDD0D4;
+            span {
+                color: #cdd0d4;
             }
         }
-        .box:nth-child(2){
+        .box:nth-child(2) {
             border-top-left-radius: 8px;
         }
-        .box:last-child{
+        .box:last-child {
             border-bottom-left-radius: 8px;
         }
     }
-    .gold{
-        .profile{
-            img{
-                box-shadow: 0 0 16px 6px #FFCC4930
+    .gold {
+        .profile {
+            img {
+                box-shadow: 0 0 16px 6px #ffcc4930;
             }
-            span{
-                color: #FFCC49;
+            span {
+                color: #ffcc49;
             }
         }
-        .box:nth-child(2){
+        .box:nth-child(2) {
             border-top-left-radius: 8px;
             border-top-right-radius: 8px;
         }
     }
-    .bronze{
-        .profile{
-            img{
-                box-shadow: 0 0 16px 6px #C19A6B30
+    .bronze {
+        .profile {
+            img {
+                box-shadow: 0 0 16px 6px #c19a6b30;
             }
-            span{
-                color: #C19A6B;
+            span {
+                color: #c19a6b;
             }
         }
-        .box:nth-child(2){
+        .box:nth-child(2) {
             border-top-right-radius: 8px;
         }
-        .box:last-child{
+        .box:last-child {
             border-bottom-right-radius: 8px;
         }
     }
+}
+
+.chart-legend{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 32px;
+
+    > li{
+        span:first-child{
+            margin-right: 6px;
+        }
+        span:last-child{
+            font-family: 'gs-m';
+        }
+    }
+}
+
+.blind-content, .collecting-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    height: 400px;
+    border-radius: 16px;
+}
+
+.blind-content{
+    flex-direction: column;
+
+    p{
+        &:first-child{
+            margin-bottom: 14px;
+            font-family: 'gs-m';
+            font-size: 38px;
+        }
+        &:nth-child(2){
+            margin-bottom: 40px;
+            font-family: 'gs-l';
+            font-size: 24px;
+            color: #878c9e;
+        }
+    }
+    .blind-rank--wrap{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
+        font-family: 'gs-m';
+        font-size: 18px;
+
+        .name{
+            margin-right: 8px;
+        }
+    }
+}
+
+.collecting-content{
+
+    font-family: 'gs-b';
+    font-size: 48px;
 }

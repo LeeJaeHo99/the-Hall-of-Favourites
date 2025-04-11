@@ -156,21 +156,20 @@ footer {
   font-family: "gs-m";
   font-size: 38px;
 }
+.title-wrap .section-title:has(.more-view--btn) {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.title-wrap .section-title:has(.more-view--btn) .more-view--btn {
+  font-family: "gs-m";
+  font-size: 14px;
+  color: #8e65ab;
+}
 .title-wrap .section-desc {
   font-family: "gs-l";
   font-size: 20px;
   color: #878c9e;
-}
-.title-wrap .title-link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-.title-wrap .title-link .more-view--btn {
-  font-family: "gs-m";
-  font-size: 14px;
-  color: #8e65ab;
 }
 
 .blur-box {
@@ -623,7 +622,7 @@ footer {
   box-shadow: 0 0 16px 6px rgba(205, 208, 212, 0.1882352941);
 }
 .victory-history .silver .profile span {
-  color: #CDD0D4;
+  color: #cdd0d4;
 }
 .victory-history .silver .box:nth-child(2) {
   border-top-left-radius: 8px;
@@ -635,7 +634,7 @@ footer {
   box-shadow: 0 0 16px 6px rgba(255, 204, 73, 0.1882352941);
 }
 .victory-history .gold .profile span {
-  color: #FFCC49;
+  color: #ffcc49;
 }
 .victory-history .gold .box:nth-child(2) {
   border-top-left-radius: 8px;
@@ -645,13 +644,67 @@ footer {
   box-shadow: 0 0 16px 6px rgba(193, 154, 107, 0.1882352941);
 }
 .victory-history .bronze .profile span {
-  color: #C19A6B;
+  color: #c19a6b;
 }
 .victory-history .bronze .box:nth-child(2) {
   border-top-right-radius: 8px;
 }
 .victory-history .bronze .box:last-child {
   border-bottom-right-radius: 8px;
+}
+
+.chart-legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 32px;
+}
+.chart-legend > li span:first-child {
+  margin-right: 6px;
+}
+.chart-legend > li span:last-child {
+  font-family: "gs-m";
+}
+
+.blind-content, .collecting-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  height: 400px;
+  border-radius: 16px;
+}
+
+.blind-content {
+  flex-direction: column;
+}
+.blind-content p:first-child {
+  margin-bottom: 14px;
+  font-family: "gs-m";
+  font-size: 38px;
+}
+.blind-content p:nth-child(2) {
+  margin-bottom: 40px;
+  font-family: "gs-l";
+  font-size: 24px;
+  color: #878c9e;
+}
+.blind-content .blind-rank--wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  font-family: "gs-m";
+  font-size: 18px;
+}
+.blind-content .blind-rank--wrap .name {
+  margin-right: 8px;
+}
+
+.collecting-content {
+  font-family: "gs-b";
+  font-size: 48px;
 }
 
 .home {
@@ -674,6 +727,7 @@ footer {
 }
 .home .inner .board-history-section > div .title-wrap {
   align-items: flex-start;
+  margin-bottom: 40px;
 }
 .home .inner .board-history-section > div .title-wrap .section-title {
   font-size: 28px;

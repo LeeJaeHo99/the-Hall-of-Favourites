@@ -1,7 +1,7 @@
 import Image from "next/image";
 
-export default function MusicThumbnail({ videoId, isPlaying }) {
-    const thumbnail = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+export default function MusicThumbnail({ songId, isPlaying }) {
+    const thumbnail = `https://img.youtube.com/vi/${songId}/maxresdefault.jpg`;
 
     return (
             <Image

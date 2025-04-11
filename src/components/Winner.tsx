@@ -42,7 +42,8 @@ export default function Winner({ group, singer }: Winner) {
                             <Image
                                 className="winner-img"
                                 ref={targetRef}
-                                src={`/images/${group}/${singer}-main.png`}
+                                src={`/images/${group}/${singer}.png`}
+                                // src={`/images/aespa/winter.png`}
                                 width={480}
                                 height={480}
                                 alt="⭐️ 오늘의 우승자 ⭐️"
@@ -56,7 +57,6 @@ export default function Winner({ group, singer }: Winner) {
                         </div>
                     </div>
                 </motion.div>
-
                 <RightContent />
             </div>
         </div>
@@ -111,6 +111,19 @@ function RightContent() {
                     <div className="title">역대 우승횟수</div>
                     <div className="result">
                         총 <span>27</span>회
+                    </div>
+                </motion.div>
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{
+                        duration: 1,
+                        ease: [0, 0.71, 0.2, 1.01],
+                    }}
+                >
+                    <div className="title">역대 좋아요</div>
+                    <div className="result">
+                        총 <span>2840650</span>회
                     </div>
                 </motion.div>
                 <motion.div

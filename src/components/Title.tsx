@@ -1,0 +1,32 @@
+"use client";
+
+import { motion } from "motion/react";
+import MoreViewBtn from "@/components/MoreViewBtn";
+
+interface Title {
+    title: string;
+    desc?: string;
+    moreView?: boolean;
+    children?: React.ReactNode;
+}
+
+export default function Title({ title, desc, moreView, children }: Title) {
+    return (
+        <motion.h2
+            className="section-title"
+            initial={{ opacity: 0, y: -50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 1 }}
+            transition={{ duration: 0.5 }}
+        >
+            <div className="title-wrap">
+                <div className="section-title">
+                    <span>{title}</span>
+                    {moreView && <MoreViewBtn link={"123"} />}
+                </div>
+                <div className="section-desc">{desc}</div>
+                {children}
+            </div>
+        </motion.h2>
+    );
+}

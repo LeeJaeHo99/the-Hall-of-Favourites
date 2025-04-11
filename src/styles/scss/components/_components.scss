@@ -111,10 +111,7 @@
         .left-content {
             .share-component {
                 padding: 16px;
-                background-color: rgba(255, 255, 255, 0.05);
-                backdrop-filter: blur(10px);
                 border-radius: 12px;
-                box-shadow: 0 0 20px 8px #00000030;
 
                 .title {
                     margin-bottom: 20px;
@@ -170,10 +167,7 @@
     display: flex;
     gap: 24px;
     padding: 16px;
-    background-color: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
     border-radius: 16px;
-    box-shadow: 0 0 20px 8px #00000030;
 
     .music-player--wrap {
         position: relative;
@@ -349,24 +343,29 @@
     .group-link-btn {
         width: 17%;
         padding: 16px;
-        background-color: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(10px);
+        background-color: transparent;
         border-radius: 8px;
+        border: 1px solid #d8b4fe;
         font-family: "gs-m";
-        color: #fff;
+        color: #d8b4fe;
         text-align: center;
-        box-shadow: 0 0 20px 8px #00000030;
+        font-weight: 600;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+
+        &:hover{
+            background-color: #f3e8ff;
+            color: $primary;
+        }
     }
 }
 
 .board-preview {
     width: 100%;
     height: auto;
+    max-height: 370px;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
     border-radius: 12px;
-    box-shadow: 0 0 20px 8px #00000030;
 
     .category-wrap {
         display: flex;
@@ -438,6 +437,102 @@
                 color: $gray-text;
                 text-align: right;
             }
+        }
+    }
+}
+
+.victory-history{
+    display: flex;
+    align-items:flex-end;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    max-height: 370px;
+    padding: 140px 20px 50px;
+    border-radius: 12px;
+
+    > div{
+        width: 30%;
+        
+        .profile{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 8px;
+            position: relative;
+            margin-bottom: 20px;
+            cursor: pointer;
+
+            img{
+                border-radius: 50%;
+            }
+            span{
+                font-family: 'gs-m';
+                font-size: 14px;
+            }
+            .victory-num{
+                font-family: 'gs-l';
+                font-size: 14px;
+            }
+        }
+        .box{
+            width: 100%;
+            height: 60px;
+            max-height: 60px;
+            background-color: #c4bee2;
+
+            &:nth-child(2){
+                padding-top: 12px;
+                font-size: 32px;
+                text-align: center;
+            }
+        }
+    }
+    .silver{
+        .profile{
+            img{
+                box-shadow: 0 0 16px 6px #CDD0D430
+            }
+            span{
+                color: #CDD0D4;
+            }
+        }
+        .box:nth-child(2){
+            border-top-left-radius: 8px;
+        }
+        .box:last-child{
+            border-bottom-left-radius: 8px;
+        }
+    }
+    .gold{
+        .profile{
+            img{
+                box-shadow: 0 0 16px 6px #FFCC4930
+            }
+            span{
+                color: #FFCC49;
+            }
+        }
+        .box:nth-child(2){
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+    }
+    .bronze{
+        .profile{
+            img{
+                box-shadow: 0 0 16px 6px #C19A6B30
+            }
+            span{
+                color: #C19A6B;
+            }
+        }
+        .box:nth-child(2){
+            border-top-right-radius: 8px;
+        }
+        .box:last-child{
+            border-bottom-right-radius: 8px;
         }
     }
 }

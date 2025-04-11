@@ -7,7 +7,7 @@ export default function GroupLinkBtn() {
             <Link
             key={group.groupEn}
             href={`/group/${group.groupEn}`}
-            className="group-link-btn"
+            className="group-link-btn blur-box"
         >
             {group.groupEn}
         </Link>

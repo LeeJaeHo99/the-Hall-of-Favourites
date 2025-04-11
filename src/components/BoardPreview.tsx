@@ -13,7 +13,7 @@ export default function BoardPreview() {
     };
 
     return (
-        <div className="board-preview">
+        <div className="board-preview blur-box">
             <div className="category-wrap">
                 <p className={`${category && "selected"}`} onClick={clickNew}>
                     최신글

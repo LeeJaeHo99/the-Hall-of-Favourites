@@ -2,8 +2,11 @@ import Inner from "@/components/Inner";
 import Winner from "@/components/Winner";
 import Table from "@/components/Table";
 import SearchBar from "@/components/SearchBar";
-import GroupLinkBtn from "../components/GroupLinkBtn";
-import BoardPreview from '../components/BoardPreview';
+import GroupLinkBtn from "@/components/GroupLinkBtn";
+import BoardPreview from "@/components/BoardPreview";
+import VictoryHistory from "@/components/VictoryHistory";
+import MoreViewBtn from "@/components/MoreViewBtn";
+import RankChart from "@/components/RankChart";
 
 export default function Home() {
     return (
@@ -47,11 +50,12 @@ function RankingSection() {
                     매 시간 정각에 순위가 업데이트 됩니다.
                 </div>
             </div>
-            <Table
+            {/* <Table
                 head={["순위", "이름", "그룹", "투표수", "변동정보"]}
                 body={rank}
                 columns={["name", "group", "voteCount", "changeInfo"]}
-            />
+            /> */}
+            <RankChart/>
         </section>
     );
 }
@@ -78,13 +82,20 @@ function BoradAndHistory() {
         <section className="page-section board-history-section">
             <div className="borad-part">
                 <div className="title-wrap">
-                    <div className="section-title">자유 게시판</div>
-                    <BoardPreview/>
+                    <div className="title-link">
+                        <div className="section-title">자유 게시판</div>
+                        <MoreViewBtn link={"123"} />
+                    </div>
+                    <BoardPreview />
                 </div>
             </div>
             <div className="history-part">
                 <div className="title-wrap">
-                    <div className="section-title">역대 순위</div>
+                    <div className="title-link">
+                        <div className="section-title">역대 우승 순위</div>
+                        <MoreViewBtn link={"123"} />
+                    </div>
+                    <VictoryHistory />
                 </div>
             </div>
         </section>

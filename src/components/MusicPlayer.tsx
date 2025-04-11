@@ -26,7 +26,7 @@ export default function MusicPlayer() {
     };
 
     return (
-        <div className="player-wraper">
+        <div className="player-wraper blur-box">
             <div className="music-player--wrap">
                 <div id="youtube-player" style={{ display: "none" }} />
                 <button

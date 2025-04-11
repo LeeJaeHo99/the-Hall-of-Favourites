@@ -84,7 +84,7 @@ function LeftContent() {
                         ease: [0, 0.71, 0.2, 1.01],
                     }}
                 >
-                    <div className="share-component">
+                    <div className="share-component blur-box">
                         <div className="title">공유하기</div>
                         <div className="logo-wrap">
                             <Image src={'/icons/kakao.png'} width={48} height={48} alt='카카오 아이콘'/>

@@ -82,4 +82,22 @@ footer {
         font-size: 20px;
         color: $gray-text;
     }
+    .title-link{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+
+        .more-view--btn{
+            font-family: 'gs-m';
+            font-size: 14px;
+            color: $primary;
+        }
+    }
+}
+
+.blur-box{
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.1882352941);
 }

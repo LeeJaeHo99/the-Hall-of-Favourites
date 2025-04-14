@@ -2,9 +2,9 @@
 
 import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
+import BoardSkeleton from "./skeleton/BoardPreviewSkeleton";
 
 export default function BoardPreview() {
-    const [noticeList, setNoticeList] = useState([]);
     const [category, setCategory] = useState(true);
     const clickNew = () => {
         setCategory(true);
@@ -12,15 +12,13 @@ export default function BoardPreview() {
     const clickPopular = () => {
         setCategory(false);
     };
-
+    
+    const [writeList, setWriteList] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch(
-                `${process.env.NEXT_PUBLIC_API_URL}/api/getNoticePre`
-            );
-            const result = await response.json();
-            console.log("result: ", result.data);
-            setNoticeList(result.data);
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getWritePre`);
+            const writeData = await response.json();
+            setWriteList(writeData.data);
         };
         fetchData();
     }, []);
@@ -40,8 +38,8 @@ export default function BoardPreview() {
             </div>
             <div className="writing-wrap">
                 <Suspense fallback={<BoardSkeleton />}>
-                    {noticeList.length > 0 
-                        ? noticeList.map((notice) => <BoardContent key={notice._id} {...notice} />)
+                    {writeList.length > 0 
+                        ? writeList.map((write) => <BoardContent key={write._id} {...write} />)
                         : <BoardSkeleton/>}
                 </Suspense>
             </div>
@@ -51,39 +49,12 @@ export default function BoardPreview() {
 
 function BoardContent({ _id, title, date, commentNum }) {
     return (
-        <Link href={`/notice/${_id}`} className="writing">
+        <Link href={`/board/${_id}`} className="writing">
             <div className="title">
                 <span>{title}</span>
                 <div className="comment-num">[ {commentNum} ]</div>
             </div>
             <div className="date">{date}</div>
         </Link>
-    );
-}
-
-function BoardSkeleton() {
-    return (
-        <div className="board-preview-skeleton">
-            <div>
-                <div className="skeleton"></div>
-                <div className="skeleton"></div>
-            </div>
-            <div>
-                <div className="skeleton"></div>
-                <div className="skeleton"></div>
-            </div>
-            <div>
-                <div className="skeleton"></div>
-                <div className="skeleton"></div>
-            </div>
-            <div>
-                <div className="skeleton"></div>
-                <div className="skeleton"></div>
-            </div>
-            <div>
-                <div className="skeleton"></div>
-                <div className="skeleton"></div>
-            </div>
-        </div>
     );
 }

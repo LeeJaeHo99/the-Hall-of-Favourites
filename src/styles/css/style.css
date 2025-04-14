@@ -91,7 +91,7 @@ body {
 body {
   background: linear-gradient(to bottom, #1e1b3a, #15132a, #0e0c1f);
 }
-body .home, body .GroupPage {
+body .home, body .GroupPage, body .BoardPage {
   padding-top: 100px;
   margin-top: 60px;
 }
@@ -525,36 +525,6 @@ footer {
   padding: 20px;
   border-radius: 12px;
 }
-.board-preview .category-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 16px;
-  margin-bottom: 8px;
-}
-.board-preview .category-wrap p {
-  font-family: "gs-l";
-  font-size: 14px;
-  cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-}
-.board-preview .category-wrap p.selected {
-  font-family: "gs-m";
-  color: #8e65ab;
-}
-.board-preview .category-wrap p:first-child {
-  position: relative;
-}
-.board-preview .category-wrap p:first-child:before {
-  content: "";
-  position: absolute;
-  right: -8px;
-  width: 0.5px;
-  height: 100%;
-  background-color: #a5a5a5;
-}
 .board-preview .writing-wrap .writing {
   display: flex;
   justify-content: space-between;
@@ -591,6 +561,43 @@ footer {
   font-size: 14px;
   color: #878c9e;
   text-align: right;
+}
+
+.category-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+.category-wrap p {
+  font-family: "gs-l";
+  font-size: 14px;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.category-wrap p.selected {
+  font-family: "gs-m";
+  color: #8e65ab;
+}
+.category-wrap p:first-child {
+  position: relative;
+}
+.category-wrap p:first-child:before {
+  content: "";
+  position: absolute;
+  right: -8px;
+  width: 0.5px;
+  height: 100%;
+  background-color: #a5a5a5;
+}
+
+.category-right {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
 }
 
 .victory-history {
@@ -794,4 +801,8 @@ footer {
   border-radius: 16px;
   border-radius: 50%;
   box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.2509803922);
+}
+
+.BoardPage .inner .category-wrap p {
+  font-size: 16px;
 }/*# sourceMappingURL=style.css.map */

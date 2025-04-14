@@ -4,7 +4,7 @@ import { connectDB } from "@/util/mongodb";
 export async function GET(req) {
     try {
         const db = (await connectDB).db("IdolRank");
-        const collection = db.collection("notice");
+        const collection = db.collection("write");
 
         const { searchParams } = new URL(req.url);
         const full = searchParams.get("full");

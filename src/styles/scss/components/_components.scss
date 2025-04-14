@@ -367,37 +367,6 @@
     padding: 20px;
     border-radius: 12px;
 
-    .category-wrap {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        gap: 16px;
-        margin-bottom: 8px;
-
-        p {
-            font-family: "gs-l";
-            font-size: 14px;
-            cursor: pointer;
-            user-select: none;
-
-            &.selected {
-                font-family: "gs-m";
-                color: $primary;
-            }
-        }
-        p:first-child {
-            position: relative;
-
-            &:before {
-                content: "";
-                position: absolute;
-                right: -8px;
-                width: 0.5px;
-                height: 100%;
-                background-color: #a5a5a5;
-            }
-        }
-    }
     .writing-wrap {
         .writing {
             display: flex;
@@ -439,6 +408,44 @@
             }
         }
     }
+}
+
+.category-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+    margin-bottom: 8px;
+
+    p {
+        font-family: "gs-l";
+        font-size: 14px;
+        cursor: pointer;
+        user-select: none;
+
+        &.selected {
+            font-family: "gs-m";
+            color: $primary;
+        }
+    }
+    p:first-child {
+        position: relative;
+
+        &:before {
+            content: "";
+            position: absolute;
+            right: -8px;
+            width: 0.5px;
+            height: 100%;
+            background-color: #a5a5a5;
+        }
+    }
+}
+
+.category-right{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
 }
 
 .victory-history {

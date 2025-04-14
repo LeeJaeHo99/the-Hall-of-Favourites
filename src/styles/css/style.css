@@ -183,6 +183,22 @@ footer {
   box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.1882352941);
 }
 
+.skeleton {
+  background-color: rgba(255, 255, 255, 0.11);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  transition: all 0.5s;
+  animation: skeletonAni 0.5s infinite;
+}
+
+@keyframes skeletonAni {
+  0%, 100% {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  50% {
+    background-color: rgba(255, 255, 255, 0.11);
+  }
+}
 .inner {
   display: flex;
   align-items: center;
@@ -750,4 +766,32 @@ footer {
 }
 .home .inner .board-history-section > div .title-wrap .section-title {
   font-size: 28px;
+}
+.home .inner .board-preview-skeleton {
+  width: 100%;
+}
+.home .inner .board-preview-skeleton > div {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  padding: 24px 0;
+}
+.home .inner .board-preview-skeleton > div > div {
+  height: 12px;
+  border-radius: 4px;
+}
+.home .inner .board-preview-skeleton > div div:first-child {
+  width: 90%;
+}
+.home .inner .board-preview-skeleton > div div:last-child {
+  width: 10%;
+}
+
+.GroupPage .inner {
+  align-items: flex-start;
+}
+.GroupPage .inner .group-img {
+  border-radius: 16px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.2509803922);
 }/*# sourceMappingURL=style.css.map */

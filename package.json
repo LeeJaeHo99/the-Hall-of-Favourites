@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "canvas-confetti": "^1.9.3",
+    "mongodb": "^6.15.0",
     "motion": "^12.6.3",
     "next": "15.3.0",
     "party-js": "^2.2.0",

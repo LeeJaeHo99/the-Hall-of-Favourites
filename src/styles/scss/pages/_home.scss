@@ -23,5 +23,26 @@
                 }
             }
         }
+        .board-preview-skeleton{
+            width: 100%;
+            
+            > div{
+                display: flex;
+                gap: 16px;
+                width: 100%;
+                padding: 24px 0;
+
+                > div{
+                    height: 12px;
+                    border-radius: 4px;
+                }
+                div:first-child{
+                    width: 90%;
+                }
+                div:last-child{
+                    width: 10%;
+                }
+            }
+        }
     }
 }

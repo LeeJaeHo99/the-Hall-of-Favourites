@@ -626,6 +626,52 @@
     font-size: 48px;
 }
 
-.info-table{
-    
+.board{
+    width: 100%;
+    height: auto;
+
+    thead{
+        tr{
+            border-bottom: 2px solid $primary;
+
+            th{
+                padding: 16px 0;
+                font-family: 'gs-b';
+                font-size: 16px;
+                color: $primary;
+            }
+        }
+    }
+    tbody{
+        tr{
+            td{
+                padding: 16px 0;
+                font-family: 'gs-m';
+                text-align: center;
+                border-bottom: 1px solid #a5a5a550;
+
+            }
+            .title-td{
+                a{
+                    .title{
+                        margin-right: 8px;
+                        font-size: 18px;
+                        color: $white-text;
+                    }
+                    .comment-num{
+                        font-size: 14px;
+                        color: lightcoral;
+                    }
+                }
+            }
+            &:last-child{
+                td{
+                    border: none;
+                }
+            }
+            .like-num{
+                color: lightcoral;
+            }
+        }
+    }
 }

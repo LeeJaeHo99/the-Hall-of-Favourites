@@ -16,12 +16,13 @@ export default function BoardPreview() {
     const [writeList, setWriteList] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getWritePre`);
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getWrite`);
             const writeData = await response.json();
             setWriteList(writeData.data);
         };
         fetchData();
     }, []);
+    const recentWrite = writeList.reverse().slice(0, 5);
 
     return (
         <div className="board-preview blur-box">
@@ -38,8 +39,8 @@ export default function BoardPreview() {
             </div>
             <div className="writing-wrap">
                 <Suspense fallback={<BoardSkeleton />}>
-                    {writeList.length > 0 
-                        ? writeList.map((write) => <BoardContent key={write._id} {...write} />)
+                    {recentWrite.length > 0 
+                        ? recentWrite.map((write) => <BoardContent key={write._id} {...write} />)
                         : <BoardSkeleton/>}
                 </Suspense>
             </div>
@@ -47,7 +48,7 @@ export default function BoardPreview() {
     );
 }
 
-function BoardContent({ _id, title, date, commentNum }) {
+function BoardContent({ _id, title, date, commentNum, likeNum }) {
     return (
         <Link href={`/board/${_id}`} className="writing">
             <div className="title">

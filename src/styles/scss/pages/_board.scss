@@ -1,8 +1,51 @@
 .BoardPage{
     .inner{
-        .category-wrap {
-            p{
-                font-size: 16px;
+        .board-content--wrap{
+            width: 100%;
+            padding: 24px;
+            border-radius: 12px;
+
+            .category-right{
+                margin-bottom: 40px;
+    
+                .category-wrap {
+                    p{
+                        font-size: 16px;
+                    }
+                }
+            }
+            .board{
+                thead{
+                    tr{
+                        th{
+                            &:nth-child(1){
+                                width: 6%;
+                            }
+                            &:nth-child(2){
+                                width: auto;
+                                text-align: left;
+                            }
+                            &:nth-child(3){
+                                width: 10%;
+                            }
+                            &:nth-child(4){
+                                width: 10%;
+                            }
+                            &:nth-child(5){
+                                width: 8%;
+                            }
+                        }
+                    }
+                }
+                tbody{
+                    tr{
+                        td{
+                            &:nth-child(2){
+                                text-align: left;
+                            }
+                        }
+                    }
+                }
             }
         }
     }

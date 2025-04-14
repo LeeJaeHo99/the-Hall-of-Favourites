@@ -6,10 +6,16 @@ body {
 
 body{
     background: linear-gradient(to bottom, #1e1b3a, #15132a, #0e0c1f);
+}
 
-    .home, .GroupPage, .BoardPage{
-        padding-top: 100px;
-        margin-top: 60px;
+.sub-page{
+    padding-top: 100px;
+    margin-top: 60px;
+
+    .title-left{
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
     }
 }
 

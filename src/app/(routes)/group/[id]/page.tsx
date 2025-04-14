@@ -9,7 +9,7 @@ export default function GroupPage() {
     // const params = useParams();
 
     return (
-        <div className="GroupPage">
+        <div className="GroupPage sub-page">
             <Inner x={"left"} y={"column"}>
                 <Image
                     className="group-img"

@@ -34,6 +34,7 @@ writing = [
         title: '', // 제목
         content: '', // 글
         commentNum: 123, // 댓글 수 
+        like: 123,
         date: '', // 날짜
         writer: '', // 작성자
         pw: '', // 비밀번호

@@ -91,9 +91,15 @@ body {
 body {
   background: linear-gradient(to bottom, #1e1b3a, #15132a, #0e0c1f);
 }
-body .home, body .GroupPage, body .BoardPage {
+
+.sub-page {
   padding-top: 100px;
   margin-top: 60px;
+}
+.sub-page .title-left {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
 }
 
 header {
@@ -753,6 +759,45 @@ footer {
   font-size: 48px;
 }
 
+.board {
+  width: 100%;
+  height: auto;
+}
+.board thead tr {
+  border-bottom: 2px solid #8e65ab;
+}
+.board thead tr th {
+  padding: 16px 0;
+  font-family: "gs-b";
+  font-size: 16px;
+  color: #8e65ab;
+}
+.board tbody tr td {
+  padding: 16px 0;
+  font-family: "gs-m";
+  text-align: center;
+  border-bottom: 1px solid rgba(165, 165, 165, 0.3137254902);
+}
+.board tbody tr .title-td a .title {
+  margin-right: 8px;
+  font-size: 18px;
+  color: #f5f7ff;
+}
+.board tbody tr .title-td a .comment-num {
+  font-size: 14px;
+  color: lightcoral;
+}
+.board tbody tr:last-child td {
+  border: none;
+}
+.board tbody tr .like-num {
+  color: lightcoral;
+}
+
+.home {
+  padding-top: 100px;
+  margin-top: 60px;
+}
 .home .inner {
   gap: 160px;
 }
@@ -803,6 +848,33 @@ footer {
   box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.2509803922);
 }
 
-.BoardPage .inner .category-wrap p {
+.BoardPage .inner .board-content--wrap {
+  width: 100%;
+  padding: 24px;
+  border-radius: 12px;
+}
+.BoardPage .inner .board-content--wrap .category-right {
+  margin-bottom: 40px;
+}
+.BoardPage .inner .board-content--wrap .category-right .category-wrap p {
   font-size: 16px;
+}
+.BoardPage .inner .board-content--wrap .board thead tr th:nth-child(1) {
+  width: 6%;
+}
+.BoardPage .inner .board-content--wrap .board thead tr th:nth-child(2) {
+  width: auto;
+  text-align: left;
+}
+.BoardPage .inner .board-content--wrap .board thead tr th:nth-child(3) {
+  width: 10%;
+}
+.BoardPage .inner .board-content--wrap .board thead tr th:nth-child(4) {
+  width: 10%;
+}
+.BoardPage .inner .board-content--wrap .board thead tr th:nth-child(5) {
+  width: 8%;
+}
+.BoardPage .inner .board-content--wrap .board tbody tr td:nth-child(2) {
+  text-align: left;
 }/*# sourceMappingURL=style.css.map */

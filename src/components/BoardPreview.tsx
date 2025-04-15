@@ -12,17 +12,22 @@ export default function BoardPreview() {
     const clickPopular = () => {
         setCategory(false);
     };
-    
+
     const [writeList, setWriteList] = useState([]);
+
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getWrite`);
+            const response = await fetch(
+                `${process.env.NEXT_PUBLIC_API_URL}/api/getWrite`
+            );
             const writeData = await response.json();
             setWriteList(writeData.data);
         };
         fetchData();
     }, []);
-    const recentWrite = writeList.reverse().slice(0, 5);
+
+    const recentWrite = [...writeList].reverse().slice(0, 5);
+    const likeSortedWrite = writeList.sort((a, b) => Number(b.likeNum) - Number(a.likeNum));
 
     return (
         <div className="board-preview blur-box">
@@ -39,9 +44,17 @@ export default function BoardPreview() {
             </div>
             <div className="writing-wrap">
                 <Suspense fallback={<BoardSkeleton />}>
-                    {recentWrite.length > 0 
-                        ? recentWrite.map((write) => <BoardContent key={write._id} {...write} />)
-                        : <BoardSkeleton/>}
+                    {recentWrite.length > 0 ? (
+                        recentWrite.map((write) => (
+                            <BoardContent key={write._id} {...write} />
+                        ))
+                    ) : !category ? (
+                        likeSortedWrite.map((write) => (
+                            <BoardContent key={write._id} {...write} />
+                        ))
+                    ) : (
+                        <BoardSkeleton />
+                    )}
                 </Suspense>
             </div>
         </div>

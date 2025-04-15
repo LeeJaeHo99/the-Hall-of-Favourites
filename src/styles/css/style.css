@@ -82,6 +82,10 @@ a {
   src: url("/fonts/GmarketSansLight.otf");
   font-family: "gs-l";
 }
+@font-face {
+  src: url("/fonts/SpecialGothicExpandedOne-Regular.ttf");
+  font-family: "sge";
+}
 html,
 body {
   background-color: #121212;
@@ -258,17 +262,6 @@ footer {
   font-family: "gs-m";
   font-size: 28px;
   text-align: center;
-}
-.winner .winner-content .main-content > div {
-  border-radius: 50%;
-  box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.2509803922);
-  overflow: hidden;
-}
-.winner .winner-content .main-content > div .winner-img {
-  transition: all 0.3s;
-}
-.winner .winner-content .main-content > div:hover .winner-img {
-  transform: scale(1.1);
 }
 .winner .winner-content .main-content .winner-desc {
   display: flex;
@@ -796,8 +789,173 @@ footer {
   color: lightcoral;
 }
 
+.pagination-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  height: auto;
+}
+.pagination-wrap .move-btn.plus-btn {
+  transform: rotate(180deg);
+}
+.pagination-wrap .move-btn img {
+  transition: all 0.3s;
+}
+.pagination-wrap .move-btn img:hover {
+  transform: scale(1.1);
+}
+.pagination-wrap div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  font-family: "gs-b";
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.pagination-wrap .selected {
+  border-radius: 50%;
+  color: #8e65ab;
+}
+
+.person-img--wrap {
+  border-radius: 50%;
+  box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.2509803922);
+  overflow: hidden;
+}
+.person-img--wrap .person-img {
+  transition: all 0.3s;
+}
+.person-img--wrap:hover .person-img {
+  transform: scale(1.1);
+}
+
+.PersonPage {
+  margin-top: 0;
+}
+.PersonPage .left-content--wrap, .PersonPage .right-content--wrap {
+  max-height: 500px;
+}
+.PersonPage .left-content--wrap .title, .PersonPage .right-content--wrap .title {
+  font-family: "gs-l";
+  font-size: 16px;
+}
+.PersonPage .left-content--wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+  width: 24%;
+}
+.PersonPage .left-content--wrap > div {
+  width: 100%;
+}
+.PersonPage .left-content--wrap .player-wraper {
+  justify-content: space-around;
+}
+.PersonPage .left-content--wrap .player-wraper .music-info .music-title {
+  margin-bottom: 12px;
+  font-size: 22px;
+}
+.PersonPage .left-content--wrap .player-wraper .music-info .music-singer {
+  font-size: 20px;
+}
+.PersonPage .left-content--wrap .content-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.PersonPage .left-content--wrap .content-box > div {
+  position: relative;
+  width: 50%;
+  height: 156px;
+  padding: 18px;
+  border-radius: 16px;
+}
+.PersonPage .left-content--wrap .content-box > div .content {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  font-family: "gs-l";
+  font-size: 14px;
+  text-align: center;
+}
+.PersonPage .left-content--wrap .content-box > div .content span {
+  font-family: "gs-b";
+  font-size: 18px;
+  color: lightgoldenrodyellow;
+}
+.PersonPage .left-content--wrap .content-box > div .content .heart-img {
+  filter: drop-shadow(0px 0px 16px rgba(255, 0, 0, 0.5019607843));
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.PersonPage .left-content--wrap .content-box > div .content .heart-img:hover {
+  transform: scale(1.1);
+}
+.PersonPage .main-content--wrap {
+  width: 48%;
+  padding-top: 80px;
+}
+.PersonPage .main-content--wrap .person-img--wrap {
+  max-width: 480px;
+  margin: auto;
+  margin-bottom: 32px;
+}
+.PersonPage .main-content--wrap .title-wrap {
+  gap: 16px;
+}
+.PersonPage .main-content--wrap .title-wrap .section-title {
+  font-family: "sge";
+  font-size: 48px;
+  color: #f5f7ff;
+  letter-spacing: 3px;
+}
+.PersonPage .main-content--wrap .title-wrap .section-desc {
+  font-size: 28px;
+}
+.PersonPage .right-content--wrap {
+  width: 24%;
+  padding: 16px;
+  border-radius: 16px;
+}
+.PersonPage .right-content--wrap h2 {
+  margin-bottom: 32px;
+  font-family: "gs-m";
+  font-size: 28px;
+  text-align: center;
+}
+.PersonPage .right-content--wrap > div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.PersonPage .right-content--wrap > div:last-child {
+  margin-bottom: 0;
+}
+.PersonPage .right-content--wrap > div .title {
+  margin-right: 8px;
+  font-size: 18px;
+}
+.PersonPage .right-content--wrap > div .info {
+  font-family: "gs-b";
+  font-size: 20px;
+  color: #8e65ab;
+}
+
 .home {
   padding-top: 100px;
+  padding-bottom: 80px;
   margin-top: 60px;
 }
 .home .inner {
@@ -858,8 +1016,7 @@ footer {
 .BoardPage .inner .board-content--wrap .board-editor {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  gap: 16px;
+  justify-content: space-between;
   width: 100%;
   margin-bottom: 16px;
 }
@@ -888,6 +1045,9 @@ footer {
 }
 .BoardPage .inner .board-content--wrap .board-editor .category-wrap p {
   font-size: 16px;
+}
+.BoardPage .inner .board-content--wrap .board {
+  margin-bottom: 40px;
 }
 .BoardPage .inner .board-content--wrap .board thead tr th:nth-child(1) {
   width: auto;

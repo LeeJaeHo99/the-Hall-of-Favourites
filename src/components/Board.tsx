@@ -4,7 +4,7 @@ interface Board {
     [key: string]: string;
 }
 
-export default function Board({ category, recentList, likeList }) {
+export default function Board({ category, recentWrite, likeSortedWrite }) {
     return (
         <table className="board">
             <thead>
@@ -19,7 +19,7 @@ export default function Board({ category, recentList, likeList }) {
                 {
                     category 
                         ? (
-                            recentList.map((list, i) => (
+                            recentWrite.map((list, i) => (
                                 <tr key={list._id}>
                                     <td className="title-td">
                                         <Link href={`/board/${list._id}`}>
@@ -36,7 +36,7 @@ export default function Board({ category, recentList, likeList }) {
                             ))
                         )
                         : (
-                            likeList.map((list, i) => (
+                            likeSortedWrite.map((list, i) => (
                                 <tr key={list._id}>
                                     <td className="title-td">
                                         <Link href={`/board/${list._id}`}>

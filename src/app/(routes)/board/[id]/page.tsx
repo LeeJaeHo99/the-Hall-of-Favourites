@@ -6,6 +6,8 @@ import Inner from "@/components/Inner";
 import Board from "@/components/Board";
 import Link from "next/link";
 import Image from 'next/image';
+import Pagination from '@/components/Pagination';
+import { usePagination } from '@/store/store';
 
 export default function BoardPage() {
     const [category, setCategory] = useState(true);
@@ -17,6 +19,12 @@ export default function BoardPage() {
     };
 
     const [writeList, setWriteList] = useState([]);
+    const {pagination} = usePagination();
+
+    // 최신순
+    const [recentWrite, setRecentWrite] = useState([]);
+    // 인기순
+    const [likeSortedWrite, setLikeSortedWrite] = useState([]);
 
     useEffect(() => {
         const fetchWriteData = async () => {
@@ -24,20 +32,19 @@ export default function BoardPage() {
                 `${process.env.NEXT_PUBLIC_API_URL}/api/getWrite?full=true`
             );
             const writeData = await response.json();
+            
             setWriteList(writeData.data);
+            setRecentWrite([...writeData.data].reverse().slice(pagination * 10, (pagination + 1) * 7));
+            setLikeSortedWrite([...writeData.data].sort((a, b) => {
+                let aList = Number(a.likeNum);
+                let bList = Number(b.likeNum);
+                return bList - aList;
+            }).slice(pagination * 10, (pagination + 1) * 7))
+
         };
         fetchWriteData();
     }, []);
 
-    // 최신순
-    let recentList = [...writeList].reverse();
-
-    // 인기순
-    let likeList = [...writeList].sort((a, b) => {
-        let aList = Number(a.likeNum);
-        let bList = Number(b.likeNum);
-        return bList - aList;
-    });
 
     return (
         <div className="BoardPage sub-page">
@@ -56,9 +63,10 @@ export default function BoardPage() {
                     </div>
                     <Board
                         category={category}
-                        recentList={...recentList}
-                        likeList={...likeList}
+                        recentWrite={...recentWrite}
+                        likeSortedWrite={...likeSortedWrite}
                     />
+                    <Pagination data={...writeList}/>
                 </div>
             </Inner>
         </div>

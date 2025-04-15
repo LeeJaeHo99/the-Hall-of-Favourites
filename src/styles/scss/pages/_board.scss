@@ -8,8 +8,7 @@
             .board-editor{
                 display: flex;
                 align-items:center;
-                justify-content: flex-end;
-                gap: 16px;
+                justify-content: space-between;
                 width: 100%;
                 margin-bottom: 16px;
                 
@@ -43,6 +42,8 @@
                 }
             }
             .board{
+                margin-bottom: 40px;
+
                 thead{
                     tr{
                         th{
@@ -87,6 +88,9 @@
                         }
                     }
                 }
+            }
+            .pagination-wrap{
+                
             }
         }
     }

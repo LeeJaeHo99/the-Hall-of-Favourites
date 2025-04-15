@@ -14,6 +14,8 @@ export default function BoardPreview() {
     };
 
     const [writeList, setWriteList] = useState([]);
+    const [recentWrite, setRecentWrite] = useState([]);
+    const [likeSortedWrite, setLikeSortedWrite] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -21,13 +23,16 @@ export default function BoardPreview() {
                 `${process.env.NEXT_PUBLIC_API_URL}/api/getWrite`
             );
             const writeData = await response.json();
+            console.log('writeData: ', writeData);
             setWriteList(writeData.data);
+            setRecentWrite([...writeData.data].reverse().slice(0, 5));
+            setLikeSortedWrite([...writeData.data].sort((a, b) => Number(b.likeNum) - Number(a.likeNum)).slice(0, 5))
         };
         fetchData();
     }, []);
 
-    const recentWrite = [...writeList].reverse().slice(0, 5);
-    const likeSortedWrite = writeList.sort((a, b) => Number(b.likeNum) - Number(a.likeNum));
+    // const recentWrite = [...writeList].reverse().slice(0, 5);
+    // const likeSortedWrite = writeList.sort((a, b) => Number(b.likeNum) - Number(a.likeNum)).slice(0, 5);
 
     return (
         <div className="board-preview blur-box">

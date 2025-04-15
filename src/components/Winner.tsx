@@ -6,6 +6,7 @@ import { motion } from "motion/react";
 import Image from "next/image";
 import MusicPlayer from "./MusicPlayer";
 import Link from "next/link";
+import MusicThumbnail from './MusicThumnail';
 
 interface Winner {
     [key: string]: string;
@@ -38,9 +39,9 @@ export default function Winner({ group, singer }: Winner) {
                 >
                     <div className="main-content">
                         <p>🎉 오늘의 우승자 🎉</p>
-                        <div>
+                        <div className="person-img--wrap">
                             <Image
-                                className="winner-img"
+                                className="person-img"
                                 ref={targetRef}
                                 src={`/images/${group}/${singer}.png`}
                                 // src={`/images/aespa/winter.png`}
@@ -74,7 +75,7 @@ function LeftContent() {
                         ease: [0, 0.71, 0.2, 1.01],
                     }}
                 >
-                    <MusicPlayer />
+                    <MusicThumbnail/>
                 </motion.div>
                 <motion.div
                     initial={{ opacity: 0, scale: 0.5 }}

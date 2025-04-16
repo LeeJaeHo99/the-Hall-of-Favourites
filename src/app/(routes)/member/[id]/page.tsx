@@ -11,7 +11,7 @@ export default function MemberPage() {
     // const params = useParams();
 
     return (
-        <div className="MemberPage PersonPage sub-page">
+        <div className="MemberPage InfoPage sub-page">
             <Inner x={"row"} y={"between"}>
                 <LeftContent />
                 <MainContent />

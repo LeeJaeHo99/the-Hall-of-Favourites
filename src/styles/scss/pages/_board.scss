@@ -12,25 +12,55 @@
                 width: 100%;
                 margin-bottom: 16px;
                 
-                .board-write--btn{
+                .board-component--wrap{
                     display: flex;
                     align-items: center;
-                    justify-content: center;
-                    gap: 6px;
-                    min-width: 24px;
-                    min-height: 24px;
-                    padding: 6px 12px;
-                    background-color: rgb(255 255 255 / 25%);
-                    border-radius: 8px;
-                    font-family: 'gs-l';
-                    font-size: 14px;
-                    color: $white-text;
-                    box-shadow: 0 0 20px 8px rgb(0 0 0 / 10%);
-                    transition: all 0.3s;
+                    justify-content: flex-start;
+                    gap: 16px;
+                    width: 60%;
 
-                    &:hover{
-                        transform: scale(1.05);
-                        background-color: $primary;
+                    .board-write--btn, .board-search--component{
+                        height: 28px;
+                        border-radius: 8px;
+                        box-shadow: 0 0 20px 8px rgb(0 0 0 / 10%);
+
+                    }
+                    .board-write--btn{
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 6px;
+                        width: 86px;
+                        background-color: rgb(255 255 255 / 25%);
+                        font-family: 'gs-l';
+                        font-size: 14px;
+                        color: $white-text;
+                        transition: all 0.3s;
+    
+                        &:hover{
+                            transform: scale(1.05);
+                            background-color: $primary;
+                        }
+                    }
+                    .board-search--component{
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        width: 50%;
+                        min-width: 200px;
+                        padding: 2px 6px;
+                        background-color: $white-text;
+
+                        input{
+                            flex-grow: 1;
+                            padding-left: 8px;
+                            background-color: transparent;
+                            border: none;
+                            font-family: 'gs-l';
+                            font-size: 14px;
+                            color: $black-bg;
+                            outline: none;
+                        }
                     }
                 }
                 .category-wrap {
@@ -88,9 +118,6 @@
                         }
                     }
                 }
-            }
-            .pagination-wrap{
-                
             }
         }
     }

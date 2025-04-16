@@ -57,7 +57,10 @@ export default function BoardPage() {
                 </div>
                 <div className="board-content--wrap blur-box">
                     <div className="board-editor">
-                        <BoardWrite />
+                        <div className="board-component--wrap">
+                            <BoardWrite />
+                            <BoardSearch/>
+                        </div>
                         <Category
                             category={category}
                             clickLeft={clickNew}
@@ -78,13 +81,22 @@ export default function BoardPage() {
     );
 }
 
-
-
 function BoardWrite() {
     return (
         <Link className="board-write--btn blur-box" href={"/board/write"}>
             <Image src={'/icons/write.png'} width={14} height={14} alt='글쓰기 아이콘'/>
             <span>글쓰기</span>
         </Link>
+    );
+}
+
+function BoardSearch(){
+    return(
+        <div className="board-search--component">
+            <input type="text" placeholder="검색어를 입력해주세요."/>
+            <button>
+                <Image src={'/icons/search.png'} width={16} height={16} alt="검색 아이콘"/>
+            </button>
+        </div>
     );
 }

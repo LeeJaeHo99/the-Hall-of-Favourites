@@ -3,6 +3,7 @@
 import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 import BoardSkeleton from "./skeleton/BoardPreviewSkeleton";
+import Category from "@/components/Category";
 
 export default function BoardPreview() {
     const [category, setCategory] = useState(true);
@@ -19,47 +20,54 @@ export default function BoardPreview() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch(
-                `${process.env.NEXT_PUBLIC_API_URL}/api/getWrite`
-            );
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getWrite`);
             const writeData = await response.json();
-            console.log('writeData: ', writeData);
             setWriteList(writeData.data);
-            setRecentWrite([...writeData.data].reverse().slice(0, 5));
-            setLikeSortedWrite([...writeData.data].sort((a, b) => Number(b.likeNum) - Number(a.likeNum)).slice(0, 5))
         };
         fetchData();
     }, []);
 
-    // const recentWrite = [...writeList].reverse().slice(0, 5);
-    // const likeSortedWrite = writeList.sort((a, b) => Number(b.likeNum) - Number(a.likeNum)).slice(0, 5);
+    useEffect(() => {
+        setRecentWrite([...writeList].reverse().slice(0, 5));
+        setLikeSortedWrite(
+            [...writeList]
+                .sort((a, b) => Number(b.likeNum) - Number(a.likeNum))
+                .slice(0, 5)
+        );
+    }, [writeList]);
+
+    console.log('category: ', category);
+    console.log('recentWrite: ', recentWrite);
+    console.log('likeSortedWrite: ', likeSortedWrite);
 
     return (
         <div className="board-preview blur-box">
-            <div className="category-wrap">
-                <p className={`${category && "selected"}`} onClick={clickNew}>
-                    최신글
-                </p>
-                <p
-                    className={`${category || "selected"}`}
-                    onClick={clickPopular}
-                >
-                    인기글
-                </p>
-            </div>
+            <Category
+                category={category}
+                clickLeft={clickNew}
+                clickRight={clickPopular}
+                leftText={"최신순"}
+                rightText={"인기순"}
+            />
             <div className="writing-wrap">
                 <Suspense fallback={<BoardSkeleton />}>
-                    {recentWrite.length > 0 ? (
-                        recentWrite.map((write) => (
-                            <BoardContent key={write._id} {...write} />
-                        ))
-                    ) : !category ? (
-                        likeSortedWrite.map((write) => (
-                            <BoardContent key={write._id} {...write} />
-                        ))
-                    ) : (
-                        <BoardSkeleton />
-                    )}
+                    {
+                        category ? (
+                            recentWrite.length > 0 ? (
+                                // 최신순 (category === T)
+                                recentWrite.map((write) => (
+                                <BoardContent key={write._id} {...write} />
+                                ))
+                            ) : <BoardSkeleton /> 
+                        ) : (
+                            likeSortedWrite.length > 0 ? (
+                                // 인기순 (category === F)
+                                likeSortedWrite.map((write) => (
+                                <BoardContent key={write._id} {...write} />
+                                ))
+                            ) : <BoardSkeleton />
+                        )
+                    }
                 </Suspense>
             </div>
         </div>

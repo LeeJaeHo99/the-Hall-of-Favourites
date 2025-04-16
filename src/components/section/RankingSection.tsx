@@ -1,28 +1,32 @@
 "use client";
 
 import { useMemo, useState, useEffect } from "react";
+import { idol } from "@/data/data";
 import Title from "@/components/Title";
 import RankChart from "@/components/RankChart";
-import { idol } from "@/data/data";
 
 const colors: string[] = ["#ffcc49","#cdd0d4", "#c19a6b", "#d1de74", "#f1a183"];
 const emoji: string[] = ["🥇", "🥈", "🥉", "💪", "💪"];
 
 export default function RankingSection() {
+    // TOP5 데이터 메모이제이션
     const top5 = useMemo(() => {
         if (!Array.isArray(idol)) return [];
         return getTop5IdolsByLatestLike(idol);
     }, [idol]);
 
+    // TOP5 차트 데이터 메모이제이션
     const chartData = useMemo(() => {
         return convertTop5ToChartData(top5);
     }, [top5]);
 
+    // AM 00:00 ~ PM 22:00 (차트출력) [ isBlindTime = F, isCollectingTime = F ]
+    // PM 22:00 ~ PM 23:50 (오늘의 누적 데이터 출력) [ isBlindTime = T, isCollectingTime = F ]
+    // PM 23:50 ~ AM 00:00 (데이터 집계) [ isBlindTime = F, isCollectingTime = T ]
     const [isBlindTime, setIsBlindTime] = useState(checkIsBlindTime());
-    const [isCollectingTime, setIsCollectingTime] = useState(
-        checkIsCollectingTime()
-    );
+    const [isCollectingTime, setIsCollectingTime] = useState(checkIsCollectingTime());
 
+    // 10초마다 새로고침
     useEffect(() => {
         const interval = setInterval(() => {
             setIsBlindTime(checkIsBlindTime());
@@ -76,7 +80,7 @@ function CollectingContent() {
     );
 }
 
-// 최근 5시간 TOP5 배열 만들기
+// 최근 5시간 TOP5 배열로 만들기
 function getRecentHourlyTimes(count = 5) {
     const now = new Date();
     now.setMinutes(0, 0, 0);
@@ -118,25 +122,20 @@ function getTop5IdolsByLatestLike(idols) {
         .slice(0, 5);
 }
 
-// 차트 블라인드 (오후 10시 ~ 오후 11시 50분)
+// 차트 블라인드 (PM 22:00 ~ PM 23:50)
 function checkIsBlindTime() {
     const now = new Date();
     const h = now.getHours();
     const m = now.getMinutes();
 
     return h === 22 || (h === 23 && m < 50);
-
-    // test
-    // return h === 0 && m >= 10;
 }
 
-// 순위 집계 (오후 11시 50분 + 오후 11시 59분)
+// 순위 집계 (PM 23:50 ~ PM 23:59)
 function checkIsCollectingTime() {
     const now = new Date();
     const h = now.getHours();
     const m = now.getMinutes();
 
     return h === 23 && m >= 50 && m <= 59;
-    // test
-    // return h === 0 && m >= 16;
 }

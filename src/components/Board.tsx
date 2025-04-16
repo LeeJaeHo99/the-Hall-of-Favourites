@@ -5,8 +5,6 @@ interface Board {
 }
 
 export default function Board({ category, recentWrite, likeSortedWrite }) {
-    console.log('board-recentWrite: ', recentWrite);
-    console.log('board-likeSortedWrite: ', likeSortedWrite);
     return (
         <table className="board">
             <thead>
@@ -21,6 +19,7 @@ export default function Board({ category, recentWrite, likeSortedWrite }) {
                 {
                     category 
                         ? (
+                            // 최신순
                             recentWrite.map((list, i) => (
                                 <tr key={list._id}>
                                     <td className="title-td">
@@ -38,6 +37,7 @@ export default function Board({ category, recentWrite, likeSortedWrite }) {
                             ))
                         )
                         : (
+                            // 인기순
                             likeSortedWrite.map((list, i) => (
                                 <tr key={list._id}>
                                     <td className="title-td">

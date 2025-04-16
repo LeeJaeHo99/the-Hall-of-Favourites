@@ -1,13 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePagination } from '@/store/store';
+import Image from 'next/image';
+import Link from "next/link";
 import Title from "@/components/Title";
 import Inner from "@/components/Inner";
 import Board from "@/components/Board";
-import Link from "next/link";
-import Image from 'next/image';
 import Pagination from '@/components/Pagination';
-import { usePagination } from '@/store/store';
+import Category from "@/components/Category";
 
 export default function BoardPage() {
     const { pagination, setPagination } = usePagination();
@@ -59,8 +60,10 @@ export default function BoardPage() {
                         <BoardWrite />
                         <Category
                             category={category}
-                            clickNew={clickNew}
-                            clickPopular={clickPopular}
+                            clickLeft={clickNew}
+                            clickRight={clickPopular}
+                            leftText={'최신글'}
+                            rightText={'인기순'}
                         />
                     </div>
                     <Board
@@ -75,18 +78,7 @@ export default function BoardPage() {
     );
 }
 
-function Category({ category, clickNew, clickPopular }) {
-    return (
-        <div className="category-wrap">
-            <p className={`${category && "selected"}`} onClick={clickNew}>
-                최신글
-            </p>
-            <p className={`${category || "selected"}`} onClick={clickPopular}>
-                인기글
-            </p>
-        </div>
-    );
-}
+
 
 function BoardWrite() {
     return (

@@ -16,25 +16,37 @@ export default function VictoryHistory() {
     return (
         <div className="victory-history blur-box">
             <div className="silver">
-                <Profile name={rank[1].name} group={rank[1].group} history={rank[1].history}/>
+                <Profile
+                    name={rank[1].name}
+                    group={rank[1].group}
+                    history={rank[1].history}
+                />
                 <div className="box">🥈</div>
                 <div className="box"></div>
             </div>
             <div className="gold">
-                <Profile name={rank[0].name} group={rank[0].group} history={rank[0].history}/>
+                <Profile
+                    name={rank[0].name}
+                    group={rank[0].group}
+                    history={rank[0].history}
+                />
                 <div className="box">🥇</div>
                 <div className="box"></div>
                 <div className="box"></div>
             </div>
             <div className="bronze">
-                <Profile name={rank[2].name} group={rank[2].group} history={rank[2].history}/>  
+                <Profile
+                    name={rank[2].name}
+                    group={rank[2].group}
+                    history={rank[2].history}
+                />
                 <div className="box">🥉</div>
             </div>
         </div>
     );
 }
 
-function Profile({name, group, history}) {
+function Profile({ name, group, history }) {
     return (
         <div className="profile">
             <Image

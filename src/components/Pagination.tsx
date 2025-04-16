@@ -3,16 +3,14 @@
 import Image from "next/image";
 
 export default function Pagination({ data, pagination, setPagination }) {
-    const pageNum = Math.ceil(data.length / 10);
+    const pageNum = Math.ceil(data.length / 7);
     const arr = new Array(pageNum).fill(1);
     const plusPagination = () => {
         if(!((pagination + 2) === pageNum)) return;
-        console.log('plus-pagination: ', pagination);
         setPagination(pagination + 1);
     }
     const minusPagination = () => {
         if(pagination === 0) return;
-        console.log('minus-pagination: ', pagination);
         setPagination(pagination - 1);
     }
 

@@ -5,10 +5,15 @@ import { useState } from "react";
 import Image from "next/image";
 
 export default function SearchBar() {
+    const router = useRouter();
     const [option, setOption] = useState(true);
     const [search, setSearch] = useState("");
-    const router = useRouter();
 
+    const searchSubmit = () => {
+        router.push(option ? `/member/${search}` : `/group/${search}`);
+    };
+
+    // option 상태가 T면 멤버, F면 그룹
     const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setOption(e.target.value === "singer");
         setSearch("");
@@ -18,9 +23,9 @@ export default function SearchBar() {
         setSearch(e.target.value);
     };
 
-    const searchSubmit = () => {
-        router.push(option ? `/member/${search}` : `/group/${search}`);
-    };
+    const keyDownEnter = (e) => {
+        if(e.key === 'Enter') searchSubmit();
+    }
 
     return (
             <div className="search-bar">
@@ -33,6 +38,7 @@ export default function SearchBar() {
                         type="text"
                         value={search}
                         onChange={handleSearchKeyword}
+                        onKeyDown={keyDownEnter}
                         placeholder={
                             option
                                 ? `검색하실 멤버의 이름을 적어주세요.`

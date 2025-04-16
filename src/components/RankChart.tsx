@@ -24,7 +24,7 @@ export default function RankChart({ data }) {
                 <XAxis dataKey="time" />
                 <YAxis
                     tick={{ fill: "#555", fontSize: 14, fontWeight: 500 }}
-                    tickLine={true} // 눈금 선 없앰
+                    tickLine={true}
                 />
                 <Tooltip cursor={false} content={<CustomTooltip />} />
                 <Legend content={CustomLegend} />

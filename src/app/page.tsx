@@ -43,7 +43,7 @@ function BoradAndHistory() {
                 <BoardPreview />
             </div>
             <div className="history-part">
-                <Title title={"역대 우승 순위"} moreView={true} />
+                <Title title={"역대 우승 순위"} moreView={false} />
                 <VictoryHistory />
             </div>
         </section>

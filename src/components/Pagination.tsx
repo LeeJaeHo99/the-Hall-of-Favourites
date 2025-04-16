@@ -1,10 +1,8 @@
 'use client';
 
-import { usePagination } from "@/store/store";
 import Image from "next/image";
 
-export default function Pagination({ data }) {
-    const { pagination, setPagination } = usePagination();
+export default function Pagination({ data, pagination, setPagination }) {
     const pageNum = Math.ceil(data.length / 10);
     const arr = new Array(pageNum).fill(1);
     const plusPagination = () => {

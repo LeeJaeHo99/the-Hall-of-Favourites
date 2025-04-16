@@ -5,6 +5,8 @@ interface Board {
 }
 
 export default function Board({ category, recentWrite, likeSortedWrite }) {
+    console.log('board-recentWrite: ', recentWrite);
+    console.log('board-likeSortedWrite: ', likeSortedWrite);
     return (
         <table className="board">
             <thead>

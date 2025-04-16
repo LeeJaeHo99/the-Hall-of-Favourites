@@ -10,21 +10,18 @@ import Pagination from '@/components/Pagination';
 import { usePagination } from '@/store/store';
 
 export default function BoardPage() {
+    const { pagination, setPagination } = usePagination();
     const [category, setCategory] = useState(true);
     const clickNew = () => {
+        setPagination(0);
         setCategory(true);
     };
     const clickPopular = () => {
+        setPagination(0);
         setCategory(false);
     };
 
     const [writeList, setWriteList] = useState([]);
-    const {pagination} = usePagination();
-
-    // 최신순
-    const [recentWrite, setRecentWrite] = useState([]);
-    // 인기순
-    const [likeSortedWrite, setLikeSortedWrite] = useState([]);
 
     useEffect(() => {
         const fetchWriteData = async () => {
@@ -32,19 +29,24 @@ export default function BoardPage() {
                 `${process.env.NEXT_PUBLIC_API_URL}/api/getWrite?full=true`
             );
             const writeData = await response.json();
-            
             setWriteList(writeData.data);
-            setRecentWrite([...writeData.data].reverse().slice(pagination * 10, (pagination + 1) * 7));
-            setLikeSortedWrite([...writeData.data].sort((a, b) => {
-                let aList = Number(a.likeNum);
-                let bList = Number(b.likeNum);
-                return bList - aList;
-            }).slice(pagination * 10, (pagination + 1) * 7))
-
         };
         fetchWriteData();
     }, []);
+    
+    // 최신순
+    const [recentWrite, setRecentWrite] = useState([]);
+    // 인기순
+    const [likeSortedWrite, setLikeSortedWrite] = useState([]);
 
+    useEffect(() => {
+        setRecentWrite([...writeList].reverse().slice(pagination * 7, (pagination + 1) * 7));
+        setLikeSortedWrite([...writeList].sort((a, b) => {
+            let aList = Number(a.likeNum);
+            let bList = Number(b.likeNum);
+            return bList - aList;
+        }).slice(pagination * 7, (pagination + 1) * 7));
+    }, [writeList, pagination]);
 
     return (
         <div className="BoardPage sub-page">
@@ -66,7 +68,7 @@ export default function BoardPage() {
                         recentWrite={...recentWrite}
                         likeSortedWrite={...likeSortedWrite}
                     />
-                    <Pagination data={...writeList}/>
+                    <Pagination data={...writeList} pagination={pagination} setPagination={setPagination}/>
                 </div>
             </Inner>
         </div>

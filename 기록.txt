@@ -11,6 +11,10 @@ idol = [
         likeHistory: [240, 380, 456, 570, 640,], // 하루 좋아요
         victory: 24, // 우승 횟수
         songId: 'vQkdt5txAcM', // 노래 아이디
+        song: {
+            id: 'vQkdt5txAcM',
+            title: 'Supernova',
+        }
     }
 ]
 
@@ -75,6 +79,7 @@ TOP5
 // 사이트 설명 컴포넌트 생성
 // 공지사항은 모달로
 // 그래프 데이터는 On-Demend ISR로
+// 00 ~ 05시까지는 전날꺼 절대 안보여줌
 
 DB, API
 // GPT 확인 필요
@@ -86,6 +91,7 @@ DB, API
 // 오늘의 할일
 - 자유게시판 페이지
 => 데이터 state 수정
+(처음 데이터 넣을때 괄호 밖에 부분 넣어보기)
 => 페이지네이션 기능
 => 페이지네이션 디자인 수정
 
@@ -94,7 +100,3 @@ DB, API
 => 글쓰기 페이지
 => 보드 프리뷰 최신순, 인기순
 => 삭제 모달 + API
-
-
-// 인물소개 UI
-https://www.google.com/search?sca_esv=96a40c3d46737ee5&q=%EC%9D%B8%EB%AC%BC%EC%86%8C%EA%B0%9C+%ED%8E%98%EC%9D%B4%EC%A7%80+ui&udm=2&fbs=ABzOT_CZsxZeNKUEEOfuRMhc2yCI6hbTw9MNVwGCzBkHjFwaK53DgNHTMxn53_XGiUHS2MvHIf0wtZoYTAs568DQAj6TeKkvPbaz7GI8Jx4YFxaKSNkSnwS9WfMCjriL9o7lGiDk5wApv_gkgZwuz52ml_s_91Bp24MtmSkHJFevUzHIUhO8HsbO8dVanu2mxWAkK2ASw1KkID7x2ea4JNJ3Na_B-M8flg&sa=X&ved=2ahUKEwi_hOaG3NmMAxUjfvUHHZS0I50QtKgLegQIEhAB&biw=1680&bih=904&dpr=2#imgrc=qZUtxwPRhLoCOM&imgdii=pgpfnH_o1bxSwM

@@ -13,10 +13,12 @@ import Category from "@/components/Category";
 export default function BoardPage() {
     const { pagination, setPagination } = usePagination();
     const [category, setCategory] = useState(true);
+
     const clickNew = () => {
         setPagination(0);
         setCategory(true);
     };
+
     const clickPopular = () => {
         setPagination(0);
         setCategory(false);
@@ -26,9 +28,7 @@ export default function BoardPage() {
 
     useEffect(() => {
         const fetchWriteData = async () => {
-            const response = await fetch(
-                `${process.env.NEXT_PUBLIC_API_URL}/api/getWrite?full=true`
-            );
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getWrite?full=true`);
             const writeData = await response.json();
             setWriteList(writeData.data);
         };

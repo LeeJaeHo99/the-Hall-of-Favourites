@@ -1,102 +1,153 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { usePagination } from '@/store/store';
-import Image from 'next/image';
-import Link from "next/link";
-import Title from "@/components/Title";
+import { useParams } from "next/navigation";
+import Image from "next/image";
 import Inner from "@/components/Inner";
-import Board from "@/components/Board";
-import Pagination from '@/components/Pagination';
-import Category from "@/components/Category";
 
-export default function BoardPage() {
-    const { pagination, setPagination } = usePagination();
-    const [category, setCategory] = useState(true);
+export default function BoardViewPage() {
+    const params = useParams();
 
-    const clickNew = () => {
-        setPagination(0);
-        setCategory(true);
-    };
-
-    const clickPopular = () => {
-        setPagination(0);
-        setCategory(false);
-    };
-
-    const [writeList, setWriteList] = useState([]);
+    const [writeData, setWriteData] = useState();
 
     useEffect(() => {
         const fetchWriteData = async () => {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getWrite?full=true`);
-            const writeData = await response.json();
-            setWriteList(writeData.data);
+            const response = await fetch(
+                `${process.env.NEXT_PUBLIC_API_URL}/api/getWrite?full=true`
+            );
+            const fetchedData = await response.json();
+            setWriteData(
+                fetchedData.data.filter((data) => data._id === params.id)[0]
+            );
         };
         fetchWriteData();
     }, []);
-    
-    // 최신순
-    const [recentWrite, setRecentWrite] = useState([]);
-    // 인기순
-    const [likeSortedWrite, setLikeSortedWrite] = useState([]);
-
-    useEffect(() => {
-        setRecentWrite([...writeList].reverse().slice(pagination * 7, (pagination + 1) * 7));
-        setLikeSortedWrite([...writeList].sort((a, b) => {
-            let aList = Number(a.likeNum);
-            let bList = Number(b.likeNum);
-            return bList - aList;
-        }).slice(pagination * 7, (pagination + 1) * 7));
-    }, [writeList, pagination]);
+    console.log(writeData);
 
     return (
-        <div className="BoardPage sub-page">
-            <Inner x={"column"} y={"center"}>
-                <div className="title-left">
-                    <Title title={"자유 게시판"} />
-                </div>
-                <div className="board-content--wrap blur-box">
-                    <div className="board-editor">
-                        <div className="board-component--wrap">
-                            <BoardWrite />
-                            <BoardSearch/>
-                        </div>
-                        <Category
-                            category={category}
-                            clickLeft={clickNew}
-                            clickRight={clickPopular}
-                            leftText={'최신글'}
-                            rightText={'인기순'}
-                        />
-                    </div>
-                    <Board
-                        category={category}
-                        recentWrite={...recentWrite}
-                        likeSortedWrite={...likeSortedWrite}
+        <div className="BoardViewPage sub-page">
+            <Inner x={"center"} y={"column"}>
+                <div className="board-content blur-box">
+                    <ContentTop
+                        title={writeData?.title}
+                        likeNum={writeData?.likeNum}
+                        commentNum={writeData?.comment.length}
+                        writer={writeData?.writer}
+                        date={writeData?.date}
                     />
-                    <Pagination data={...writeList} pagination={pagination} setPagination={setPagination}/>
+                    <ContentMid content={writeData?.content} />
+                    <ContentBot comment={writeData?.comment} />
                 </div>
             </Inner>
         </div>
     );
 }
 
-function BoardWrite() {
+function ContentTop({ title, likeNum, commentNum, writer, date }) {
     return (
-        <Link className="board-write--btn blur-box" href={"/board/write"}>
-            <Image src={'/icons/write.png'} width={14} height={14} alt='글쓰기 아이콘'/>
-            <span>글쓰기</span>
-        </Link>
+        <div className="content-top">
+            <div className="title">{title}</div>
+            <div className="data-wrap">
+                <div className="like">
+                    추천수: <span>{likeNum}</span>
+                </div>
+                <div className="comment">
+                    댓글수: <span>{commentNum}</span>
+                </div>
+                <div className="writer">
+                    작성자: <span>{writer}</span>
+                </div>
+                <div className="date">
+                    작성일: <span>{date}</span>
+                </div>
+            </div>
+        </div>
     );
 }
 
-function BoardSearch(){
-    return(
-        <div className="board-search--component">
-            <input type="text" placeholder="검색어를 입력해주세요."/>
-            <button>
-                <Image src={'/icons/search.png'} width={16} height={16} alt="검색 아이콘"/>
-            </button>
+function ContentMid({ content }) {
+    return (
+        <div className="content-mid">
+            {content}
+            <div className="like-wrap">
+                <div>
+                    <Image
+                        src={"/icons/like.png"}
+                        width={40}
+                        height={40}
+                        alt="좋아요 아이콘"
+                    />
+                    <span>추천</span>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function ContentBot({ comment }) {
+    const [commentWriter, setCommentWriter] = useState("");
+    const [commentPw, setCommentPw] = useState("");
+    console.log("comment: ", comment);
+
+    return (
+        <div className="content-bot">
+            <div className="comment-wrap">
+                <div className="comment-num">
+                    전체댓글 <span>{comment?.length}</span>개
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>닉네임</th>
+                            <th>내용</th>
+                            <th>삭제</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {comment?.map((data, i) => (
+                            <tr key={i}>
+                                <td>{data.name}</td>
+                                <td>{data.text}</td>
+                                <td>123</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            <form>
+                <div className="info-wrap">
+                    <label htmlFor="comment-id">
+                        <span>닉네임 </span>
+                        <input
+                            type="text"
+                            id="comment-id"
+                            placeholder="닉네임"
+                            required
+                        />
+                    </label>
+                    <label htmlFor="comment-pw">
+                        <span>비밀번호 </span>
+                        <input
+                            type="password"
+                            id="comment-pw"
+                            placeholder="4자리"
+                            required
+                        />
+                    </label>
+                </div>
+                <div className="write-wrap">
+                    <textarea placeholder="댓글을 입력해주세요." required />
+                    <button type="submit">
+                        <Image
+                            src={"/icons/write.png"}
+                            width={16}
+                            height={16}
+                            alt="글쓰기 아이콘"
+                        />
+                        <span>작성</span>
+                    </button>
+                </div>
+            </form>
         </div>
     );
 }

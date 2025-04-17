@@ -110,6 +110,17 @@ a {
     background-color: rgba(255, 255, 255, 0.11);
   }
 }
+@keyframes leftRight {
+  0%, 100% {
+    transform: rotate(0);
+  }
+  33% {
+    transform: rotate(-20deg);
+  }
+  66% {
+    transform: rotate(20deg);
+  }
+}
 html,
 body {
   background-color: #121212;
@@ -1050,4 +1061,195 @@ footer {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.BoardViewPage .board-content {
+  width: 90%;
+  padding: 40px;
+  border-radius: 16px;
+}
+.BoardViewPage .board-content > div {
+  width: 100%;
+}
+.BoardViewPage .board-content .content-top {
+  padding: 40px 24px 8px;
+  padding-bottom: 8px;
+  border-top: 2px solid #8e65ab;
+}
+.BoardViewPage .board-content .content-top > div {
+  width: 100%;
+}
+.BoardViewPage .board-content .content-top .title {
+  margin-bottom: 24px;
+  font-family: "gs-b";
+  font-size: 24px;
+  text-align: center;
+}
+.BoardViewPage .board-content .content-top .data-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  font-family: "gs-l";
+  font-size: 14px;
+  color: #878c9e;
+}
+.BoardViewPage .board-content .content-top .data-wrap span {
+  font-family: "gs-m";
+}
+.BoardViewPage .board-content .content-top .data-wrap .like span {
+  color: lightcoral;
+}
+.BoardViewPage .board-content .content-top .data-wrap .comment span {
+  color: lightblue;
+}
+.BoardViewPage .board-content .content-top .data-wrap .writer span {
+  color: #8e65ab;
+}
+.BoardViewPage .board-content .content-top .data-wrap .date span {
+  color: lightgray;
+}
+.BoardViewPage .board-content .content-mid {
+  padding: 40px;
+  border-top: 1px solid #878c9e;
+  border-bottom: 1px solid #878c9e;
+  font-family: "gs-m";
+  font-size: 18px;
+  line-height: 1.4;
+}
+.BoardViewPage .board-content .content-mid .like-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+}
+.BoardViewPage .board-content .content-mid .like-wrap > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 80px;
+  height: 80px;
+  padding: 16px;
+  border: 2px solid #8e65ab;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.BoardViewPage .board-content .content-mid .like-wrap > div:hover img {
+  animation: leftRight 0.5s;
+}
+.BoardViewPage .board-content .content-mid .like-wrap > div span {
+  font-size: 14px;
+  color: #8e65ab;
+}
+.BoardViewPage .board-content .content-bot {
+  border-bottom: 2px solid #8e65ab;
+}
+.BoardViewPage .board-content .content-bot input, .BoardViewPage .board-content .content-bot textarea {
+  font-family: "gs-m";
+  font-size: 14px;
+}
+.BoardViewPage .board-content .content-bot form {
+  padding: 0 40px;
+  margin-bottom: 60px;
+}
+.BoardViewPage .board-content .content-bot form .info-wrap {
+  margin-bottom: 32px;
+  font-family: "gs-m";
+  font-size: 14px;
+}
+.BoardViewPage .board-content .content-bot form .info-wrap label:first-child {
+  margin-right: 12px;
+}
+.BoardViewPage .board-content .content-bot form .info-wrap label span {
+  color: #878c9e;
+}
+.BoardViewPage .board-content .content-bot form .info-wrap label input {
+  padding: 4px;
+  border-radius: 6px;
+}
+.BoardViewPage .board-content .content-bot form .write-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.BoardViewPage .board-content .content-bot form .write-wrap textarea {
+  width: 90%;
+  min-height: 80px;
+  padding: 12px;
+  border-radius: 8px;
+}
+.BoardViewPage .board-content .content-bot form .write-wrap button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+  width: 8%;
+  min-height: 80px;
+  background-color: rgba(142, 101, 171, 0.3137254902);
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+.BoardViewPage .board-content .content-bot form .write-wrap button:hover {
+  background-color: #8e65ab;
+}
+.BoardViewPage .board-content .content-bot form .write-wrap button span {
+  font-family: "gs-m";
+  color: #f5f7ff;
+}
+.BoardViewPage .board-content .content-bot .comment-wrap {
+  padding: 24px 40px;
+  margin-bottom: 16px;
+}
+.BoardViewPage .board-content .content-bot .comment-wrap .comment-num {
+  margin-bottom: 32px;
+  font-family: "gs-m";
+  font-size: 14px;
+}
+.BoardViewPage .board-content .content-bot .comment-wrap .comment-num span {
+  color: lightblue;
+}
+.BoardViewPage .board-content .content-bot .comment-wrap table {
+  width: 100%;
+}
+.BoardViewPage .board-content .content-bot .comment-wrap table thead tr {
+  background-color: #8e65ab;
+  border-top-left-radius: 8px;
+}
+.BoardViewPage .board-content .content-bot .comment-wrap table thead tr th {
+  padding: 10px;
+  font-family: "gs-m";
+  font-size: 16px;
+}
+.BoardViewPage .board-content .content-bot .comment-wrap table thead tr th:first-child {
+  width: 8%;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.BoardViewPage .board-content .content-bot .comment-wrap table thead tr th:nth-child(2) {
+  width: auto;
+  text-align: left;
+}
+.BoardViewPage .board-content .content-bot .comment-wrap table thead tr th:last-child {
+  width: 8%;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.BoardViewPage .board-content .content-bot .comment-wrap table tbody tr {
+  border-bottom: 1px solid #878c9e;
+  font-family: "gs-l";
+  font-size: 14px;
+}
+.BoardViewPage .board-content .content-bot .comment-wrap table tbody tr td {
+  padding: 12px;
+}
+.BoardViewPage .board-content .content-bot .comment-wrap table tbody tr td:first-child {
+  text-align: center;
+}
+.BoardViewPage .board-content .content-bot .comment-wrap table tbody tr td:nth-child(2) {
+  text-align: left;
+}
+.BoardViewPage .board-content .content-bot .comment-wrap table tbody tr td:last-child {
+  text-align: center;
 }

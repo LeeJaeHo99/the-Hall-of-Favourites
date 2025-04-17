@@ -26,7 +26,7 @@ export default function Board({ category, recentWrite, likeSortedWrite }) {
                                         <Link href={`/board/${list._id}`}>
                                             <span className="title">{list.title}</span>
                                             <span className="comment-num">
-                                                [ {list.commentNum} ]
+                                                [ {list.comment.length} ]
                                             </span>
                                         </Link>
                                     </td>
@@ -44,7 +44,7 @@ export default function Board({ category, recentWrite, likeSortedWrite }) {
                                         <Link href={`/board/${list._id}`}>
                                             <span className="title">{list.title}</span>
                                             <span className="comment-num">
-                                                [ {list.commentNum} ]
+                                                [ {list.comment.length} ]
                                             </span>
                                         </Link>
                                     </td>

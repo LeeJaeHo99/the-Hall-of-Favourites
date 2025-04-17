@@ -11,7 +11,7 @@ export async function GET(req) {
 
         const projection = full === "true"
             ? {}
-            : { _id: 1, title: 1, commentNum: 1, date: 1, likeNum: 1, };
+            : { _id: 1, title: 1, comment: 1, date: 1, likeNum: 1, };
 
         const notice = await collection.find({}, { projection }).toArray();
 

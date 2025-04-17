@@ -36,10 +36,6 @@ export default function BoardPreview() {
         );
     }, [writeList]);
 
-    console.log('category: ', category);
-    console.log('recentWrite: ', recentWrite);
-    console.log('likeSortedWrite: ', likeSortedWrite);
-
     return (
         <div className="board-preview blur-box">
             <Category
@@ -74,12 +70,12 @@ export default function BoardPreview() {
     );
 }
 
-function BoardContent({ _id, title, date, commentNum, likeNum }) {
+function BoardContent({ _id, title, date, comment, likeNum }) {
     return (
         <Link href={`/board/${_id}`} className="writing">
             <div className="title">
                 <span>{title}</span>
-                <div className="comment-num">[ {commentNum} ]</div>
+                <div className="comment-num">[ {comment.length} ]</div>
             </div>
             <div className="date">{date}</div>
         </Link>

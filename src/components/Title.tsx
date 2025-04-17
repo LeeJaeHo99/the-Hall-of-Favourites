@@ -22,7 +22,7 @@ export default function Title({ title, desc, moreView, children }: Title) {
             <div className="title-wrap">
                 <div className="section-title">
                     <span>{title}</span>
-                    {moreView && <MoreViewBtn link={"123"} />}
+                    {moreView && <MoreViewBtn link={"board"} />}
                 </div>
                 <div className="section-desc">{desc}</div>
                 {children}

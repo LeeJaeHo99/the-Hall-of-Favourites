@@ -720,6 +720,30 @@ footer {
   transform: scale(1.1);
 }
 
+.modal-wrap {
+  width: 240px;
+  padding: 16px 8px;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.modal-wrap .modal-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
+}
+.modal-wrap .modal-form input {
+  width: 80%;
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+}
+.modal-wrap .modal-form button {
+  width: 16%;
+}
+
 .home {
   padding-top: 160px;
 }
@@ -1161,37 +1185,37 @@ footer {
   font-family: "gs-m";
   font-size: 14px;
 }
-.BoardViewPage .board-content .content-bot form {
+.BoardViewPage .board-content .content-bot .comment-form {
   padding: 0 40px;
   margin-bottom: 60px;
 }
-.BoardViewPage .board-content .content-bot form .info-wrap {
+.BoardViewPage .board-content .content-bot .comment-form .info-wrap {
   margin-bottom: 32px;
   font-family: "gs-m";
   font-size: 14px;
 }
-.BoardViewPage .board-content .content-bot form .info-wrap label:first-child {
+.BoardViewPage .board-content .content-bot .comment-form .info-wrap label:first-child {
   margin-right: 12px;
 }
-.BoardViewPage .board-content .content-bot form .info-wrap label span {
+.BoardViewPage .board-content .content-bot .comment-form .info-wrap label span {
   color: #878c9e;
 }
-.BoardViewPage .board-content .content-bot form .info-wrap label input {
+.BoardViewPage .board-content .content-bot .comment-form .info-wrap label input {
   padding: 4px;
   border-radius: 6px;
 }
-.BoardViewPage .board-content .content-bot form .write-wrap {
+.BoardViewPage .board-content .content-bot .comment-form .write-wrap {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.BoardViewPage .board-content .content-bot form .write-wrap textarea {
+.BoardViewPage .board-content .content-bot .comment-form .write-wrap textarea {
   width: 90%;
   min-height: 80px;
   padding: 12px;
   border-radius: 8px;
 }
-.BoardViewPage .board-content .content-bot form .write-wrap button {
+.BoardViewPage .board-content .content-bot .comment-form .write-wrap button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1203,10 +1227,10 @@ footer {
   border-radius: 8px;
   transition: all 0.3s;
 }
-.BoardViewPage .board-content .content-bot form .write-wrap button:hover {
+.BoardViewPage .board-content .content-bot .comment-form .write-wrap button:hover {
   background-color: #8e65ab;
 }
-.BoardViewPage .board-content .content-bot form .write-wrap button span {
+.BoardViewPage .board-content .content-bot .comment-form .write-wrap button span {
   font-family: "gs-m";
   color: #f5f7ff;
 }
@@ -1242,10 +1266,6 @@ footer {
 .BoardViewPage .board-content .content-bot .comment-wrap table thead tr th:nth-child(2) {
   width: auto;
   text-align: left;
-  line-height: 1.4;
-  word-break: break-all;
-  word-wrap: break-word;
-  white-space: normal;
 }
 .BoardViewPage .board-content .content-bot .comment-wrap table thead tr th:last-child {
   width: 14%;
@@ -1265,12 +1285,23 @@ footer {
 }
 .BoardViewPage .board-content .content-bot .comment-wrap table tbody tr td:nth-child(2) {
   text-align: left;
+  line-height: 1.4;
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: normal;
 }
 .BoardViewPage .board-content .content-bot .comment-wrap table tbody tr td:last-child {
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  position: relative;
+}
+.BoardViewPage .board-content .content-bot .comment-wrap table tbody tr td:last-child .modal-wrap {
+  position: absolute;
+  top: -45px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .BoardViewPage .board-content .content-bot .comment-wrap table tbody tr td:last-child button {
   display: flex;

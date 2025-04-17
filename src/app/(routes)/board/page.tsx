@@ -50,11 +50,6 @@ export default function BoardPage() {
         setSearchList(writeList.filter(write => write.title.includes(searchWord)));
     }, [isSearch])
 
-
-    console.log('isSearch: ', isSearch);
-    console.log('searchWord: ', searchWord);
-    console.log('searchList: ', searchList);
-
     // 최신순
     const [recentWrite, setRecentWrite] = useState([]);
     // 인기순

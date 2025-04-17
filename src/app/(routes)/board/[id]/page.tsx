@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import Inner from "@/components/Inner";
+import Modal from '@/components/Modal';
 
 export default function BoardViewPage() {
     const params = useParams();
@@ -12,17 +13,12 @@ export default function BoardViewPage() {
 
     useEffect(() => {
         const fetchWriteData = async () => {
-            const response = await fetch(
-                `${process.env.NEXT_PUBLIC_API_URL}/api/getWrite?full=true`
-            );
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getWrite?full=true`);
             const fetchedData = await response.json();
-            setWriteData(
-                fetchedData.data.filter((data) => data._id === params.id)[0]
-            );
+            setWriteData(fetchedData.data.filter((data) => data._id === params.id)[0]);
         };
         fetchWriteData();
     }, []);
-    console.log(writeData);
 
     return (
         <div className="BoardViewPage sub-page">
@@ -86,8 +82,18 @@ function ContentMid({ content }) {
 
 function ContentBot({ comment }) {
     const [commentWriter, setCommentWriter] = useState("");
+    const onChangeWriter = (e) => {
+        setCommentWriter(e.target.value);
+    }
     const [commentPw, setCommentPw] = useState("");
-    console.log("comment: ", comment);
+    const onChangePw = (e) => {
+        setCommentPw(e.target.value);
+    }
+
+    const [isDelete, setIsDelete] = useState(false);
+    const clickDeleteBtn = () => {
+        setIsDelete(true);
+    }
 
     return (
         <div className="content-bot">
@@ -110,44 +116,53 @@ function ContentBot({ comment }) {
                                 <td>{data.name}</td>
                                 <td>{data.text}</td>
                                 <td>
-                                    <button>
+                                    {isDelete && <Modal/>}
+                                    <button onClick={clickDeleteBtn}>
                                         <Image src={'/icons/x-gray.png'} width={8} height={8} alt="삭제 아이콘"/>
                                     </button>
                                 </td>
                             </tr>
                             ))
-                            : <tr>
-                                <td></td>
-                                <td className="none-comment">댓글이 없습니다.</td>
-                                <td></td>
-                            </tr>
+                            : (
+                                <tr>
+                                    <td></td>
+                                    <td className="none-comment">댓글이 없습니다.</td>
+                                    <td></td>
+                                </tr>
+                            )
                         }
                     </tbody>
                 </table>
             </div>
-            <form>
+            <form className="comment-form">
                 <div className="info-wrap">
                     <label htmlFor="comment-id">
                         <span>닉네임 </span>
                         <input
+                            value={commentWriter}
+                            onChange={onChangeWriter}
                             type="text"
                             id="comment-id"
-                            placeholder="닉네임"
+                            placeholder="6글자 이내"
+                            maxLength={6}
                             required
                         />
                     </label>
                     <label htmlFor="comment-pw">
                         <span>비밀번호 </span>
                         <input
+                            value={commentPw}
+                            onChange={onChangePw}
                             type="password"
                             id="comment-pw"
                             placeholder="4자리"
+                            maxLength={4}
                             required
                         />
                     </label>
                 </div>
                 <div className="write-wrap">
-                    <textarea placeholder="댓글을 입력해주세요." required />
+                    <textarea placeholder="댓글을 입력해주세요." maxLength={60} required/>
                     <button type="submit">
                         <Image
                             src={"/icons/write.png"}

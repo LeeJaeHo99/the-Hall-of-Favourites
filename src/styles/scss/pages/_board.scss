@@ -243,7 +243,7 @@
                 font-family: 'gs-m';
                 font-size: 14px;
             }
-            form{
+            .comment-form{
                 padding: 0 40px;
                 margin-bottom: 60px;
 
@@ -333,10 +333,6 @@
                                 &:nth-child(2){
                                     width: auto;
                                     text-align: left;
-                                    line-height: 1.4;
-                                    word-break: break-all;
-                                    word-wrap: break-word;
-                                    white-space: normal;                                
                                 }
                                 &:last-child{
                                     width: 14%;
@@ -360,13 +356,24 @@
                                 }
                                 &:nth-child(2){
                                     text-align: left;
+                                    line-height: 1.4;
+                                    word-break: break-all;
+                                    word-wrap: break-word;
+                                    white-space: normal;
                                 }
                                 &:last-child{
                                     display: flex;
                                     align-items: center;
                                     justify-content: center;
                                     text-align: center;
+                                    position: relative;
 
+                                    .modal-wrap{
+                                        position: absolute;
+                                        top: -45px;
+                                        left: 50%;
+                                        transform: translateX(-50%);
+                                    }
                                     button{
                                         display: flex;
                                         align-items: center;

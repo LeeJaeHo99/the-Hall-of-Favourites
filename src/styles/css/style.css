@@ -1251,5 +1251,16 @@ footer {
   text-align: left;
 }
 .BoardViewPage .board-content .content-bot .comment-wrap table tbody tr td:last-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+}
+.BoardViewPage .board-content .content-bot .comment-wrap table tbody tr td:last-child button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  background-color: lightgray;
+  border-radius: 4px;
 }

@@ -108,7 +108,11 @@ function ContentBot({ comment }) {
                             <tr key={i}>
                                 <td>{data.name}</td>
                                 <td>{data.text}</td>
-                                <td>123</td>
+                                <td>
+                                    <button>
+                                        <Image src={'/icons/x-gray.png'} width={8} height={8} alt="삭제 아이콘"/>
+                                    </button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>

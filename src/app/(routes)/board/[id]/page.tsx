@@ -104,7 +104,8 @@ function ContentBot({ comment }) {
                         </tr>
                     </thead>
                     <tbody>
-                        {comment?.map((data, i) => (
+                        {comment?.length > 0
+                            ? comment?.map((data, i) => (
                             <tr key={i}>
                                 <td>{data.name}</td>
                                 <td>{data.text}</td>
@@ -114,7 +115,13 @@ function ContentBot({ comment }) {
                                     </button>
                                 </td>
                             </tr>
-                        ))}
+                            ))
+                            : <tr>
+                                <td></td>
+                                <td className="none-comment">댓글이 없습니다.</td>
+                                <td></td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>

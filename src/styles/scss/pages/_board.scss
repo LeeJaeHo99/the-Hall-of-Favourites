@@ -74,6 +74,20 @@
             .board{
                 margin-bottom: 40px;
 
+                &:has(.no-search){
+                    thead{
+                        display: none;
+                    }
+                    td{
+                        &:nth-child(1){
+                            width: 100%;
+                            font-size: 18px;
+                        }
+                        &:nth-child(2), &:nth-child(3), &:nth-child(4){
+                            width: 0;
+                        }
+                    }
+                }
                 thead{
                     tr{
                         th{
@@ -114,6 +128,10 @@
                                         white-space: nowrap;
                                     }
                                 }
+                            }
+                            &.no-search{
+                                color: $gray-text;
+                                text-align: center;
                             }
                         }
                     }
@@ -299,7 +317,7 @@
 
                     thead{
                         tr{
-                            background-color: $primary;
+                            background-color: $primary-70;
                             border-top-left-radius: 8px;
 
                             th{
@@ -353,6 +371,11 @@
                                         background-color: lightgray;
                                         border-radius: 4px;
                                     }
+                                }
+                                &.none-comment{
+                                    font-family: 'gs-m';
+                                    color: $gray-text;
+                                    text-align: center;
                                 }
                             }
                         }

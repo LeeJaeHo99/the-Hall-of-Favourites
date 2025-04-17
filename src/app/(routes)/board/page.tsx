@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { usePagination } from '@/store/store';
-import Image from 'next/image';
+import { usePagination } from "@/store/store";
+import Image from "next/image";
 import Link from "next/link";
 import Title from "@/components/Title";
 import Inner from "@/components/Inner";
 import Board from "@/components/Board";
-import Pagination from '@/components/Pagination';
+import Pagination from "@/components/Pagination";
 import Category from "@/components/Category";
 
 export default function BoardPage() {
@@ -26,27 +26,54 @@ export default function BoardPage() {
 
     const [writeList, setWriteList] = useState([]);
 
+    // 글 데이터 fetch
     useEffect(() => {
         const fetchWriteData = async () => {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getWrite?full=true`);
+            const response = await fetch(
+                `${process.env.NEXT_PUBLIC_API_URL}/api/getWrite?full=true`
+            );
             const writeData = await response.json();
             setWriteList(writeData.data);
         };
         fetchWriteData();
     }, []);
+
+    // isSearch가 True 되면 searchWord의 텍스트로 searchList에 filter 해서 넣음
+    const [searchWord, setSearchWord] = useState("");
+    const [isSearch, setIsSearch] = useState(false);
+    const [searchList, setSearchList] = useState([]);
+    const onChangeSearchWord = (e) => {
+        setSearchWord(e.target.value);
+    }
     
+    useEffect(() => {
+        setSearchList(writeList.filter(write => write.title.includes(searchWord)));
+    }, [isSearch])
+
+
+    console.log('isSearch: ', isSearch);
+    console.log('searchWord: ', searchWord);
+    console.log('searchList: ', searchList);
+
     // 최신순
     const [recentWrite, setRecentWrite] = useState([]);
     // 인기순
     const [likeSortedWrite, setLikeSortedWrite] = useState([]);
 
+    // 최신순, 인기순으로 데이터 수정
     useEffect(() => {
-        setRecentWrite([...writeList].reverse().slice(pagination * 7, (pagination + 1) * 7));
-        setLikeSortedWrite([...writeList].sort((a, b) => {
-            let aList = Number(a.likeNum);
-            let bList = Number(b.likeNum);
-            return bList - aList;
-        }).slice(pagination * 7, (pagination + 1) * 7));
+        setRecentWrite(
+            [...writeList].reverse().slice(pagination * 7, (pagination + 1) * 7)
+        );
+        setLikeSortedWrite(
+            [...writeList]
+                .sort((a, b) => {
+                    let aList = Number(a.likeNum);
+                    let bList = Number(b.likeNum);
+                    return bList - aList;
+                })
+                .slice(pagination * 7, (pagination + 1) * 7)
+        );
     }, [writeList, pagination]);
 
     return (
@@ -59,22 +86,28 @@ export default function BoardPage() {
                     <div className="board-editor">
                         <div className="board-component--wrap">
                             <BoardWrite />
-                            <BoardSearch/>
+                            <BoardSearch searchWord={searchWord} onChangeSearchWord={onChangeSearchWord} isSearch={isSearch} setIsSearch={setIsSearch}/>
                         </div>
                         <Category
                             category={category}
                             clickLeft={clickNew}
                             clickRight={clickPopular}
-                            leftText={'최신글'}
-                            rightText={'인기순'}
+                            leftText={"최신글"}
+                            rightText={"인기순"}
                         />
                     </div>
                     <Board
                         category={category}
                         recentWrite={...recentWrite}
                         likeSortedWrite={...likeSortedWrite}
+                        isSearch={isSearch}
+                        searchList={searchList}
                     />
-                    <Pagination data={...writeList} pagination={pagination} setPagination={setPagination}/>
+                    <Pagination
+                        data={...writeList}
+                        pagination={pagination}
+                        setPagination={setPagination}
+                    />
                 </div>
             </Inner>
         </div>
@@ -84,19 +117,54 @@ export default function BoardPage() {
 function BoardWrite() {
     return (
         <Link className="board-write--btn blur-box" href={"/board/write"}>
-            <Image src={'/icons/write.png'} width={14} height={14} alt='글쓰기 아이콘'/>
+            <Image
+                src={"/icons/write.png"}
+                width={14}
+                height={14}
+                alt="글쓰기 아이콘"
+            />
             <span>글쓰기</span>
         </Link>
     );
 }
 
-function BoardSearch(){
-    return(
+function BoardSearch({searchWord, onChangeSearchWord, isSearch, setIsSearch}) {
+    const onKeyDown = (e) => {
+        if(e.key === 'Enter'){
+            setIsSearch(false);
+
+            setTimeout(() => {
+                setIsSearch(true);
+            }, 1);
+        }
+    }
+    const onClickBtn = () => {
+        setIsSearch(false);
+
+        setTimeout(() => {
+            setIsSearch(true);
+        }, 1);
+    }
+
+    return (
         <div className="board-search--component">
-            <input type="text" placeholder="검색어를 입력해주세요."/>
-            <button>
-                <Image src={'/icons/search.png'} width={16} height={16} alt="검색 아이콘"/>
+            <input
+                value={searchWord}
+                onChange={onChangeSearchWord}
+                onKeyDown={onKeyDown}
+                type="text"
+                placeholder="검색어를 입력해주세요."
+            />
+            <button onClick={onClickBtn}>
+                <Image
+                    src={"/icons/search.png"}
+                    width={16}
+                    height={16}
+                    alt="검색 아이콘"
+                />
             </button>
         </div>
     );
 }
+
+// 검색한 제목과 맞는 제목을 찾고 그거의 _id를 /board/${_id} 이렇게 url 이동

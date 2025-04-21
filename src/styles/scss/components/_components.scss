@@ -580,3 +580,24 @@
         }
     }
 }
+
+.board-edit--btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 86px;
+    height: 28px;
+    background-color: rgb(255 255 255 / 25%);
+    border-radius: 8px;
+    font-family: 'gs-l';
+    font-size: 14px;
+    color: $white-text;
+    transition: all 0.3s;
+    box-shadow: 0 0 20px 8px rgb(0 0 0 / 10%);
+
+    &:hover{
+        transform: scale(1.05);
+        background-color: $primary;
+    }
+}

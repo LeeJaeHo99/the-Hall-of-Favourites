@@ -3,12 +3,12 @@
 import { useState, useEffect } from "react";
 import { usePagination } from "@/store/store";
 import Image from "next/image";
-import Link from "next/link";
 import Title from "@/components/Title";
 import Inner from "@/components/Inner";
 import Board from "@/components/Board";
 import Pagination from "@/components/Pagination";
 import Category from "@/components/Category";
+import BoardEdit from "@/components/BoardEdit";
 
 export default function BoardPage() {
     const { pagination, setPagination } = usePagination();
@@ -80,7 +80,7 @@ export default function BoardPage() {
                 <div className="board-content--wrap blur-box">
                     <div className="board-editor">
                         <div className="board-component--wrap">
-                            <BoardWrite />
+                            <BoardEdit text={'글쓰기'} link={'write'}/>
                             <BoardSearch searchWord={searchWord} onChangeSearchWord={onChangeSearchWord} isSearch={isSearch} setIsSearch={setIsSearch}/>
                         </div>
                         <Category
@@ -106,20 +106,6 @@ export default function BoardPage() {
                 </div>
             </Inner>
         </div>
-    );
-}
-
-function BoardWrite() {
-    return (
-        <Link className="board-write--btn blur-box" href={"/board/write"}>
-            <Image
-                src={"/icons/write.png"}
-                width={14}
-                height={14}
-                alt="글쓰기 아이콘"
-            />
-            <span>글쓰기</span>
-        </Link>
     );
 }
 

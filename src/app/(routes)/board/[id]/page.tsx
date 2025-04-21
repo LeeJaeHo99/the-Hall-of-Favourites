@@ -3,9 +3,10 @@
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
-import Link from 'next/link';
+import Link from "next/link";
 import Inner from "@/components/Inner";
 import Modal from "@/components/Modal";
+import BoardEdit from "@/components/BoardEdit";
 
 export default function BoardViewPage() {
     const params = useParams();
@@ -35,10 +36,9 @@ export default function BoardViewPage() {
                         commentNum={writeData?.comment.length}
                         writer={writeData?.writer}
                         date={writeData?.date}
+                        id={writeData?._id}
                     />
-                    <ContentMid
-                        content={writeData?.content}
-                    />
+                    <ContentMid content={writeData?.content} />
                     <ContentBot comment={writeData?.comment} />
                 </div>
             </Inner>
@@ -46,27 +46,35 @@ export default function BoardViewPage() {
     );
 }
 
-function ContentTop({ title, likeNum, commentNum, writer, date }) {
+function ContentTop({ title, likeNum, commentNum, writer, date, id }) {
     return (
         <>
-        <Link className="to-board" href={'/board'}>게시판 목록으로 이동</Link>
-        <div className="content-top">
-            <div className="title">{title}</div>
-            <div className="data-wrap">
-                <div className="like">
-                    추천수: <span>{likeNum}</span>
+            <div className="edit-btn">
+                <div>
+                    <BoardEdit text={"글 수정"} link={`/write/${id}`} />
+
                 </div>
-                <div className="comment">
-                    댓글수: <span>{commentNum}</span>
-                </div>
-                <div className="writer">
-                    작성자: <span>{writer}</span>
-                </div>
-                <div className="date">
-                    작성일: <span>{date}</span>
+                <Link className="to-board" href={"/board"}>
+                    게시판 목록으로 이동
+                </Link>
+            </div>
+            <div className="content-top">
+                <div className="title">{title}</div>
+                <div className="data-wrap">
+                    <div className="like">
+                        추천수: <span>{likeNum}</span>
+                    </div>
+                    <div className="comment">
+                        댓글수: <span>{commentNum}</span>
+                    </div>
+                    <div className="writer">
+                        작성자: <span>{writer}</span>
+                    </div>
+                    <div className="date">
+                        작성일: <span>{date}</span>
+                    </div>
                 </div>
             </div>
-        </div>
         </>
     );
 }
@@ -76,14 +84,17 @@ function ContentMid({ content }) {
 
     const handleLike = async () => {
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/likePost`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ postId: params.id }),
-            });
+            const res = await fetch(
+                `${process.env.NEXT_PUBLIC_API_URL}/api/likePost`,
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ postId: params.id }),
+                }
+            );
 
             if (res.ok) {
-                alert('게시글이 추천되었습니다.');
+                alert("게시글이 추천되었습니다.");
             } else {
                 const error = await res.json();
                 alert(error.error);

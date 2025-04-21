@@ -1,9 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function BoardEdit({text, link}) {
+export default function BoardEdit({style, text, link}) {
     return (
-        <Link className="board-edit--btn blur-box" href={`/board/${link}`}>
+        <Link className={`board-edit--btn blur-box ${style}`} href={`/board/${link}`}>
             <Image
                 src={"/icons/write.png"}
                 width={14}

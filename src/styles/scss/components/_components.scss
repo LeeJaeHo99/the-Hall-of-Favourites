@@ -552,14 +552,21 @@
     position: relative;
     width: 240px;
     padding: 16px 8px;
-    border-radius: 8px;
     background-color: rgb(0 0 0 / 70%);
+    border-radius: 8px;
+    font-family: 'gs-l';
+    font-size: 14px;
+    cursor: pointer;
 
     .calcel-btn{
         position: absolute;
         top: 10%;
         right: 7%;
         cursor: pointer;
+    }
+    .text-wrap{
+        text-align: center;
+        line-height: 1.2;
     }
     .modal-form{
         display: flex;
@@ -576,7 +583,13 @@
             outline: none;
         }
         button{
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 16%;
+            padding: 4px;
+            background-color: lightgray;
+            border-radius: 4px;
         }
     }
 }
@@ -588,7 +601,6 @@
     gap: 6px;
     width: 86px;
     height: 28px;
-    background-color: rgb(255 255 255 / 25%);
     border-radius: 8px;
     font-family: 'gs-l';
     font-size: 14px;
@@ -600,4 +612,12 @@
         transform: scale(1.05);
         background-color: $primary;
     }
+}
+
+.board-edit--btn.normal{
+    background-color: rgb(255 255 255 / 25%);
+}
+
+.board-edit--btn.red{
+    background-color: rgb(255 0 0 / 40%);
 }

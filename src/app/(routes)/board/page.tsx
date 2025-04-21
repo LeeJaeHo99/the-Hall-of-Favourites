@@ -80,7 +80,7 @@ export default function BoardPage() {
                 <div className="board-content--wrap blur-box">
                     <div className="board-editor">
                         <div className="board-component--wrap">
-                            <BoardEdit text={'글쓰기'} link={'write'}/>
+                            <BoardEdit style={'normal'} text={'글쓰기'} link={'write'}/>
                             <BoardSearch searchWord={searchWord} onChangeSearchWord={onChangeSearchWord} isSearch={isSearch} setIsSearch={setIsSearch}/>
                         </div>
                         <Category

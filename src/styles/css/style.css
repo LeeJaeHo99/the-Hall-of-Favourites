@@ -724,14 +724,21 @@ footer {
   position: relative;
   width: 240px;
   padding: 16px 8px;
-  border-radius: 8px;
   background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+  font-family: "gs-l";
+  font-size: 14px;
+  cursor: pointer;
 }
 .modal-wrap .calcel-btn {
   position: absolute;
   top: 10%;
   right: 7%;
   cursor: pointer;
+}
+.modal-wrap .text-wrap {
+  text-align: center;
+  line-height: 1.2;
 }
 .modal-wrap .modal-form {
   display: flex;
@@ -748,7 +755,13 @@ footer {
   outline: none;
 }
 .modal-wrap .modal-form button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 16%;
+  padding: 4px;
+  background-color: lightgray;
+  border-radius: 4px;
 }
 
 .board-edit--btn {
@@ -758,7 +771,6 @@ footer {
   gap: 6px;
   width: 86px;
   height: 28px;
-  background-color: rgba(255, 255, 255, 0.25);
   border-radius: 8px;
   font-family: "gs-l";
   font-size: 14px;
@@ -769,6 +781,14 @@ footer {
 .board-edit--btn:hover {
   transform: scale(1.05);
   background-color: #8e65ab;
+}
+
+.board-edit--btn.normal {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.board-edit--btn.red {
+  background-color: rgba(255, 0, 0, 0.4);
 }
 
 .home {
@@ -1123,6 +1143,12 @@ footer {
   width: 100%;
   margin-bottom: 16px;
 }
+.BoardViewPage .board-content .edit-btn .wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
 .BoardViewPage .board-content .edit-btn .to-board {
   display: block;
   font-family: "gs-m";
@@ -1325,14 +1351,6 @@ footer {
   top: -45px;
   left: 50%;
   transform: translateX(-50%);
-}
-.BoardViewPage .board-content .content-bot .comment-wrap table tbody tr td:last-child button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4px;
-  background-color: lightgray;
-  border-radius: 4px;
 }
 .BoardViewPage .board-content .content-bot .comment-wrap table tbody tr td.none-comment {
   font-family: "gs-m";

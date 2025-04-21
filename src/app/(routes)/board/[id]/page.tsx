@@ -35,7 +35,9 @@ export default function BoardViewPage() {
                         writer={writeData?.writer}
                         date={writeData?.date}
                     />
-                    <ContentMid content={writeData?.content} />
+                    <ContentMid
+                        content={writeData?.content}
+                    />
                     <ContentBot comment={writeData?.comment} />
                 </div>
             </Inner>
@@ -66,11 +68,33 @@ function ContentTop({ title, likeNum, commentNum, writer, date }) {
 }
 
 function ContentMid({ content }) {
+    const params = useParams();
+
+    const handleLike = async () => {
+        try {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/likePost`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ postId: params.id }),
+            });
+
+            if (res.ok) {
+                setCurrentLikes((prev) => prev + 1);
+                setIsLiked(true);
+            } else {
+                const error = await res.json();
+                alert(error.error);
+            }
+        } catch (e) {
+            console.error("추천 실패:", e);
+        }
+        window.location.reload()
+    };
     return (
         <div className="content-mid">
             {content}
             <div className="like-wrap">
-                <div>
+                <div onClick={handleLike}>
                     <Image
                         src={"/icons/like.png"}
                         width={40}
@@ -109,11 +133,11 @@ function ContentBot({ comment }) {
     const onClickDelete = (i) => {
         setIsClickDelete(null);
         setIsClickDelete(i);
-    }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try{
+        try {
             const response = await fetch(
                 `${process.env.NEXT_PUBLIC_API_URL}/api/postComment`,
                 {
@@ -127,25 +151,24 @@ function ContentBot({ comment }) {
                     }),
                 }
             );
-            if(response.ok){
-                setCommentWriter('');
-                setCommentPw('');
-                setCommentText('');
+            if (response.ok) {
+                setCommentWriter("");
+                setCommentPw("");
+                setCommentText("");
             }
-        }
-        catch(e){
+        } catch (e) {
             console.error(e);
         }
         window.location.reload();
     };
 
     const onKeyDownEnter = (e) => {
-        if(e.key === 'Enter'){
+        if (e.key === "Enter") {
             e.preventDefault();
             handleSubmit(e);
             window.location.reload();
         }
-    }
+    };
 
     return (
         <div className="content-bot">
@@ -172,10 +195,16 @@ function ContentBot({ comment }) {
                                             <Modal
                                                 param={params.id}
                                                 index={i}
-                                                clickDeleteBtn={() => {onClickDelete(null)}}
+                                                clickDeleteBtn={() => {
+                                                    onClickDelete(null);
+                                                }}
                                             />
                                         )}
-                                        <button onClick={() => {onClickDelete(i)}}>
+                                        <button
+                                            onClick={() => {
+                                                onClickDelete(i);
+                                            }}
+                                        >
                                             <Image
                                                 src={"/icons/x-gray.png"}
                                                 width={8}
@@ -186,7 +215,9 @@ function ContentBot({ comment }) {
                                     </td>
                                 </tr>
                             ))
-                        ) : <NoneComment/>}
+                        ) : (
+                            <NoneComment />
+                        )}
                     </tbody>
                 </table>
             </div>
@@ -241,13 +272,11 @@ function ContentBot({ comment }) {
     );
 }
 
-function NoneComment(){
-    return(
+function NoneComment() {
+    return (
         <tr>
             <td></td>
-            <td className="none-comment">
-                댓글이 없습니다.
-            </td>
+            <td className="none-comment">댓글이 없습니다.</td>
             <td></td>
         </tr>
     );

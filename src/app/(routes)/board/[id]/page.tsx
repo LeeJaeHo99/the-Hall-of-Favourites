@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
+import Link from 'next/link';
 import Inner from "@/components/Inner";
 import Modal from "@/components/Modal";
 
@@ -47,6 +48,8 @@ export default function BoardViewPage() {
 
 function ContentTop({ title, likeNum, commentNum, writer, date }) {
     return (
+        <>
+        <Link className="to-board" href={'/board'}>게시판 목록으로 이동</Link>
         <div className="content-top">
             <div className="title">{title}</div>
             <div className="data-wrap">
@@ -64,6 +67,7 @@ function ContentTop({ title, likeNum, commentNum, writer, date }) {
                 </div>
             </div>
         </div>
+        </>
     );
 }
 
@@ -109,6 +113,7 @@ function ContentMid({ content }) {
 
 function ContentBot({ comment }) {
     const params = useParams();
+    const router = useRouter();
 
     const [commentWriter, setCommentWriter] = useState("");
     const onChangeWriter = (e) => {
@@ -121,11 +126,6 @@ function ContentBot({ comment }) {
     const [commentText, setCommentText] = useState("");
     const onChangeComment = (e) => {
         setCommentText(e.target.value);
-    };
-
-    const [isDelete, setIsDelete] = useState(false);
-    const clickDeleteBtn = () => {
-        setIsDelete((prev) => !prev);
     };
 
     const [isClickDelete, setIsClickDelete] = useState(null);
@@ -158,12 +158,14 @@ function ContentBot({ comment }) {
         } catch (e) {
             console.error(e);
         }
+        window.location.reload();
     };
 
     const onKeyDownEnter = (e) => {
         if (e.key === "Enter") {
             e.preventDefault();
             handleSubmit(e);
+            window.location.reload();
         }
     };
 

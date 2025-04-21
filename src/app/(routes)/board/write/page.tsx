@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Inner from "@/components/Inner";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function BoardWritePage() {
     return (
@@ -15,6 +16,8 @@ export default function BoardWritePage() {
 }
 
 function BoardWrite() {
+    const router = useRouter();
+
     const [title, setTitle] = useState("");
     const onChangeTitle = (e) => {
         setTitle(e.target.value);
@@ -31,9 +34,55 @@ function BoardWrite() {
     const onChangePw = (e) => {
         setPw(e.target.value);
     };
+    
+    const onSubmitWrite = async (e) => {
+        e.preventDefault();
+
+        try{
+            if (!title || !content || !writer || !pw) {
+                alert("모든 항목을 입력해 주세요.");
+                return;
+            }
+
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/postWrite`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    title: title,
+                    content: content,
+                    writer: writer,
+                    pw: pw,
+                })
+            });
+
+            const data = await res.json();
+
+            if(res.ok){
+                alert('게시글이 작성이 완료되었습니다.');
+                router.push(`/board/${data.result.insertedId}`);
+            } else {
+                const error = await res.json();
+                alert(error.error);
+            }
+        }
+        catch(e){
+            console.error("게시글 작성 실패:", e);
+        }
+
+        setTitle('');
+        setContent('');
+        setWriter('');
+        setPw('');
+    }
+    const onKeyDownEnter = (e) => {
+        if(e.key === 'Enter'){
+            e.preventDefault();
+            onSubmitWrite();
+        }
+    }
 
     return (
-        <form>
+        <form onSubmit={onSubmitWrite} onKeyDown={onKeyDownEnter}>
             <label htmlFor="writeTitle" className="blur-box">
                 <span>제목</span>
                 <input
@@ -91,5 +140,3 @@ function BoardWrite() {
         </form>
     );
 }
-
-// 작성 후 해당 글 페이지로 이동

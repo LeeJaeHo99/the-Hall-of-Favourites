@@ -150,6 +150,15 @@
         > div{
             width: 100%;
         }
+        .to-board{
+            display: block;
+            width: 100%;
+            margin-bottom: 16px;
+            font-family: 'gs-m';
+            font-size: 14px;
+            color: $gray-text;
+            text-align: right;
+        }
         .content-top{
             padding: 40px 24px 8px;
             padding-bottom: 8px;

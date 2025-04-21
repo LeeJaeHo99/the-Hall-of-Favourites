@@ -1114,6 +1114,15 @@ footer {
 .BoardViewPage .board-content > div {
   width: 100%;
 }
+.BoardViewPage .board-content .to-board {
+  display: block;
+  width: 100%;
+  margin-bottom: 16px;
+  font-family: "gs-m";
+  font-size: 14px;
+  color: #878c9e;
+  text-align: right;
+}
 .BoardViewPage .board-content .content-top {
   padding: 40px 24px 8px;
   padding-bottom: 8px;

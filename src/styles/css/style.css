@@ -721,10 +721,17 @@ footer {
 }
 
 .modal-wrap {
+  position: relative;
   width: 240px;
   padding: 16px 8px;
   border-radius: 8px;
   background-color: rgba(0, 0, 0, 0.7);
+}
+.modal-wrap .calcel-btn {
+  position: absolute;
+  top: 10%;
+  right: 7%;
+  cursor: pointer;
 }
 .modal-wrap .modal-form {
   display: flex;

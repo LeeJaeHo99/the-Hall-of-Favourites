@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import Inner from "@/components/Inner";
-import Modal from '@/components/Modal';
+import Modal from "@/components/Modal";
 
 export default function BoardViewPage() {
     const params = useParams();
@@ -13,9 +13,13 @@ export default function BoardViewPage() {
 
     useEffect(() => {
         const fetchWriteData = async () => {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getWrite?full=true`);
+            const response = await fetch(
+                `${process.env.NEXT_PUBLIC_API_URL}/api/getWrite?full=true`
+            );
             const fetchedData = await response.json();
-            setWriteData(fetchedData.data.filter((data) => data._id === params.id)[0]);
+            setWriteData(
+                fetchedData.data.filter((data) => data._id === params.id)[0]
+            );
         };
         fetchWriteData();
     }, []);
@@ -81,18 +85,66 @@ function ContentMid({ content }) {
 }
 
 function ContentBot({ comment }) {
+    const params = useParams();
+
     const [commentWriter, setCommentWriter] = useState("");
     const onChangeWriter = (e) => {
         setCommentWriter(e.target.value);
-    }
+    };
     const [commentPw, setCommentPw] = useState("");
     const onChangePw = (e) => {
         setCommentPw(e.target.value);
-    }
+    };
+    const [commentText, setCommentText] = useState("");
+    const onChangeComment = (e) => {
+        setCommentText(e.target.value);
+    };
 
     const [isDelete, setIsDelete] = useState(false);
     const clickDeleteBtn = () => {
-        setIsDelete(true);
+        setIsDelete((prev) => !prev);
+    };
+
+    const [isClickDelete, setIsClickDelete] = useState(null);
+    const onClickDelete = (i) => {
+        setIsClickDelete(null);
+        setIsClickDelete(i);
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try{
+            const response = await fetch(
+                `${process.env.NEXT_PUBLIC_API_URL}/api/postComment`,
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        postId: params.id,
+                        name: commentWriter,
+                        text: commentText,
+                        pw: commentPw,
+                    }),
+                }
+            );
+            if(response.ok){
+                setCommentWriter('');
+                setCommentPw('');
+                setCommentText('');
+            }
+        }
+        catch(e){
+            console.error(e);
+        }
+        window.location.reload();
+    };
+
+    const onKeyDownEnter = (e) => {
+        if(e.key === 'Enter'){
+            e.preventDefault();
+            handleSubmit(e);
+            window.location.reload();
+        }
     }
 
     return (
@@ -110,31 +162,35 @@ function ContentBot({ comment }) {
                         </tr>
                     </thead>
                     <tbody>
-                        {comment?.length > 0
-                            ? comment?.map((data, i) => (
-                            <tr key={i}>
-                                <td>{data.name}</td>
-                                <td>{data.text}</td>
-                                <td>
-                                    {isDelete && <Modal/>}
-                                    <button onClick={clickDeleteBtn}>
-                                        <Image src={'/icons/x-gray.png'} width={8} height={8} alt="삭제 아이콘"/>
-                                    </button>
-                                </td>
-                            </tr>
-                            ))
-                            : (
-                                <tr>
-                                    <td></td>
-                                    <td className="none-comment">댓글이 없습니다.</td>
-                                    <td></td>
+                        {comment?.length > 0 ? (
+                            comment?.map((data, i) => (
+                                <tr key={i}>
+                                    <td>{data.name}</td>
+                                    <td>{data.text}</td>
+                                    <td>
+                                        {isClickDelete === i && (
+                                            <Modal
+                                                param={params.id}
+                                                index={i}
+                                                clickDeleteBtn={() => {onClickDelete(null)}}
+                                            />
+                                        )}
+                                        <button onClick={() => {onClickDelete(i)}}>
+                                            <Image
+                                                src={"/icons/x-gray.png"}
+                                                width={8}
+                                                height={8}
+                                                alt="삭제 아이콘"
+                                            />
+                                        </button>
+                                    </td>
                                 </tr>
-                            )
-                        }
+                            ))
+                        ) : <NoneComment/>}
                     </tbody>
                 </table>
             </div>
-            <form className="comment-form">
+            <form className="comment-form" onSubmit={handleSubmit}>
                 <div className="info-wrap">
                     <label htmlFor="comment-id">
                         <span>닉네임 </span>
@@ -162,7 +218,14 @@ function ContentBot({ comment }) {
                     </label>
                 </div>
                 <div className="write-wrap">
-                    <textarea placeholder="댓글을 입력해주세요." maxLength={60} required/>
+                    <textarea
+                        value={commentText}
+                        onChange={onChangeComment}
+                        onKeyDown={onKeyDownEnter}
+                        placeholder="댓글을 입력해주세요."
+                        maxLength={60}
+                        required
+                    />
                     <button type="submit">
                         <Image
                             src={"/icons/write.png"}
@@ -175,5 +238,17 @@ function ContentBot({ comment }) {
                 </div>
             </form>
         </div>
+    );
+}
+
+function NoneComment(){
+    return(
+        <tr>
+            <td></td>
+            <td className="none-comment">
+                댓글이 없습니다.
+            </td>
+            <td></td>
+        </tr>
     );
 }

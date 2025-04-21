@@ -41,7 +41,7 @@ export async function POST(req) {
 
         if (result.matchedCount === 0) {
             return NextResponse.json(
-                { error: "24시간 내에 이미 추천하셨습니다" },
+                { error: "게시글당 하루에 한번만 추천 가능합니다." },
                 { status: 429 }
             );
         }

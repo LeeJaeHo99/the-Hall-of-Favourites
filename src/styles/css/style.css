@@ -128,7 +128,6 @@ body {
 
 html {
   background: linear-gradient(to bottom, #1e1b3a, #15132a, #0e0c1f);
-  background-repeat: no-repeat;
 }
 
 .sub-page {
@@ -1323,4 +1322,66 @@ footer {
   font-family: "gs-m";
   color: #878c9e;
   text-align: center;
+}
+
+.BoardWritePage form {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  width: 80%;
+}
+.BoardWritePage form label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  width: 100%;
+  padding: 8px 0;
+  border-bottom: 1px solid #878c9e;
+}
+.BoardWritePage form label:nth-child(4) {
+  border-bottom: none;
+}
+.BoardWritePage form span:not(.submit-btn span) {
+  display: block;
+  width: 16%;
+  height: auto;
+  min-height: 40px;
+  padding: 12px;
+  border-right: 2px solid #8e65ab;
+  font-family: "gs-l";
+  font-size: 16px;
+}
+.BoardWritePage form textarea {
+  min-height: 160px;
+}
+.BoardWritePage form input, .BoardWritePage form textarea {
+  width: 80%;
+  padding: 8px;
+  border-radius: 6px;
+  font-family: "gs-m";
+  font-size: 14px;
+}
+.BoardWritePage form div {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 32px;
+}
+.BoardWritePage form div button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+  width: 8%;
+  min-height: 80px;
+  background-color: rgba(142, 101, 171, 0.3137254902);
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+.BoardWritePage form div button span {
+  font-family: "gs-m";
+  color: #f5f7ff;
 }

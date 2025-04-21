@@ -79,8 +79,7 @@ function ContentMid({ content }) {
             });
 
             if (res.ok) {
-                setCurrentLikes((prev) => prev + 1);
-                setIsLiked(true);
+                alert('게시글이 추천되었습니다.');
             } else {
                 const error = await res.json();
                 alert(error.error);
@@ -88,7 +87,7 @@ function ContentMid({ content }) {
         } catch (e) {
             console.error("추천 실패:", e);
         }
-        window.location.reload()
+        window.location.reload();
     };
     return (
         <div className="content-mid">
@@ -159,14 +158,12 @@ function ContentBot({ comment }) {
         } catch (e) {
             console.error(e);
         }
-        window.location.reload();
     };
 
     const onKeyDownEnter = (e) => {
         if (e.key === "Enter") {
             e.preventDefault();
             handleSubmit(e);
-            window.location.reload();
         }
     };
 

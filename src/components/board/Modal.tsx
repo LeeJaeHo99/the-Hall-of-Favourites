@@ -21,7 +21,6 @@ export default function Modal({ onClick }) {
     }, []);
 
     const [writeData, setWriteData] = useState([]);
-    console.log('writeData: ', writeData);
 
     useEffect(() => {
         const fetchWriteData = async () => {

@@ -1,10 +1,36 @@
-.Adminpage{
-    .admin-btn{
-        width: 20%;
-        height: auto;
-    }
-    .admin-content{
-        width: 70%;
-        height: auto;
+.Adminpage {
+    .inner {
+        > div {
+            height: auto;
+            padding: 24px;
+            border-radius: 16px;
+        }
+        .admin-btn {
+            width: 20%;
+
+            .radio-component {
+                margin-bottom: 32px;
+                font-family: "gs-m";
+                font-size: 18px;
+
+                &.selected {
+                    color: $primary;
+                }
+                &:last-child {
+                    margin-bottom: 0;
+                }
+                label {
+                    input {
+                        display: none;
+                    }
+                    span {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        .admin-content {
+            width: 70%;
+        }
     }
 }

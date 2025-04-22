@@ -1,26 +1,41 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Inner from '@/components/Inner';
-import AdminBtn from '@/components/admin/AdminBtn';
-import AdminContent from '@/components/admin/AdminContent';
+import { useState } from "react";
+import Inner from "@/components/Inner";
+import AdminBtn from "@/components/admin/AdminBtn";
+import AdminContent from "@/components/admin/AdminContent";
 
-export default function AdminPage(){
+export default function AdminPage() {
+    const [isAdmin, setIsAdmin] = useState(true);
+    const onChangePw = () => {
+        setIsAdmin(false)
+    }
     const [clickIdx, setClickIdx] = useState(0);
     const onClickIdx = (i: number) => {
-        setClickIdx(i)
-    }
-    console.log('clickIdx: ', clickIdx);
-    
-    return(
+        setClickIdx(i);
+    };
+
+    return (
         <div className="Adminpage sub-page">
-            <Inner x='center' y='center'>
-                <AdminBtn onClick={onClickIdx}/>
-                <AdminContent clickIdx={clickIdx}/>
+            <Inner x="evenly" y="center">
+                {isAdmin ? (
+                    <AdminInput onChangePw={onChangePw}/>
+                ) : (
+                    <>
+                        <AdminBtn onClick={onClickIdx} selectedIdx={clickIdx} />
+                        <AdminContent clickIdx={clickIdx} />
+                    </>
+                )}
             </Inner>
         </div>
     );
 }
 
-
-// AdminBtn에서 i번째 버튼을 누르면 AdminContent에서 i번째 컨텐츠가 나오게
+function AdminInput({onChangePw}){
+    return (
+        <div>
+            <h2>🔒 비밀번호를 입력하시오 🔒</h2>
+            <input type="password" onChange={onChangePw}/>
+        </div>
+    )
+}

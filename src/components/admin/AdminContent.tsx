@@ -1,9 +1,10 @@
 import { AdminContentProps } from "@/types/types";
+import PersonalInfo from "./PersonalInfo";
 
-export default function AdminContent({clickIdx}: AdminContentProps){
-    return(
+export default function AdminContent({ clickIdx }: AdminContentProps) {
+    return (
         <div className="admin-content blur-box">
-            <span>{clickIdx}</span>
+            <PersonalInfo content={clickIdx} />
         </div>
     );
 }

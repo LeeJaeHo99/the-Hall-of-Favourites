@@ -30,3 +30,7 @@ export interface AdminBtnProps{
 export interface AdminContentProps{
     clickIdx: number;
 }
+
+export interface PersonalInfo{
+    content: number;
+}

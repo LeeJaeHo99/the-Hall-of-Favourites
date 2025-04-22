@@ -16,7 +16,7 @@ export default function MemberPage() {
 
     useEffect(() => {
         const fetchMemberData = async () => {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getMember`);
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getMember?full=true`);
             const result = await res.json();
             const member = result.data;
             setMemberData(member.filter(mem => mem.nameKo[0] === q)[0]);

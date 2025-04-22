@@ -9,9 +9,10 @@ import {
     ResponsiveContainer,
     Legend,
 } from "recharts";
+import CustomLegend from "./chart/CustomLegend";
+import CustomTooltip from "./chart/CustomTooltip";
 
 const colors = ["#ffcc49", "#cdd0d4", "#c19a6b", "#d1de74", "#f1a183"];
-const emoji: string[] = ["🥇", "🥈", "🥉", "💪", "💪"];
 
 export default function RankChart({ data }) {
     const idolNames = Object.keys(data?.[0] || {}).filter(
@@ -41,41 +42,4 @@ export default function RankChart({ data }) {
             </LineChart>
         </ResponsiveContainer>
     );
-}
-
-function CustomLegend({ payload }) {
-    return (
-        <ul className="chart-legend">
-            {payload.map((entry, index) => (
-                <li key={`item-${index}`} className="">
-                    <span>{emoji[index]}</span>
-                    <span style={{ color: `${colors[index]}` }}>
-                        {entry.value}
-                    </span>
-                </li>
-            ))}
-        </ul>
-    );
-}
-
-function CustomTooltip({ active, payload, label }) {
-    if (active && payload && payload.length) {
-        return (
-            <div className="chart-tooltip blur-box">
-                <p className="time">⏰ {label} ⏰</p>
-                <div>
-                    {payload.map((entry, index) => (
-                        <p
-                            key={index}
-                            style={{ color: entry.color }}
-                        >
-                            <span>{entry.name}</span>
-                            <span>: {entry.value}</span>
-                        </p>
-                    ))}
-                </div>
-            </div>
-        );
-    }
-    return null;
 }

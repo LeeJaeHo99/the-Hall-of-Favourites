@@ -4,14 +4,6 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { ProfileProps } from "@/types/types";
 
-interface Rank {
-    name: string;
-    group: string;
-    history: number;
-}
-
-// 배열내 객체중 victory 프로퍼티가 높은 3개 가져오기
-
 export default function VictoryHistory() {
     const  [memberData, setMemberData] = useState([]);
     useEffect(() => {
@@ -27,12 +19,6 @@ export default function VictoryHistory() {
         }
         fetchMemberData();
     }, [])
-
-    const rank: Rank[] = [
-        { name: "karina", group: "aespa", history: 27 },
-        { name: "karina", group: "aespa", history: 24 },
-        { name: "karina", group: "aespa", history: 16 },
-    ];
 
     return (
         <div className="victory-history blur-box">

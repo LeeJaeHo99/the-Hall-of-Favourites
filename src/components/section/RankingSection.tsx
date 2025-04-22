@@ -25,12 +25,14 @@ export default function RankingSection() {
     // PM 23:50 ~ AM 00:00 (데이터 집계) [ isBlindTime = F, isCollectingTime = T ]
     const [isBlindTime, setIsBlindTime] = useState(checkIsBlindTime());
     const [isCollectingTime, setIsCollectingTime] = useState(checkIsCollectingTime());
+    const [isAnouncingTime, setIsAnouncingTime] = useState(checkIsAnounceTime());
 
     // 10초마다 새로고침
     useEffect(() => {
         const interval = setInterval(() => {
             setIsBlindTime(checkIsBlindTime());
             setIsCollectingTime(checkIsCollectingTime());
+            setIsAnouncingTime(checkIsAnounceTime());
         }, 1000 * 10);
 
         return () => clearInterval(interval);
@@ -42,13 +44,14 @@ export default function RankingSection() {
                 title={"현재 TOP 5"}
                 desc={"매 시간 정각에 순위가 업데이트 됩니다."}
             />
-            {isCollectingTime ? (
-                <CollectingContent />
-            ) : isBlindTime ? (
-                <BlindContent top5={top5} />
-            ) : (
-                <RankChart data={chartData} />
-            )}
+            {isCollectingTime 
+                ? <CollectingContent />
+                : isBlindTime 
+                    ? <BlindContent top5={top5} />
+                    : isAnouncingTime
+                        ? <AnouningContent/>
+                        : <RankChart data={chartData} />
+            }
         </section>
     );
 }
@@ -78,6 +81,15 @@ function CollectingContent() {
             ⏳ 현재는 투표 집계 중입니다... ⏳
         </div>
     );
+}
+
+function AnouningContent(){
+    return(
+        <div className="collecting-content announing-content blur-box">
+            ⏰ AM 01:00 ⏰
+            <div>🔥 오늘의 첫 투표 결과가 발표 됩니다 🔥</div>
+        </div>
+    )
 }
 
 // 최근 5시간 TOP5 배열로 만들기
@@ -138,4 +150,14 @@ function checkIsCollectingTime() {
     const m = now.getMinutes();
 
     return h === 23 && m >= 50 && m <= 59;
+}
+
+// 첫 타임 순위 발표 (AM 00:00 ~ AM 00:59)
+function checkIsAnounceTime(){
+    const now = new Date();
+    const h = now.getHours();
+    const m = now.getMinutes();
+
+    //test
+    return h === 13 && m >= 12 && m <= 20;
 }

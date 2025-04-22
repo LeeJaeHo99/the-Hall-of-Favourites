@@ -4,30 +4,30 @@ import { useState } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import Modal from "@/components/Modal";
+import { ContentBotProps } from '../../types/types';
 
-export default function ContentBot({ comment }) {
+export default function ContentBot({ comment }: ContentBotProps) {
     const params = useParams();
 
     const [commentWriter, setCommentWriter] = useState("");
-    const onChangeWriter = (e) => {
+    const onChangeWriter = (e: React.ChangeEvent<HTMLInputElement>) => {
         setCommentWriter(e.target.value);
     };
     const [commentPw, setCommentPw] = useState("");
-    const onChangePw = (e) => {
+    const onChangePw = (e: React.ChangeEvent<HTMLInputElement>) => {
         setCommentPw(e.target.value);
     };
     const [commentText, setCommentText] = useState("");
-    const onChangeComment = (e) => {
+    const onChangeComment = (e: React.ChangeEvent<HTMLInputElement>) => {
         setCommentText(e.target.value);
     };
 
-    const [isClickDelete, setIsClickDelete] = useState(null);
-    const onClickDelete = (i) => {
-        setIsClickDelete(null);
-        setIsClickDelete(i);
+    const [isClickDelete, setIsClickDelete] = useState<number | null>(null);
+    const onClickDelete = (i: number | null) => {
+            setIsClickDelete(i);
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
             const response = await fetch(

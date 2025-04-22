@@ -2,8 +2,10 @@
 
 import Image from "next/image";
 import { useParams } from "next/navigation";
+import {ContentMidProps} from "@/types/types";
 
-export default function ContentMid({ content }) {
+export default function ContentMid({ content }: ContentMidProps) {
+    console.log('content: ', content);
     const params = useParams();
 
     const handleLike = async () => {

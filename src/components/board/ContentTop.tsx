@@ -5,6 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import BoardEdit from "@/components/BoardEdit";
 import Modal from "@/components/board/Modal";
+import { ContentTopProps, BoardDeleteProps } from '../../types/types';
+
 
 export default function ContentTop({
     title,
@@ -13,7 +15,7 @@ export default function ContentTop({
     writer,
     date,
     id,
-}) {
+}: ContentTopProps) {
     const [isModal, setIsModal] = useState(false);
     const onClickDeleteBtn = () => {
         setIsModal(prev => !prev);
@@ -56,7 +58,7 @@ export default function ContentTop({
     );
 }
 
-function BoardDelete({style, onClick}) {
+function BoardDelete({style, onClick}: BoardDeleteProps) {
     return (
         <div
             className={`board-edit--btn blur-box ${style}`}

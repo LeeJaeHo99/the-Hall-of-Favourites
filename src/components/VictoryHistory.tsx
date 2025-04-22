@@ -1,4 +1,8 @@
+'use client';
+
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import { ProfileProps } from "@/types/types";
 
 interface Rank {
     name: string;
@@ -6,7 +10,24 @@ interface Rank {
     history: number;
 }
 
+// 배열내 객체중 victory 프로퍼티가 높은 3개 가져오기
+
 export default function VictoryHistory() {
+    const  [memberData, setMemberData] = useState([]);
+    useEffect(() => {
+        const fetchMemberData = async () => {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getMember?full=true`);
+            const result = await res.json();
+            const rankMember = result.data.sort((a, b) => {
+                let aRank = a.victory;
+                let bRank = b.victory;
+                return bRank - aRank;
+            }).slice(0, 3);
+            setMemberData(rankMember);
+        }
+        fetchMemberData();
+    }, [])
+
     const rank: Rank[] = [
         { name: "karina", group: "aespa", history: 27 },
         { name: "karina", group: "aespa", history: 24 },
@@ -17,18 +38,20 @@ export default function VictoryHistory() {
         <div className="victory-history blur-box">
             <div className="silver">
                 <Profile
-                    name={rank[1].name}
-                    group={rank[1].group}
-                    history={rank[1].history}
+                    nameKo={memberData[1]?.nameKo[0]}
+                    nameEn={memberData[1]?.nameEn}
+                    group={memberData[1]?.group[0]}
+                    history={memberData[1]?.victory}
                 />
                 <div className="box">🥈</div>
                 <div className="box"></div>
             </div>
             <div className="gold">
                 <Profile
-                    name={rank[0].name}
-                    group={rank[0].group}
-                    history={rank[0].history}
+                    nameKo={memberData[0]?.nameKo[0]}
+                    nameEn={memberData[0]?.nameEn}
+                    group={memberData[0]?.group[0]}
+                    history={memberData[0]?.victory}
                 />
                 <div className="box">🥇</div>
                 <div className="box"></div>
@@ -36,9 +59,10 @@ export default function VictoryHistory() {
             </div>
             <div className="bronze">
                 <Profile
-                    name={rank[2].name}
-                    group={rank[2].group}
-                    history={rank[2].history}
+                    nameKo={memberData[2]?.nameKo[0]}
+                    nameEn={memberData[2]?.nameEn}
+                    group={memberData[2]?.group[0]}
+                    history={memberData[2]?.victory}
                 />
                 <div className="box">🥉</div>
             </div>
@@ -46,16 +70,16 @@ export default function VictoryHistory() {
     );
 }
 
-function Profile({ name, group, history }) {
+function Profile({ nameKo, nameEn, group, history }: ProfileProps) {
     return (
         <div className="profile">
             <Image
-                src={`/images/${group}/${name}.png`}
+                src={`/images/${group}/${nameEn}.png`}
                 width={60}
                 height={60}
                 alt="프로필 이미지"
             />
-            <span>{name}</span>
+            <span>{nameKo}</span>
             <div className="victory-num">역대 {history}회 우승 🏆</div>
         </div>
     );

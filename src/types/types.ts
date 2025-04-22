@@ -1,3 +1,13 @@
+// main
+export interface ProfileProps{
+    nameKo: string;
+    nameEn: string;
+    group: string;
+    history: number;
+}
+
+
+
 // board
 export interface ContentTopProps{
     title: string;

@@ -54,8 +54,6 @@ export default function Modal({ onClick }) {
         }
     }
 
-    // 지금 params.id랑 같은 객체랑 pw를 비교해서 같으면 삭제 
-
     return (
         <div className="modal-wrap blur-box">
             <div className="calcel-btn" onClick={onClick}>

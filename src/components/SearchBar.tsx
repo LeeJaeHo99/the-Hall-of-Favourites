@@ -10,7 +10,7 @@ export default function SearchBar() {
     const [search, setSearch] = useState("");
 
     const searchSubmit = () => {
-        router.push(option ? `/member/${search}` : `/group/${search}`);
+        router.push(option ? `/member?q=${search}` : `/group?q=${search}`);
     };
 
     // option 상태가 T면 멤버, F면 그룹

@@ -3,14 +3,13 @@ idol = [
         nameKo: ['카리나', '유지민'], // 활동명, 본명
         nameEn: 'karina', // 영어 이름
         group: ['aespa', '에스파'], // 그룹영어, 그룹한글
-        birth: '00-04-11', // 생일
+        birth: '2000년 4월 11일', // 생일
         age: 26, // 나이
-        debutDate: '20-11-17', // 데뷔날
+        debutDate: '2020년 11월 17일', // 데뷔날
         company: 'SM', // 회사
-        accumulatedLike: 1251615, // 누적 좋아요
-        likeHistory: [240, 380, 456, 570, 640,], // 하루 좋아요
+        likeHistory: 1251615, // 누적 좋아요
+        todayLike: [240, 380, 456, 570, 640,], // 하루 좋아요
         victory: 24, // 우승 횟수
-        songId: 'vQkdt5txAcM', // 노래 아이디
         song: {
             id: 'vQkdt5txAcM',
             title: 'Supernova',
@@ -32,18 +31,25 @@ group = [
     }
 ]
 
-writing = [
+writeData
+{
+  "_id": {
+    "$oid": ""
+  },
+  "title": "",
+  "content": "",
+  "writer": "",
+  "pw": "",
+  "date": "",
+  "likeNum": ,
+  "comment": [
     {
-        id: '', // 글 아이디
-        title: '', // 제목
-        content: '', // 글
-        commentNum: 123, // 댓글 수 
-        like: 123,
-        date: '', // 날짜
-        writer: '', // 작성자
-        pw: '', // 비밀번호
-    }
-]
+      "name": "",
+      "text": "",
+      "pw": ""
+    },
+  ]
+}
 
 
 멤버 페이지
@@ -54,8 +60,6 @@ writing = [
 // 토요일은 2배 이벤트하고 일요일에는 월~토까지 합친 멤버가 나옴
 // 일요일 챔피언 배너 강화
 // 토요일에 2배 이벤트 아이콘 생성
-// 주간 랭킹 페이지
-// 로그인은 안하고, 익명으로 진행 (형용사 + 동물 = 멋쟁이 사자 이런 느낌)
 // 사이트 설명 컴포넌트 생성
 // 공지사항은 모달로
 // 그래프 데이터는 On-Demend ISR로
@@ -67,8 +71,5 @@ DB, API
 반응형, SEO
 
 
-
-// 우선 할일
-- 자유게시판 페이지
-=> 글 삭제
-// 
+할일
+// 멤버페이지, 그룹 페이지

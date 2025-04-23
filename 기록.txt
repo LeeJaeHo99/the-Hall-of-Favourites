@@ -1,57 +1,3 @@
-idol = [
-    {
-        nameKo: ['카리나', '유지민'], // 활동명, 본명
-        nameEn: 'karina', // 영어 이름
-        group: ['aespa', '에스파'], // 그룹영어, 그룹한글
-        birth: '2000년 4월 11일', // 생일
-        age: 26, // 나이
-        debutDate: '2020년 11월 17일', // 데뷔날
-        company: 'SM', // 회사
-        likeHistory: 1251615, // 누적 좋아요
-        weekLike: [] // 일주일간
-        todayLike: [240, 380, 456, 570, 640,], // 하루 좋아요
-        victory: 24, // 우승 횟수
-        song: {
-            id: 'vQkdt5txAcM',
-            title: 'Supernova',
-        }
-    }
-]
-
-group = [
-    {
-        nameKo: '에스파',
-        nameEn: 'aespa',
-        debutDate: '20-11-17',
-        company: 'SM',
-        member: [
-            ['카리나', '윈터', '닝닝', '지젤'],
-            ['karina', 'winter', 'ningning, 'gisel'],
-        ],
-        songId: 'vQkdt5txAcM',
-    }
-]
-
-writeData
-{
-  "_id": {
-    "$oid": ""
-  },
-  "title": "",
-  "content": "",
-  "writer": "",
-  "pw": "",
-  "date": "",
-  "likeNum": ,
-  "comment": [
-    {
-      "name": "",
-      "text": "",
-      "pw": ""
-    },
-  ]
-}
-
 추가 아이디어
 // 토요일은 2배 이벤트하고 일요일에는 월~토까지 합친 멤버가 나옴
 // 공지사항은 모달로
@@ -64,9 +10,9 @@ DB, API
 반응형, SEO
 
 할일
-// 자게 검색 빈칸시 전부 다나옴. 수정 필요.
 // 검색시 페이지네이션 수정 필요.
 // 멤버페이지, 그룹 페이지
+// 반응형 (400까지)
 
 
 // 좋아요 로직

@@ -25,10 +25,28 @@ export default function Winner({ group, singer }: Winner) {
         }
     }, []);
 
+    const [winnerData, setWinnerData] = useState();
+    console.log('winnerData: ', winnerData);
+
+    useEffect(() => {
+        const fetchMemberData = async () => {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getMember?full=true`);
+            const result = await res.json();
+            const winner = result.data.sort((a, b) => {
+                let aMem = a?.weekLike[a?.weekLike.length - 1] ?? 0;
+                let bMem = b?.weekLike[b?.weekLike.length - 1] ?? 0;
+
+                return bMem - aMem;
+            });
+            setWinnerData(winner[0]);
+        }
+        fetchMemberData();
+    }, []);
+
     return (
         <div className="winner">
             <div className="winner-content">
-                <LeftContent />
+                <LeftContent song={winnerData?.song} group={winnerData?.group[2]}/>
                 <motion.div
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -44,14 +62,6 @@ export default function Winner({ group, singer }: Winner) {
                                 : <p>🎉 오늘의 우승자 🎉</p>
                         }
                         <div className={`person-img--wrap ${isSunday && 'sunday'}`}>
-                            {/* <Image
-                                className="person-img"
-                                ref={targetRef}
-                                src={'/images/ive/yujin.png'}
-                                width={480}
-                                height={480}
-                                alt="⭐️ 오늘의 우승자 ⭐️"
-                            /> */}
                             <Image
                                 className="person-img"
                                 ref={targetRef}
@@ -63,19 +73,19 @@ export default function Winner({ group, singer }: Winner) {
                         </div>
                         <div className="winner-desc">
                             <div className="winner-singer">
-                                <Link href={"/"}>{singer}</Link>
+                                <Link href={`/member?q=${winnerData?.nameKo[0]}`}>{winnerData?.nameKo[0]}</Link>
                             </div>
-                            <div className="winner-group">{group}</div>
+                            <div className="winner-group">{winnerData?.group[1]}</div>
                         </div>
                     </div>
                 </motion.div>
-                <RightContent />
+                <RightContent victory={winnerData?.victory} likeHistory={winnerData?.likeHistory} todayLike={winnerData?.todayLike[winnerData?.todayLike.length - 1]}/>
             </div>
         </div>
     );
 }
 
-function LeftContent() {
+function LeftContent({song, group}) {
     return (
         <div className="left-content">
             <motion.div
@@ -86,7 +96,7 @@ function LeftContent() {
                     ease: [0, 0.71, 0.2, 1.01],
                 }}
             >
-                <MusicThumbnail />
+                <MusicThumbnail song={song} group={group}/>
             </motion.div>
             <motion.div
                 initial={{ opacity: 0, scale: 0.5 }}
@@ -124,7 +134,7 @@ function LeftContent() {
     );
 }
 
-function RightContent() {
+function RightContent({victory, likeHistory, todayLike}) {
     return (
         <div className="right-content">
             <motion.div
@@ -137,7 +147,7 @@ function RightContent() {
             >
                 <div className="title">역대 우승횟수</div>
                 <div className="result">
-                    총 <span>27</span>회
+                    총 <span>{victory}</span>회
                 </div>
             </motion.div>
             <motion.div
@@ -150,7 +160,7 @@ function RightContent() {
             >
                 <div className="title">역대 좋아요</div>
                 <div className="result">
-                    총 <span>2840650</span>회
+                    총 <span>{likeHistory}</span>회
                 </div>
             </motion.div>
             <motion.div
@@ -163,7 +173,7 @@ function RightContent() {
             >
                 <div className="title">오늘의 좋아요</div>
                 <div className="result">
-                    총 <span>4800</span>회
+                    총 <span>{todayLike}</span>회
                 </div>
             </motion.div>
         </div>

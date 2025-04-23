@@ -1007,6 +1007,12 @@ footer {
   margin-top: 0;
   padding-top: 100px;
 }
+.InfoPage .content-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
 .InfoPage .left-content--wrap, .InfoPage .right-content--wrap {
   max-height: 500px;
 }

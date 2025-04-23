@@ -116,7 +116,7 @@ function BoardSearch({searchWord, onChangeSearchWord, isSearch, setIsSearch}) {
                 alert('검색어를 입력해주세요.');
                 return;
             }
-            
+
             setIsSearch(false);
 
             setTimeout(() => {
@@ -156,5 +156,3 @@ function BoardSearch({searchWord, onChangeSearchWord, isSearch, setIsSearch}) {
         </div>
     );
 }
-
-// 검색한 제목과 맞는 제목을 찾고 그거의 _id를 /board/${_id} 이렇게 url 이동

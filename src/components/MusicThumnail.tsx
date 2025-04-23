@@ -1,8 +1,7 @@
 import Image from "next/image";
 
-export default function MusicThumbnail() {
-    const songId = "vQkdt5txAcM";
-    const thumbnail = `https://img.youtube.com/vi/${songId}/maxresdefault.jpg`;
+export default function MusicThumbnail({song, group}) {
+    const thumbnail = `https://img.youtube.com/vi/${song?.id}/maxresdefault.jpg`;
 
     return (
         <div className="player-wraper blur-box">
@@ -16,8 +15,8 @@ export default function MusicThumbnail() {
                 />
             </div>
             <div className="music-info">
-                <div className="music-title">Supernova</div>
-                <div className="music-singer">에스파</div>
+                <div className="music-title">{song?.title}</div>
+                <div className="music-singer">{group}</div>
             </div>
         </div>
     );

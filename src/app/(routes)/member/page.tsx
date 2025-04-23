@@ -28,7 +28,7 @@ export default function MemberPage() {
     return (
         <div className="MemberPage InfoPage sub-page">
             <Inner x={"row"} y={"between"}>
-                <LeftContent victory={memberData?.victory} likeHistory={memberData?.likeHistory}/>
+                <LeftContent victory={memberData?.victory} likeHistory={memberData?.likeHistory} todayLike={memberData?.todayLike[memberData?.todayLike.length - 1]}/>
                 <MainContent />
                 <RightContent />
             </Inner>
@@ -36,7 +36,7 @@ export default function MemberPage() {
     );
 }
 
-function LeftContent({victory, likeHistory}) {
+function LeftContent({victory, likeHistory, todayLike}) {
     return (
         <div className="left-content--wrap">
             <MusicThumbnail />
@@ -58,23 +58,50 @@ function LeftContent({victory, likeHistory}) {
                 <div className="blur-box">
                     <div className="title">오늘의 좋아요</div>
                     <div className="content">
-                        <span>487</span> <sub>회</sub>
+                        <span>{todayLike}</span> <sub>회</sub>
                     </div>
                 </div>
-                <div className="blur-box">
-                    <div className="title">좋아요</div>
-                    <div className="content">
-                        <Image
-                            className="heart-img"
-                            src={"/icons/heart.png"}
-                            width={72}
-                            height={72}
-                            alt="하트 이미지"
-                        />
-                    </div>
-                </div>
+                <LikeComponent/>
             </div>
         </div>
+    );
+}
+
+function LikeComponent(){
+    const handleLike = async () => {
+        const nameKo = new URLSearchParams(window.location.search).get("q"); // '카리나' 같은 값
+      
+        if (!nameKo) {
+          alert("멤버 이름이 없습니다.");
+          return;
+        }
+      
+        const res = await fetch(`/api/likeMember?nameKo=${encodeURIComponent(nameKo)}`, {
+          method: "PATCH",
+        });
+      
+        const data = await res.json();
+      
+        if (res.ok) {
+          alert("좋아요 성공!");
+        } else {
+          alert(data.message || "오류가 발생했어요.");
+        }
+      };
+
+    return(
+        <div className="blur-box">
+        <div className="title">좋아요</div>
+        <div className="content" onClick={handleLike}>
+            <Image
+                className="heart-img"
+                src={"/icons/heart-purple.png"}
+                width={72}
+                height={72}
+                alt="하트 이미지"
+            />
+        </div>
+    </div>
     );
 }
 

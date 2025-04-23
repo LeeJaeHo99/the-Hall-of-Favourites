@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
@@ -12,6 +12,7 @@ interface Winner {
 }
 
 export default function Winner({ group, singer }: Winner) {
+    const [isSunday, setIsSunday] = useState(false);
     const targetRef = useRef(null);
 
     useEffect(() => {
@@ -37,8 +38,20 @@ export default function Winner({ group, singer }: Winner) {
                     }}
                 >
                     <div className="main-content">
-                        <p>🎉 오늘의 우승자 🎉</p>
-                        <div className="person-img--wrap">
+                        {
+                            isSunday
+                                ? <p>🏅 이번주 우승자 🏅</p>
+                                : <p>🎉 오늘의 우승자 🎉</p>
+                        }
+                        <div className={`person-img--wrap ${isSunday && 'sunday'}`}>
+                            {/* <Image
+                                className="person-img"
+                                ref={targetRef}
+                                src={'/images/ive/yujin.png'}
+                                width={480}
+                                height={480}
+                                alt="⭐️ 오늘의 우승자 ⭐️"
+                            /> */}
                             <Image
                                 className="person-img"
                                 ref={targetRef}

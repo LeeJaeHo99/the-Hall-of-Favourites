@@ -363,7 +363,7 @@
     width: 100%;
     height: auto;
     max-height: 370px;
-    padding: 140px 20px 50px;
+    padding: 140px 20px 36px;
     border-radius: 12px;
 
     > div {
@@ -549,6 +549,9 @@
     }
     &:hover .person-img {
         transform: scale(1.1);
+    }
+    &.sunday{
+        animation: pastelGoldGlow 2s ease-in-out infinite alternate;
     }
 }
 

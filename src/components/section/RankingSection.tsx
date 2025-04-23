@@ -20,9 +20,14 @@ export default function RankingSection() {
         return convertTop5ToChartData(top5);
     }, [top5]);
 
-    // AM 00:00 ~ PM 22:00 (차트출력) [ isBlindTime = F, isCollectingTime = F ]
-    // PM 22:00 ~ PM 23:50 (오늘의 누적 데이터 출력) [ isBlindTime = T, isCollectingTime = F ]
-    // PM 23:50 ~ AM 00:00 (데이터 집계) [ isBlindTime = F, isCollectingTime = T ]
+    // AM 00:00 ~ PM 00:59 (첫 투표 기다림) 
+    // [ isAnouncingTime = T, isBlindTime = F, isCollectingTime = F ]
+    // AM 01:00 ~ PM 22:00 (차트출력) 
+    // [ isAnouncingTime = F isBlindTime = F, isCollectingTime = F ]
+    // PM 22:00 ~ PM 23:50 (오늘의 누적 데이터 출력) 
+    // [ isAnouncingTime = F isBlindTime = T, isCollectingTime = F ]
+    // PM 23:50 ~ AM 00:00 (데이터 집계) 
+    // [ isAnouncingTime = F, isBlindTime = F, isCollectingTime = T ]
     const [isBlindTime, setIsBlindTime] = useState(checkIsBlindTime());
     const [isCollectingTime, setIsCollectingTime] = useState(checkIsCollectingTime());
     const [isAnouncingTime, setIsAnouncingTime] = useState(checkIsAnounceTime());
@@ -158,6 +163,5 @@ function checkIsAnounceTime(){
     const h = now.getHours();
     const m = now.getMinutes();
 
-    //test
-    return h === 13 && m >= 12 && m <= 20;
+    return h === 0 && m >= 0 && m <= 59;
 }

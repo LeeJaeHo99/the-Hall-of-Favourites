@@ -17,23 +17,34 @@
     }
 }
 
-@keyframes skeletonAni{
-    0%, 100%{
+@keyframes skeletonAni {
+    0%,
+    100% {
         background-color: rgba(255, 255, 255, 0.05);
     }
-    50%{
+    50% {
         background-color: rgba(255, 255, 255, 11%);
     }
 }
 
-@keyframes leftRight{
-    0%, 100%{
+@keyframes leftRight {
+    0%,
+    100% {
         transform: rotate(0);
     }
-    33%{
+    33% {
         transform: rotate(-20deg);
     }
-    66%{
+    66% {
         transform: rotate(20deg);
+    }
+}
+
+@keyframes pastelGoldGlow {
+    0% {
+        box-shadow: 0 0 20px 0px #f6c445, 0 0 36px 0px #9ac1f0;
+    }
+    100% {
+        box-shadow: 0 0 20px 8px #c6b4d8, 0 0 36px 8px #fbe7ab;
     }
 }

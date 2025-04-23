@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import "@/styles/css/style.css";
-import Inner from "@/components/Inner";
-import VoteTimer from '@/components/VoteTimer';
-import Link from "next/link";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
     title: "최애의 전당",
@@ -22,28 +21,5 @@ export default function RootLayout({
                 <Footer/>
             </body>
         </html>
-    );
-}
-
-function Header() {
-    return (
-        <header>
-            <Inner x="center">
-                <h1><Link href={'/'}>최애의 전당</Link></h1>
-                <div>
-                    <VoteTimer/>
-                </div>
-            </Inner>
-        </header>
-    );
-}
-
-function Footer(){
-    return(
-        <footer>
-            <Inner>
-                FOOTER
-            </Inner>
-        </footer>
     );
 }

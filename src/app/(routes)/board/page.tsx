@@ -112,6 +112,11 @@ export default function BoardPage() {
 function BoardSearch({searchWord, onChangeSearchWord, isSearch, setIsSearch}) {
     const onKeyDown = (e) => {
         if(e.key === 'Enter'){
+            if(searchWord === ''){
+                alert('검색어를 입력해주세요.');
+                return;
+            }
+            
             setIsSearch(false);
 
             setTimeout(() => {
@@ -120,6 +125,10 @@ function BoardSearch({searchWord, onChangeSearchWord, isSearch, setIsSearch}) {
         }
     }
     const onClickBtn = () => {
+        if(searchWord === ''){
+            alert('검색어를 입력해주세요.');
+            return;
+        }
         setIsSearch(false);
 
         setTimeout(() => {

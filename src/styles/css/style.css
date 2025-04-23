@@ -1012,6 +1012,7 @@ footer {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  margin-bottom: 64px;
 }
 .InfoPage .left-content--wrap, .InfoPage .right-content--wrap {
   max-height: 500px;
@@ -1126,6 +1127,33 @@ footer {
   font-family: "gs-m";
   font-size: 20px;
   color: #8e65ab;
+}
+.InfoPage .story-component {
+  width: 80%;
+  padding: 40px;
+  margin-bottom: 80px;
+  border-radius: 12px;
+}
+.InfoPage .story-component .story {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.InfoPage .story-component .story:last-child {
+  margin-bottom: 0;
+}
+.InfoPage .story-component .story span {
+  font-family: "gs-m";
+  font-size: 20px;
+}
+.InfoPage .story-component .story .circle {
+  width: 8px;
+  height: 8px;
+  margin: 0;
+  border-radius: 50%;
+  background-color: #8e65ab;
 }
 
 .BoardPage .inner .board-content--wrap {

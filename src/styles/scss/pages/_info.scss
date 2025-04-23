@@ -19,6 +19,7 @@
         align-items: center;
         justify-content: space-between;
         width: 100%;
+        margin-bottom: 64px;
     }
     .left-content--wrap, .right-content--wrap{
         max-height: 500px;
@@ -144,6 +145,35 @@
                 font-family: 'gs-m';
                 font-size: 20px;
                 color: $primary;
+            }
+        }
+    }
+    .story-component{
+        width: 80%;
+        padding: 40px;
+        margin-bottom: 80px;
+        border-radius: 12px;
+
+        .story{
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 12px;
+            margin-bottom: 24px;
+
+            &:last-child{
+                margin-bottom: 0;
+            }
+            span{
+                font-family: 'gs-m';
+                font-size: 20px;
+            }
+            .circle{
+                width: 8px;
+                height: 8px;
+                margin: 0;
+                border-radius: 50%;
+                background-color: $primary;
             }
         }
     }

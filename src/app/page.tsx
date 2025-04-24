@@ -6,11 +6,13 @@ import GroupLinkBtn from "@/components/ui/GroupLinkBtn";
 import SearchBar from "@/components/ui/SearchBar";
 import BoardPreview from "@/components/ui/BoardPreview";
 import Winner from "@/components/ui/Winner";
+import NoticeModal from '../components/ui/NoticeModal';
 
 export default function Home() {
     return (
         <div className="home">
             <Inner x={"center"} y={"column"}>
+            <NoticeModal/>
                 <Winner/>
                 <RankingSection />
                 <SearchSection />

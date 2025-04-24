@@ -18,6 +18,7 @@ export interface MemberLeftContentProps{
     todayLike: number;
     song: SongTitle;
     group: string;
+    onClickTrigger: () => void;
 }
 
 export interface MemberDataType{
@@ -36,6 +37,7 @@ export interface MemberDataType{
     weekLike: number[];
     song: Song;
     victory: number;
+    trigger?: boolean;
 }
 
 interface LikeRecord{
@@ -47,6 +49,10 @@ interface Song{
     id: string;
     title: string;
 };
+
+export interface LikeComponentProps{
+    onClickTrigger: () => void;
+}
 
 
 // board
@@ -91,6 +97,7 @@ export interface PersonalInfo{
 export interface PersonalImgProps{
     group: string;
     nameEn: string;
+    trigger?: boolean;
 }
 
 export interface ErrorMessageProps{

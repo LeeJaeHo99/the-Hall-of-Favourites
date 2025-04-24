@@ -1,6 +1,6 @@
 import MusicThumbnail from "@/components/ui/MusicThumnail";
 import { MemberLeftContentProps } from "@/types/types";
-import Image from "next/image";
+import LikeComponent from "./LikeComponent";
 
 export default function LeftContent({
     victory,
@@ -8,6 +8,7 @@ export default function LeftContent({
     todayLike,
     song,
     group,
+    onClickTrigger,
 }: MemberLeftContentProps) {
     return (
         <div className="left-content--wrap">
@@ -33,43 +34,7 @@ export default function LeftContent({
                         <span>{todayLike}</span> <sub>회</sub>
                     </div>
                 </div>
-                <LikeComponent />
-            </div>
-        </div>
-    );
-}
-
-function LikeComponent() {
-    const handleLike = async () => {
-        const nameKo = new URLSearchParams(window.location.search).get("q");
-
-        if (!nameKo) {
-            alert("멤버 이름이 없습니다.");
-            return;
-        }
-
-        const res = await fetch(
-            `/api/likeMember?q=${encodeURIComponent(nameKo)}`,
-            { method: "PATCH" }
-        );
-        const data = await res.json();
-
-        if (!res.ok) {
-            alert(data.message || "오류가 발생했어요.");
-        }
-    };
-
-    return (
-        <div className="blur-box">
-            <div className="title">좋아요</div>
-            <div className="content" onClick={handleLike}>
-                <Image
-                    className="heart-img"
-                    src={"/icons/heart-purple.png"}
-                    width={72}
-                    height={72}
-                    alt="하트 이미지"
-                />
+                <LikeComponent onClickTrigger={onClickTrigger}/>
             </div>
         </div>
     );

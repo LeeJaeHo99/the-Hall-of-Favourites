@@ -7,8 +7,10 @@ const getUserIdentifier = (req: Request) => {
 };
 
 export async function PATCH(req: Request) {
-    const now = new Date;
-    const isSaturday = now.getDay === 6;
+    const now = new Date();
+    const isSaturday = now.getDay() === 6;
+    const incrementValue = isSaturday ? 2 : 1;
+
     const { searchParams } = new URL(req.url);
     const nameKo = searchParams.get("q");
 
@@ -54,8 +56,8 @@ export async function PATCH(req: Request) {
             { "nameKo.0": nameKo },
             {
                 $inc: {
-                    [`todayLike.${todayLikeIndex}`]: 1,
-                    likeHistory: 1,
+                    [`todayLike.${todayLikeIndex}`]: incrementValue,
+                    likeHistory: incrementValue,
                 },
                 $push: {
                     likeRecord: { date: todayKey, user: userId },

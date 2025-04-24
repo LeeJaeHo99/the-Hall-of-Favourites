@@ -1,4 +1,4 @@
-import RadioBtn from "../RadioBtn";
+import RadioBtn from "../ui/RadioBtn";
 import { AdminBtnProps } from '../../types/types';
 
 const btnId = [

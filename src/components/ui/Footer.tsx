@@ -1,4 +1,4 @@
-import Inner from "@/components/Inner";
+import Inner from "@/components/ui/Inner";
 
 export default function Footer(){
     return(

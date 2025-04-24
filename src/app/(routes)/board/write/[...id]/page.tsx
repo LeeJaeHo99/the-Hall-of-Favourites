@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Inner from "@/components/Inner";
+import Inner from "@/components/ui/Inner";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 

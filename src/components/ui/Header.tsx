@@ -1,21 +1,22 @@
 "use client";
 
-import Inner from "@/components/Inner";
-import VoteTimer from "@/components/VoteTimer";
-import Link from "next/link";
 import { useState } from "react";
+import { useIsSaturday } from "@/store/store";
+import Link from "next/link";
+import Inner from "@/components/ui/Inner";
+import VoteTimer from "@/components/ui/VoteTimer";
 
 export default function Header() {
     const [isClicked, setIsClicked] = useState(false);
     const onClick = () => {
         setIsClicked((prev) => !prev);
     };
-    const [isSunday, setIsSunday] = useState(false);
+    const isSaturday = useIsSaturday(state => state.isSaturday);
 
     return (
         <header>
             <Inner x="between">
-                <div className={`burning ${isSunday ? 'yes' : 'no'}`}>🔥 좋아요 버닝 데이 🔥</div>
+                <div className={`burning ${isSaturday ? 'yes' : 'no'}`}>🔥 좋아요 버닝 데이 🔥</div>
                 <h1>
                     <Link href={"/"}>최애의 전당</Link>
                     <div className="site-desc" onClick={onClick}>

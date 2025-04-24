@@ -1,7 +1,7 @@
 "use client";
 
 // import { useParams } from "next/navigation";
-import Inner from "@/components/Inner";
+import Inner from "@/components/ui/Inner";
 import Image from "next/image";
 
 export default function GroupPage() {

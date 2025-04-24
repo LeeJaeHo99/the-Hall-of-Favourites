@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "@/styles/css/style.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "@/components/ui/Header";
+import Footer from "@/components/ui/Footer";
 
 export const metadata: Metadata = {
     title: "최애의 전당",

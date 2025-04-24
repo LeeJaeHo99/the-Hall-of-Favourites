@@ -164,6 +164,7 @@ header .inner .burning {
   font-family: "gs-b";
   font-size: 18px;
   color: lightcoral;
+  text-shadow: 0 0 16px lightcoral;
 }
 header .inner .burning.no {
   color: transparent;
@@ -211,7 +212,7 @@ header .inner .vote-timer--wrap .vote-timer {
 }
 header .inner .vote-timer--wrap .vote-timer span {
   font-family: "gs-m";
-  color: #a1a5b6;
+  color: #8e65ab;
 }
 header .inner .desc-site--component {
   position: absolute;
@@ -447,7 +448,8 @@ footer {
 }
 .winner .winner-content .right-content > div .result span {
   font-family: "gs-b";
-  color: lightgoldenrodyellow;
+  color: #8e65ab;
+  text-shadow: 0 0 16px #8e65ab;
 }
 
 .player-wraper {
@@ -459,20 +461,27 @@ footer {
 .player-wraper .music-player--wrap {
   position: relative;
 }
-.player-wraper .music-player--wrap .music-thumbnail--img {
+.player-wraper .music-player--wrap .music-thumbnail--img,
+.player-wraper .music-player--wrap .music-thumbnail--unload {
   width: 100%;
   max-width: 120px;
   max-height: 120px;
   border-radius: 50%;
-  -o-object-fit: contain;
-     object-fit: contain;
   background-color: #000;
   box-shadow: 0px 0px 20px 16px rgba(76, 76, 76, 0.06);
   animation: musicStart 10s linear infinite, glow 2s ease-in-out infinite;
   animation-play-state: paused;
 }
+.player-wraper .music-player--wrap .music-thumbnail--img {
+  -o-object-fit: contain;
+     object-fit: contain;
+}
 .player-wraper .music-player--wrap .music-thumbnail--img.play {
   animation-play-state: running;
+}
+.player-wraper .music-player--wrap .music-thumbnail--unload {
+  width: 160px;
+  height: 160px;
 }
 .player-wraper .music-info {
   display: flex;
@@ -553,12 +562,16 @@ footer {
   color: #d8b4fe;
   text-align: center;
   font-weight: 600;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.1s ease-in-out;
   cursor: pointer;
 }
 .group-link-btn--wrap .group-link-btn:hover {
   background-color: #f3e8ff;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 0.1px solid rgba(142, 101, 171, 0.5647058824);
+  font-family: "gs-b";
   color: #8e65ab;
+  text-shadow: 0 0 16px #8e65ab;
 }
 
 .board-preview {

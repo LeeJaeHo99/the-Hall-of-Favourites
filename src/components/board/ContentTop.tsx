@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import BoardEdit from "@/components/BoardEdit";
+import BoardEdit from "@/components/board/BoardEdit";
 import Modal from "@/components/board/Modal";
 import { ContentTopProps, BoardDeleteProps } from '../../types/types';
 

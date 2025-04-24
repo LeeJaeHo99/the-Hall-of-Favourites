@@ -9,8 +9,8 @@ import {
     ResponsiveContainer,
     Legend,
 } from "recharts";
-import CustomLegend from "./chart/CustomLegend";
-import CustomTooltip from "./chart/CustomTooltip";
+import CustomLegend from "./CustomLegend";
+import CustomTooltip from "./CustomTooltip";
 
 const colors = ["#ffcc49", "#cdd0d4", "#c19a6b", "#d1de74", "#f1a183"];
 

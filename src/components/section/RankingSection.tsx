@@ -2,8 +2,8 @@
 
 import { useMemo, useState, useEffect } from "react";
 import { idol } from "@/data/data";
-import Title from "@/components/Title";
-import RankChart from "@/components/RankChart";
+import Title from "@/components/ui/Title";
+import RankChart from "../chart/RankChart";
 
 const colors: string[] = ["#ffcc49","#cdd0d4", "#c19a6b", "#d1de74", "#f1a183"];
 const emoji: string[] = ["🥇", "🥈", "🥉", "💪", "💪"];

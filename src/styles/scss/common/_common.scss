@@ -36,6 +36,7 @@ header {
             font-family: 'gs-b';
             font-size: 18px;
             color: lightcoral;
+            text-shadow: 0 0 16px lightcoral;
 
             &.no{
                 color: transparent;
@@ -86,7 +87,7 @@ header {
 
                 span{
                     font-family: "gs-m";
-                    color: #a1a5b6;
+                    color: $primary;
                 }
             }
         }

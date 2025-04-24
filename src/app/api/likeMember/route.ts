@@ -1,15 +1,16 @@
 import { connectDB } from "@/util/mongodb";
 import { NextResponse } from "next/server";
 
-// 유저 구별을 위한 간단한 식별자 - IP 기반 예시 (실제 배포 시 쿠키/세션/JWT 추천)
 const getUserIdentifier = (req: Request) => {
     const forwarded = req.headers.get("x-forwarded-for");
     return forwarded ? forwarded.split(",")[0] : "anonymous";
 };
 
 export async function PATCH(req: Request) {
+    const now = new Date;
+    const isSaturday = now.getDay === 6;
     const { searchParams } = new URL(req.url);
-    const nameKo = searchParams.get("q"); // 카리나 이런 이름
+    const nameKo = searchParams.get("q");
 
     if (!nameKo) {
         return NextResponse.json(
@@ -18,9 +19,9 @@ export async function PATCH(req: Request) {
         );
     }
 
-    const userId = getUserIdentifier(req); // 간단한 식별자
+    const userId = getUserIdentifier(req);
     const today = new Date();
-    const todayKey = today.toISOString().slice(0, 10); // 예: 2025-04-16
+    const todayKey = today.toISOString().slice(0, 10);
 
     try {
         const db = (await connectDB).db("IdolRank");
@@ -35,7 +36,6 @@ export async function PATCH(req: Request) {
             );
         }
 
-        // likeRecord에 오늘 날짜로 userId가 이미 있는지 확인
         const alreadyLiked = member.likeRecord?.some(
             (record: { date: string; user: string }) =>
                 record.date === todayKey && record.user === userId
@@ -48,7 +48,6 @@ export async function PATCH(req: Request) {
             );
         }
 
-        // todayLike의 마지막 인덱스 증가
         const todayLikeIndex = member.todayLike?.length - 1;
 
         const result = await collection.updateOne(

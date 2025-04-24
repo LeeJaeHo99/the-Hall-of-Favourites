@@ -2,18 +2,19 @@
 
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import Inner from "@/components/Inner";
-import Title from "@/components/Title";
-import PersonImg from "@/components/PersonImg";
+import Inner from "@/components/ui/Inner";
+import Title from "@/components/ui/Title";
+import PersonImg from "@/components/ui/PersonImg";
 import LeftContent from "@/components/info/MemberLeftContent";
 import RightContent from "@/components/info/MemberRightContent";
 import Story from '@/components/info/Story';
+import { MemberMainContentProps, MemberDataType } from "@/types/types";
 
 export default function MemberPage() {
     const params = useSearchParams();
     const q = params.get("q");
 
-    const [memberData, setMemberData] = useState();
+    const [memberData, setMemberData] = useState<MemberDataType>();
 
     useEffect(() => {
         const fetchMemberData = async () => {
@@ -40,7 +41,7 @@ export default function MemberPage() {
                     song={memberData?.song}
                     group={memberData?.group[2]}
                 />
-                <MainContent memberData={memberData}/>
+                <MainContent group={memberData?.group[0]} nameEn={memberData?.nameEn} title={`${memberData?.group[1]}`} desc={`${memberData?.nameKo[0]}`}/>
                 <RightContent memberData={memberData}/>
                 </div>
                 <Title title={'여담'} desc={'멤버의 간단한 여담을 알려드립니다.'}/>
@@ -50,11 +51,11 @@ export default function MemberPage() {
     );
 }
 
-function MainContent({memberData}) {
+function MainContent({group, nameEn, title, desc}: MemberMainContentProps) {
     return (
         <div className="main-content--wrap">
-            <PersonImg memberData={memberData}/>
-            <Title title={`${memberData?.group[1]}`} desc={`${memberData?.nameKo[0]}`} />
+            <PersonImg group={group} nameEn={nameEn}/>
+            <Title title={title} desc={desc} />
         </div>
     );
 }

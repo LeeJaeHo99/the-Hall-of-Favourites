@@ -28,11 +28,11 @@ export default function Modal({ clickDeleteBtn, param, index }) {
                 clickDeleteBtn();
                 window.location.reload();
             } else {
-                const error = await res.json();
-                alert(error.error);
+                throw new Error('네트워크 응답이 올바르지 않습니다');
             }
         } catch (e) {
             console.error("삭제 실패:", e);
+            alert('삭제 실패하였습니다. 재시도 부탁드립니다.');
         }
     };
 

@@ -3,8 +3,9 @@
 import { useState } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
-import Modal from "@/components/Modal";
+import Modal from "./Modal";
 import { ContentBotProps } from '../../types/types';
+import ErrorMessage from "../ui/ErrorMessage";
 
 export default function ContentBot({ comment }: ContentBotProps) {
     const params = useParams();
@@ -30,7 +31,7 @@ export default function ContentBot({ comment }: ContentBotProps) {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const response = await fetch(
+            const res = await fetch(
                 `${process.env.NEXT_PUBLIC_API_URL}/api/postComment`,
                 {
                     method: "POST",
@@ -43,13 +44,16 @@ export default function ContentBot({ comment }: ContentBotProps) {
                     }),
                 }
             );
-            if (response.ok) {
+            if (res.ok) {
                 setCommentWriter("");
                 setCommentPw("");
                 setCommentText("");
+            }else{
+                throw new Error('네트워크 오류가 발생하였습니다.');
             }
         } catch (e) {
             console.error(e);
+            return <ErrorMessage text={'댓글 작성 중 오류가 발생하였습니다.'}/>;
         }
         window.location.reload();
     };

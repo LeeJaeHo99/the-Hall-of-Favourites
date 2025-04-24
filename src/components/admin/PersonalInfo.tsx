@@ -7,9 +7,6 @@ export default function PersonalInfo({ content }: PersonalInfo) {
     const [memberData, setMemberData] = useState([]);
     const [groupData, setGroupData] = useState([]);
 
-    console.log("memberData: ", memberData);
-    console.log("groupData: ", groupData);
-
     useEffect(() => {
         // 멤버 데이터 fetch
         const fetchMember = async () => {

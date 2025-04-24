@@ -1,10 +1,17 @@
-import MusicThumbnail from "@/components/MusicThumnail";
+import MusicThumbnail from "@/components/ui/MusicThumnail";
+import { MemberLeftContentProps } from "@/types/types";
 import Image from "next/image";
 
-export default function LeftContent({ victory, likeHistory, todayLike, song, group }) {
+export default function LeftContent({
+    victory,
+    likeHistory,
+    todayLike,
+    song,
+    group,
+}: MemberLeftContentProps) {
     return (
         <div className="left-content--wrap">
-            <MusicThumbnail song={song} group={group}/>
+            <MusicThumbnail song={song} group={group} />
             <div className="content-box">
                 <div className="blur-box">
                     <div className="title">우승 횟수</div>
@@ -43,16 +50,11 @@ function LikeComponent() {
 
         const res = await fetch(
             `/api/likeMember?q=${encodeURIComponent(nameKo)}`,
-            {
-                method: "PATCH",
-            }
+            { method: "PATCH" }
         );
-
         const data = await res.json();
 
-        if (res.ok) {
-            alert("좋아요 성공!");
-        } else {
+        if (!res.ok) {
             alert(data.message || "오류가 발생했어요.");
         }
     };

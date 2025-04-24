@@ -1,11 +1,11 @@
-import Inner from "@/components/Inner";
-import Winner from "@/components/Winner";
-import SearchBar from "@/components/SearchBar";
-import GroupLinkBtn from "@/components/GroupLinkBtn";
-import BoardPreview from "@/components/BoardPreview";
-import VictoryHistory from "@/components/VictoryHistory";
+import Inner from "@/components/ui/Inner";
+import VictoryHistory from "@/components/ui/VictoryHistory";
 import RankingSection from "@/components/section/RankingSection";
-import Title from "@/components/Title";
+import Title from "@/components/ui/Title";
+import GroupLinkBtn from "@/components/ui/GroupLinkBtn";
+import SearchBar from "@/components/ui/SearchBar";
+import BoardPreview from "@/components/ui/BoardPreview";
+import Winner from "@/components/ui/Winner";
 
 export default function Home() {
     return (

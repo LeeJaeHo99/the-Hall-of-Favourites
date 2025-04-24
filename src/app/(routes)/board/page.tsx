@@ -2,13 +2,14 @@
 
 import { useState, useEffect } from "react";
 import { usePagination } from "@/store/store";
-import Image from "next/image";
-import Title from "@/components/Title";
-import Inner from "@/components/Inner";
-import Board from "@/components/Board";
-import Pagination from "@/components/Pagination";
-import Category from "@/components/Category";
-import BoardEdit from "@/components/BoardEdit";
+import Title from "@/components/ui/Title";
+import Inner from "@/components/ui/Inner";
+import Board from "@/components/board/Board";
+import Pagination from "@/components/board/Pagination";
+import Category from "@/components/ui/Category";
+import BoardEdit from "@/components/board/BoardEdit";
+import ErrorMessage from "@/components/ui/ErrorMessage";
+import BoardSearch from "@/components/board/BoardSearch";
 
 export default function BoardPage() {
     const { pagination, setPagination } = usePagination();
@@ -26,26 +27,34 @@ export default function BoardPage() {
 
     const [writeList, setWriteList] = useState([]);
 
-    // 글 데이터 fetch
     useEffect(() => {
         const fetchWriteData = async () => {
-            const response = await fetch(
-                `${process.env.NEXT_PUBLIC_API_URL}/api/getWrite?full=true`
-            );
-            const writeData = await response.json();
-            setWriteList(writeData.data);
+            try{
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getWrite?full=true`);
+                if(!res.ok){
+                    throw new Error('네트워크 오류가 발생하였습니다.');
+                }
+                const writeData = await res.json();
+                setWriteList(writeData.data);
+            }
+            catch(e){
+                console.error(e);
+                return <ErrorMessage text={'게시물을 불러오는 중 에러가 발생하였습니다.'}/>
+            }
         };
         fetchWriteData();
     }, []);
 
-    // isSearch가 True 되면 searchWord의 텍스트로 searchList에 filter 해서 넣음
+    // 🤖 WORK : isSearch === True && searchWord의 텍스트를 searchList에 filter 해서 넣음
     const [searchWord, setSearchWord] = useState("");
     const [isSearch, setIsSearch] = useState(false);
     const [searchList, setSearchList] = useState([]);
+
     const onChangeSearchWord = (e) => {
         setSearchWord(e.target.value);
     }
-    
+
+    // 🤖 WORK : isSearch 데이터 변경시 searchList 데이터도 변경
     useEffect(() => {
         setSearchList(writeList.filter(write => write.title.includes(searchWord)));
     }, [isSearch])
@@ -105,54 +114,6 @@ export default function BoardPage() {
                     />
                 </div>
             </Inner>
-        </div>
-    );
-}
-
-function BoardSearch({searchWord, onChangeSearchWord, isSearch, setIsSearch}) {
-    const onKeyDown = (e) => {
-        if(e.key === 'Enter'){
-            if(searchWord === ''){
-                alert('검색어를 입력해주세요.');
-                return;
-            }
-
-            setIsSearch(false);
-
-            setTimeout(() => {
-                setIsSearch(true);
-            }, 1);
-        }
-    }
-    const onClickBtn = () => {
-        if(searchWord === ''){
-            alert('검색어를 입력해주세요.');
-            return;
-        }
-        setIsSearch(false);
-
-        setTimeout(() => {
-            setIsSearch(true);
-        }, 1);
-    }
-
-    return (
-        <div className="board-search--component">
-            <input
-                value={searchWord}
-                onChange={onChangeSearchWord}
-                onKeyDown={onKeyDown}
-                type="text"
-                placeholder="검색어를 입력해주세요."
-            />
-            <button onClick={onClickBtn}>
-                <Image
-                    src={"/icons/search.png"}
-                    width={16}
-                    height={16}
-                    alt="검색 아이콘"
-                />
-            </button>
         </div>
     );
 }

@@ -1,18 +1,20 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useIsSunday } from "@/store/store";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
 import party from "party-js";
 import MusicThumbnail from "./MusicThumnail";
+import ErrorMessage from "./ErrorMessage";
 
 interface Winner {
     [key: string]: string;
 }
 
 export default function Winner({ group, singer }: Winner) {
-    const [isSunday, setIsSunday] = useState(false);
+    const isSunday = useIsSunday(state => state.isSunday);
     const targetRef = useRef(null);
 
     useEffect(() => {
@@ -25,20 +27,31 @@ export default function Winner({ group, singer }: Winner) {
         }
     }, []);
 
-    const [winnerData, setWinnerData] = useState();
-    console.log('winnerData: ', winnerData);
+    const [winnerData, setWinnerData] = useState<MemberDataType>();
+    console.log(winnerData)
 
     useEffect(() => {
         const fetchMemberData = async () => {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getMember?full=true`);
-            const result = await res.json();
-            const winner = result.data.sort((a, b) => {
-                let aMem = a?.weekLike[a?.weekLike.length - 1] ?? 0;
-                let bMem = b?.weekLike[b?.weekLike.length - 1] ?? 0;
+            try{
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getMember?full=true`);
 
-                return bMem - aMem;
-            });
-            setWinnerData(winner[0]);
+                if(!res.ok){
+                    throw new Error('네트워크 오류가 발생하였습니다.');
+                }
+
+                const result = await res.json();
+                const winner = result.data.sort((a, b) => {
+                    let aMem = a?.weekLike[a?.weekLike.length - 1] ?? 0;
+                    let bMem = b?.weekLike[b?.weekLike.length - 1] ?? 0;
+    
+                    return bMem - aMem;
+                });
+                setWinnerData(winner[0]);
+            }
+            catch(e){
+                console.error(e);
+                return <ErrorMessage text={'우승자를 불러오던중 에러가 발생하였습니다.'}/>
+            }
         }
         fetchMemberData();
     }, []);

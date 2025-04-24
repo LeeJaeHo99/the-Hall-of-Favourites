@@ -2,11 +2,13 @@
 
 import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
-import BoardSkeleton from "./skeleton/BoardPreviewSkeleton";
-import Category from "@/components/Category";
+import Category from "@/components/ui/Category";
+import BoardSkeleton from "../skeleton/BoardPreviewSkeleton";
+import ErrorMessage from "./ErrorMessage";
 
 export default function BoardPreview() {
     const [category, setCategory] = useState(true);
+
     const clickNew = () => {
         setCategory(true);
     };
@@ -16,17 +18,30 @@ export default function BoardPreview() {
 
     const [writeList, setWriteList] = useState([]);
     const [recentWrite, setRecentWrite] = useState([]);
-    const [likeSortedWrite, setLikeSortedWrite] = useState([]);
+    const [likeSortedWrite, setLikeSortedWrite] = useState([]); 
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getWrite`);
-            const writeData = await response.json();
-            setWriteList(writeData.data);
+            let writeData = [];
+            try{
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getWrite`);
+
+                if(!res.ok){
+                    throw new Error('네트워크 응답이 올바르지 않습니다');
+                }
+
+                writeData = await res.json();
+                setWriteList(writeData.data);
+            }
+            catch(e){
+                console.error('게시글 데이터를 불러오는데 오류가 발생하였습니다.', e);
+                return <ErrorMessage text={'게시글 데이터를 불러오는데 오류가 발생하였습니다.'}/>
+            }
         };
         fetchData();
     }, []);
 
+    // 🤖 WORK : 최신순 / 인기순 state에 각각 데이터 추가
     useEffect(() => {
         setRecentWrite([...writeList].reverse().slice(0, 5));
         setLikeSortedWrite(
@@ -51,16 +66,12 @@ export default function BoardPreview() {
                         category ? (
                             recentWrite.length > 0 ? (
                                 // 최신순 (category === T)
-                                recentWrite.map((write) => (
-                                <BoardContent key={write._id} {...write} />
-                                ))
+                                recentWrite.map((write) => <BoardContent key={write._id} {...write} />)
                             ) : <BoardSkeleton /> 
                         ) : (
                             likeSortedWrite.length > 0 ? (
                                 // 인기순 (category === F)
-                                likeSortedWrite.map((write) => (
-                                <BoardContent key={write._id} {...write} />
-                                ))
+                                likeSortedWrite.map((write) => <BoardContent key={write._id} {...write} />)
                             ) : <BoardSkeleton />
                         )
                     }

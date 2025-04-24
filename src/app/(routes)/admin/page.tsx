@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Inner from "@/components/Inner";
+import Inner from "@/components/ui/Inner";
 import AdminBtn from "@/components/admin/AdminBtn";
 import AdminContent from "@/components/admin/AdminContent";
 

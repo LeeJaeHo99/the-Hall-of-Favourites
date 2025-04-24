@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import MoreViewBtn from "@/components/MoreViewBtn";
+import MoreViewBtn from "@/components/ui/MoreViewBtn";
 
 interface Title {
     title: string;

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Inner from "@/components/Inner";
+import Inner from "@/components/ui/Inner";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -54,6 +54,10 @@ function BoardWrite() {
                     pw: pw,
                 })
             });
+
+            if(!res.ok){
+                throw new Error('네트워크 오류가 발생하였습니다.');
+            }
 
             const data = await res.json();
 

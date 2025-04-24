@@ -1,7 +1,7 @@
 import { connectDB } from "@/util/mongodb";
 import { NextResponse } from "next/server";
 
-// 🤖 WORK : 동일 IP에 한해서 한 멤버에게 1일1회 좋아요 가능
+// 🤖 WORK : 동일 IP에 대해 1일1회 좋아요 가능
 const getUserIdentifier = (req: Request) => {
     const forwarded = req.headers.get("x-forwarded-for");
     return forwarded ? forwarded.split(",")[0] : "anonymous";
@@ -10,7 +10,7 @@ const getUserIdentifier = (req: Request) => {
 export async function PATCH(req: Request) {
     const now = new Date();
     const isSaturday = now.getDay() === 6;
-    const incrementValue = isSaturday ? 2 : 1;
+    const addLikeNum = isSaturday ? 2 : 1;
 
     const { searchParams } = new URL(req.url);
     const nameKo = searchParams.get("q");
@@ -39,12 +39,11 @@ export async function PATCH(req: Request) {
             );
         }
 
-        // 🤖 WORK : 동일 IP 확인
+        // 🤖 WORK : 좋아요 중복 체크
         const alreadyLiked = member.likeRecord?.some(
             (record: { date: string; user: string }) =>
                 record.date === todayKey && record.user === userId
         );
-
         if (alreadyLiked) {
             return NextResponse.json(
                 { message: "오늘은 이미 좋아요를 눌렀습니다." },
@@ -52,19 +51,18 @@ export async function PATCH(req: Request) {
             );
         }
 
-        // 🤖 WORK : 현재 시간에 맞는 인덱스에 좋아요 +1
-        const hour = new Date().getHours(); // 0~23
+        const now = new Date();
+        const hour = now.getHours();
         const todayLikeIndex = hour;
 
-        // 🤖 WORK : 만약 todayLike 배열이 24개가 아니라면 초기화
         if (!member.todayLike || member.todayLike.length < 24) {
-            const initialized = Array(24).fill(0);
+            const todayLike = Array(24).fill(0);
             if (member.todayLike) {
-                member.todayLike.forEach((val, idx) => initialized[idx] = val);
+                member.todayLike.forEach((val, idx) => todayLike[idx] = val);
             }
             await collection.updateOne(
                 { "nameKo.0": nameKo },
-                { $set: { todayLike: initialized } }
+                { $set: { todayLike } }
             );
         }
 
@@ -72,8 +70,8 @@ export async function PATCH(req: Request) {
             { "nameKo.0": nameKo },
             {
                 $inc: {
-                    [`todayLike.${todayLikeIndex}`]: incrementValue,
-                    likeHistory: incrementValue,
+                    [`todayLike.${todayLikeIndex}`]: addLikeNum,
+                    likeHistory: addLikeNum,
                 },
                 $push: {
                     likeRecord: { date: todayKey, user: userId },

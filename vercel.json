@@ -1,0 +1,12 @@
+{
+    "crons": [
+        {
+            "path": "/api/postEndWeek",
+            "schedule": "10 15 * * 0"
+        },
+        {
+            "path": "/api/postEndDay",
+            "schedule": "55 14 * * 1-6"
+        }
+    ]
+}

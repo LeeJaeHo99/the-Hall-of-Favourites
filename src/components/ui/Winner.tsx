@@ -37,8 +37,8 @@ export default function Winner() {
 
                 const result = await res.json();
 
-                // 🤖 WORK : 일요일은 todayLike의 총합 1등, 월 ~ 토는 weekLike의 마지막 요소 1등 출력
-                if(isSunday){
+                // 🤖 WORK : 일요일은 weekLike의 총합 1등, 월 ~ 토는 todayLike의 마지막 요소 1등 출력
+                if(!isSunday){
                     const winner = result.data.sort((a, b) => {
                         let aMem = a?.todayLike.reduce((sum, cur) => sum + cur, 0);
                         let bMem = b?.todayLike.reduce((sum, cur) => sum + cur, 0);
@@ -48,8 +48,8 @@ export default function Winner() {
                     setWinnerData(winner[0]);
                 }else{
                     const winner = result.data.sort((a, b) => {
-                        let aMem = a?.weekLike[a?.weekLike.length - 1] ?? 0;
-                        let bMem = b?.weekLike[b?.weekLike.length - 1] ?? 0;
+                        let aMem = a?.weekLike.reduce((sum, cur) => sum + cur, 0);
+                        let bMem = b?.weekLike.reduce((sum, cur) => sum + cur, 0);
                         return bMem - aMem;
                     });
 

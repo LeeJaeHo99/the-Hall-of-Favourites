@@ -640,3 +640,26 @@
 .board-edit--btn.red{
     background-color: rgb(255 0 0 / 40%);
 }
+
+.none-info--component{
+    width: 100%;
+    margin: auto;
+
+    .notice-text{
+        margin: 60px 0 24px;
+        font-family: 'gs-b';
+        font-size: 40px;
+        color: lightcoral;
+        text-align: center;
+    }
+    .notice-text--sub{
+        margin-bottom: 40px;
+        font-family: "gs-l";
+        font-size: 20px;
+        color: #878c9e;
+        text-align: center;
+    }
+    .search-bar{
+        margin: 0 auto 80px;
+    }
+}

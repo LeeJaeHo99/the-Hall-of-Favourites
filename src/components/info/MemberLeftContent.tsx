@@ -9,6 +9,7 @@ export default function LeftContent({
     song,
     group,
     onClickTrigger,
+    onHandleLike,
 }: MemberLeftContentProps) {
     return (
         <div className="left-content--wrap">
@@ -34,7 +35,7 @@ export default function LeftContent({
                         <span>{todayLike}</span> <sub>회</sub>
                     </div>
                 </div>
-                <LikeComponent onClickTrigger={onClickTrigger}/>
+                <LikeComponent onClickTrigger={onClickTrigger} onHandleLike={onHandleLike}/>
             </div>
         </div>
     );

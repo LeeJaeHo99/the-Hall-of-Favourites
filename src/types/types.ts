@@ -19,6 +19,7 @@ export interface MemberLeftContentProps{
     song: SongTitle;
     group: string;
     onClickTrigger: () => void;
+    onHandleLike: () => void;
 }
 
 export interface MemberDataType{
@@ -52,6 +53,7 @@ interface Song{
 
 export interface LikeComponentProps{
     onClickTrigger: () => void;
+    onHandleLike: () => void;
 }
 
 

@@ -37,9 +37,10 @@ header {
             font-size: 18px;
             color: lightcoral;
             text-shadow: 0 0 16px lightcoral;
-
+            
             &.no{
                 color: transparent;
+                text-shadow: none;
             }
         }
         h1{

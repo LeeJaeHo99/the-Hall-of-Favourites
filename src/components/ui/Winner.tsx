@@ -9,11 +9,7 @@ import party from "party-js";
 import MusicThumbnail from "./MusicThumnail";
 import ErrorMessage from "./ErrorMessage";
 
-interface Winner {
-    [key: string]: string;
-}
-
-export default function Winner({ group, singer }: Winner) {
+export default function Winner() {
     const isSunday = useIsSunday(state => state.isSunday);
     const targetRef = useRef(null);
 
@@ -28,7 +24,7 @@ export default function Winner({ group, singer }: Winner) {
     }, []);
 
     const [winnerData, setWinnerData] = useState<MemberDataType>();
-    console.log(winnerData)
+    console.log('winnerData: ', winnerData);
 
     useEffect(() => {
         const fetchMemberData = async () => {
@@ -40,13 +36,25 @@ export default function Winner({ group, singer }: Winner) {
                 }
 
                 const result = await res.json();
-                const winner = result.data.sort((a, b) => {
-                    let aMem = a?.weekLike[a?.weekLike.length - 1] ?? 0;
-                    let bMem = b?.weekLike[b?.weekLike.length - 1] ?? 0;
-    
-                    return bMem - aMem;
-                });
-                setWinnerData(winner[0]);
+
+                // 🤖 WORK : 일요일은 todayLike의 총합 1등, 월 ~ 토는 weekLike의 마지막 요소 1등 출력
+                if(isSunday){
+                    const winner = result.data.sort((a, b) => {
+                        let aMem = a?.todayLike.reduce((sum, cur) => sum + cur, 0);
+                        let bMem = b?.todayLike.reduce((sum, cur) => sum + cur, 0);
+                        return bMem - aMem;
+                    });
+
+                    setWinnerData(winner[0]);
+                }else{
+                    const winner = result.data.sort((a, b) => {
+                        let aMem = a?.weekLike[a?.weekLike.length - 1] ?? 0;
+                        let bMem = b?.weekLike[b?.weekLike.length - 1] ?? 0;
+                        return bMem - aMem;
+                    });
+
+                    setWinnerData(winner[0]);
+                }
             }
             catch(e){
                 console.error(e);
@@ -71,14 +79,14 @@ export default function Winner({ group, singer }: Winner) {
                     <div className="main-content">
                         {
                             isSunday
-                                ? <p>🏅 이번주 우승자 🏅</p>
+                                ? <p>👑 이번주 우승자 👑</p>
                                 : <p>🎉 오늘의 우승자 🎉</p>
                         }
                         <div className={`person-img--wrap ${isSunday && 'sunday'}`}>
                             <Image
                                 className="person-img"
                                 ref={targetRef}
-                                src={`/images/${group}/${singer}.png`}
+                                src={`/images/${winnerData?.group[0]}/${winnerData?.nameEn}.png`}
                                 width={480}
                                 height={480}
                                 alt="⭐️ 오늘의 우승자 ⭐️"

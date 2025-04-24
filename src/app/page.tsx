@@ -11,7 +11,7 @@ export default function Home() {
     return (
         <div className="home">
             <Inner x={"center"} y={"column"}>
-                <Winner group={`aespa`} singer={`karina`} />
+                <Winner/>
                 <RankingSection />
                 <SearchSection />
                 <BoradAndHistory />

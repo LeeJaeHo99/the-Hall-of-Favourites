@@ -6,8 +6,8 @@ export const usePagination = create((set) => ({
 }))
 
 export const useIsSaturday = create(set => ({
-    isSaturday: new Date().getDay() === 4,
-    setIsSaturday: () => set({ isSaturday: new Date().getDay() === 4 }),
+    isSaturday: new Date().getDay() === 6,
+    setIsSaturday: () => set({ isSaturday: new Date().getDay() === 6 }),
 }));
 
 export const useIsSunday = create(set => ({

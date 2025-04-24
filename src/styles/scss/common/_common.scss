@@ -197,3 +197,34 @@ footer {
     transition: all 0.5s;
     animation: skeletonAni 0.5s infinite;
 }
+
+.notice-modal{
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    z-index: 999;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 480px;
+    padding: 24px;
+    background: #F5F5F5;
+    border-radius: 12px;
+
+    .x-btn{
+        font-family: 'gs-b';
+        color: lightcoral;
+        text-align: right;
+        cursor: pointer;
+    }
+    h3{
+        margin-bottom: 24px;
+        font-family: 'gs-m';
+        font-size: 24px;
+        color: $primary;
+    }
+    p{
+        font-family: 'gs-l';
+        color: $black-bg;
+        line-height: 1.4;
+    }
+}

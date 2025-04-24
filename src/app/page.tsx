@@ -12,7 +12,7 @@ export default function Home() {
     return (
         <div className="home">
             <Inner x={"center"} y={"column"}>
-            <NoticeModal/>
+                {/* <NoticeModal/> */}
                 <Winner/>
                 <RankingSection />
                 <SearchSection />

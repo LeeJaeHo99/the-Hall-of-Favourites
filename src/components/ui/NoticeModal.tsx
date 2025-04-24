@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 
 export default function NoticeModal(){
     const [isNotice, setIsNotice] = useState();
-    console.log(isNotice)
+    const onClickXBtn = () => {
+        setIsNotice(false);
+    }
 
     useEffect(() => {
         const fetchNotice = async () => {
@@ -18,16 +20,17 @@ export default function NoticeModal(){
 
     return(
         <>
-            {isNotice && <NoticeComponent title={isNotice?.title} content={isNotice?.content}/>}
+            {isNotice && <NoticeComponent onClcick={onClickXBtn} title={isNotice?.title} content={isNotice?.content}/>}
         </>
     );
 }
 
-function NoticeComponent(){
+function NoticeComponent({onClcick, title, content}){
     return(
-        <div>
+        <div className="notice-modal">
+            <div className="x-btn" onClick={onClcick}>X</div>
             <h3>{title}</h3>
-            <h3>{content}</h3>
+            <p>{content}</p>
         </div>
     )
 }

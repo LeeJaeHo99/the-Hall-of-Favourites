@@ -3,22 +3,20 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { ProfileProps } from "@/types/types";
+import useGetFullMember from "@/hooks/useGetFullMember";
 
 export default function VictoryHistory() {
-    const  [memberData, setMemberData] = useState([]);
+    const { memberData, loadFullMem, errorFullMem, setMemberData } = useGetFullMember();
+
     useEffect(() => {
-        const fetchMemberData = async () => {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getMember?full=true`);
-            const result = await res.json();
-            const rankMember = result.data.sort((a, b) => {
-                let aRank = a.victory;
-                let bRank = b.victory;
-                return bRank - aRank;
-            }).slice(0, 3);
-            setMemberData(rankMember);
-        }
-        fetchMemberData();
-    }, [])
+        setMemberData(memberData?.sort((a, b) => {
+            let aRank = a.victory;
+            let bRank = b.victory;
+            return bRank - aRank;
+        }).slice(0, 3));
+    }, []);
+
+    if(loadFullMem) return <div>123</div>;
 
     return (
         <div className="victory-history blur-box">

@@ -1,8 +1,4 @@
-import Link from "next/link";
-
-interface Board {
-    [key: string]: string;
-}
+import { BoardHead, BoardTr, NoneSearchWord } from "./BoardComponent";
 
 export default function Board({
     category,
@@ -32,37 +28,3 @@ export default function Board({
     );
 }
 
-function BoardHead() {
-    const headText = ['제목', '작성자', '작성일시', '추천수'];
-    return (
-        <tr>
-            {headText.map(text => <th key={text}>{text}</th>)}
-        </tr>
-    );
-}
-
-function BoardTr({ list }) {
-    return (
-        <tr>
-            <td className="title-td">
-                <Link href={`/board/${list._id}`}>
-                    <span className="title">{list.title}</span>
-                    <span className="comment-num">
-                        [ {list.comment.length} ]
-                    </span>
-                </Link>
-            </td>
-            <td>{list.writer}</td>
-            <td>{list.date}</td>
-            <td className="like-num">{list.likeNum}</td>
-        </tr>
-    );
-}
-
-function NoneSearchWord(){
-    return(
-        <tr>
-            <td className="no-search">검색결과가 없습니다.</td>
-        </tr>
-    )
-}

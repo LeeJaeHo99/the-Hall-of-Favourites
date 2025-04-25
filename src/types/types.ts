@@ -120,3 +120,47 @@ interface SongTitle{
     title: string;
 }
 
+
+
+
+
+
+export interface WriteType{
+    comment?: CommentType[];
+    content?: string;
+    date: string;
+    likeNum: string;
+    pw?: string;
+    record?: RecordType[];
+    title: string;
+    writer?: string;
+    _id: string;
+}
+
+interface CommentType {
+    name: string;
+    pw: string;
+    text: string;
+}
+
+interface RecordType {
+    ip: string;
+    date: string;
+}
+
+// FETCH DATA TYPE
+export interface PostWriteType{
+    [key: string]: string;
+}
+
+export interface PostCommentType{
+    [key: string]: string;
+}
+
+export interface PostLikePostType{
+    [key: string]: string;
+}
+
+export interface PatchEditWriteType{
+    [key: string]: string;
+}

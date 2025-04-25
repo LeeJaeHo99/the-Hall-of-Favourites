@@ -2,14 +2,15 @@
 
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { MemberMainContentProps, MemberDataType } from "@/types/types";
 import Inner from "@/components/ui/Inner";
 import Title from "@/components/ui/Title";
 import PersonImg from "@/components/ui/PersonImg";
 import LeftContent from "@/components/info/MemberLeftContent";
 import RightContent from "@/components/info/MemberRightContent";
 import Story from "@/components/info/Story";
-import { MemberMainContentProps, MemberDataType } from "@/types/types";
 import NoneInfo from "@/components/info/NoneInfo";
+import useGetFullMember from "@/hooks/useGetFullMember";
 
 export default function MemberPage() {
     const [trigger, setTrigger] = useState(false);
@@ -19,17 +20,10 @@ export default function MemberPage() {
 
     const params = useSearchParams();
     const q = params.get("q");
-
-    const [memberData, setMemberData] = useState<MemberDataType>();
+    const { memberData, loading, error } = useGetFullMember();
 
     useEffect(() => {
-        const fetchMemberData = async () => {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getMember?full=true`);
-            const result = await res.json();
-            const member = result.data;
             setMemberData(member.filter((mem) => mem.nameKo[0] === q)[0]);
-        };
-        fetchMemberData();
     }, []);
 
     // 🤖 WORK : 좋아요 클릭시 오늘, 전체 좋아요 +1

@@ -1,29 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { PersonalInfo } from '../../types/types';
+import useGetFullMember from "@/hooks/useGetFullMember";
+import useGetGroup from "@/hooks/useGetGroup";
 
-export default function PersonalInfo({ content }: PersonalInfo) {
-    const [memberData, setMemberData] = useState([]);
-    const [groupData, setGroupData] = useState([]);
-
-    useEffect(() => {
-        // 멤버 데이터 fetch
-        const fetchMember = async () => {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getMember?full=true`);
-            const result = await res.json();
-            setMemberData(result.data);
-        };
-
-        // 그룹 데이터 fetch
-        const groupMember = async () => {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getGroup`);
-            const result = await res.json();
-            setGroupData(result.data);
-        };
-        fetchMember();
-        groupMember();
-    }, []);
+export default function PersonalInfo({ content }) {
+    const { memberData, loadFullMem, errorFullMem } = useGetFullMember();
+    const { groupData, loadGroup, errorGroup } = useGetGroup();
 
     return (
         <div className="personal-info--wrap MemberInfo">

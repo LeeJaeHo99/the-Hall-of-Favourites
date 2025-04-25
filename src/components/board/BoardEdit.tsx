@@ -1,7 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function BoardEdit({style, text, link}) {
+interface BoardEditProps{
+    [key: string]: string;
+}
+
+export default function BoardEdit({style, text, link}: BoardEditProps) {
     return (
         <Link className={`board-edit--btn blur-box ${style}`} href={`/board/${link}`}>
             <Image

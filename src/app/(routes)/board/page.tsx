@@ -12,6 +12,9 @@ import ErrorMessage from "@/components/ui/ErrorMessage";
 import BoardSearch from "@/components/board/BoardSearch";
 
 export default function BoardPage() {
+    const [isLoad, setIsLoad] = useState(true);
+    const [isError, setIsError] = useState(false);
+
     const { pagination, setPagination } = usePagination();
     const [category, setCategory] = useState(true);
 
@@ -39,7 +42,10 @@ export default function BoardPage() {
             }
             catch(e){
                 console.error(e);
-                return <ErrorMessage text={'게시물을 불러오는 중 에러가 발생하였습니다.'}/>
+                setIsError(true);
+            }
+            finally{
+                // setIsLoad(false);
             }
         };
         fetchWriteData();
@@ -79,6 +85,9 @@ export default function BoardPage() {
                 .slice(pagination * 7, (pagination + 1) * 7)
         );
     }, [writeList, pagination]);
+
+    // if(isLoad) return <Spinner/>;
+    if(isError) return <ErrorMessage text={'게시물을 불러오는 중 에러가 발생하였습니다.'}/>
 
     return (
         <div className="BoardPage sub-page">

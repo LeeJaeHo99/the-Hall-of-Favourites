@@ -7,13 +7,12 @@ import RankChart from "../chart/RankChart";
 import BlindContent from "../chart/BlindContent";
 import CollectingContent from "../chart/CollectingContent";
 import AnouningContent from "../chart/AnouningContent";
-import useFullMemberData from "@/hooks/useFetchFullMember";
+import useGetFullMember from "@/hooks/useGetFullMember";
 import useChartTime from "@/hooks/useChartTime";
 import ErrorMessage from "../ui/ErrorMessage";
-import Spinner from "../ui/Spinner";
 
 export default function RankingSection() {
-    const { memberData, loading, error } = useFullMemberData();
+    const { memberData, loading, error } = useGetFullMember();
     const {isBlindTime, isCollectingTime, isAnouncingTime} = useChartTime();
 
     const top5 = useMemo(() => {
@@ -25,7 +24,7 @@ export default function RankingSection() {
         return convertTop5Data(top5);
     }, [top5]);
 
-    if(loading) return <Spinner/>
+    // if(loading) return <Spinner/>
     if(error) return <ErrorMessage text={error}/>
 
     return (

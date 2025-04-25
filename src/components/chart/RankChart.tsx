@@ -22,7 +22,7 @@ export default function RankChart({ data }) {
     return (
         <ResponsiveContainer width="90%" height={440}>
             <LineChart data={data}>
-                <XAxis dataKey="time" />
+                <XAxis dataKey="time" interval={0}/>
                 <YAxis
                     tick={{ fill: "#555", fontSize: 14, fontWeight: 500 }}
                     tickLine={true}

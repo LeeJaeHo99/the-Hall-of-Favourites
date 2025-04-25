@@ -21,7 +21,6 @@ export default function MemberPage() {
     const q = params.get("q");
 
     const [memberData, setMemberData] = useState<MemberDataType>();
-    console.log('memberData: ', memberData);
 
     useEffect(() => {
         const fetchMemberData = async () => {

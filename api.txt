@@ -1,0 +1,7 @@
+GET
+
+/api/getgroup
+
+
+/api/getMember
+- nameKo: string;

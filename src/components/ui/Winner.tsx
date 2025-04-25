@@ -24,7 +24,6 @@ export default function Winner() {
     }, []);
 
     const [winnerData, setWinnerData] = useState<MemberDataType>();
-    console.log('winnerData: ', winnerData);
 
     useEffect(() => {
         const fetchMemberData = async () => {
@@ -38,7 +37,7 @@ export default function Winner() {
                 const result = await res.json();
 
                 // 🤖 WORK : 일요일은 weekLike의 총합 1등, 월 ~ 토는 todayLike의 마지막 요소 1등 출력
-                if(!isSunday){
+                if(isSunday){
                     const winner = result.data.sort((a, b) => {
                         let aMem = a?.todayLike.reduce((sum, cur) => sum + cur, 0);
                         let bMem = b?.todayLike.reduce((sum, cur) => sum + cur, 0);

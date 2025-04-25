@@ -3,6 +3,8 @@
 // 그래프 데이터는 On-Demend ISR로
 // 멤버 + 그룹 페이지는 ssg
 
+// 차트 손보기
+
 DB, API
 // GPT 확인 필요
 

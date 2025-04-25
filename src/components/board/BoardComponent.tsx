@@ -13,7 +13,6 @@ export function BoardHead() {
 }
 
 export function BoardTr({ list }: WriteType) {
-    console.log("list: ", list);
     return (
         <tr>
             <td className="title-td">

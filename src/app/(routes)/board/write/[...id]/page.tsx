@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Inner from "@/components/ui/Inner";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
+import useGetFullWrite from "@/hooks/useGetFullWrite";
 
 export default function BoardWritePage() {
     return (
@@ -16,9 +17,9 @@ export default function BoardWritePage() {
 }
 
 function BoardWrite() {
+    const { writeData, loadFullWrite, errorFullWrite, setWriteData}= useGetFullWrite();
     const router = useRouter();
     const params = useParams();
-    const [editWrite, setEditWrite] = useState();
 
     const [title, setTitle] = useState('');
     const onChangeTitle = (e) => {
@@ -38,27 +39,16 @@ function BoardWrite() {
     };
 
     useEffect(() => {
-        const getWriteData = async () => {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getWrite?full=true`);
-
-            if(!response.ok){
-                console.error('게시물을 불러오지 못하였습니다.');
-            }
-            const result = await response.json();
-            setEditWrite(result.data.filter(data => data._id === params.id[0])[0]);
-        }
-        getWriteData();
-    }, []);
-
-    useEffect(() => {
-        if (editWrite) {
-            setTitle(editWrite.title ?? '');
-            setContent(editWrite.content ?? '');
-            setWriter(editWrite.writer ?? '');
-            setPw(editWrite.pw ?? '');
-        }
-    }, [editWrite]);
+        if (Array.isArray(writeData)) {
+            const filtered = writeData.filter(write => write._id === params.id[0])[0];
+            setWriteData(filtered);
     
+            setTitle(filtered?.title ?? '');
+            setContent(filtered?.content ?? '');
+            setWriter(filtered?.writer ?? '');
+            setPw(filtered?.pw ?? '');
+        }
+    }, [writeData]);
     
     const onSubmitEditWrite = async (e) => {
         e.preventDefault();
@@ -73,7 +63,7 @@ function BoardWrite() {
                 method: 'PATCH',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
-                    id: editWrite._id,
+                    id: writeData._id,
                     title: title,
                     content: content,
                     writer: writer,
@@ -83,7 +73,7 @@ function BoardWrite() {
 
             if(res.ok){
                 alert('게시글이 수정이 완료되었습니다.');
-                router.push(`/board/${editWrite?._id}`);
+                router.push(`/board/${writeData?._id}`);
             } else {
                 const error = await res.json();
                 alert(error.error);
@@ -104,6 +94,8 @@ function BoardWrite() {
             onSubmitEditWrite();
         }
     }
+    
+    if(loadFullWrite) return <div>123</div>
 
     return (
         <form onSubmit={onSubmitEditWrite} onKeyDown={onKeyDownEnter}>

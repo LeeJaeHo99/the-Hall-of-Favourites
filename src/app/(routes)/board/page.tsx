@@ -10,10 +10,10 @@ import Category from "@/components/ui/Category";
 import BoardEdit from "@/components/board/BoardEdit";
 import ErrorMessage from "@/components/ui/ErrorMessage";
 import BoardSearch from "@/components/board/BoardSearch";
+import useGetFullWrite from "@/hooks/useGetFullWrite";
 
 export default function BoardPage() {
-    const [isLoad, setIsLoad] = useState(true);
-    const [isError, setIsError] = useState(false);
+    const { writeData, loadFullWrite, errorFullWrite}= useGetFullWrite();
 
     const { pagination, setPagination } = usePagination();
     const [category, setCategory] = useState(true);
@@ -28,29 +28,6 @@ export default function BoardPage() {
         setCategory(false);
     };
 
-    const [writeList, setWriteList] = useState([]);
-
-    useEffect(() => {
-        const fetchWriteData = async () => {
-            try{
-                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getWrite?full=true`);
-                if(!res.ok){
-                    throw new Error('네트워크 오류가 발생하였습니다.');
-                }
-                const writeData = await res.json();
-                setWriteList(writeData.data);
-            }
-            catch(e){
-                console.error(e);
-                setIsError(true);
-            }
-            finally{
-                // setIsLoad(false);
-            }
-        };
-        fetchWriteData();
-    }, []);
-
     // 🤖 WORK : isSearch === True && searchWord의 텍스트를 searchList에 filter 해서 넣음
     const [searchWord, setSearchWord] = useState("");
     const [isSearch, setIsSearch] = useState(false);
@@ -62,32 +39,29 @@ export default function BoardPage() {
 
     // 🤖 WORK : isSearch 데이터 변경시 searchList 데이터도 변경
     useEffect(() => {
-        setSearchList(writeList.filter(write => write.title.includes(searchWord)));
-    }, [isSearch])
+        setSearchList(writeData?.filter(write => write.title.includes(searchWord)));
+    }, [isSearch]);
 
-    // 최신순
     const [recentWrite, setRecentWrite] = useState([]);
-    // 인기순
     const [likeSortedWrite, setLikeSortedWrite] = useState([]);
 
-    // 최신순, 인기순으로 데이터 수정
     useEffect(() => {
         setRecentWrite(
-            [...writeList].reverse().slice(pagination * 7, (pagination + 1) * 7)
+            [...writeData]?.reverse().slice(pagination * 7, (pagination + 1) * 7)
         );
         setLikeSortedWrite(
-            [...writeList]
-                .sort((a, b) => {
+            [...writeData]
+                ?.sort((a, b) => {
                     let aList = Number(a.likeNum);
                     let bList = Number(b.likeNum);
                     return bList - aList;
                 })
                 .slice(pagination * 7, (pagination + 1) * 7)
         );
-    }, [writeList, pagination]);
+    }, [writeData, pagination]);
 
     // if(isLoad) return <Spinner/>;
-    if(isError) return <ErrorMessage text={'게시물을 불러오는 중 에러가 발생하였습니다.'}/>
+    if(errorFullWrite) return <ErrorMessage text={'게시물을 불러오는 중 에러가 발생하였습니다.'}/>
 
     return (
         <div className="BoardPage sub-page">
@@ -117,7 +91,7 @@ export default function BoardPage() {
                         searchList={searchList}
                     />
                     <Pagination
-                        data={...writeList}
+                        data={...writeData}
                         pagination={pagination}
                         setPagination={setPagination}
                     />

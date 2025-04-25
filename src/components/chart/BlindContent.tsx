@@ -1,4 +1,5 @@
 export default function BlindContent({ top5 }) {
+    console.log('top5: ', top5);
     const colors: string[] = ["#ffcc49","#cdd0d4", "#c19a6b", "#d1de74", "#f1a183"];
     const emoji: string[] = ["🥇", "🥈", "🥉", "💪", "💪"];
 
@@ -12,7 +13,7 @@ export default function BlindContent({ top5 }) {
                         <span className="name" style={{color: `${colors[i]}`}}>
                             {emoji[i]} {idolItem.nameKo[0]}
                         </span>
-                        <span>{idolItem.likeHistory.at(-1)}표</span>
+                        <span>{idolItem.likeHistory}표</span>
                     </div>
                 ))}
             </div>

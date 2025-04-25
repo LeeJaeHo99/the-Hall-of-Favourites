@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getFullWriteData } from "@/util/fetchData";
+import { getFullWriteData } from "@/util/getFetcher";
 import { getErrorMessage } from "@/util/setErrorMsg";
 
 export default function useGetFullWrite(){

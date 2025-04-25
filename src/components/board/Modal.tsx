@@ -1,10 +1,12 @@
 "use client";
 
+import useGetWrite from "@/hooks/useGetWrite";
 import Image from "next/image";
 import { useRouter, useParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 export default function Modal({ onClick }) {
+    const { recentWrite, likeSortedWrite, loadWrite, errorWrite, setRecentWrite } = useGetWrite();
     const router = useRouter();
     const params = useParams();
 
@@ -20,17 +22,13 @@ export default function Modal({ onClick }) {
         }
     }, []);
 
-    const [writeData, setWriteData] = useState([]);
-
     useEffect(() => {
-        const fetchWriteData = async () => {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getWrite`);
-            const result = await response.json();
-    
-            setWriteData(result?.data.filter(data => data._id === params.id)[0]);
-        };
-        fetchWriteData();
-    }, [])
+        if(Array.isArray(recentWrite)){
+            const filtered = [...recentWrite]?.filter(data => data._id === params.id)[0];
+            setRecentWrite(filtered);
+        }
+    }, [recentWrite]);
+    console.log('recentWrite: ', recentWrite);
 
 
     const onSubmitDelete = async (e) => {
@@ -40,7 +38,7 @@ export default function Modal({ onClick }) {
             return;
         }
 
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/deleteWrite?postId=${writeData?._id}&inputPw=${inputPw}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/deleteWrite?postId=${recentWrite?._id}&inputPw=${inputPw}`, {
             method: 'DELETE',}
         );
 

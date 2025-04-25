@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getGroupData } from "@/util/fetchData";
+import { getGroupData } from "@/util/getFetcher";
 import { getErrorMessage } from "@/util/setErrorMsg";
 
 export default function useGetGroup() {

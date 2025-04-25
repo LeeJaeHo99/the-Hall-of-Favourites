@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { getFullMemberData } from "@/util/fetchData";
 import { getErrorMessage } from "@/util/setErrorMsg";
+import { getFullMemberData } from "@/util/getFetcher";
 
 export default function useGetFullMember() {
     const [memberData, setMemberData] = useState([]);

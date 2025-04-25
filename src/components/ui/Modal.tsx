@@ -1,5 +1,6 @@
 "use client";
 
+import useDeleteCommnet from "@/hooks/useDeleteComment";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
@@ -16,23 +17,17 @@ export default function Modal({ clickDeleteBtn, param, index }) {
         }
     }, []);
 
+    const { deleteComment, loading, error } = useDeleteCommnet();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            const res = await fetch(
-                `/api/deleteComment?postId=${param}&commentIndex=${index}&inputPw=${inputPw}`,
-                { method: "DELETE" }
-            );
+        await deleteComment(param, index, inputPw);
 
-            if (res.ok) {
-                clickDeleteBtn();
-                window.location.reload();
-            } else {
-                throw new Error('네트워크 응답이 올바르지 않습니다');
-            }
-        } catch (e) {
-            console.error("삭제 실패:", e);
-            alert('삭제 실패하였습니다. 재시도 부탁드립니다.');
+        if (!error) {
+            clickDeleteBtn();
+            window.location.reload();
+        } else {
+            alert(error);
         }
     };
 

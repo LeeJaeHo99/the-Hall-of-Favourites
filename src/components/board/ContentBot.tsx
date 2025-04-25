@@ -6,21 +6,23 @@ import Image from "next/image";
 import Modal from "./Modal";
 import { ContentBotProps } from '../../types/types';
 import ErrorMessage from "../ui/ErrorMessage";
+import usePostComment from "@/hooks/usePostComment";
 
 export default function ContentBot({ comment }: ContentBotProps) {
     const params = useParams();
+    const id = params.id;
 
-    const [commentWriter, setCommentWriter] = useState("");
+    const [name, setName] = useState("");
     const onChangeWriter = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setCommentWriter(e.target.value);
+        setName(e.target.value);
     };
-    const [commentPw, setCommentPw] = useState("");
+    const [pw, setPw] = useState("");
     const onChangePw = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setCommentPw(e.target.value);
+        setPw(e.target.value);
     };
-    const [commentText, setCommentText] = useState("");
+    const [text, setText] = useState("");
     const onChangeComment = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setCommentText(e.target.value);
+        setText(e.target.value);
     };
 
     const [isClickDelete, setIsClickDelete] = useState<number | null>(null);
@@ -28,30 +30,24 @@ export default function ContentBot({ comment }: ContentBotProps) {
             setIsClickDelete(i);
     };
 
+    const { postHandler, loadPostComment, errorPostComment } = usePostComment();
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        
         try {
-            const res = await fetch(
-                `${process.env.NEXT_PUBLIC_API_URL}/api/postComment`,
-                {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        postId: params.id,
-                        name: commentWriter,
-                        text: commentText,
-                        pw: commentPw,
-                    }),
-                }
-            );
-            if (res.ok) {
-                setCommentWriter("");
-                setCommentPw("");
-                setCommentText("");
+            const result = await postHandler({id, name, text, pw});
+            
+            if (result) {
+                setName("");
+                setPw("");
+                setText("");
             }else{
                 throw new Error('네트워크 오류가 발생하였습니다.');
             }
-        } catch (e) {
+        }
+        catch (e) {
             console.error(e);
             return <ErrorMessage text={'댓글 작성 중 오류가 발생하였습니다.'}/>;
         }
@@ -122,7 +118,7 @@ export default function ContentBot({ comment }: ContentBotProps) {
                     <label htmlFor="comment-id">
                         <span>닉네임 </span>
                         <input
-                            value={commentWriter}
+                            value={name}
                             onChange={onChangeWriter}
                             type="text"
                             id="comment-id"
@@ -134,7 +130,7 @@ export default function ContentBot({ comment }: ContentBotProps) {
                     <label htmlFor="comment-pw">
                         <span>비밀번호 </span>
                         <input
-                            value={commentPw}
+                            value={pw}
                             onChange={onChangePw}
                             type="password"
                             id="comment-pw"
@@ -146,7 +142,7 @@ export default function ContentBot({ comment }: ContentBotProps) {
                 </div>
                 <div className="write-wrap">
                     <textarea
-                        value={commentText}
+                        value={text}
                         onChange={onChangeComment}
                         onKeyDown={onKeyDownEnter}
                         placeholder="댓글을 입력해주세요."

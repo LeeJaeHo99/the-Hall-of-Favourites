@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import Inner from "@/components/ui/Inner";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
+import Inner from "@/components/ui/Inner";
+import { InputLabel, TextAreaLabel, SubmitBtn } from "@/components/board/WriteComponents";
+import usePostWrite from "@/hooks/usePostWrite";
 
 export default function BoardWritePage() {
     return (
@@ -34,113 +35,81 @@ function BoardWrite() {
     const onChangePw = (e) => {
         setPw(e.target.value);
     };
+
+    const { postHandler, loadPostWrite, errorPostWrite } = usePostWrite();
     
     const onSubmitWrite = async (e) => {
         e.preventDefault();
 
-        try{
+        try {
             if (!title || !content || !writer || !pw) {
                 alert("모든 항목을 입력해 주세요.");
                 return;
             }
 
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/postWrite`, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({
-                    title: title,
-                    content: content,
-                    writer: writer,
-                    pw: pw,
-                })
-            });
+            const result = await postHandler(title, content, writer, pw);
+            console.log('result: ', result);
 
-            if(!res.ok){
-                throw new Error('네트워크 오류가 발생하였습니다.');
+            if (!result) {
+                alert("게시글 작성 실패");
+                return;
             }
 
-            const data = await res.json();
-
-            if(res.ok){
-                alert('게시글이 작성이 완료되었습니다.');
-                router.push(`/board/${data.result.insertedId}`);
+            if (result) {
+                alert("게시글이 작성이 완료되었습니다.");
+                router.push(`/board/${result.result.insertedId}`);
             } else {
-                const error = await res.json();
+                const error = await result.json();
                 alert(error.error);
             }
-        }
-        catch(e){
+        } catch (e) {
             console.error("게시글 작성 실패:", e);
         }
 
-        setTitle('');
-        setContent('');
-        setWriter('');
-        setPw('');
-    }
-    const onKeyDownEnter = (e) => {
-        if(e.key === 'Enter'){
-            e.preventDefault();
-            onSubmitWrite();
-        }
-    }
+        setTitle("");
+        setContent("");
+        setWriter("");
+        setPw("");
+    };
 
     return (
-        <form onSubmit={onSubmitWrite} onKeyDown={onKeyDownEnter}>
-            <label htmlFor="writeTitle" className="blur-box">
-                <span>제목</span>
-                <input
-                    value={title}
-                    onChange={onChangeTitle}
-                    type="text"
-                    id="writeTitle"
-                    maxLength={20}
-                    placeholder="제목을 적어주세요. (최대 20글자)"
-                />
-            </label>
-            <label htmlFor="writeContent" className="blur-box">
-                <span>내용</span>
-                <textarea
-                    value={content}
-                    onChange={onChangeContent}
-                    id="writeContent"
-                    maxLength={180}
-                    placeholder="내용을 입력해 주세요 (최대 180글자)"
-                ></textarea>
-            </label>
-            <label htmlFor="writeName" className="blur-box">
-                <span>작성자</span>
-                <input
-                    value={writer}
-                    onChange={onChangeWriter}
-                    type="text"
-                    id="writeName"
-                    maxLength={6}
-                    placeholder="닉네임을 적어주세요 (최대 6글자)"
-                />
-            </label>
-            <label htmlFor="writePw" className="blur-box">
-                <span>비밀번호</span>
-                <input
-                    value={pw}
-                    onChange={onChangePw}
-                    type="password"
-                    id="writePw"
-                    maxLength={4}
-                    placeholder="게시글 삭제, 수정시 이용됩니다. (4글자)"
-                />
-            </label>
-            <div>
-                <button type="submit" className="submit-btn">
-                    <Image
-                        src={"/icons/write.png"}
-                        width={16}
-                        height={16}
-                        alt="글쓰기 아이콘"
-                    />
-                    <span>작성</span>
-                </button>
-            </div>
+        <form onSubmit={onSubmitWrite}>
+            <InputLabel
+                id={"writeTitle"}
+                title={"제목"}
+                value={title}
+                onChange={onChangeTitle}
+                placeHolder={"제목을 적어주세요. (최대 20글자)"}
+                length={20}
+                type={"text"}
+            />
+            <TextAreaLabel
+                id={"writeContent"}
+                title={"내용"}
+                value={content}
+                onChange={onChangeContent}
+                placeHolder={"내용을 입력해 주세요 (최대 180글자)"}
+                length={180}
+            />
+            <InputLabel
+                id={"writeName"}
+                title={"작성자"}
+                value={writer}
+                onChange={onChangeWriter}
+                placeHolder={"닉네임을 적어주세요 (최대 6글자)"}
+                length={6}
+                type={"text"}
+            />
+            <InputLabel
+                id={"writePw"}
+                title={"비밀번호"}
+                value={pw}
+                onChange={onChangePw}
+                placeHolder={"게시글 삭제, 수정시 이용됩니다. (4글자)"}
+                length={4}
+                type={"password"}
+            />
+            <SubmitBtn/>
         </form>
     );
 }

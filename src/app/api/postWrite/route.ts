@@ -30,7 +30,7 @@ export async function POST(req) {
         });
 
         return NextResponse.json(
-            { message: "게시글 등록 성공", result },
+            { message: "게시글 등록 성공", data: {result} },
             { status: 201 }
         );
     } catch (error) {

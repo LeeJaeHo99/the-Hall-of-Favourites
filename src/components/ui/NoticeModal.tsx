@@ -1,5 +1,6 @@
 'use client';
 
+import useGetNotice from "@/hooks/useGetNotice";
 import { useEffect, useState } from "react";
 
 export default function NoticeModal(){
@@ -7,20 +8,14 @@ export default function NoticeModal(){
     const onClickXBtn = () => {
         setIsNotice(false);
     }
+    const { noticeData, loadFullNotice, errorFullNotice } = useGetNotice();
 
-    useEffect(() => {
-        const fetchNotice = async () => {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getNotice`);
-            const result = await res.json();
-    
-            setIsNotice(result.data[0]);
-        }
-        fetchNotice();
-    }, [])
+    if(loadFullNotice) return <div>로딩</div>
+    if(errorFullNotice) return <div>에러</div>
 
     return(
         <>
-            {isNotice && <NoticeComponent onClcick={onClickXBtn} title={isNotice?.title} content={isNotice?.content}/>}
+            {noticeData && <NoticeComponent onClcick={onClickXBtn} title={noticeData?.title} content={noticeData?.content}/>}
         </>
     );
 }

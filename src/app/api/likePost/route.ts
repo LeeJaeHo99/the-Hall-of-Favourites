@@ -47,10 +47,11 @@ export async function POST(req) {
         }
 
         return NextResponse.json(
-            { message: "추천되었습니다", newCount: result.modifiedCount },
+            { message: "추천되었습니다", data: {newCount: result.modifiedCount} },
             { status: 200 }
         );
-    } catch (error) {
-        return NextResponse.json({ error: error.message }, { status: 500 });
+    } catch (e) {
+        console.error(e);
+        return NextResponse.json({ error: "서버 오류" }, { status: 500 });
     }
 }

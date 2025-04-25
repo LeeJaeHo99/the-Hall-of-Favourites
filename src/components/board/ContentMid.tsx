@@ -1,34 +1,37 @@
 "use client";
 
-import Image from "next/image";
 import { useParams } from "next/navigation";
+import Image from "next/image";
 import {ContentMidProps} from "@/types/types";
+import usePostLikePost from "@/hooks/usePostLikePost";
 
 export default function ContentMid({ content }: ContentMidProps) {
     const params = useParams();
+    const { postHandler, loadPostLikePost, errorPostLikePost } = usePostLikePost();
 
     const handleLike = async () => {
         try {
-            const res = await fetch(
-                `${process.env.NEXT_PUBLIC_API_URL}/api/likePost`,
-                {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ postId: params.id }),
-                }
-            );
+            const result = await postHandler(params.id);
+            console.log('result: ', result);
 
-            if (res.ok) {
-                alert("게시글이 추천되었습니다.");
-            } else {
-                const error = await res.json();
-                alert(error.error);
+            if (!result) {
+                alert("추천 실패");
+                return;
             }
-        } catch (e) {
-            console.error("추천 실패:", e);
+
+            if (result.newCount) {
+                alert("게시글이 추천되었습니다.");
+                window.location.reload();
+            } else {
+                alert("추천 실패");
+            }
+        } 
+        catch (e) {
+            console.error("추천 중 오류 발생:", e);
+            alert("추천 중 오류 발생");
         }
-        window.location.reload();
     };
+
     return (
         <div className="content-mid">
             {content}

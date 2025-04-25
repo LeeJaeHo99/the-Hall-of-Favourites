@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getWriteData } from "@/util/fetchData";
+import { getWriteData } from "@/util/getFetcher";
 import { getErrorMessage } from "@/util/setErrorMsg";
 import { WriteType } from '../types/types';
 
@@ -35,5 +35,5 @@ export default function useGetWrite() {
         );
     }, [writeData]);
 
-    return { recentWrite, likeSortedWrite, loadWrite, errorWrite };
+    return { recentWrite, likeSortedWrite, loadWrite, errorWrite, setRecentWrite, setLikeSortedWrite };
 }

@@ -1,23 +1,14 @@
+'use client';
+
 import Link from "next/link";
 import ErrorMessage from "./ErrorMessage";
+import useGetGroup from "@/hooks/useGetGroup";
 
-export default async function GroupLinkBtn() {
-    let groupData = [];
+export default function GroupLinkBtn() {
+    const { groupData, loadGroup, errorGroup } = useGetGroup();
 
-    try{
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getGroup`);
-        
-        if (!res.ok) {
-            throw new Error('네트워크 응답이 올바르지 않습니다');
-        }
-
-        const result = await res.json();
-        groupData = result.data;
-    }
-    catch(e){
-        console.error('그룹 데이터를 불러오는 중 오류가 발생하였습니다', e);
-        return <ErrorMessage text={'그룹 데이터를 불러오는 중 오류가 발생하였습니다.'}/>;
-    }
+    if(loadGroup) return <div>123</div>
+    if(errorGroup) return <ErrorMessage text={'그룹 데이터를 불러오던중 에러가 발생하였습니다.'}/>
     
     return (
         groupData.map((group) => (

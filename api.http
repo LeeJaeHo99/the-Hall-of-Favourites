@@ -1,6 +1,0 @@
-@add = http://localhost:3000
-
-###
-GET http://localhost:3000/api/getGroup HTTP/1.1
-
-GET https://jsonplaceholder.typicode.com/posts/1 HTTP/1.1

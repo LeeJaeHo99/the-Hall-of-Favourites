@@ -6,7 +6,7 @@ export default function useDeleteCommnet(){
     const [loadDeleteComment, setLoadDeleteComment] = useState<boolean>(true);
     const [errorDeleteComment, setErrorDeleteComment] = useState<string>('');
 
-    const deleteHandler = async (param: number, index: number, pw: number) => {
+    const deleteHandler = async (param: number, index: number, pw: string) => {
         setLoadDeleteComment(true);
         setErrorDeleteComment("");
 

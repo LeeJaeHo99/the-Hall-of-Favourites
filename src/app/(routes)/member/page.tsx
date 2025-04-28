@@ -24,6 +24,7 @@ export default function MemberPage() {
     const { memberData, loading, error } = useGetFullMember();
     const { patchHandler, loadPathchLikeMem, errorPathchLikeMem } = usePatchLikeMember();
     const [filteredMember, setFilteredMember] = useState<MemberDataType | null>(null);
+    console.log('filteredMember: ', filteredMember);
 
     useEffect(() => {
         if (Array.isArray(memberData) && q) {
@@ -35,19 +36,27 @@ export default function MemberPage() {
 
     // 🤖 WORK : 좋아요 클릭시 오늘, 전체 좋아요 +1
     const handleLike = async () => {
-        if (!memberData) return;
-        const nameKo = filteredMember?.nameKo[0];
-        patchHandler(nameKo);
-
-        setFilteredMember(prev => ({
-            ...prev,
-            todayLike: [
-                ...prev.todayLike.slice(0, -1),
-                prev.todayLike[prev.todayLike.length - 1] + 1
-            ],
-            likeHistory: prev.likeHistory + 1
-        }));
+        if (!filteredMember) return;
+        const nameKo = filteredMember.nameKo[0];
+    
+        try {
+            await patchHandler(nameKo);
+            setFilteredMember(prev => {
+                if (!prev) return prev;
+                const hour = new Date().getHours();
+                const newTodayLike = [...prev.todayLike];
+                newTodayLike[hour] = (newTodayLike[hour] || 0) + 1;
+                return {
+                    ...prev,
+                    todayLike: newTodayLike,
+                    likeHistory: prev.likeHistory + 1
+                };
+            });
+        } catch (err) {
+            alert('오늘은 이미 좋아요를 눌렀습니다.');
+        }
     };
+    
 
     if(loading) return <div>로딩중</div>
     if(error) return <div>에러</div>
@@ -64,9 +73,7 @@ export default function MemberPage() {
                                 <LeftContent
                                     victory={filteredMember?.victory}
                                     likeHistory={filteredMember?.likeHistory}
-                                    todayLike={
-                                        filteredMember?.todayLike[filteredMember?.todayLike?.length - 1]
-                                    }
+                                    todayLike={filteredMember?.todayLike.reduce((a, b) => a + b, 0)}
                                     song={filteredMember?.song}
                                     group={filteredMember?.group[2]}
                                     onClickTrigger={onClickTrigger}

@@ -37,7 +37,7 @@ export async function PATCH(req) {
         }
 
         return NextResponse.json(
-            { message: "게시글 수정 성공", result },
+            { message: "게시글 수정 성공", data: {result} },
             { status: 200 }
         );
     } catch (error) {

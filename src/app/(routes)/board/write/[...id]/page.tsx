@@ -5,6 +5,7 @@ import Inner from "@/components/ui/Inner";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import useGetFullWrite from "@/hooks/useGetFullWrite";
+import usePatchWrite from "@/hooks/usePatchWrite";
 
 export default function BoardWritePage() {
     return (
@@ -49,38 +50,31 @@ function BoardWrite() {
             setPw(filtered?.pw ?? '');
         }
     }, [writeData]);
+
+    const { patchHandler, isPatching, patchError } = usePatchWrite();
     
     const onSubmitEditWrite = async (e) => {
         e.preventDefault();
 
-        try{
-            if (!title || !content || !writer || !pw) {
-                alert("모든 항목을 입력해 주세요.");
-                return;
-            }
-
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/editWrite`, {
-                method: 'PATCH',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({
-                    id: writeData._id,
-                    title: title,
-                    content: content,
-                    writer: writer,
-                    pw: pw,
-                })
-            });
-
-            if(res.ok){
-                alert('게시글이 수정이 완료되었습니다.');
-                router.push(`/board/${writeData?._id}`);
-            } else {
-                const error = await res.json();
-                alert(error.error);
-            }
+        if (!title || !content || !writer || !pw) {
+            alert("모든 항목을 입력해 주세요.");
+            return;
         }
-        catch(e){
-            console.error("게시글 수정 실패:", e);
+
+        try{
+            await patchHandler({
+                id: writeData._id,
+                title,
+                content,
+                writer,
+                pw,
+            })
+
+            alert('게시글이 수정되었습니다');
+            router.push(`/board/${writeData._id}`);
+        }
+        catch (error) {
+            alert(patchError || "수정 중 오류가 발생했습니다");
         }
 
         setTitle('');
@@ -88,17 +82,11 @@ function BoardWrite() {
         setWriter('');
         setPw('');
     }
-    const onKeyDownEnter = (e) => {
-        if(e.key === 'Enter'){
-            e.preventDefault();
-            onSubmitEditWrite();
-        }
-    }
     
     if(loadFullWrite) return <div>123</div>
 
     return (
-        <form onSubmit={onSubmitEditWrite} onKeyDown={onKeyDownEnter}>
+        <form onSubmit={onSubmitEditWrite}>
             <label htmlFor="writeTitle" className="blur-box">
                 <span>제목</span>
                 <input

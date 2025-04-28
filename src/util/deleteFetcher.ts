@@ -24,6 +24,6 @@ export const deleteWrite = (id: string, pw: number) => {
 };
 
 // COMMENT
-export const deleteComment = (param: number, index: number, pw: number) => {
+export const deleteComment = (param: number, index: number, pw: string) => {
     return deleteFetcher(`deleteComment?postId=${param}&commentIndex=${index}&inputPw=${pw}`);
 };

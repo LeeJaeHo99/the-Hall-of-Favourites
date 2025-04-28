@@ -33,7 +33,7 @@ export async function DELETE(req) {
             );
         }
 
-        if (post.comment[commentIndex].pw !== inputPw) {
+        if (String(post.comment[commentIndex].pw) !== String(inputPw)) {
             return NextResponse.json(
                 { error: "비밀번호가 일치하지 않습니다" },
                 { status: 403 }

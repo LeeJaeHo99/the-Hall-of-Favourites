@@ -1,10 +1,15 @@
+import { PatchEditWriteType } from "../types/types";
+
 async function patchFetcher(api: string, body: any) {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/${api}`, {
-            method: "PATCH",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(body),
-        });
+        const res = await fetch(
+            `${process.env.NEXT_PUBLIC_API_URL}/api/${api}`,
+            {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(body),
+            }
+        );
 
         if (!res.ok) {
             const result = await res.json().catch(() => null);
@@ -22,29 +27,22 @@ async function patchFetcher(api: string, body: any) {
 // PATCH LIKE-MEMBER
 export const patchLikeMember = async (name: string) => {
     try {
-        const data = await patchFetcher(`likeMember?q=${encodeURIComponent(name)}`, { method: "PATCH" });
+        const data = await patchFetcher(
+            `likeMember?q=${encodeURIComponent(name)}`,
+            { method: "PATCH" }
+        );
     } catch (error: any) {
         alert(error.message || "오류가 발생했어요.");
     }
 };
 
 // PATCH EDIT-WRITE
-export const patchEditWriteData = ({
+export const patchEditWrite = ({
     id,
     title,
     content,
     writer,
     pw,
 }: PatchEditWriteType) => {
-    return patchFetcher("editWrite", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            id: id,
-            title: title,
-            content: content,
-            writer: writer,
-            pw: pw,
-        }),
-    });
+    return patchFetcher("editWrite", { id, title, content, writer, pw });
 };

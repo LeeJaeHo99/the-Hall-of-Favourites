@@ -41,9 +41,18 @@ likeMember
 postEndWeek
 // 월요일 AM 00:10에 weekLike의 배열 초기화
 
-
-
 // 수정
-멤버 페이지 오늘의 좋아요 인덱스 수정 + 좋아요 클릭시 한번만 올라가게 수정
-블라인드 시간 중 오늘 좋아요 합 출력 필요
-fetch는 POST까지 완료
+멤버 페이지 좋아요 클릭시 한번만 올라가게 수정
+fetch는 DELETE만
+
+
+
+
+
+
+
+
+DELETE하고
+LOAD, ERROR
+그룹페이지 하나
+차트

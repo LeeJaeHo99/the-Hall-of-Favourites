@@ -22,4 +22,4 @@ export default function useGetFullMember() {
     }, []);
 
     return { memberData, loadFullMem, errorFullMem, setMemberData };
-}
+};

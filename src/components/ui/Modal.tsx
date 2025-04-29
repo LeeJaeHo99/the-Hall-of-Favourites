@@ -1,10 +1,10 @@
 "use client";
 
-import useDeleteCommnet from "@/hooks/useDeleteComment";
+import useDeleteCommnet from "@/hooks/useDeleteCommnet";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-export default function Modal({ clickDeleteBtn, param, index }) {
+export default function Modal({ param, index }) {
     const inputRef = useRef(null);
     const [inputPw, setInputPw] = useState("");
     const onChangePw = (e) => {
@@ -17,23 +17,22 @@ export default function Modal({ clickDeleteBtn, param, index }) {
         }
     }, []);
 
-    const { deleteComment, loading, error } = useDeleteCommnet();
+    const { deleteHandler, loadDeleteComment, errorDeleteComment } = useDeleteCommnet();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await deleteComment(param, index, inputPw);
+        await deleteHandler(param, index, inputPw);
 
-        if (!error) {
-            clickDeleteBtn();
+        if (!errorDeleteComment) {
             window.location.reload();
         } else {
-            alert(error);
+            alert(errorDeleteComment);
         }
     };
 
     return (
         <div className="modal-wrap blur-box">
-            <div className="calcel-btn" onClick={clickDeleteBtn}>
+            <div className="calcel-btn">
                 <Image
                     src={"/icons/x-white.png"}
                     width={8}

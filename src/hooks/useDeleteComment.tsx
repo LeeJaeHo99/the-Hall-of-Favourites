@@ -11,7 +11,8 @@ export default function useDeleteCommnet(){
         setErrorDeleteComment("");
 
         try {
-            await deleteComment(param, index, pw);
+            const result = await deleteComment(param, index, pw);
+            return result;
         } catch (err) {
             setErrorDeleteComment(getErrorMessage(err));
         } finally {

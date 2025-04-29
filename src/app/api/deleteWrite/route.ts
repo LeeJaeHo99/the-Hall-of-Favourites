@@ -35,7 +35,10 @@ export async function DELETE(req) {
         await collection.deleteOne({ _id: new ObjectId(postId) });
 
         return NextResponse.json(
-            { message: "게시물이 삭제되었습니다" },
+            { 
+                message: "게시물이 삭제되었습니다",
+                data: 'success'
+            },
             { status: 200 }
         );
     } catch (error) {

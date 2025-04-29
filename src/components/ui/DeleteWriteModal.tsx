@@ -1,25 +1,22 @@
 "use client";
 
-import useDeleteCommnet from "@/hooks/useDeleteComment";
+import useDeleteWrite from "@/hooks/useDeleteWrite";
 import useGetWrite from "@/hooks/useGetWrite";
 import Image from "next/image";
-import { useParams } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
-export default function Modal({ setIsClickDelete, param, index }) {
+export default function DeleteWriteModal({ onClick }) {
     const { recentWrite, likeSortedWrite, loadWrite, errorWrite, setRecentWrite } = useGetWrite();
-    const { deleteHandler, loadDeleteComment, errorDeleteComment } = useDeleteCommnet();
-
+    const { deleteHandler, loadDeleteWrite, errorDeleteWrite } = useDeleteWrite();
+    const router = useRouter();
     const params = useParams();
+
     const inputRef = useRef(null);
     const [inputPw, setInputPw] = useState("");
     const onChangePw = (e) => {
         setInputPw(e.target.value);
     };
-
-    const closeModal = () => {
-        setIsClickDelete(null);
-    }
 
     useEffect(() => {
         if (inputRef.current) {
@@ -34,26 +31,26 @@ export default function Modal({ setIsClickDelete, param, index }) {
         }
     }, [recentWrite]);
 
+
     const onSubmitDelete = async (e) => {
         e.preventDefault();
-
-        if(inputPw.length !== 4){
+        if(inputPw === ''){
             alert('비밀번호를 입력해주세요');
             return;
         }
-        
-        const result = await deleteHandler(param, index, inputPw);
+        const result = await deleteHandler(recentWrite?._id, inputPw);
 
         if (result === 'success') {
-            window.location.reload();
+            alert("게시글이 삭제되었습니다.");
+            router.push('/board');
         } else {
-            alert('삭제가 실패하였습니다.');
+            alert('게시물 삭제가 실패하였습니다.');
         }
     }
 
     return (
         <div className="modal-wrap blur-box">
-            <div className="calcel-btn" onClick={closeModal}>
+            <div className="calcel-btn" onClick={onClick}>
                 <Image
                     src={"/icons/x-white.png"}
                     width={8}

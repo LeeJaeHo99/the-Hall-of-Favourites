@@ -2,19 +2,21 @@
 
 import { useState, useEffect } from "react";
 import { usePagination } from "@/store/store";
+
+// 📀 COMPONENT
 import Title from "@/components/ui/Title";
 import Inner from "@/components/ui/Inner";
 import Board from "@/components/board/Board";
 import Pagination from "@/components/board/Pagination";
 import Category from "@/components/ui/Category";
 import BoardEdit from "@/components/board/BoardEdit";
-import ErrorMessage from "@/components/ui/ErrorMessage";
 import BoardSearch from "@/components/board/BoardSearch";
+import ErrorMessage from "@/components/ui/ErrorMessage";
 import useGetFullWrite from "@/hooks/useGetFullWrite";
+import BoardSkeleton from "@/components/skeleton/Skeleton";
 
 export default function BoardPage() {
     const { writeData, loadFullWrite, errorFullWrite}= useGetFullWrite();
-
     const { pagination, setPagination } = usePagination();
     const [category, setCategory] = useState(true);
 
@@ -37,7 +39,7 @@ export default function BoardPage() {
         setSearchWord(e.target.value);
     }
 
-    // 🤖 WORK : isSearch 데이터 변경시 searchList 데이터도 변경
+    // 🤖 WORK : isSearch 변경시 searchList 데이터도 변경
     useEffect(() => {
         setSearchList(writeData?.filter(write => write.title.includes(searchWord)));
     }, [isSearch]);
@@ -60,7 +62,7 @@ export default function BoardPage() {
         );
     }, [writeData, pagination]);
 
-    // if(isLoad) return <Spinner/>;
+    if(!loadFullWrite) return <BoardSkeleton/>;
     if(errorFullWrite) return <ErrorMessage text={'게시물을 불러오는 중 에러가 발생하였습니다.'}/>
 
     return (
@@ -73,7 +75,11 @@ export default function BoardPage() {
                     <div className="board-editor">
                         <div className="board-component--wrap">
                             <BoardEdit style={'normal'} text={'글쓰기'} link={'write'}/>
-                            <BoardSearch searchWord={searchWord} onChangeSearchWord={onChangeSearchWord} isSearch={isSearch} setIsSearch={setIsSearch}/>
+                            <BoardSearch 
+                                searchWord={searchWord} 
+                                onChangeSearchWord={onChangeSearchWord} 
+                                isSearch={isSearch} 
+                                setIsSearch={setIsSearch}/>
                         </div>
                         <Category
                             category={category}

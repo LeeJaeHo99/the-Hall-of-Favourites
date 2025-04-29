@@ -34,7 +34,6 @@ export default function ContentBot({ comment }: ContentBotProps) {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
         
         try {
             const result = await postHandler({id, name, text, pw});
@@ -85,11 +84,9 @@ export default function ContentBot({ comment }: ContentBotProps) {
                                     <td>
                                         {isClickDelete === i && (
                                             <Modal
+                                                setIsClickDelete={setIsClickDelete}
                                                 param={params.id}
                                                 index={i}
-                                                clickDeleteBtn={() => {
-                                                    onClickDelete(null);
-                                                }}
                                             />
                                         )}
                                         <button

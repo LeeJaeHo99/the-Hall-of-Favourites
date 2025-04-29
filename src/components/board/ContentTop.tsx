@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import BoardEdit from "@/components/board/BoardEdit";
-import Modal from "@/components/board/Modal";
+import DeleteWriteModal from "@/components/ui/DeleteWriteModal";
 import { ContentTopProps, BoardDeleteProps } from '../../types/types';
 
 
@@ -31,7 +31,7 @@ export default function ContentTop({
                         link={`/write/${id}`}
                     />
                     <BoardDelete style={"red"} onClick={onClickDeleteBtn}/>
-                    {isModal && <Modal onClick={onClickDeleteBtn}/>}
+                    {isModal && <DeleteWriteModal onClick={onClickDeleteBtn}/>}
                 </div>
                 <Link className="to-board" href={"/board"}>
                     게시판 목록으로 이동

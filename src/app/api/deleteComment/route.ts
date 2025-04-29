@@ -49,7 +49,10 @@ export async function DELETE(req) {
         );
 
         return NextResponse.json(
-            { message: "댓글이 삭제되었습니다" },
+            { 
+                message: "댓글이 삭제되었습니다",
+                data: 'success'
+            },
             { status: 200 }
         );
     } catch (error) {

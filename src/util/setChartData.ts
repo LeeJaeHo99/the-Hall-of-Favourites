@@ -1,51 +1,59 @@
-import { MemberDataType } from '@/types/types';
+import { MemberDataType } from "@/types/types";
 
 export function getRecentTime(todayLikeLength: number) {
     const count = Math.min(todayLikeLength, 5);
     const now = new Date();
     now.setMinutes(0, 0, 0);
-    
+
     return Array.from({ length: count }, (_, i) => {
         const d = new Date(now.getTime() - (count - 1 - i) * 60 * 60 * 1000);
         return `${d.getHours().toString().padStart(2, "0")}:00`;
     });
 }
 
-export function convertTop5Data(idols: MemberDataType) {
+export function convertTop5Data(idols: MemberDataType[]) {
     if (!idols || idols.length === 0) return [];
-    
-    const maxLength = Math.min(
-        Math.max(...idols.map(idol => idol.todayLike?.length || 0)),
-        5
-    );
 
-    const times = getRecentTime(maxLength);
+    const now = new Date();
+    const currentHour = now.getHours();
+    const maxLength = Math.min(currentHour + 1, 5);
+
+    const startIdx = Math.max(0, currentHour - maxLength + 1);
+    const endIdx = currentHour + 1;
+
+    const times = [];
+    for (let i = startIdx; i < endIdx; i++) {
+        times.push(`${i.toString().padStart(2, "0")}:00`);
+    }
 
     return times.map((time, i) => {
-        const entry = { time };
+        const entry: { [key: string]: number | string } = { time };
         idols.forEach((idol) => {
-            const likeLength = idol.todayLike?.length || 0;
-            const start = Math.max(0, likeLength - maxLength);
-            const slicedHistory = (idol.todayLike || []).slice(start);
-            
-            const paddedHistory = [
-                ...Array(maxLength - slicedHistory.length).fill(0),
-                ...slicedHistory
-            ];
-
-            entry[idol.nameKo[0]] = paddedHistory[i] || 0;
+            const todayLike = idol.todayLike || [];
+            entry[idol.nameKo[0]] = todayLike[startIdx + i] ?? 0;
         });
         return entry;
     });
 }
 
+export function getTop5LatestLike(idols: MemberDataType[]) {
+    const currentHour = new Date().getHours();
+    const maxCount = 5;
 
-export function getTop5LatestLike(idols: MemberDataType) {
     return [...idols]
         .sort((a, b) => {
-            const aMem = a.todayLike[a.todayLike.length - 1];
-            const bMem = b.todayLike[b.todayLike.length - 1];
-            return bMem - aMem;
+            const startIndex = Math.max(0, currentHour - (maxCount - 1));
+            const endIndex = currentHour + 1;
+
+            const aLikes = (a.todayLike || [])
+                .slice(startIndex, endIndex)
+                .reduce((sum, val) => sum + val, 0);
+
+            const bLikes = (b.todayLike || [])
+                .slice(startIndex, endIndex)
+                .reduce((sum, val) => sum + val, 0);
+
+            return bLikes - aLikes;
         })
         .slice(0, 5);
 }

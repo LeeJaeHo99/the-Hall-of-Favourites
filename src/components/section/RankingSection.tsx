@@ -22,11 +22,12 @@ export default function RankingSection() {
         if (!Array.isArray(memberData)) return [];
         return getTop5LatestLike(memberData);
     }, [memberData]);
-    console.log('top5: ', top5);
+    console.log('getTop5LatestLike top5: ', top5);
     
     const chartData = useMemo(() => {
         return convertTop5Data(top5);
     }, [top5]);
+    console.log('chartData: ', chartData);
 
     if(isLoad) return <RankingLoadComponent/>
     if(isError) return <ErrorMessage text={'차트 데이터를 불러오던중 에러가 발생하였습니다.'}/>

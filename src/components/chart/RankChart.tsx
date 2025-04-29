@@ -15,6 +15,7 @@ import CustomTooltip from "./CustomTooltip";
 const colors = ["#ffcc49", "#cdd0d4", "#c19a6b", "#d1de74", "#f1a183"];
 
 export default function RankChart({ data }) {
+    console.log('data: ', data);
     const idolNames = Object.keys(data?.[0] || {}).filter(
         (key) => key !== "time"
     );

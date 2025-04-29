@@ -49,10 +49,5 @@ fetch는 DELETE만
 
 
 
-
-
-
-DELETE하고
-LOAD, ERROR
 그룹페이지 하나
 차트

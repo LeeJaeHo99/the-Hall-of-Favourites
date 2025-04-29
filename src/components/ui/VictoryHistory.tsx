@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { ProfileHistoryPropsType } from "@/types/types";
 import useGetFullMember from "@/hooks/useGetFullMember";
@@ -58,8 +59,12 @@ export default function VictoryHistory() {
 }
 
 function Profile({ nameKo, nameEn, group, history }: ProfileHistoryPropsType) {
+    const router = useRouter();
+    const linkWinners = () => {
+        router.push(`/member?q=${nameKo}`);
+    }
     return (
-        <div className="profile">
+        <div className="profile" onClick={linkWinners}>
             <Image
                 src={`/images/${group}/${nameEn}.png`}
                 width={60}

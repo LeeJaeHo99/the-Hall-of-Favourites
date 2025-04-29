@@ -21,7 +21,7 @@ export default function Pagination({ data, pagination, setPagination }: Paginati
             <div className="move-btn minus-btn" onClick={minusPagination}>
                 <Image src={'/icons/arrow.png'} width={24} height={24} alt='이동 화살표'/>
             </div>
-            {arr.map((_, i) => (
+            {arr.map((_, i: number) => (
                 <div
                     key={i}
                     className={pagination === i ? "selected blur-box" : ""}

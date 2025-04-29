@@ -4,7 +4,6 @@ import Link from "next/link";
 import { WinnerMainPropsType } from '../../types/types';
 
 export default function WinnerMain({ targetRef, isSunday, groupL, groupU, nameKo, nameEn }: WinnerMainPropsType) {
-    console.log('targetRef: ', targetRef);
     return (
         <motion.div
             initial={{ opacity: 0, scale: 0.5 }}

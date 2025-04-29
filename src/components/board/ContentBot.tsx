@@ -12,7 +12,6 @@ import ErrorMessage from "../ui/ErrorMessage";
 import LoadSpinner from "@/components/spinner/LoadSpinner";
 
 export default function ContentBot({ comment }: CommentType) {
-    console.log('comment: ', comment);
     const { postHandler, isPost, isPostError } = usePostComment();
     const params = useParams();
     const id = params.id;

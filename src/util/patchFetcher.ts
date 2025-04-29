@@ -17,7 +17,9 @@ async function patchFetcher(api: string, body: FetchDataType) {
         }
 
         const result = await res.json();
-        if (!result?.data) throw new Error("수정된 데이터를 받지 못했습니다.");
+        if (!result?.data) {
+            throw new Error("수정된 데이터를 받지 못했습니다.");
+        }
         return result.data;
     }
     catch (e: unknown) {

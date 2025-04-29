@@ -35,13 +35,13 @@ export default function BoardPage() {
     const [isSearch, setIsSearch] = useState<boolean>(false);
     const [searchList, setSearchList] = useState([]);
 
-    const onChangeSearchWord = (e) => {
+    const onChangeSearchWord = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchWord(e.target.value);
     }
 
     // 🤖 WORK : isSearch 변경시 searchList 데이터도 변경
     useEffect(() => {
-        setSearchList(writeData?.filter(write => write.title.includes(searchWord)));
+        setSearchList(writeData?.filter(write => write.title.includes(searchWord)).reverse());
     }, [isSearch]);
 
     const [recentWrite, setRecentWrite] = useState([]);
@@ -82,13 +82,17 @@ export default function BoardPage() {
                                 setIsSearch={setIsSearch}
                             />
                         </div>
-                        <Category
-                            category={category}
-                            clickLeft={clickNew}
-                            clickRight={clickPopular}
-                            leftText={"최신글"}
-                            rightText={"인기순"}
-                        />
+                        {
+                            !isSearch && (
+                                <Category
+                                    category={category}
+                                    clickLeft={clickNew}
+                                    clickRight={clickPopular}
+                                    leftText={"최신글"}
+                                    rightText={"인기순"}
+                                />
+                            )
+                        }
                     </div>
                     <Board
                         category={category}
@@ -97,11 +101,15 @@ export default function BoardPage() {
                         isSearch={isSearch}
                         searchList={searchList}
                     />
-                    <Pagination
-                        data={...writeData}
-                        pagination={pagination}
-                        setPagination={setPagination}
-                    />
+                    {
+                        !isSearch && (
+                            <Pagination
+                                data={...writeData}
+                                pagination={pagination}
+                                setPagination={setPagination}
+                            />
+                        )
+                    }
                 </div>
             </Inner>
         </div>

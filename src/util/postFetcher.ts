@@ -21,7 +21,6 @@ async function postFetcher(api: string, body: BodyType) {
         }
 
         const result = await res.json();
-        console.log('result: ', result);
 
         if (!result) {
             throw new Error("서버에서 유효한 데이터를 받지 못했습니다.");

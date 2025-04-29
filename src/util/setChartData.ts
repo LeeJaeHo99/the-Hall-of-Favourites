@@ -1,59 +1,53 @@
 import { MemberDataType } from "@/types/types";
 
-export function getRecentTime(todayLikeLength: number) {
-    const count = Math.min(todayLikeLength, 5);
-    const now = new Date();
-    now.setMinutes(0, 0, 0);
-
-    return Array.from({ length: count }, (_, i) => {
-        const d = new Date(now.getTime() - (count - 1 - i) * 60 * 60 * 1000);
-        return `${d.getHours().toString().padStart(2, "0")}:00`;
-    });
-}
-
-export function convertTop5Data(idols: MemberDataType[]) {
-    if (!idols || idols.length === 0) return [];
-
+export function getTodayLikeSums(todayLike: number[]) {
     const now = new Date();
     const currentHour = now.getHours();
-    const maxLength = Math.min(currentHour + 1, 5);
 
-    const startIdx = Math.max(0, currentHour - maxLength + 1);
-    const endIdx = currentHour + 1;
-
-    const times = [];
-    for (let i = startIdx; i < endIdx; i++) {
-        times.push(`${i.toString().padStart(2, "0")}:00`);
+    const cumulative = [];
+    let sum = 0;
+    for (let i = 0; i <= currentHour; i++) {
+        sum += todayLike[i];
+        cumulative.push(sum);
     }
 
-    return times.map((time, i) => {
-        const entry: { [key: string]: number | string } = { time };
-        idols.forEach((idol) => {
-            const todayLike = idol.todayLike || [];
-            entry[idol.nameKo[0]] = todayLike[startIdx + i] ?? 0;
-        });
-        return entry;
-    });
+    return cumulative.slice(-5);
 }
 
-export function getTop5LatestLike(idols: MemberDataType[]) {
-    const currentHour = new Date().getHours();
-    const maxCount = 5;
+export function getTop5(members: MemberDataType[]) {
+    const now = new Date();
+    const currentHour = now.getHours();
 
-    return [...idols]
-        .sort((a, b) => {
-            const startIndex = Math.max(0, currentHour - (maxCount - 1));
-            const endIndex = currentHour + 1;
+    const memberSums = members.map((member) => {
+        const arr = member.todayLike || [];
+        const sum = arr.slice(0, currentHour + 1).reduce((a, b) => a + b, 0);
 
-            const aLikes = (a.todayLike || [])
-                .slice(startIndex, endIndex)
-                .reduce((sum, val) => sum + val, 0);
+        return {
+            name: member.nameKo[0],
+            sum,
+        };
+    });
 
-            const bLikes = (b.todayLike || [])
-                .slice(startIndex, endIndex)
-                .reduce((sum, val) => sum + val, 0);
+    const top5 = memberSums.sort((a, b) => b.sum - a.sum).slice(0, 5);
 
-            return bLikes - aLikes;
-        })
-        .slice(0, 5);
+    return top5;
+}
+
+export function transformChartData(data: { name: string; data: number[] }[]) {
+    if (data.length === 0) return [];
+
+    const length = data[0].data.length;
+
+    return Array.from({ length }).map((_, i) => {
+        const hour = 10 + i; // 시작 시간 (예: 10시부터 시작)
+        const timeStr = `${hour}:00`;
+
+        const entry: any = { time: timeStr };
+
+        data.forEach((member) => {
+            entry[member.name] = member.data[i];
+        });
+
+        return entry;
+    });
 }

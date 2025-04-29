@@ -82,7 +82,10 @@ export async function PATCH(req: Request) {
         );
 
         return NextResponse.json(
-            { message: "좋아요 성공", result },
+            { 
+                message: "좋아요 성공",
+                data: 'success' 
+            },
             { status: 200 }
         );
     } catch (err) {

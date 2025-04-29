@@ -62,6 +62,7 @@ export interface MemberDataType {
     todayLike: number[];
     victory: number;
     weekLike: number[];
+    story?: string[];
 }
 
 // Board
@@ -158,4 +159,12 @@ export interface ProfileHistoryPropsType{
     group: string;
     nameEn: string;
     history: number;
+}
+
+export interface MemberMainContentPropsType{
+    group: string;
+    trigger:  boolean;
+    desc:  string;
+    title:  string;
+    nameEn:  string;
 }

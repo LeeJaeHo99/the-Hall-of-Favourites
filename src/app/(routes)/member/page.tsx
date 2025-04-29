@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import useGetFullMember from "@/hooks/useGetFullMember";
 import usePatchLikeMember from "@/hooks/usePatchLikeMember";
-import { MemberMainContentProps, MemberDataType } from "@/types/types";
+import { MemberDataType, MemberMainContentPropsType } from "@/types/types";
 
 
 import Inner from "@/components/ui/Inner";
@@ -26,7 +26,7 @@ export default function MemberPage() {
     const params = useSearchParams();
     const q = params.get("q");
     const { memberData, isLoad, isError } = useGetFullMember();
-    const { patchHandler, isPatch, isPatchError } = usePatchLikeMember();
+    const { patchHandler } = usePatchLikeMember();
     const [filteredMember, setFilteredMember] = useState<MemberDataType | null>(null);
 
     useEffect(() => {
@@ -43,20 +43,24 @@ export default function MemberPage() {
         const nameKo = filteredMember.nameKo[0];
     
         try {
-            await patchHandler(nameKo);
-            setFilteredMember(prev => {
-                if (!prev) return prev;
-                const hour = new Date().getHours();
-                const newTodayLike = [...prev.todayLike];
-                newTodayLike[hour] = (newTodayLike[hour] || 0) + 1;
-                return {
-                    ...prev,
-                    todayLike: newTodayLike,
-                    likeHistory: prev.likeHistory + 1
-                };
-            });
-        } catch (e) {
-            alert('오늘은 이미 좋아요를 눌렀습니다.');
+            const result = await patchHandler(nameKo);
+            if(result === 'success'){
+                setFilteredMember(prev => {
+                    if (!prev) return prev;
+                    const hour = new Date().getHours();
+                    const newTodayLike = [...prev.todayLike];
+                    newTodayLike[hour] = (newTodayLike[hour] || 0) + 1;
+                    return {
+                        ...prev,
+                        todayLike: newTodayLike,
+                        likeHistory: prev.likeHistory + 1
+                    };
+                });
+            }
+        } catch (e: unknown) {
+            if(e instanceof Error){
+                alert('오늘은 이미 좋아요를 눌렀습니다.');
+            }
         }
     };
     
@@ -104,7 +108,7 @@ export default function MemberPage() {
     );
 }
 
-function MainContent({ group, nameEn, title, desc, trigger }: MemberMainContentProps) {
+function MainContent({ group, nameEn, title, desc, trigger }: MemberMainContentPropsType) {
     return (
         <div className="main-content--wrap">
             <PersonImg group={group} nameEn={nameEn} trigger={trigger}/>

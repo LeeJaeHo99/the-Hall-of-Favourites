@@ -1,6 +1,8 @@
 async function getFetcher(api: string) {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/${api}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/${api}`, {
+            cache: 'no-store'
+        });
 
         if (!res.ok) {
             const result = await res.json().catch(() => null);

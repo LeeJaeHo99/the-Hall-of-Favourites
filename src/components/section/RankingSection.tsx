@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { getTop5LatestLike, convertTop5Data } from "@/util/setChartData";
+import { getTop5, getTodayLikeSums } from "@/util/setChartData";
 import useGetFullMember from "@/hooks/useGetFullMember";
 import useChartTime from "@/hooks/useChartTime";
 
@@ -18,16 +18,19 @@ export default function RankingSection() {
     const { memberData, isLoad, isError } = useGetFullMember();
     const {isBlindTime, isCollectingTime, isAnouncingTime} = useChartTime();
 
-    const top5 = useMemo(() => {
-        if (!Array.isArray(memberData)) return [];
-        return getTop5LatestLike(memberData);
+    const { top5, chartData } = useMemo(() => {
+        if (!memberData) return { top5: [], chartData: [] };
+        
+        const top5 = getTop5(memberData);
+        const chartData = top5.map(member => ({
+            name: member.name,
+            data: getTodayLikeSums(
+                memberData.find(mem => mem.nameKo[0] === member.name)?.todayLike || []
+            )
+        }));
+
+        return { top5, chartData };
     }, [memberData]);
-    console.log('getTop5LatestLike top5: ', top5);
-    
-    const chartData = useMemo(() => {
-        return convertTop5Data(top5);
-    }, [top5]);
-    console.log('chartData: ', chartData);
 
     if(isLoad) return <RankingLoadComponent/>
     if(isError) return <ErrorMessage text={'차트 데이터를 불러오던중 에러가 발생하였습니다.'}/>
@@ -38,14 +41,15 @@ export default function RankingSection() {
                 title={"현재 TOP 5"}
                 desc={"매 시간 정각에 순위가 업데이트 됩니다."}
             />
-            {isCollectingTime 
+            {/* {isCollectingTime 
                 ? <CollectingContent />
                 : isBlindTime 
                     ? <BlindContent top5={top5} />
                     : isAnouncingTime
                         ? <AnouningContent/>
                         : <RankChart data={chartData} />
-            }
+            } */}
+            <RankChart data={chartData} />
         </section>
     );
 }

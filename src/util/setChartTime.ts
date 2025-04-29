@@ -5,6 +5,9 @@ export function checkIsBlindTime() {
     const m = now.getMinutes();
 
     return h === 22 || (h === 23 && m < 50);
+
+    // test
+    // return h === 19 || (h === 19 && m < 50);
 }
 
 // 순위 집계 (PM 23:50 ~ PM 23:59)
@@ -14,6 +17,9 @@ export function checkIsCollectingTime() {
     const m = now.getMinutes();
 
     return h === 23 && m >= 50 && m <= 59;
+    
+    // test
+    // return h === 19 && m >= 30 && m <= 59;
 }
 
 // 첫 타임 순위 발표 (AM 00:00 ~ AM 00:59)
@@ -23,4 +29,7 @@ export function checkIsAnounceTime(){
     const m = now.getMinutes();
 
     return h === 0 && m >= 0 && m <= 59;
+
+    // test
+    // return h === 19 && m >= 30 && m <= 59;
 }

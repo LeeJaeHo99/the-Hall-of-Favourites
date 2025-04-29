@@ -15,7 +15,6 @@ export default function ContentMid({ content }) {
     const handleLike = async () => {
         try {
             const result = await postHandler(params.id);
-            console.log('result: ', result);
 
             if (!result) {
                 alert("추천 실패");

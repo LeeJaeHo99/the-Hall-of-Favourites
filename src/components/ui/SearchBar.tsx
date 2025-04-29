@@ -19,11 +19,11 @@ export default function SearchBar() {
         setSearch("");
     };
 
-    const handleSearchKeyword = (e) => {
+    const handleSearchKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearch(e.target.value);
     };
 
-    const keyDownEnter = (e) => {
+    const keyDownEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if(e.key === 'Enter') searchSubmit();
     }
 

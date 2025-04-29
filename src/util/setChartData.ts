@@ -1,4 +1,6 @@
-export function getRecentTime(todayLikeLength) {
+import { MemberDataType } from '@/types/types';
+
+export function getRecentTime(todayLikeLength: number) {
     const count = Math.min(todayLikeLength, 5);
     const now = new Date();
     now.setMinutes(0, 0, 0);
@@ -9,7 +11,7 @@ export function getRecentTime(todayLikeLength) {
     });
 }
 
-export function convertTop5Data(idols) {
+export function convertTop5Data(idols: MemberDataType) {
     if (!idols || idols.length === 0) return [];
     
     const maxLength = Math.min(
@@ -38,7 +40,7 @@ export function convertTop5Data(idols) {
 }
 
 
-export function getTop5LatestLike(idols) {
+export function getTop5LatestLike(idols: MemberDataType) {
     return [...idols]
         .sort((a, b) => {
             const aMem = a.todayLike[a.todayLike.length - 1];

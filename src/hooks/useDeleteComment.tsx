@@ -9,9 +9,13 @@ export default function useDeleteCommnet(){
         try {
             const result = await deleteComment(param, index, pw);
             return result;
-        } catch (e) {
-            setisDeleteError(true);
-        } finally {
+        }
+        catch (e: unknown) {
+            if (e instanceof Error) {
+                setisDeleteError(true);
+            }
+        }
+        finally {
             setisDeleteLoad(false);
         }
     };

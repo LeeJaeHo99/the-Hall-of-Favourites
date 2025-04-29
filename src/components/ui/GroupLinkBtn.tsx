@@ -8,7 +8,9 @@ import LoadSpinner from "../spinner/LoadSpinner";
 export default function GroupLinkBtn() {
     const { groupData, isLoad, isError } = useGetGroup();
 
-    if(isLoad) return <div className="group-link--btn-load"><LoadSpinner/></div>;
+    if(isLoad){
+        return <div className="group-link--btn-load"><LoadSpinner/></div>;
+    } 
     if(isError) return <ErrorMessage text={'그룹 데이터를 불러오던중 에러가 발생하였습니다.'}/>;
     
     return (

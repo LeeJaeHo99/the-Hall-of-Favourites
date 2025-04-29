@@ -1,18 +1,23 @@
 import { useState } from "react";
 import { patchEditWrite } from "@/util/patchFetcher";
+import { FetchDataType } from '../types/types';
 
 export default function usePatchWrite() {
-    const [isPatch, setIsPatch] = useState<boolean>(true);
+    const [isPatch, setIsPatch] = useState<boolean>(false);
     const [isPatchError, setIsPatchError] = useState<boolean>(false);
 
-    const patchHandler = async (editData) => {
+    const patchHandler = async (editData: FetchDataType) => {
         try {
             const result = await patchEditWrite(editData);
+            setIsPatch(true);
             return result;
-        } catch (error) {
-            setIsPatchError(true);
-            throw error;
-        } finally {
+        }
+        catch (e: unknown) {
+            if(e instanceof Error){
+                setIsPatchError(true);
+            }
+        }
+        finally {
             setIsPatch(false);
         }
     };

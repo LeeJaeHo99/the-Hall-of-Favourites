@@ -1,7 +1,10 @@
-import { ErrorMessageProps } from "../../types/types";
 import Inner from "@/components/ui/Inner";
 
-export default function ErrorMessage({ text }: ErrorMessageProps) {
+interface ErrorMessagePropsType{
+    text: string;
+}
+
+export default function ErrorMessage({ text }: ErrorMessagePropsType) {
     return (
         <div className="error-message sub-page">
             <Inner>

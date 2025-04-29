@@ -2,10 +2,16 @@
 
 import { useEffect, useState } from "react";
 
+interface TimeLeft {
+    hours: number;
+    minutes: number;
+    seconds: number;
+}
+
 export default function VoteTimer() {
     const [statusInfo, setStatusInfo] = useState<{
         status: string;
-        timeLeft: any;
+        timeLeft: TimeLeft | null;
     } | null>(null);
 
     const [mounted, setMounted] = useState(false);
@@ -64,9 +70,9 @@ export default function VoteTimer() {
             ) : (
                 <>
                     투표 종료까지: <span>
-                        {format(statusInfo.timeLeft.hours)}:
-                        {format(statusInfo.timeLeft.minutes)}:
-                        {format(statusInfo.timeLeft.seconds)}
+                        {format(statusInfo.timeLeft!.hours)}:
+                        {format(statusInfo.timeLeft!.minutes)}:
+                        {format(statusInfo.timeLeft!.seconds)}
                     </span>
                 </>
             )}

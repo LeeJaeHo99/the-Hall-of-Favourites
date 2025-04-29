@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import Image from "next/image";
-import { ProfileProps } from "@/types/types";
+import { ProfileHistoryPropsType } from "@/types/types";
 import useGetFullMember from "@/hooks/useGetFullMember";
 import VictoryHistoryLoadComponent from "../spinner/VictoryHistoryLoadComponent";
 import ErrorMessage from "./ErrorMessage";
@@ -12,8 +12,8 @@ export default function VictoryHistory() {
 
     useEffect(() => {
         setMemberData(memberData?.sort((a, b) => {
-            let aRank = a.victory;
-            let bRank = b.victory;
+            const aRank = a.victory;
+            const bRank = b.victory;
             return bRank - aRank;
         }).slice(0, 3));
     }, []);
@@ -57,7 +57,7 @@ export default function VictoryHistory() {
     );
 }
 
-function Profile({ nameKo, nameEn, group, history }: ProfileProps) {
+function Profile({ nameKo, nameEn, group, history }: ProfileHistoryPropsType) {
     return (
         <div className="profile">
             <Image

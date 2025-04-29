@@ -11,9 +11,13 @@ export default function useGetFullWrite(){
             try {
                 const result = await getFullWriteData();
                 setWriteData(result);
-            } catch (e) {
-                setIsError(true);
-            } finally {
+            }
+            catch (e: unknown) {
+                if(e instanceof Error){
+                    setIsError(true);
+                }
+            }
+            finally {
                 setIsLoad(false);
             }
         };

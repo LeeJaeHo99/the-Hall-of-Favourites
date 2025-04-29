@@ -22,7 +22,8 @@ export default function RankingSection() {
         if (!Array.isArray(memberData)) return [];
         return getTop5LatestLike(memberData);
     }, [memberData]);
-
+    console.log('top5: ', top5);
+    
     const chartData = useMemo(() => {
         return convertTop5Data(top5);
     }, [top5]);

@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import useGetWrite from "@/hooks/useGetWrite";
+import { WriteType } from '@/types/types';
 import Link from "next/link";
 import Category from "@/components/ui/Category";
-import ErrorMessage from "./ErrorMessage";
-import useGetWrite from "@/hooks/useGetWrite";
-import { WriteType } from '../../types/types';
 import BoardPreLoadComponent from "../spinner/BoardPreLoadComponent";
+import ErrorMessage from "./ErrorMessage";
 
 export default function BoardPreview() {
     const { recentWrite, likeSortedWrite, isLoad, isError } = useGetWrite();

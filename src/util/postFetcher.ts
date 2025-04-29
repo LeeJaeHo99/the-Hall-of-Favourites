@@ -1,10 +1,10 @@
-import {
-    PostLikePostType,
-    PostWriteType,
-    PostCommentType,
-} from "@/types/types";
+import { FetchDataType } from "@/types/types";
 
-async function postFetcher(api: string, body: any) {
+interface BodyType{
+    [key: string]: string;
+}
+
+async function postFetcher(api: string, body: BodyType) {
     try {
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_API_URL}/api/${api}`,
@@ -29,18 +29,20 @@ async function postFetcher(api: string, body: any) {
 
         return result?.data;
     }
-    catch (error: any) {
-        throw new Error(error.message || "요청 중 오류가 발생했습니다.");
+    catch (e: unknown) {
+        if (e instanceof Error) {
+            throw new Error(e.message || "요청 중 오류가 발생했습니다.");
+        }
     }
 }
 
 // POST LIKE-POST
-export const postLikePost = ({ id }: PostLikePostType) => {
+export const postLikePost = ({ id }: FetchDataType) => {
     return postFetcher("likePost", { postId: id });
 };
 
 // POST WRITE
-export const postWriteData = ({title, content, writer, pw}: PostWriteType) => {
+export const postWriteData = ({title, content, writer, pw}: FetchDataType) => {
     return postFetcher("postWrite", {
         title: title,
         content: content,
@@ -50,7 +52,7 @@ export const postWriteData = ({title, content, writer, pw}: PostWriteType) => {
 };
 
 // POST COMMENT
-export const postCommentData = ({ id, name, text, pw }: PostCommentType) => {
+export const postCommentData = ({ id, name, text, pw }: FetchDataType) => {
     return postFetcher("postComment", {
         postId: id,
         name: name,

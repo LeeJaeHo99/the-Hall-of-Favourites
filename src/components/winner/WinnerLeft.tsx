@@ -1,8 +1,9 @@
 import Image from "next/image";
+import { WinnerLeftPropsType } from '@/types/types';
 import { motion } from "motion/react";
 import MusicThumbnail from "../ui/MusicThumnail";
 
-export default function WinnerLeft({ song, group }) {
+export default function WinnerLeft({ song, group }: WinnerLeftPropsType) {
     return (
         <div className="left-content">
             <motion.div

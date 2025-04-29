@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { checkIsBlindTime, checkIsCollectingTime, checkIsAnounceTime } from "@/util/setChartTime";
 
 export default function useChartTime(){
-    const [isBlindTime, setIsBlindTime] = useState(checkIsBlindTime());
-    const [isCollectingTime, setIsCollectingTime] = useState(checkIsCollectingTime());
-    const [isAnouncingTime, setIsAnouncingTime] = useState(checkIsAnounceTime());
+    const [isBlindTime, setIsBlindTime] = useState<boolean>(checkIsBlindTime());
+    const [isCollectingTime, setIsCollectingTime] = useState<boolean>(checkIsCollectingTime());
+    const [isAnouncingTime, setIsAnouncingTime] = useState<boolean>(checkIsAnounceTime());
 
     useEffect(() => {
         const interval = setInterval(() => {

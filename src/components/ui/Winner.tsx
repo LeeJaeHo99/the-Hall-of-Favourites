@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useIsSunday } from "@/store/store";
 import party from "party-js";
 import ErrorMessage from "./ErrorMessage";
@@ -48,12 +48,8 @@ export default function Winner() {
         }
     }, [memberData]);
 
-    if(Array.isArray(memberData) || isLoad){
-        return(
-            <WinnerLoadComponent/>
-        ) 
-    } 
-    if(isError) return <ErrorMessage test={'우승자 정보를 불러오던 중 에러가 발생하였습니다.'}/>
+    if(Array.isArray(memberData) || isLoad) return <WinnerLoadComponent/> 
+    if(isError) return <ErrorMessage text={'우승자 정보를 불러오던 중 에러가 발생하였습니다.'}/>
 
     return (
         <div className="winner">

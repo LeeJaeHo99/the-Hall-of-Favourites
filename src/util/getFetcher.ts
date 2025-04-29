@@ -12,8 +12,10 @@ async function getFetcher(api: string) {
         if (!result?.data) throw new Error("서버에서 유효한 데이터를 받지 못했습니다.");
         return result.data;
     } 
-    catch (error) {
-        throw new Error(error.message || "네트워크 오류가 발생했습니다.");
+    catch (e: unknown) {
+        if(e instanceof Error){
+            throw new Error(e.message || "네트워크 오류가 발생했습니다.");
+        }
     }
 }
 

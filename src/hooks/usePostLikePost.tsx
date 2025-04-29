@@ -11,8 +11,10 @@ export default function usePostLikePost() {
             setIsPost(true);
             return result;
         }
-        catch (e) {
-            setIsPostError(true);
+        catch (e: unknown) {
+            if(e instanceof Error){
+                setIsPostError(true);
+            }
         } 
         finally {
             setIsPost(false);

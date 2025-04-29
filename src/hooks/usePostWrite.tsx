@@ -2,16 +2,19 @@ import { useState } from "react";
 import { postWriteData } from "@/util/postFetcher";
 
 export default function usePostWrite() {
-    const [isPost, setIsPost] = useState<boolean>(true);
+    const [isPost, setIsPost] = useState<boolean>(false);
     const [isPostError, setIsPostError] = useState<boolean>(false);
 
-    const postHandler = async (title, content, writer, pw) => {
+    const postHandler = async (title: string, content: string, writer: string, pw: string) => {
         try {
             const result = await postWriteData({ title, content, writer, pw });
+            setIsPost(true);
             return result;
         }
-        catch (e) {
-            setIsPostError(false);
+        catch (e: unknown) {
+            if(e instanceof Error){
+                setIsPostError(false);
+            }
         } 
         finally {
             setIsPost(false);

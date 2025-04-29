@@ -1,5 +1,4 @@
 import RadioBtn from "../ui/RadioBtn";
-import { AdminBtnProps } from '../../types/types';
 
 const btnId = [
     "멤버 데이터 관리",

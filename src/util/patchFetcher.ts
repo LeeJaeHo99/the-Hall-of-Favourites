@@ -1,6 +1,6 @@
-import { PatchEditWriteType } from "../types/types";
+import { FetchDataType } from "../types/types";
 
-async function patchFetcher(api: string, body: any) {
+async function patchFetcher(api: string, body: FetchDataType) {
     try {
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_API_URL}/api/${api}`,
@@ -19,8 +19,11 @@ async function patchFetcher(api: string, body: any) {
         const result = await res.json();
         if (!result?.data) throw new Error("수정된 데이터를 받지 못했습니다.");
         return result.data;
-    } catch (error: any) {
-        throw new Error(error.message || "수정 요청 중 오류가 발생했습니다.");
+    }
+    catch (e: unknown) {
+        if(e instanceof Error){
+            throw new Error(e.message || "수정 요청 중 오류가 발생했습니다.");
+        }
     }
 }
 
@@ -31,8 +34,11 @@ export const patchLikeMember = async (name: string) => {
             `likeMember?q=${encodeURIComponent(name)}`,
             { method: "PATCH" }
         );
-    } catch (error: any) {
-        alert(error.message || "오류가 발생했어요.");
+        return data;
+    } catch (e) {
+        if(e instanceof Error){
+            alert(e.message || "오류가 발생했어요.");
+        }
     }
 };
 
@@ -43,6 +49,6 @@ export const patchEditWrite = ({
     content,
     writer,
     pw,
-}: PatchEditWriteType) => {
+}: FetchDataType) => {
     return patchFetcher("editWrite", { id, title, content, writer, pw });
 };

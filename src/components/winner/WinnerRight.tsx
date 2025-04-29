@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
+import { WinnerRightPropsType } from '@/types/types';
 
-export default function WinnerRight({ victory, likeHistory, todayLike }) {
+export default function WinnerRight({ victory, likeHistory, todayLike }: WinnerRightPropsType) {
     return (
         <div className="right-content">
             <motion.div

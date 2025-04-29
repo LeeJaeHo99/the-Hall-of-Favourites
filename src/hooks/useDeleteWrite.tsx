@@ -10,9 +10,13 @@ export default function useDeleteWrite(){
             const result = await deleteWrite(id, pw);
             setisDeleteLoad(true);
             return result;
-        } catch (e) {
-            setisDeleteError(true);
-        } finally {
+        }
+        catch (e: unknown) {
+            if (e instanceof Error) {
+                setisDeleteError(true);
+            }
+        }
+        finally {
             setisDeleteLoad(false);
         }
     };

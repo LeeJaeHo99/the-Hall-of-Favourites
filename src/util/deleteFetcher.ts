@@ -13,8 +13,10 @@ async function deleteFetcher(api: string) {
 
         const result = await res.json();
         return result?.data;
-    } catch (error) {
-        throw new Error(error.message || "삭제 중 오류가 발생했습니다.");
+    } catch (e: unknown) {
+        if(e instanceof Error){
+            throw new Error(e.message || "삭제 중 오류가 발생했습니다.");
+        }
     }
 }
 

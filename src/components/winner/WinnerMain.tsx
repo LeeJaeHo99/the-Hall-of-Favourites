@@ -1,8 +1,10 @@
+import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "motion/react";
+import { WinnerMainPropsType } from '../../types/types';
 
-export default function WinnerMain({ targetRef, isSunday, groupL, groupU, nameKo, nameEn }) {
+export default function WinnerMain({ targetRef, isSunday, groupL, groupU, nameKo, nameEn }: WinnerMainPropsType) {
+    console.log('targetRef: ', targetRef);
     return (
         <motion.div
             initial={{ opacity: 0, scale: 0.5 }}

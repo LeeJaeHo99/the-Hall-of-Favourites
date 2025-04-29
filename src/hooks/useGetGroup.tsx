@@ -11,9 +11,13 @@ export default function useGetGroup() {
             try {
                 const result = await getGroupData();
                 setGroupData(result);
-            } catch (e) {
-                setIsError(true);
-            } finally {
+            }
+            catch (e: unknown) {
+                if(e instanceof Error){
+                    setIsError(true);
+                }
+            }
+            finally {
                 setIsLoad(false);
             }
         };

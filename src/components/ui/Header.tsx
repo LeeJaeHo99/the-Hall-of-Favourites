@@ -32,7 +32,11 @@ export default function Header() {
     );
 }
 
-function DescSite({onClick}) {
+interface DescSitePropsType{
+    onClick: () => void;
+}
+
+function DescSite({onClick}: DescSitePropsType) {
     return (
         <div className="desc-site--component">
             <div className="delete-btn" onClick={onClick}>X</div>

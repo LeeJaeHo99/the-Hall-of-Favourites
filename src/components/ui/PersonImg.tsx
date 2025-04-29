@@ -2,16 +2,16 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-import { PersonalImgProps } from "../../types/types";
 import JSConfetti from "js-confetti";
+import { PersonImgPropsType } from "../../types/types";
 
 export default function PersonImg({
     group,
     nameEn,
     trigger,
-}: PersonalImgProps) {
-    const imgRef = useRef(null);
-    const jsConfettiRef = useRef(null);
+}: PersonImgPropsType) {
+    const imgRef = useRef<HTMLCanvasElement>(null);
+    const jsConfettiRef = useRef<InstanceType<typeof JSConfetti> | null>(null);
 
     useEffect(() => {
         if (!jsConfettiRef.current && imgRef.current) {
@@ -23,7 +23,7 @@ export default function PersonImg({
 
     useEffect(() => {
         if (trigger === true && jsConfettiRef.current) {
-            jsConfettiRef.current.addConfetti({
+            jsConfettiRef.current?.addConfetti({
                 emojis: ['❤️', '💜', '💛', '💙', '💚'],
                 emojiSize: 60,
                 confettiNumber: 40,

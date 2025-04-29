@@ -1,8 +1,13 @@
 import { useState, useEffect } from "react";
 import { getNoticeData } from "@/util/getFetcher";
 
+interface NoticeDataType {
+    title: string;
+    content: string;
+}
+
 export default function useGetNotice(){
-    const [noticeData, setNoticeData] = useState([]);
+    const [noticeData, setNoticeData] = useState<NoticeDataType | null>(null);
     const [isLoad, setIsLoad] = useState<boolean>(true);
     const [isError, setIsError] = useState<boolean>(false);
 
@@ -11,9 +16,13 @@ export default function useGetNotice(){
             try {
                 const result = await getNoticeData();
                 setNoticeData(result[0]);
-            } catch (e) {
-                setIsError(true);
-            } finally {
+            }
+            catch (e: unknown) {
+                if(e instanceof Error){
+                    setIsError(true);
+                }
+            }
+            finally {
                 setIsLoad(false);
             }
         };

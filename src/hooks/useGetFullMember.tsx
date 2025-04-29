@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { getFullMemberData } from "@/util/getFetcher";
+import { MemberDataType } from '@/types/types';
 
 export default function useGetFullMember() {
-    const [memberData, setMemberData] = useState([]);
+    const [memberData, setMemberData] = useState<MemberDataType[]>([]);
     const [isLoad, setIsLoad] = useState<boolean>(true);
     const [isError, setIsError] = useState<boolean>(false);
 
@@ -11,9 +12,13 @@ export default function useGetFullMember() {
             try {
                 const result = await getFullMemberData();
                 setMemberData(result);
-            } catch (e) {
-                setIsError(true);
-            } finally {
+            }
+            catch (e: unknown) {
+                if(e instanceof Error){
+                    setIsError(true);
+                }
+            }
+            finally {
                 setIsLoad(false);
             }
         };

@@ -1,7 +1,14 @@
 import Image from "next/image";
-import { MusicThumbnailProps } from '../../types/types';
 
-export default function MusicThumbnail({song, group}: MusicThumbnailProps) {
+interface MusicThumbnailPropsType {
+    song: {
+        id: string;
+        title: string;
+    };
+    group: string;
+}
+
+export default function MusicThumbnail({song, group}: MusicThumbnailPropsType) {
     const thumbnail = `https://img.youtube.com/vi/${song?.id}/maxresdefault.jpg`;
 
     return (

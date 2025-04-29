@@ -18,7 +18,7 @@ export default function BoardWritePage() {
 }
 
 function BoardWrite() {
-    const { writeData, loadFullWrite, errorFullWrite, setWriteData}= useGetFullWrite();
+    const { writeData, isLoad, isError, setWriteData}= useGetFullWrite();
     const router = useRouter();
     const params = useParams();
 
@@ -83,7 +83,7 @@ function BoardWrite() {
         setPw('');
     }
     
-    if(loadFullWrite) return <div>123</div>
+    if(isLoad) return <div>123</div>
 
     return (
         <form onSubmit={onSubmitEditWrite}>

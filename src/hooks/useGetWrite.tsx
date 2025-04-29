@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
 import { getWriteData } from "@/util/getFetcher";
-import { getErrorMessage } from "@/util/setErrorMsg";
 import { WriteType } from '../types/types';
 
 export default function useGetWrite() {
     const [writeData, setWriteData] = useState<WriteType[]>();
     const [recentWrite, setRecentWrite] = useState<WriteType[]>([]);
     const [likeSortedWrite, setLikeSortedWrite] = useState<WriteType[]>([]); 
-    const [loadWrite, setLoadWrite] = useState<boolean>(true);
-    const [errorWrite, setErrorWrite] = useState<string>('null');
+    const [isLoad, setIsLoad] = useState<boolean>(true);
+    const [isError, setIsError] = useState<boolean>(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -16,9 +15,9 @@ export default function useGetWrite() {
                 const result = await getWriteData();
                 setWriteData(result);
             } catch (e) {
-                setErrorWrite(getErrorMessage(e));
+                setIsError(true);
             } finally {
-                setLoadWrite(false);
+                setIsLoad(false);
             }
         };
         fetchData();
@@ -35,5 +34,5 @@ export default function useGetWrite() {
         );
     }, [writeData]);
 
-    return { recentWrite, likeSortedWrite, loadWrite, errorWrite, setRecentWrite, setLikeSortedWrite };
+    return { recentWrite, likeSortedWrite, isLoad, isError, setRecentWrite, setLikeSortedWrite };
 }

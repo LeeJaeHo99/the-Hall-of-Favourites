@@ -2,17 +2,20 @@
 
 import { useMemo } from "react";
 import { getTop5LatestLike, convertTop5Data } from "@/util/setChartData";
+import useGetFullMember from "@/hooks/useGetFullMember";
+import useChartTime from "@/hooks/useChartTime";
+
+// 📀 COMPONENT
 import Title from "@/components/ui/Title";
 import RankChart from "../chart/RankChart";
 import BlindContent from "../chart/BlindContent";
 import CollectingContent from "../chart/CollectingContent";
 import AnouningContent from "../chart/AnouningContent";
-import useGetFullMember from "@/hooks/useGetFullMember";
-import useChartTime from "@/hooks/useChartTime";
+import RankingLoadComponent from "../spinner/RankingLoadComponent";
 import ErrorMessage from "../ui/ErrorMessage";
 
 export default function RankingSection() {
-    const { memberData, loading, error } = useGetFullMember();
+    const { memberData, isLoad, isError } = useGetFullMember();
     const {isBlindTime, isCollectingTime, isAnouncingTime} = useChartTime();
 
     const top5 = useMemo(() => {
@@ -24,8 +27,8 @@ export default function RankingSection() {
         return convertTop5Data(top5);
     }, [top5]);
 
-    // if(loading) return <Spinner/>
-    if(error) return <ErrorMessage text={error}/>
+    if(isLoad) return <RankingLoadComponent/>
+    if(isError) return <ErrorMessage text={'차트 데이터를 불러오던중 에러가 발생하였습니다.'}/>
 
     return (
         <section className="page-section ranking-section">

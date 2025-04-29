@@ -1,25 +1,21 @@
 import { useState } from "react";
 import { patchEditWrite } from "@/util/patchFetcher";
-import { getErrorMessage } from "@/util/setErrorMsg";
 
 export default function usePatchWrite() {
-    const [isPatching, setIsPatching] = useState(false);
-    const [patchError, setPatchError] = useState<string>("");
+    const [isPatch, setIsPatch] = useState<boolean>(true);
+    const [isPatchError, setIsPatchError] = useState<boolean>(false);
 
     const patchHandler = async (editData) => {
-        setIsPatching(true);
-        setPatchError("");
-
         try {
             const result = await patchEditWrite(editData);
             return result;
         } catch (error) {
-            setPatchError(getErrorMessage(error.message));
+            setIsPatchError(true);
             throw error;
         } finally {
-            setIsPatching(false);
+            setIsPatch(false);
         }
     };
 
-    return { patchHandler, isPatching, patchError };
+    return { patchHandler, isPatch, isPatchError };
 }

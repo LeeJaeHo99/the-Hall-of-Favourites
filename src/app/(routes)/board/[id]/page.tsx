@@ -2,15 +2,18 @@
 
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
+import useGetFullWrite from "@/hooks/useGetFullWrite";
+
+// 📀 COMPONENT
 import Inner from "@/components/ui/Inner";
 import ContentTop from "@/components/board/ContentTop";
 import ContentMid from "@/components/board/ContentMid";
 import ContentBot from "@/components/board/ContentBot";
+import BoardViewLoadComponent from "@/components/spinner/BoardViewLoadComponent";
 import ErrorMessage from "@/components/ui/ErrorMessage";
-import useGetFullWrite from "@/hooks/useGetFullWrite";
 
 export default function BoardViewPage() {
-    const { writeData, loadFullWrite, errorFullWrite, setWriteData } = useGetFullWrite();
+    const { writeData, isLoad, isError, setWriteData } = useGetFullWrite();
     const params = useParams();
 
     useEffect(() => {
@@ -20,8 +23,8 @@ export default function BoardViewPage() {
         }
     }, [writeData]);
 
-    if(loadFullWrite) return <div>로딩</div>;
-    if(errorFullWrite) return <div>에러</div>;
+    if(isLoad) return <BoardViewLoadComponent/>;
+    if(isError) return <ErrorMessage text={'게시물을 불러오는 중 에러가 발생하였습니다.'}/>
 
     return (
         <div className="BoardViewPage sub-page">

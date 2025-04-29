@@ -2,13 +2,18 @@
 
 import { useState } from "react";
 import { useParams } from "next/navigation";
-import Image from "next/image";
-import Modal from "./Modal";
-import { ContentBotProps } from '../../types/types';
-import ErrorMessage from "../ui/ErrorMessage";
 import usePostComment from "@/hooks/usePostComment";
+import { CommentType } from '@/types/types';
 
-export default function ContentBot({ comment }: ContentBotProps) {
+// 📀 COMPONENT
+import Image from "next/image";
+import DeleteCommentModal from "./DeleteCommentModal";
+import ErrorMessage from "../ui/ErrorMessage";
+import LoadSpinner from "@/components/spinner/LoadSpinner";
+
+export default function ContentBot({ comment }: CommentType) {
+    console.log('comment: ', comment);
+    const { postHandler, isPost, isPostError } = usePostComment();
     const params = useParams();
     const id = params.id;
 
@@ -27,10 +32,9 @@ export default function ContentBot({ comment }: ContentBotProps) {
 
     const [isClickDelete, setIsClickDelete] = useState<number | null>(null);
     const onClickDelete = (i: number | null) => {
-            setIsClickDelete(i);
+        setIsClickDelete(i);
     };
 
-    const { postHandler, loadPostComment, errorPostComment } = usePostComment();
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -53,13 +57,16 @@ export default function ContentBot({ comment }: ContentBotProps) {
         window.location.reload();
     };
 
-    const onKeyDownEnter = (e) => {
+    const onKeyDownEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
             e.preventDefault();
             handleSubmit(e);
             window.location.reload();
         }
     };
+
+    if(isPost) return <LoadSpinner/>;
+    if(isPostError) return <ErrorMessage text={"댓글 작성중 에러가 발생하였습니다."}/>;
 
     return (
         <div className="content-bot">
@@ -76,14 +83,14 @@ export default function ContentBot({ comment }: ContentBotProps) {
                         </tr>
                     </thead>
                     <tbody>
-                        {comment?.length > 0 ? (
-                            comment?.map((data, i) => (
+                        {Array.isArray(comment) && comment?.length > 0 ? (
+                            comment?.map((data: CommentType, i: number) => (
                                 <tr key={i}>
                                     <td>{data.name}</td>
                                     <td>{data.text}</td>
                                     <td>
                                         {isClickDelete === i && (
-                                            <Modal
+                                            <DeleteCommentModal
                                                 setIsClickDelete={setIsClickDelete}
                                                 param={params.id}
                                                 index={i}
@@ -104,9 +111,7 @@ export default function ContentBot({ comment }: ContentBotProps) {
                                     </td>
                                 </tr>
                             ))
-                        ) : (
-                            <NoneComment />
-                        )}
+                        ) : <NoneComment />}
                     </tbody>
                 </table>
             </div>

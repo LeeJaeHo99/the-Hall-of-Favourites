@@ -2,21 +2,21 @@
 
 import { useState, useEffect } from "react";
 import { usePagination } from "@/store/store";
+import useGetFullWrite from "@/hooks/useGetFullWrite";
 
 // 📀 COMPONENT
-import Title from "@/components/ui/Title";
 import Inner from "@/components/ui/Inner";
+import Title from "@/components/ui/Title";
 import Board from "@/components/board/Board";
-import Pagination from "@/components/board/Pagination";
-import Category from "@/components/ui/Category";
 import BoardEdit from "@/components/board/BoardEdit";
 import BoardSearch from "@/components/board/BoardSearch";
+import Category from "@/components/ui/Category";
+import Pagination from "@/components/board/Pagination";
+import BoardLoadComponet from "@/components/spinner/BoardLoadComponet";
 import ErrorMessage from "@/components/ui/ErrorMessage";
-import useGetFullWrite from "@/hooks/useGetFullWrite";
-import BoardSkeleton from "@/components/skeleton/Skeleton";
 
 export default function BoardPage() {
-    const { writeData, loadFullWrite, errorFullWrite}= useGetFullWrite();
+    const { writeData, isLoad, isError}= useGetFullWrite();
     const { pagination, setPagination } = usePagination();
     const [category, setCategory] = useState(true);
 
@@ -32,7 +32,7 @@ export default function BoardPage() {
 
     // 🤖 WORK : isSearch === True && searchWord의 텍스트를 searchList에 filter 해서 넣음
     const [searchWord, setSearchWord] = useState("");
-    const [isSearch, setIsSearch] = useState(false);
+    const [isSearch, setIsSearch] = useState<boolean>(false);
     const [searchList, setSearchList] = useState([]);
 
     const onChangeSearchWord = (e) => {
@@ -51,6 +51,7 @@ export default function BoardPage() {
         setRecentWrite(
             [...writeData]?.reverse().slice(pagination * 7, (pagination + 1) * 7)
         );
+
         setLikeSortedWrite(
             [...writeData]
                 ?.sort((a, b) => {
@@ -62,8 +63,8 @@ export default function BoardPage() {
         );
     }, [writeData, pagination]);
 
-    if(!loadFullWrite) return <BoardSkeleton/>;
-    if(errorFullWrite) return <ErrorMessage text={'게시물을 불러오는 중 에러가 발생하였습니다.'}/>
+    if(isLoad) return <BoardLoadComponet/>;
+    if(isError) return <ErrorMessage text={'게시물을 불러오는 중 에러가 발생하였습니다.'}/>;
 
     return (
         <div className="BoardPage sub-page">
@@ -78,8 +79,8 @@ export default function BoardPage() {
                             <BoardSearch 
                                 searchWord={searchWord} 
                                 onChangeSearchWord={onChangeSearchWord} 
-                                isSearch={isSearch} 
-                                setIsSearch={setIsSearch}/>
+                                setIsSearch={setIsSearch}
+                            />
                         </div>
                         <Category
                             category={category}

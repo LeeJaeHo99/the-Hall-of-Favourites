@@ -2,7 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import useGetFullMember from "@/hooks/useGetFullMember";
+import usePatchLikeMember from "@/hooks/usePatchLikeMember";
 import { MemberMainContentProps, MemberDataType } from "@/types/types";
+
+
 import Inner from "@/components/ui/Inner";
 import Title from "@/components/ui/Title";
 import PersonImg from "@/components/ui/PersonImg";
@@ -10,8 +14,8 @@ import LeftContent from "@/components/info/MemberLeftContent";
 import RightContent from "@/components/info/MemberRightContent";
 import Story from "@/components/info/Story";
 import NoneInfo from "@/components/info/NoneInfo";
-import useGetFullMember from "@/hooks/useGetFullMember";
-import usePatchLikeMember from "@/hooks/usePatchLikeMember";
+import InfoLoadComponent from "@/components/spinner/InfoLoadComponent";
+import ErrorMessage from "@/components/ui/ErrorMessage";
 
 export default function MemberPage() {
     const [trigger, setTrigger] = useState(false);
@@ -21,8 +25,8 @@ export default function MemberPage() {
 
     const params = useSearchParams();
     const q = params.get("q");
-    const { memberData, loading, error } = useGetFullMember();
-    const { patchHandler, loadPathchLikeMem, errorPathchLikeMem } = usePatchLikeMember();
+    const { memberData, isLoad, isError } = useGetFullMember();
+    const { patchHandler, isPatch, isPatchError } = usePatchLikeMember();
     const [filteredMember, setFilteredMember] = useState<MemberDataType | null>(null);
 
     useEffect(() => {
@@ -51,20 +55,20 @@ export default function MemberPage() {
                     likeHistory: prev.likeHistory + 1
                 };
             });
-        } catch (err) {
+        } catch (e) {
             alert('오늘은 이미 좋아요를 눌렀습니다.');
         }
     };
     
 
-    if(loading) return <div>로딩중</div>
-    if(error) return <div>에러</div>
+    if(isLoad) return <InfoLoadComponent/>;
+    if(isError) return <ErrorMessage text={'멤버 정보를 불러오는 중 에러가 발생하였습니다.'}/>;
 
     return (
         <div className="MemberPage InfoPage sub-page">
             <Inner x={"column"} y={"between"}>
                 {
-                    filteredMember === undefined
+                    filteredMember === null
                         ? <NoneInfo/>
                         : (
                             <>

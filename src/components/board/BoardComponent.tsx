@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { WriteType } from '../../types/types';
+import { BoardTrPropsType } from '../../types/types';
 
 export function BoardHead() {
     const headText = ["제목", "작성자", "작성일시", "추천수"];
@@ -12,14 +12,14 @@ export function BoardHead() {
     );
 }
 
-export function BoardTr({ list }: WriteType) {
+export function BoardTr({ list }: BoardTrPropsType) {
     return (
         <tr>
             <td className="title-td">
                 <Link href={`/board/${list._id}`}>
                     <span className="title">{list.title}</span>
                     <span className="comment-num">
-                        [ {list.comment.length} ]
+                        [ {list.comment.length ?? 0} ]
                     </span>
                 </Link>
             </td>

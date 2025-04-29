@@ -1,11 +1,11 @@
 'use client';
 
 import { useState } from "react";
+import { BoardDeleteProps, ContentTopProps } from '../../types/types';
 import Link from "next/link";
 import Image from "next/image";
 import BoardEdit from "@/components/board/BoardEdit";
-import DeleteWriteModal from "@/components/ui/DeleteWriteModal";
-import { ContentTopProps, BoardDeleteProps } from '../../types/types';
+import DeleteWriteModal from "@/components/board/DeleteWriteModal";
 
 
 export default function ContentTop({

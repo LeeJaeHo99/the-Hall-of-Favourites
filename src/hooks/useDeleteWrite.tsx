@@ -1,24 +1,21 @@
 import { useState } from "react";
 import { deleteWrite } from "@/util/deleteFetcher";
-import { getErrorMessage } from "@/util/setErrorMsg";
 
 export default function useDeleteWrite(){
-    const [loadDeleteWrite, setLoadDeleteWrite] = useState<boolean>(true);
-    const [errorDeleteWrite, setErrorDeleteWrite] = useState<string>('');
+    const [isDeleteLoad, setisDeleteLoad] = useState<boolean>(false);
+    const [isDeleteError, setisDeleteError] = useState<boolean>(false);
 
     const deleteHandler = async (id: string, pw: string) => {
-        setLoadDeleteWrite(true);
-        setErrorDeleteWrite("");
-
         try {
             const result = await deleteWrite(id, pw);
+            setisDeleteLoad(true);
             return result;
-        } catch (err) {
-            setErrorDeleteWrite(getErrorMessage(err));
+        } catch (e) {
+            setisDeleteError(true);
         } finally {
-            setLoadDeleteWrite(false);
+            setisDeleteLoad(false);
         }
     };
 
-    return { deleteHandler, loadDeleteWrite, errorDeleteWrite };
+    return { deleteHandler, isDeleteLoad, isDeleteError };
 }

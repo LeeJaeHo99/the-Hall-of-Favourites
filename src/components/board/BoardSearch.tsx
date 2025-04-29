@@ -1,7 +1,8 @@
 import Image from "next/image";
+import { BoardSearchPropsType } from '@/types/types';
 
-export default function BoardSearch({searchWord, onChangeSearchWord, isSearch, setIsSearch}) {
-    const onKeyDown = (e) => {
+export default function BoardSearch({searchWord, onChangeSearchWord, setIsSearch}: BoardSearchPropsType) {
+    const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if(e.key === 'Enter'){
             if(searchWord === ''){
                 alert('검색어를 입력해주세요.');
@@ -9,7 +10,6 @@ export default function BoardSearch({searchWord, onChangeSearchWord, isSearch, s
             }
 
             setIsSearch(false);
-
             setTimeout(() => {
                 setIsSearch(true);
             }, 1);
@@ -21,7 +21,6 @@ export default function BoardSearch({searchWord, onChangeSearchWord, isSearch, s
             return;
         }
         setIsSearch(false);
-
         setTimeout(() => {
             setIsSearch(true);
         }, 1);

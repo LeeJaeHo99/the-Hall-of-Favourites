@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import { getGroupData } from "@/util/getFetcher";
-import { getErrorMessage } from "@/util/setErrorMsg";
 
 export default function useGetGroup() {
     const [groupData, setGroupData] = useState();
-    const [loadGroup, setLoadGroup] = useState<boolean>(true);
-    const [errorGroup, setErrorGroup] = useState<string>('');
+    const [isLoad, setIsLoad] = useState<boolean>(true);
+    const [isError, setIsError] = useState<boolean>(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -13,13 +12,13 @@ export default function useGetGroup() {
                 const result = await getGroupData();
                 setGroupData(result);
             } catch (e) {
-                setErrorGroup(getErrorMessage(e));
+                setIsError(true);
             } finally {
-                setLoadGroup(false);
+                setIsLoad(false);
             }
         };
         fetchData();
     }, []);
 
-    return { groupData, loadGroup, errorGroup };
+    return { groupData, isLoad, isError };
 }

@@ -8,13 +8,14 @@ import useGetFullMember from "@/hooks/useGetFullMember";
 import WinnerMain from "../winner/WinnerMain";
 import WinnerLeft from "../winner/WinnerLeft";
 import WinnerRight from "../winner/WinnerRight";
+import WinnerLoadComponent from "../spinner/WinnerLoadComponent";
 
 
 export default function Winner() {
     const isSunday = useIsSunday((state) => state.isSunday);
     const targetRef = useRef(null);
 
-    const { memberData, loadFullMem, errorFullMem, setMemberData } = useGetFullMember();
+    const { memberData, isLoad, isError, setMemberData } = useGetFullMember();
 
     useEffect(() => {
         if (targetRef.current) {
@@ -47,11 +48,12 @@ export default function Winner() {
         }
     }, [memberData]);
 
-    if(Array.isArray(memberData) || loadFullMem){
+    if(Array.isArray(memberData) || isLoad){
         return(
-            <div>12345</div>
+            <WinnerLoadComponent/>
         ) 
     } 
+    if(isError) return <ErrorMessage test={'우승자 정보를 불러오던 중 에러가 발생하였습니다.'}/>
 
     return (
         <div className="winner">

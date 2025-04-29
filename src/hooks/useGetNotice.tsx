@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import { getNoticeData } from "@/util/getFetcher";
-import { getErrorMessage } from "@/util/setErrorMsg";
 
 export default function useGetNotice(){
     const [noticeData, setNoticeData] = useState([]);
-    const [loadFullNotice, setLoadFullNotice] = useState<boolean>(true);
-    const [errorFullNotice, setErrorFullNotice] = useState<string>('');
+    const [isLoad, setIsLoad] = useState<boolean>(true);
+    const [isError, setIsError] = useState<boolean>(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -13,13 +12,13 @@ export default function useGetNotice(){
                 const result = await getNoticeData();
                 setNoticeData(result[0]);
             } catch (e) {
-                setErrorFullNotice(getErrorMessage(e));
+                setIsError(true);
             } finally {
-                setLoadFullNotice(false);
+                setIsLoad(false);
             }
         };
         fetchData();
     }, []);
 
-    return { noticeData, loadFullNotice, errorFullNotice, setNoticeData };
+    return { noticeData, isLoad, isError, setNoticeData };
 }

@@ -1,4 +1,5 @@
 import { BoardHead, BoardTr, NoneSearchWord } from "./BoardComponent";
+import {BoardPropsType} from '@/types/types';
 
 export default function Board({
     category,
@@ -6,7 +7,7 @@ export default function Board({
     likeSortedWrite,
     isSearch,
     searchList,
-}) {
+}: BoardPropsType) {
     return (
         <table className="board">
             <thead>
@@ -15,7 +16,7 @@ export default function Board({
             <tbody>
                 {isSearch 
                     ? (
-                    searchList?.length > 0 
+                    searchList.length > 0 
                         ? searchList?.map((list) => <BoardTr key={list._id} list={list} />) // 검색 결과
                         : <NoneSearchWord/>
                     ) 
@@ -27,4 +28,3 @@ export default function Board({
         </table>
     );
 }
-

@@ -284,6 +284,11 @@
             text-shadow: 0 0 16px $primary;
         }
     }
+    .group-link--btn-load{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
 }
 
 .board-preview {
@@ -514,6 +519,12 @@
     }
 }
 
+.victory-history--load{
+    > div{
+        width: 100%;
+    }
+}
+
 .pagination-wrap{
     display: flex;
     align-items: center;
@@ -661,5 +672,16 @@
     }
     .search-bar{
         margin: 0 auto 80px;
+    }
+}
+
+.error-message{
+    padding-bottom: 80px;
+    
+    .blur-box{
+        padding: 32px;
+        border-radius: 12px;
+        font-family: 'gs-b';
+        font-size: 32px;
     }
 }

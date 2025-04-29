@@ -1,12 +1,14 @@
 'use client';
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Image from "next/image";
 import { ProfileProps } from "@/types/types";
 import useGetFullMember from "@/hooks/useGetFullMember";
+import VictoryHistoryLoadComponent from "../spinner/VictoryHistoryLoadComponent";
+import ErrorMessage from "./ErrorMessage";
 
 export default function VictoryHistory() {
-    const { memberData, loadFullMem, errorFullMem, setMemberData } = useGetFullMember();
+    const { memberData, isLoad, isError, setMemberData } = useGetFullMember();
 
     useEffect(() => {
         setMemberData(memberData?.sort((a, b) => {
@@ -16,7 +18,8 @@ export default function VictoryHistory() {
         }).slice(0, 3));
     }, []);
 
-    if(loadFullMem) return <div>123</div>;
+    if(isLoad) return <VictoryHistoryLoadComponent/>
+    if(isError) return <ErrorMessage text={'우승 데이터를 불러오던 중 에러가 발생하였습니다.'}/>;
 
     return (
         <div className="victory-history blur-box">

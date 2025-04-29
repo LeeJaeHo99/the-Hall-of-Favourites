@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
-import { getErrorMessage } from "@/util/setErrorMsg";
 import { getFullMemberData } from "@/util/getFetcher";
 
 export default function useGetFullMember() {
     const [memberData, setMemberData] = useState([]);
-    const [loadFullMem, setLoadFullMem] = useState<boolean>(true);
-    const [errorFullMem, setErrorFullMem] = useState<string>('');
+    const [isLoad, setIsLoad] = useState<boolean>(true);
+    const [isError, setIsError] = useState<boolean>(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -13,13 +12,13 @@ export default function useGetFullMember() {
                 const result = await getFullMemberData();
                 setMemberData(result);
             } catch (e) {
-                setErrorFullMem(getErrorMessage(e));
+                setIsError(true);
             } finally {
-                setLoadFullMem(false);
+                setIsLoad(false);
             }
         };
         fetchData();
     }, []);
 
-    return { memberData, loadFullMem, errorFullMem, setMemberData };
+    return { memberData, isLoad, isError, setMemberData };
 };

@@ -1,24 +1,20 @@
 import { useState } from "react";
 import { deleteComment } from "@/util/deleteFetcher";
-import { getErrorMessage } from "@/util/setErrorMsg";
 
 export default function useDeleteCommnet(){
-    const [loadDeleteComment, setLoadDeleteComment] = useState<boolean>(true);
-    const [errorDeleteComment, setErrorDeleteComment] = useState<string>('');
+    const [isDeleteLoad, setisDeleteLoad] = useState<boolean>(true);
+    const [isDeleteError, setisDeleteError] = useState<boolean>(false);
 
     const deleteHandler = async (param: number, index: number, pw: string) => {
-        setLoadDeleteComment(true);
-        setErrorDeleteComment("");
-
         try {
             const result = await deleteComment(param, index, pw);
             return result;
-        } catch (err) {
-            setErrorDeleteComment(getErrorMessage(err));
+        } catch (e) {
+            setisDeleteError(true);
         } finally {
-            setLoadDeleteComment(false);
+            setisDeleteLoad(false);
         }
     };
 
-    return { deleteHandler, loadDeleteComment, errorDeleteComment };
+    return { deleteHandler, isDeleteLoad, isDeleteError };
 }

@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import { getFullWriteData } from "@/util/getFetcher";
-import { getErrorMessage } from "@/util/setErrorMsg";
 
 export default function useGetFullWrite(){
     const [writeData, setWriteData] = useState([]);
-    const [loadFullWrite, setLoadFullWrite] = useState<boolean>(true);
-    const [errorFullWrite, setErrorFullWrite] = useState<string>('');
+    const [isLoad, setIsLoad] = useState<boolean>(true);
+    const [isError, setIsError] = useState<boolean>(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -13,13 +12,13 @@ export default function useGetFullWrite(){
                 const result = await getFullWriteData();
                 setWriteData(result);
             } catch (e) {
-                setErrorFullWrite(getErrorMessage(e));
+                setIsError(true);
             } finally {
-                setLoadFullWrite(false);
+                setIsLoad(false);
             }
         };
         fetchData();
     }, []);
 
-    return { writeData, loadFullWrite, errorFullWrite, setWriteData };
+    return { writeData, isLoad, isError, setWriteData };
 }

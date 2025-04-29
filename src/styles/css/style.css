@@ -136,7 +136,7 @@ body {
 }
 
 .sub-page {
-  padding-top: 160px;
+  padding: 160px 0;
   background: linear-gradient(to bottom, #1e1b3a, #15132a, #0e0c1f);
 }
 .sub-page .title-left {
@@ -604,6 +604,11 @@ footer {
   color: #8e65ab;
   text-shadow: 0 0 16px #8e65ab;
 }
+.group-link-btn--wrap .group-link--btn-load {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
 
 .board-preview {
   width: 100%;
@@ -796,6 +801,10 @@ footer {
   color: lightcoral;
 }
 
+.victory-history--load > div {
+  width: 100%;
+}
+
 .pagination-wrap {
   display: flex;
   align-items: center;
@@ -937,6 +946,16 @@ footer {
 }
 .none-info--component .search-bar {
   margin: 0 auto 80px;
+}
+
+.error-message {
+  padding-bottom: 80px;
+}
+.error-message .blur-box {
+  padding: 32px;
+  border-radius: 12px;
+  font-family: "gs-b";
+  font-size: 32px;
 }
 
 .home {

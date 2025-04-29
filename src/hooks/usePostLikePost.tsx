@@ -1,26 +1,23 @@
 import { useState } from "react";
 import { postLikePost } from "@/util/postFetcher";
-import { getErrorMessage } from "@/util/setErrorMsg";
 
 export default function usePostLikePost() {
-    const [loadPostLikePost, setLoadPostLikePost] = useState<boolean>(true);
-    const [errorPostLikePost, setErrorPostLikePost] = useState<string | null>(null);
+    const [isPost, setIsPost] = useState<boolean>(false);
+    const [isPostError, setIsPostError] = useState<boolean>(false);
 
     const postHandler = async (id: string) => {
-        setLoadPostLikePost(true);
-        setErrorPostLikePost(null);
-
         try {
             const result = await postLikePost({ id });
+            setIsPost(true);
             return result;
         }
         catch (e) {
-            setErrorPostLikePost(getErrorMessage(e));
+            setIsPostError(true);
         } 
         finally {
-            setLoadPostLikePost(false);
+            setIsPost(false);
         }
     };
 
-    return { postHandler, loadPostLikePost, errorPostLikePost };
+    return { postHandler, isPost, isPostError };
 }

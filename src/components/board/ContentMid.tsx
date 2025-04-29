@@ -2,12 +2,15 @@
 
 import { useParams } from "next/navigation";
 import Image from "next/image";
-import {ContentMidProps} from "@/types/types";
 import usePostLikePost from "@/hooks/usePostLikePost";
 
-export default function ContentMid({ content }: ContentMidProps) {
+// 📀 COMPONENT
+import LoadSpinner from "../spinner/LoadSpinner";
+import ErrorMessage from "../ui/ErrorMessage";
+
+export default function ContentMid({ content }) {
     const params = useParams();
-    const { postHandler, loadPostLikePost, errorPostLikePost } = usePostLikePost();
+    const { postHandler, isPost, isPostError } = usePostLikePost();
 
     const handleLike = async () => {
         try {
@@ -31,6 +34,9 @@ export default function ContentMid({ content }: ContentMidProps) {
             alert("추천 중 오류 발생");
         }
     };
+
+    if(isPost) return <LoadSpinner/>;
+    if(isPostError) return <ErrorMessage text={"게시물 추천 중 에러가 발생하였습니다."}/>
 
     return (
         <div className="content-mid">

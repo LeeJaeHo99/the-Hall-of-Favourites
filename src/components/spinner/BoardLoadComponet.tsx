@@ -1,19 +1,18 @@
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
 
 // 📀 COMPONENT
-import Title from "@/components/ui/Title";
 import Inner from "@/components/ui/Inner";
-import Category from "@/components/ui/Category";
+import Title from "@/components/ui/Title";
 import BoardEdit from "@/components/board/BoardEdit";
 import BoardSearch from "@/components/board/BoardSearch";
+import Category from "@/components/ui/Category";
 import Pagination from "@/components/board/Pagination";
+import LoadSpinner from "./LoadSpinner";
 
 const loadFn = () => {
     console.log("loading");
 };
 
-export default function BoardSkeleton() {
+export default function BoardLoadComponet() {
     return (
         <div className="BoardPage sub-page">
             <Inner x={"column"} y={"center"}>
@@ -43,17 +42,10 @@ export default function BoardSkeleton() {
                             rightText={"인기순"}
                         />
                     </div>
-                    {Array.from({ length: 6 }).map((_, idx) => (
-                        <div key={idx}>
-                            <Skeleton
-                                height={32}
-                                style={{ marginBottom: 8 }}
-                            />
-                        </div>
-                    ))}
+                    <LoadSpinner/>
                     <Pagination
-                        data={''}
-                        pagination={''}
+                        data={""}
+                        pagination={""}
                         setPagination={loadFn}
                     />
                 </div>

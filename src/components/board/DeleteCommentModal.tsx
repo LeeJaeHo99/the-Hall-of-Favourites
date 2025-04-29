@@ -1,22 +1,30 @@
 "use client";
 
-import useDeleteWrite from "@/hooks/useDeleteWrite";
-import useGetWrite from "@/hooks/useGetWrite";
-import Image from "next/image";
-import { useRouter, useParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { useParams } from "next/navigation";
+import useDeleteCommnet from "@/hooks/useDeleteComment";
+import useGetWrite from "@/hooks/useGetWrite";
+import { DeleteCommentModalPropstype } from '@/types/types';
 
-export default function DeleteWriteModal({ onClick }) {
-    const { recentWrite, likeSortedWrite, loadWrite, errorWrite, setRecentWrite } = useGetWrite();
-    const { deleteHandler, loadDeleteWrite, errorDeleteWrite } = useDeleteWrite();
-    const router = useRouter();
+// 📀 COMPONENT
+import Image from "next/image";
+import ErrorMessage from "@/components/ui/ErrorMessage";
+import LoadSpinner from "../spinner/LoadSpinner";
+
+export default function DeleteCommentModal({ setIsClickDelete, param, index }: DeleteCommentModalPropstype) {
+    const { recentWrite, likeSortedWrite, isLoad, isError, setRecentWrite } = useGetWrite();
+    const { deleteHandler, isDeleteLoad, isDeleteError } = useDeleteCommnet();
+
     const params = useParams();
-
     const inputRef = useRef(null);
     const [inputPw, setInputPw] = useState("");
     const onChangePw = (e) => {
         setInputPw(e.target.value);
     };
+
+    const closeModal = () => {
+        setIsClickDelete(null);
+    }
 
     useEffect(() => {
         if (inputRef.current) {
@@ -31,26 +39,26 @@ export default function DeleteWriteModal({ onClick }) {
         }
     }, [recentWrite]);
 
-
     const onSubmitDelete = async (e) => {
         e.preventDefault();
-        if(inputPw === ''){
+
+        if(inputPw.length !== 4){
             alert('비밀번호를 입력해주세요');
             return;
         }
-        const result = await deleteHandler(recentWrite?._id, inputPw);
+        
+        const result = await deleteHandler(param, index, inputPw);
 
         if (result === 'success') {
-            alert("게시글이 삭제되었습니다.");
-            router.push('/board');
+            window.location.reload();
         } else {
-            alert('게시물 삭제가 실패하였습니다.');
+            alert('삭제가 실패하였습니다.');
         }
     }
 
     return (
         <div className="modal-wrap blur-box">
-            <div className="calcel-btn" onClick={onClick}>
+            <div className="calcel-btn" onClick={closeModal}>
                 <Image
                     src={"/icons/x-white.png"}
                     width={8}

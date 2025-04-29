@@ -1,9 +1,23 @@
 import Image from "next/image";
 
-export function InputLabel({ id, title, value, onChange, placeHolder, length, type }) {
+interface LabelPropsType<T> {
+    id: string;
+    title: string;
+    value: string;
+    onChange: (e: React.ChangeEvent<T>) => void;
+    placeHolder: string;
+    length: number;
+}
+
+type InputLabelPropsType = LabelPropsType<HTMLInputElement> & { type: string };
+type TextAreaLabelPropsType = LabelPropsType<HTMLTextAreaElement>;
+
+export function InputLabel({ id, title, value, onChange, placeHolder, length, type }: InputLabelPropsType) {
     return (
         <label htmlFor={`${id}`} className="blur-box">
-            <span>{title}</span>
+            <div className="title-wrap">
+                <span>{title}</span>
+            </div>
             <input
                 value={value}
                 onChange={onChange}
@@ -16,10 +30,12 @@ export function InputLabel({ id, title, value, onChange, placeHolder, length, ty
     );
 }
 
-export function TextAreaLabel({ id, title, value, onChange, placeHolder, length }) {
+export function TextAreaLabel({ id, title, value, onChange, placeHolder, length }: TextAreaLabelPropsType) {
     return (
         <label htmlFor={`${id}`} className="blur-box">
-            <span>{title}</span>
+            <div className="title-wrap">
+                <span>{title}</span>
+            </div>
             <textarea
                 value={value}
                 onChange={onChange}

@@ -375,6 +375,10 @@
                                         left: 50%;
                                         transform: translateX(-50%);
                                     }
+                                    button:not(.modal-wrap button){
+                                        background: #a5a5a5;
+                                        border-radius: 4px;
+                                    }
                                 }
                                 &.none-comment{
                                     font-family: 'gs-m';
@@ -400,24 +404,25 @@
 
         label{
             display: flex;
-            align-items: center;
+            align-items: stretch;
             justify-content: flex-start;
             gap: 12px;
             width: 100%;
-            padding: 8px 0;
             border-bottom: 1px solid $gray-text;
             
+            .title-wrap{
+                display: block;
+                width: 16%;
+                min-height: 40px;
+                margin: 0;
+                padding: 32px;
+                border-right: 2px solid $primary;
+            }
             &:nth-child(4){
                 border-bottom: none;
             }
         }
         span:not(.submit-btn span){
-            display: block;
-            width: 16%;
-            height: auto;
-            min-height: 40px;
-            padding: 12px;
-            border-right: 2px solid $primary;
             font-family: 'gs-l';
             font-size: 16px;
         }
@@ -427,6 +432,7 @@
         input, textarea{
             width: 80%;
             padding: 8px;
+            margin: 16px 0;
             border-radius: 6px;
             font-family: 'gs-m';
             font-size: 14px;

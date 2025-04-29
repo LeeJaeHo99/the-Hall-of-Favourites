@@ -20,25 +20,25 @@ function BoardWrite() {
     const router = useRouter();
 
     const [title, setTitle] = useState("");
-    const onChangeTitle = (e) => {
+    const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
         setTitle(e.target.value);
     };
     const [content, setContent] = useState("");
-    const onChangeContent = (e) => {
+    const onChangeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setContent(e.target.value);
     };
     const [writer, setWriter] = useState("");
-    const onChangeWriter = (e) => {
+    const onChangeWriter = (e: React.ChangeEvent<HTMLInputElement>) => {
         setWriter(e.target.value);
     };
     const [pw, setPw] = useState("");
-    const onChangePw = (e) => {
+    const onChangePw = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPw(e.target.value);
     };
 
-    const { postHandler, loadPostWrite, errorPostWrite } = usePostWrite();
+    const { postHandler } = usePostWrite();
     
-    const onSubmitWrite = async (e) => {
+    const onSubmitWrite = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         try {

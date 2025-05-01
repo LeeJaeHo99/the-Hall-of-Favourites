@@ -983,6 +983,9 @@ footer {
   div.BoardPage .inner .board-content--wrap .board-component > div > div {
     font-size: 12px;
   }
+  .pagination-wrap {
+    gap: 8px;
+  }
   .pagination-wrap div {
     font-size: 14px;
   }
@@ -1873,15 +1876,6 @@ footer {
 .announing-content {
   flex-direction: column;
   gap: 24px;
-}
-
-.GroupPage .inner {
-  align-items: flex-start;
-}
-.GroupPage .inner .group-img {
-  border-radius: 16px;
-  border-radius: 50%;
-  box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.2509803922);
 }
 
 .InfoPage {

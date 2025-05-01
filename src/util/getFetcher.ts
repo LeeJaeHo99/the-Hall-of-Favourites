@@ -31,16 +31,6 @@ export const getMemberData = () => {
     return getFetcher("getMember");
 };
 
-// Full-Group
-export const getFullGroupData = () => {
-    return getFetcher("getGroup?full=true");
-};
-
-// Group
-export const getGroupData = () => {
-    return getFetcher("getGroup");
-};
-
 // FULL-WRITE
 export const getFullWriteData = () => {
     return getFetcher("getWrite?full=true");

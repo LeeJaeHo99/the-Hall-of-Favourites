@@ -19,7 +19,7 @@ export function checkIsCollectingTime() {
     return h === 23 && m >= 50 && m <= 59;
     
     // test
-    // return h === 19 && m >= 30 && m <= 59;
+    // return h === 22 && m >= 30 && m <= 59;
 }
 
 // 첫 타임 순위 발표 (AM 00:00 ~ AM 00:59)

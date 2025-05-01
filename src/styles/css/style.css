@@ -600,10 +600,10 @@ footer {
   div.InfoPage .player-wraper {
     flex-direction: column;
   }
-  div.blind-content {
+  div.blind-content, div.collecting-content {
     height: 320px;
   }
-  div.blind-content p:first-child {
+  div.blind-content p:first-child, div.collecting-content p:first-child {
     font-size: 32px;
   }
 }
@@ -730,16 +730,16 @@ footer {
     width: 12px;
     height: 12px;
   }
-  div.blind-content {
+  div.blind-content, div.collecting-content {
     height: 240px;
   }
-  div.blind-content p:first-child {
+  div.blind-content p:first-child, div.collecting-content p:first-child {
     font-size: 26px;
   }
-  div.blind-content p:nth-child(2) {
+  div.blind-content p:nth-child(2), div.collecting-content p:nth-child(2) {
     font-size: 20px;
   }
-  div.blind-content .blind-rank--wrap {
+  div.blind-content .blind-rank--wrap, div.collecting-content .blind-rank--wrap {
     font-size: 14px;
   }
 }
@@ -862,17 +862,20 @@ footer {
   div.InfoPage .story-component .story span {
     font-size: 18px;
   }
-  div.blind-content {
+  div.blind-content, div.collecting-content {
     width: 100%;
   }
-  div.blind-content p:first-child {
+  div.blind-content p:first-child, div.collecting-content p:first-child {
     font-size: 20px;
   }
-  div.blind-content p:nth-child(2) {
+  div.blind-content p:nth-child(2), div.collecting-content p:nth-child(2) {
     font-size: 16px;
   }
-  div.blind-content .blind-rank--wrap {
+  div.blind-content .blind-rank--wrap, div.collecting-content .blind-rank--wrap {
     gap: 10px;
+  }
+  div.collecting-content {
+    font-size: 24px;
   }
 }
 @media screen and (max-width: 500px) {
@@ -1151,14 +1154,17 @@ footer {
   div.BoardPage .inner .board-content--wrap .board-editor .board-component--wrap a.board-edit--btn span {
     display: none;
   }
-  div.blind-content p:first-child {
+  div.blind-content p:first-child, div.collecting-content p:first-child {
     font-size: 16px;
   }
-  div.blind-content p:nth-child(2) {
+  div.blind-content p:nth-child(2), div.collecting-content p:nth-child(2) {
     font-size: 14px;
   }
-  div.blind-content .blind-rank--wrap {
+  div.blind-content .blind-rank--wrap, div.collecting-content .blind-rank--wrap {
     display: grid;
+  }
+  div.collecting-content {
+    font-size: 18px;
   }
 }
 @media screen and (max-width: 400px) {

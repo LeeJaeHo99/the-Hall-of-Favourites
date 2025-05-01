@@ -266,17 +266,6 @@
     div.BoardPage{
         .inner{
             .board-content--wrap{
-                .board{
-                    thead{
-                        tr{
-                            th{
-                                &:nth-child(3){
-                                    width: 14%;
-                                }
-                            }
-                        }
-                    }
-                }
                 .board-editor{
                     flex-direction: column;
 
@@ -293,6 +282,7 @@
                     .category-wrap{
                         justify-content: flex-end;
                         width: 100%;
+                        margin-bottom: 16px;
                     }
                 }
             }
@@ -368,7 +358,9 @@
                         thead{
                             tr{
                                 th{
-                                    &:first-child, 
+                                    &:first-child{
+                                        width: 24%;
+                                    }
                                     &:last-child{
                                         width: 20%;
                                     }
@@ -441,37 +433,6 @@
     div.InfoPage{
         .main-content--wrap{
             padding-top: 40px;
-        }
-    }
-}
-
-@media screen and (max-width: 720px){
-    div.BoardPage{
-        .board{
-            thead{
-                tr{
-                    th{
-                        font-size: 14px;
-                    }
-                }
-            }
-            tbody{
-                tr{
-                    td{
-                        font-size: 14px;
-                    }
-                    .title-td{
-                        a{
-                            .title{
-                                font-size: 14px;
-                            }
-                            .comment-num{
-                                font-size: 13px;
-                            }
-                        }
-                    }
-                }
-            }
         }
     }
 }
@@ -628,42 +589,15 @@
                 .board-editor{
                     .board-component--wrap{
                         padding: 16px;
+                        padding-top: 0;
 
                         .board-search--component{
                             flex-grow: 1;
                         }
                     }
                     .category-wrap{
-                        margin-bottom: 16px;
-
                         p{
                             font-size: 14px;
-                        }
-                    }
-                }
-                .board{
-                    thead{
-                        tr{
-                            th{
-                                font-size: 13px;
-
-                                &:nth-child(2){
-                                    width: 12%;
-                                }
-                                &:nth-child(3){
-                                    width: 16%;
-                                }
-                                &:nth-child(4){
-                                    width: 12%;
-                                }
-                            }
-                        }
-                    }
-                    tbody{
-                        tr{
-                            td{
-                                font-size: 13px;
-                            }
                         }
                     }
                 }
@@ -1024,6 +958,42 @@
             }
         }
     }
+    div.BoardPage{
+        .inner{
+            .board-content--wrap{
+                .board-component{
+                    > div{
+                        .title{
+                            margin-bottom: 8px;
+
+                            p{
+                                font-size: 14px;
+                            }
+                            .comment-num{
+                                font-size: 12px;
+                            }
+                        }
+                        > div{
+                            font-size: 12px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .pagination-wrap{
+        gap: 8px;
+        
+        div{
+            font-size: 14px;
+        }
+        .move-btn{
+            img{
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 480px){
@@ -1217,6 +1187,36 @@
             }
         }
     }
+    div.BoardPage{
+        .inner{
+            .board-content--wrap{
+                .board-editor{
+                    .category-wrap{
+                        margin-bottom: 0;
+                    }
+                    .board-component--wrap{
+                        gap: 8px;
+                        padding: 16px 0;
+
+                        a.board-edit--btn{
+                            width: auto;
+                            max-width: 76px;
+                            min-width: 28px;
+                            min-height: 28px;
+
+                            img{
+                                width: 10px;
+                                height: 10px;
+                            }
+                            span{
+                                display: none;
+                            }
+                        }
+                    }
+                } 
+            } 
+        } 
+    } 
 }
 
 @media screen and (max-width: 400px){

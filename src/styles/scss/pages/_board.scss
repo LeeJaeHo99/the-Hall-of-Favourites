@@ -23,7 +23,7 @@
                         display: flex;
                         align-items: center;
                         justify-content: space-between;
-                        width: 50%;
+                        width: 70%;
                         min-width: 200px;
                         height: 28px;
                         padding: 2px 6px;
@@ -75,6 +75,7 @@
                         margin-bottom: 12px;
                         
                         p{
+                            max-width: 85%;
                             color: $white-text;
                             overflow: hidden;
                             text-overflow: ellipsis;

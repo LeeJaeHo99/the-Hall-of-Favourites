@@ -526,9 +526,6 @@ footer {
   }
 }
 @media screen and (max-width: 960px) {
-  div.BoardPage .inner .board-content--wrap .board thead tr th:nth-child(3) {
-    width: 14%;
-  }
   div.BoardPage .inner .board-content--wrap .board-editor {
     flex-direction: column;
   }
@@ -542,6 +539,7 @@ footer {
   div.BoardPage .inner .board-content--wrap .board-editor .category-wrap {
     justify-content: flex-end;
     width: 100%;
+    margin-bottom: 16px;
   }
 }
 @media screen and (max-width: 860px) {
@@ -587,7 +585,10 @@ footer {
   div.inner .victory-history > div .box:nth-child(2) {
     font-size: 24px;
   }
-  div.BoardViewPage .board-content .content-bot .comment-wrap table thead tr th:first-child, div.BoardViewPage .board-content .content-bot .comment-wrap table thead tr th:last-child {
+  div.BoardViewPage .board-content .content-bot .comment-wrap table thead tr th:first-child {
+    width: 24%;
+  }
+  div.BoardViewPage .board-content .content-bot .comment-wrap table thead tr th:last-child {
     width: 20%;
   }
   div.BoardViewPage .board-content .content-bot .comment-form .info-wrap {
@@ -628,20 +629,6 @@ footer {
   }
   div.InfoPage .main-content--wrap {
     padding-top: 40px;
-  }
-}
-@media screen and (max-width: 720px) {
-  div.BoardPage .board thead tr th {
-    font-size: 14px;
-  }
-  div.BoardPage .board tbody tr td {
-    font-size: 14px;
-  }
-  div.BoardPage .board tbody tr .title-td a .title {
-    font-size: 14px;
-  }
-  div.BoardPage .board tbody tr .title-td a .comment-num {
-    font-size: 13px;
   }
 }
 @media screen and (max-width: 680px) {
@@ -747,30 +734,13 @@ footer {
 @media screen and (max-width: 630px) {
   div.BoardPage .inner .board-content--wrap .board-editor .board-component--wrap {
     padding: 16px;
+    padding-top: 0;
   }
   div.BoardPage .inner .board-content--wrap .board-editor .board-component--wrap .board-search--component {
     flex-grow: 1;
   }
-  div.BoardPage .inner .board-content--wrap .board-editor .category-wrap {
-    margin-bottom: 16px;
-  }
   div.BoardPage .inner .board-content--wrap .board-editor .category-wrap p {
     font-size: 14px;
-  }
-  div.BoardPage .inner .board-content--wrap .board thead tr th {
-    font-size: 13px;
-  }
-  div.BoardPage .inner .board-content--wrap .board thead tr th:nth-child(2) {
-    width: 12%;
-  }
-  div.BoardPage .inner .board-content--wrap .board thead tr th:nth-child(3) {
-    width: 16%;
-  }
-  div.BoardPage .inner .board-content--wrap .board thead tr th:nth-child(4) {
-    width: 12%;
-  }
-  div.BoardPage .inner .board-content--wrap .board tbody tr td {
-    font-size: 13px;
   }
 }
 @media screen and (max-width: 600px) {
@@ -1001,6 +971,25 @@ footer {
     font-size: 16px;
     letter-spacing: -1px;
   }
+  div.BoardPage .inner .board-content--wrap .board-component > div .title {
+    margin-bottom: 8px;
+  }
+  div.BoardPage .inner .board-content--wrap .board-component > div .title p {
+    font-size: 14px;
+  }
+  div.BoardPage .inner .board-content--wrap .board-component > div .title .comment-num {
+    font-size: 12px;
+  }
+  div.BoardPage .inner .board-content--wrap .board-component > div > div {
+    font-size: 12px;
+  }
+  .pagination-wrap div {
+    font-size: 14px;
+  }
+  .pagination-wrap .move-btn img {
+    width: 20px;
+    height: 20px;
+  }
 }
 @media screen and (max-width: 480px) {
   header div.inner .desc-site--component {
@@ -1118,6 +1107,26 @@ footer {
   }
   div.InfoPage .story-component .story span {
     font-size: 14px;
+  }
+  div.BoardPage .inner .board-content--wrap .board-editor .category-wrap {
+    margin-bottom: 0;
+  }
+  div.BoardPage .inner .board-content--wrap .board-editor .board-component--wrap {
+    gap: 8px;
+    padding: 16px 0;
+  }
+  div.BoardPage .inner .board-content--wrap .board-editor .board-component--wrap a.board-edit--btn {
+    width: auto;
+    max-width: 76px;
+    min-width: 28px;
+    min-height: 28px;
+  }
+  div.BoardPage .inner .board-content--wrap .board-editor .board-component--wrap a.board-edit--btn img {
+    width: 10px;
+    height: 10px;
+  }
+  div.BoardPage .inner .board-content--wrap .board-editor .board-component--wrap a.board-edit--btn span {
+    display: none;
   }
 }
 @media screen and (max-width: 400px) {
@@ -2051,7 +2060,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 50%;
+  width: 70%;
   min-width: 200px;
   height: 28px;
   padding: 2px 6px;
@@ -2099,6 +2108,7 @@ footer {
   margin-bottom: 12px;
 }
 .BoardPage .inner .board-content--wrap .board-component > div .title p {
+  max-width: 85%;
   color: #f5f7ff;
   overflow: hidden;
   text-overflow: ellipsis;

@@ -63,6 +63,9 @@
             }
         }
     }
+    div.BoardWritePage form div button{
+        min-width: 80px;
+    }
 }
 
 @media screen and (max-width: 1020px){
@@ -565,6 +568,25 @@
             }
         }
     }
+    div.BoardWritePage{
+        form{
+            label{
+                flex-direction: column;
+                gap: 0;
+
+                .title-wrap{
+                    width: 100%;
+                    padding: 16px;
+                    border-right: 0;
+                    border-bottom: 2px solid $primary;
+                }
+                input, textarea{
+                    width: 90%;
+                    margin-left: 16px;
+                }
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 500px){
@@ -592,6 +614,9 @@
                 .vote-timer{
                     font-size: 12px;
                 }
+            }
+            .desc-site--component{
+                bottom: -590%;
             }
         }
     }

@@ -396,6 +396,9 @@ footer {
   div.inner .page-section.board-history-section > div {
     width: 100%;
   }
+  div.BoardWritePage form div button {
+    min-width: 80px;
+  }
 }
 @media screen and (max-width: 1020px) {
   .home div.inner {
@@ -724,6 +727,20 @@ footer {
   div.home div.inner .title-wrap .section-title {
     font-size: 26px;
   }
+  div.BoardWritePage form label {
+    flex-direction: column;
+    gap: 0;
+  }
+  div.BoardWritePage form label .title-wrap {
+    width: 100%;
+    padding: 16px;
+    border-right: 0;
+    border-bottom: 2px solid #8e65ab;
+  }
+  div.BoardWritePage form label input, div.BoardWritePage form label textarea {
+    width: 90%;
+    margin-left: 16px;
+  }
 }
 @media screen and (max-width: 500px) {
   header div.inner {
@@ -749,6 +766,9 @@ footer {
   }
   header div.inner .vote-timer--wrap .vote-timer {
     font-size: 12px;
+  }
+  header div.inner .desc-site--component {
+    bottom: -590%;
   }
   div.home {
     padding: 160px 0 80px;
@@ -2152,7 +2172,7 @@ footer {
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
-  width: 80%;
+  width: 100%;
 }
 .BoardWritePage form label {
   display: flex;

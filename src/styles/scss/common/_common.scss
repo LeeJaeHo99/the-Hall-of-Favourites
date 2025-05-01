@@ -83,12 +83,16 @@ header {
             width: 30%;
 
             .vote-timer {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
                 font-family: "gs-l";
                 font-size: 18px;
 
                 span{
                     font-family: "gs-m";
-                    color: $primary;
+                    color: lightcoral;
                 }
             }
         }

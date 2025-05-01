@@ -72,7 +72,7 @@ function Profile({ nameKo, nameEn, group, history }: ProfileHistoryPropsType) {
                 alt="프로필 이미지"
             />
             <span>{nameKo}</span>
-            <div className="victory-num">역대 {history}회 우승 🏆</div>
+            <div className="victory-num">{history}회 우승 🏆</div>
         </div>
     );
 }

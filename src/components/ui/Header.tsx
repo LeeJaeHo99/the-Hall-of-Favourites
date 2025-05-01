@@ -16,7 +16,7 @@ export default function Header() {
     return (
         <header>
             <Inner x="between">
-                <div className={`burning ${isSaturday ? 'yes' : 'no'}`}>🔥 좋아요 버닝 데이 🔥</div>
+                <div className={`burning ${isSaturday ? 'yes' : 'no'}`}>🔥 버닝 데이 🔥</div>
                 <h1>
                     <Link href={"/"}>최애의 전당</Link>
                     <div className="site-desc" onClick={onClick}>

@@ -41,15 +41,14 @@ export default function RankingSection() {
                 title={"현재 TOP 5"}
                 desc={"매 시간 정각에 순위가 업데이트 됩니다."}
             />
-            {/* {isCollectingTime 
+            {isCollectingTime 
                 ? <CollectingContent />
                 : isBlindTime 
                     ? <BlindContent top5={top5} />
                     : isAnouncingTime
                         ? <AnouningContent/>
                         : <RankChart data={chartData} />
-            } */}
-            <RankChart data={chartData} />
+            }
         </section>
     );
 }

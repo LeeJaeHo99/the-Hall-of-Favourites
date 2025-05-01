@@ -66,14 +66,16 @@ export default function VoteTimer() {
     return (
         <div className="vote-timer">
             {statusInfo.status === "counting" ? (
-                "투표 집계 중입니다."
+                "집계 중입니다..."
             ) : (
                 <>
-                    투표 종료까지: <span>
+                    <p>⏰</p>
+                    <span>
                         {format(statusInfo.timeLeft!.hours)}:
                         {format(statusInfo.timeLeft!.minutes)}:
                         {format(statusInfo.timeLeft!.seconds)}
                     </span>
+                    <p>⏰</p>
                 </>
             )}
         </div>

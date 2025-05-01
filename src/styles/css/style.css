@@ -373,6 +373,12 @@ footer {
   .group-link-btn--wrap .group-link-btn {
     font-size: 14px;
   }
+  .BoardViewPage .board-content .content-bot .comment-form .write-wrap {
+    gap: 24px;
+  }
+  .BoardViewPage .board-content .content-bot .comment-form .write-wrap button {
+    min-width: 80px;
+  }
 }
 @media screen and (max-width: 1120px) {
   div.inner div.collecting-content {
@@ -497,6 +503,21 @@ footer {
   div.inner .victory-history > div .box:nth-child(2) {
     font-size: 24px;
   }
+  div.BoardViewPage .board-content .content-bot .comment-wrap table thead tr th:first-child, div.BoardViewPage .board-content .content-bot .comment-wrap table thead tr th:last-child {
+    width: 20%;
+  }
+  div.BoardViewPage .board-content .content-bot .comment-form .info-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  div.BoardViewPage .board-content .content-bot .comment-form .info-wrap label input {
+    width: 50%;
+    margin-left: 20px;
+  }
+  div.BoardViewPage .board-content .content-bot .comment-form .info-wrap label:last-child input {
+    margin-left: 6px;
+  }
 }
 @media screen and (max-width: 820px) {
   header div.inner {
@@ -556,6 +577,67 @@ footer {
   }
   div.inner .victory-history {
     padding: 140px 0 36px;
+  }
+  div.BoardViewPage .board-content .content-top {
+    padding-bottom: 12px;
+  }
+  div.BoardViewPage .board-content .content-top .title {
+    margin-bottom: 40px;
+  }
+  div.BoardViewPage .board-content .content-top .data-wrap > div {
+    flex-direction: column;
+    gap: 8px;
+    font-size: 13px;
+  }
+  div.BoardViewPage .board-content .content-top .data-wrap > div .date span {
+    font-size: 11px;
+  }
+  div.BoardViewPage .board-content .content-mid {
+    padding: 18px;
+    font-size: 16px;
+  }
+  div.BoardViewPage .board-content .content-mid .like-wrap > div {
+    width: 64px;
+    height: 64px;
+  }
+  div.BoardViewPage .board-content .content-mid .like-wrap > div img {
+    width: 32px;
+  }
+  div.BoardViewPage .board-content .content-mid .like-wrap > div span {
+    font-size: 12px;
+  }
+  div.BoardViewPage .board-content .content-bot .comment-wrap {
+    padding: 24px 0px;
+  }
+  div.BoardViewPage .board-content .content-bot .comment-form {
+    padding: 0;
+  }
+  div.BoardViewPage .board-content .content-bot .comment-form .info-wrap label input {
+    width: 65%;
+  }
+  div.BoardViewPage .board-content .content-bot .comment-form .info-wrap label:last-child input {
+    width: 63%;
+  }
+  div.BoardViewPage .board-content .content-bot .comment-form .write-wrap {
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+  div.BoardViewPage .board-content .content-bot .comment-form .write-wrap textarea {
+    width: 100%;
+  }
+  div.BoardViewPage .board-content .content-bot .comment-form .write-wrap button {
+    flex-direction: row;
+    width: 100%;
+    min-height: 44px;
+  }
+  div.board-edit--btn, a.board-edit--btn {
+    width: 76px;
+    font-size: 13px;
+  }
+  div.board-edit--btn img, a.board-edit--btn img {
+    width: 12px;
+    height: 12px;
   }
 }
 @media screen and (max-width: 600px) {
@@ -700,6 +782,42 @@ footer {
   div.home div.inner .group-link-btn--wrap .group-link-btn {
     width: 100%;
     padding: 13px;
+  }
+  div.BoardViewPage .board-content {
+    padding: 18px;
+  }
+  div.BoardViewPage .board-content .edit-btn {
+    flex-direction: column;
+    gap: 8px;
+  }
+  div.BoardViewPage .board-content .edit-btn .wrapper {
+    justify-content: flex-start;
+    order: 2;
+    width: 100%;
+  }
+  div.BoardViewPage .board-content .edit-btn .wrapper .board-edit--btn, div.BoardViewPage .board-content .edit-btn .wrapper .board-edit--btn {
+    width: 68px;
+    font-size: 12px;
+  }
+  div.BoardViewPage .board-content .edit-btn .wrapper .board-edit--btn img, div.BoardViewPage .board-content .edit-btn .wrapper .board-edit--btn img {
+    width: 10px;
+    height: 10px;
+  }
+  div.BoardViewPage .board-content .edit-btn .to-board {
+    width: 100%;
+  }
+  div.BoardViewPage .board-content .content-bot .comment-wrap .comment-num {
+    margin-bottom: 18px;
+  }
+  div.BoardViewPage .board-content .content-bot .comment-wrap table thead tr th {
+    font-size: 13px;
+  }
+  div.BoardViewPage .board-content .content-bot .comment-wrap table tbody tr td {
+    padding: 8px;
+    font-size: 13px;
+  }
+  div.BoardViewPage .board-content .content-bot .comment-form {
+    margin-bottom: 32px;
   }
 }
 @media screen and (max-width: 480px) {
@@ -1836,6 +1954,12 @@ footer {
   font-size: 14px;
   color: #878c9e;
 }
+.BoardViewPage .board-content .content-top .data-wrap > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
 .BoardViewPage .board-content .content-top .data-wrap span {
   font-family: "gs-m";
 }
@@ -1858,6 +1982,10 @@ footer {
   font-family: "gs-m";
   font-size: 18px;
   line-height: 1.4;
+}
+.BoardViewPage .board-content .content-mid p {
+  word-wrap: break-word;
+  line-height: 1.6;
 }
 .BoardViewPage .board-content .content-mid .like-wrap {
   display: flex;

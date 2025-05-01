@@ -39,7 +39,7 @@ export default function ContentMid({ content }) {
 
     return (
         <div className="content-mid">
-            {content}
+            <p>{content}</p>
             <div className="like-wrap">
                 <div onClick={handleLike}>
                     <Image

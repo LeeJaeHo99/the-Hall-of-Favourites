@@ -174,6 +174,12 @@
                 font-size: 14px;
                 color: $gray-text;
 
+                > div{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 12px;
+                }
                 span{
                     font-family: 'gs-m';
                 }
@@ -207,6 +213,10 @@
             font-size: 18px;
             line-height: 1.4;
 
+            p{
+                word-wrap: break-word;
+                line-height: 1.6;
+            }
             .like-wrap{
                 display: flex;
                 align-items: center;

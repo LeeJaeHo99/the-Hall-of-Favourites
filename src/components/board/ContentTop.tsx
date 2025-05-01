@@ -1,12 +1,11 @@
-'use client';
+"use client";
 
 import { useState } from "react";
-import { BoardDeleteProps, ContentTopProps } from '../../types/types';
+import { BoardDeleteProps, ContentTopProps } from "../../types/types";
 import Link from "next/link";
 import Image from "next/image";
 import BoardEdit from "@/components/board/BoardEdit";
 import DeleteWriteModal from "@/components/board/DeleteWriteModal";
-
 
 export default function ContentTop({
     title,
@@ -18,8 +17,8 @@ export default function ContentTop({
 }: ContentTopProps) {
     const [isModal, setIsModal] = useState(false);
     const onClickDeleteBtn = () => {
-        setIsModal(prev => !prev);
-    }
+        setIsModal((prev) => !prev);
+    };
 
     return (
         <>
@@ -30,8 +29,8 @@ export default function ContentTop({
                         text={"글 수정"}
                         link={`/write/${id}`}
                     />
-                    <BoardDelete style={"red"} onClick={onClickDeleteBtn}/>
-                    {isModal && <DeleteWriteModal onClick={onClickDeleteBtn}/>}
+                    <BoardDelete style={"red"} onClick={onClickDeleteBtn} />
+                    {isModal && <DeleteWriteModal onClick={onClickDeleteBtn} />}
                 </div>
                 <Link className="to-board" href={"/board"}>
                     게시판 목록으로 이동
@@ -40,17 +39,21 @@ export default function ContentTop({
             <div className="content-top">
                 <div className="title">{title}</div>
                 <div className="data-wrap">
-                    <div className="like">
-                        추천수: <span>{likeNum}</span>
+                    <div>
+                        <div className="like">
+                            추천수: <span>{likeNum}</span>
+                        </div>
+                        <div className="comment">
+                            댓글수: <span>{commentNum}</span>
+                        </div>
                     </div>
-                    <div className="comment">
-                        댓글수: <span>{commentNum}</span>
-                    </div>
-                    <div className="writer">
-                        작성자: <span>{writer}</span>
-                    </div>
-                    <div className="date">
-                        작성일: <span>{date}</span>
+                    <div>
+                        <div className="writer">
+                            작성자: <span>{writer}</span>
+                        </div>
+                        <div className="date">
+                            작성일: <span>{date}</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -58,12 +61,9 @@ export default function ContentTop({
     );
 }
 
-function BoardDelete({style, onClick}: BoardDeleteProps) {
+function BoardDelete({ style, onClick }: BoardDeleteProps) {
     return (
-        <div
-            className={`board-edit--btn blur-box ${style}`}
-            onClick={onClick}
-        >
+        <div className={`board-edit--btn blur-box ${style}`} onClick={onClick}>
             <Image
                 src={"/icons/write.png"}
                 width={14}

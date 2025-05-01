@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { useIsSunday } from "@/store/store";
+import { useState, useEffect, useRef } from "react";
 import party from "party-js";
 import ErrorMessage from "./ErrorMessage";
 import useGetFullMember from "@/hooks/useGetFullMember";
@@ -12,9 +11,12 @@ import WinnerLoadComponent from "../spinner/WinnerLoadComponent";
 
 
 export default function Winner() {
-    const isSunday = useIsSunday((state) => state.isSunday);
+    const [isSunday, setIsSunday] = useState(false);
+    useEffect(() => {
+        setIsSunday(new Date().getDay() === 0);
+    }, []);
+    
     const targetRef = useRef(null);
-
     const { memberData, isLoad, isError, setMemberData } = useGetFullMember();
 
     useEffect(() => {

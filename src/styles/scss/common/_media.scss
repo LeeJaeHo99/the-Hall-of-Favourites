@@ -1164,6 +1164,20 @@
                     }
                 }
             }
+            .search-bar{
+                width: 100%;
+                padding: 8px;
+
+                > div{
+                    gap: 12px;
+                }
+                button{
+                    img{
+                        width: 14px;
+                        height: 14px;
+                    }
+                }
+            }
         }
     }
     div.InfoPage{

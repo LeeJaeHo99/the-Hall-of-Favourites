@@ -65,6 +65,7 @@ export default function MemberPage() {
     };
     
 
+    if (!filteredMember) return null;
     if(isLoad) return <InfoLoadComponent/>;
     if(isError) return <ErrorMessage text={'멤버 정보를 불러오는 중 에러가 발생하였습니다.'}/>;
 

@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { useIsSaturday } from "@/store/store";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Inner from "@/components/ui/Inner";
 import VoteTimer from "@/components/ui/VoteTimer";
@@ -11,7 +10,11 @@ export default function Header() {
     const onClick = () => {
         setIsClicked((prev) => !prev);
     };
-    const isSaturday = useIsSaturday(state => state.isSaturday);
+    
+    const [isSaturday, setIsSaturday] = useState(false);
+    useEffect(() => {
+        setIsSaturday(new Date().getDay() === 6);
+    }, []);
 
     return (
         <header>

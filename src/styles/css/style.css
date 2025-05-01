@@ -1100,6 +1100,17 @@ footer {
   div.home div.inner .board-preview .writing-wrap .writing .date {
     width: 30%;
   }
+  div.home div.inner .search-bar {
+    width: 100%;
+    padding: 8px;
+  }
+  div.home div.inner .search-bar > div {
+    gap: 12px;
+  }
+  div.home div.inner .search-bar button img {
+    width: 14px;
+    height: 14px;
+  }
   div.InfoPage .content-top .right-content--wrap {
     width: 90%;
   }

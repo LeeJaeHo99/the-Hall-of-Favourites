@@ -21,6 +21,30 @@
     }
 }
 
+@media screen and (max-width: 1318px){
+    div.InfoPage{
+        .left-content--wrap{
+            .content-box{
+                > div{
+                    height: 120px;
+                    padding: 14px;
+
+                    .content{
+                        top: 60%;
+                    }
+                }
+            }
+        }  
+        .right-content--wrap{
+            > div{
+                .info{
+                    font-size: 18px;
+                }
+            }
+        }
+    } 
+}
+
 @media screen and (max-width: 1244px){
     .group-link-btn--wrap .group-link-btn{
         font-size: 14px;
@@ -38,6 +62,32 @@
                     }
                 }
             }
+        }
+    }
+    div.InfoPage{
+        .left-content--wrap{
+            .player-wraper{
+                .music-player--wrap{
+                    img{
+                        width: 100px;
+                        height: 100px;
+                    }
+                }
+            }
+            .content-box{
+                > div{
+                    padding: 14px 0px 14px 10px;
+                    
+                    .content{
+                        span{
+                            font-size: 16px;
+                        }
+                    }
+                }
+            }
+        }
+        .right-content--wrap{
+            padding: 16px;
         }
     }
 }
@@ -65,6 +115,55 @@
     }
     div.BoardWritePage form div button{
         min-width: 80px;
+    }
+    div.InfoPage{
+        .content-top{
+            flex-direction: column;
+
+            .left-content--wrap{
+                order: 2;
+                width: 100%;
+                margin-bottom: 16px;
+
+                .player-wraper{
+                    // flex-direction: row;
+                    width: 200px;
+                    min-width: 200px;
+                    height: 200px;
+                    min-height: 200px;
+                }
+                .content-box{
+                    > div{
+                        padding: 20px;
+
+                        .content{
+                            span{
+                                font-size: 20px;
+                            }
+                        }
+                    }
+                }
+            }
+            .main-content--wrap{
+                order: 1;
+
+                .title-wrap{
+                    margin-bottom: 40px;
+                }
+            }
+            .right-content--wrap{
+                order: 3;
+                width: 60%;
+                padding-left: 16px;
+            }
+        }
+        .story-component{
+            .story{
+                span{
+                    line-height: 1.4;
+                }
+            }
+        }
     }
 }
 
@@ -164,6 +263,9 @@
 }
 
 @media screen and (max-width: 860px){
+    div.sub-page{
+        padding-bottom: 100px;
+    }
     header .inner .desc-site--component{
         right: 16%;
     }
@@ -259,6 +361,11 @@
             }
         }
     }
+    div.InfoPage{
+        .player-wraper{
+            flex-direction: column;
+        }
+    }
 }
 
 @media screen and (max-width: 820px){
@@ -291,6 +398,11 @@
             &:hover{
                 transform: scale(1.07);
             }
+        }
+    }
+    div.InfoPage{
+        .main-content--wrap{
+            padding-top: 40px;
         }
     }
 }
@@ -587,6 +699,17 @@
             }
         }
     }
+    div.InfoPage{
+        .story-component{
+            padding: 24px;
+
+            .story{
+                span{
+                    font-size: 18px;
+                }
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 500px){
@@ -732,6 +855,55 @@
             }
         }
     }
+    div.InfoPage{
+        .right-content--wrap{
+            h2{
+                font-size: 24px;
+            }
+            > div{
+                .title{
+                    font-size: 16px;
+                }
+                .info{
+                    font-size: 16px;
+                }
+            }
+        }
+        .content-top{
+            .main-content--wrap{
+                .title-wrap{
+                    gap: 10px;
+
+                    .section-title{
+                        font-size: 36px;
+                    }
+                    .section-desc{
+                        font-size: 24px;
+                    }
+                }
+            }
+            .left-content--wrap{
+                .content-box{
+                    > div{
+                        .content{
+                            .heart-img{
+                                width: 52px;
+                                height: 52px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .story-component{
+            .story{
+                span{
+                    font-size: 16px;
+                    letter-spacing: -1px;
+                }
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 480px){
@@ -860,6 +1032,67 @@
                             width: 30%;
                         }
                     }
+                }
+            }
+        }
+    }
+    div.InfoPage{
+        .content-top{
+            .right-content--wrap{
+                width: 90%;
+            }
+            .left-content--wrap{
+                .player-wraper{
+                    gap: 0;
+                    width: 160px;
+                    min-width: 160px;
+                    height: 160px;
+                    min-height: 160px;
+                    padding: 11px;
+
+                    .music-player--wrap{
+                        img{
+                            width: 80px;
+                            height: 80px;
+                        }
+                    }
+                    .music-info{
+                        .music-title{
+                            margin-bottom: 8px;
+                            font-size: 18px;
+                        }
+                        .music-singer{
+                            font-size: 16px;
+                        }
+                    }
+                }
+                .content-box{
+                    > div{
+                        width: 43%;
+
+                        .content{
+                            span{
+                                font-size: 18px;
+                            }
+                        }
+                    }
+                }
+            }
+            .main-content--wrap{
+                .person-img--wrap{
+                    img{
+                        width: 280px;
+                        height: 280px;
+                    }
+                }
+            }
+        }
+        .story-component{
+            width: 90%;
+
+            .story{
+                span{
+                    font-size: 14px;
                 }
             }
         }

@@ -95,7 +95,6 @@
         }
     }
     .main-content--wrap{
-        width: 48%;
         padding-top: 80px;
 
         .person-img--wrap{
@@ -151,7 +150,6 @@
     .story-component{
         width: 80%;
         padding: 40px;
-        margin-bottom: 80px;
         border-radius: 12px;
 
         .story{
@@ -170,7 +168,9 @@
             }
             .circle{
                 width: 8px;
+                min-width: 8px;
                 height: 8px;
+                min-height: 8px;
                 margin: 0;
                 border-radius: 50%;
                 background-color: $primary;

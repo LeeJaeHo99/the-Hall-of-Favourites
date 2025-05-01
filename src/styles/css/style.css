@@ -525,6 +525,25 @@ footer {
     margin: auto;
   }
 }
+@media screen and (max-width: 960px) {
+  div.BoardPage .inner .board-content--wrap .board thead tr th:nth-child(3) {
+    width: 14%;
+  }
+  div.BoardPage .inner .board-content--wrap .board-editor {
+    flex-direction: column;
+  }
+  div.BoardPage .inner .board-content--wrap .board-editor .board-component--wrap {
+    order: 2;
+    width: 100%;
+  }
+  div.BoardPage .inner .board-content--wrap .board-editor .board-component--wrap .board-search--component input {
+    width: 70%;
+  }
+  div.BoardPage .inner .board-content--wrap .board-editor .category-wrap {
+    justify-content: flex-end;
+    width: 100%;
+  }
+}
 @media screen and (max-width: 860px) {
   div.sub-page {
     padding-bottom: 100px;
@@ -609,6 +628,20 @@ footer {
   }
   div.InfoPage .main-content--wrap {
     padding-top: 40px;
+  }
+}
+@media screen and (max-width: 720px) {
+  div.BoardPage .board thead tr th {
+    font-size: 14px;
+  }
+  div.BoardPage .board tbody tr td {
+    font-size: 14px;
+  }
+  div.BoardPage .board tbody tr .title-td a .title {
+    font-size: 14px;
+  }
+  div.BoardPage .board tbody tr .title-td a .comment-num {
+    font-size: 13px;
   }
 }
 @media screen and (max-width: 680px) {
@@ -709,6 +742,35 @@ footer {
   div.board-edit--btn img, a.board-edit--btn img {
     width: 12px;
     height: 12px;
+  }
+}
+@media screen and (max-width: 630px) {
+  div.BoardPage .inner .board-content--wrap .board-editor .board-component--wrap {
+    padding: 16px;
+  }
+  div.BoardPage .inner .board-content--wrap .board-editor .board-component--wrap .board-search--component {
+    flex-grow: 1;
+  }
+  div.BoardPage .inner .board-content--wrap .board-editor .category-wrap {
+    margin-bottom: 16px;
+  }
+  div.BoardPage .inner .board-content--wrap .board-editor .category-wrap p {
+    font-size: 14px;
+  }
+  div.BoardPage .inner .board-content--wrap .board thead tr th {
+    font-size: 13px;
+  }
+  div.BoardPage .inner .board-content--wrap .board thead tr th:nth-child(2) {
+    width: 12%;
+  }
+  div.BoardPage .inner .board-content--wrap .board thead tr th:nth-child(3) {
+    width: 16%;
+  }
+  div.BoardPage .inner .board-content--wrap .board thead tr th:nth-child(4) {
+    width: 12%;
+  }
+  div.BoardPage .inner .board-content--wrap .board tbody tr td {
+    font-size: 13px;
   }
 }
 @media screen and (max-width: 600px) {
@@ -2013,52 +2075,51 @@ footer {
 .BoardPage .inner .board-content--wrap .board-editor .category-wrap p {
   font-size: 16px;
 }
-.BoardPage .inner .board-content--wrap .board {
+.BoardPage .inner .board-content--wrap .board-component {
+  width: 100%;
   margin-bottom: 40px;
 }
-.BoardPage .inner .board-content--wrap .board:has(.no-search) thead {
-  display: none;
-}
-.BoardPage .inner .board-content--wrap .board:has(.no-search) td:nth-child(1) {
+.BoardPage .inner .board-content--wrap .board-component > div {
   width: 100%;
-  font-size: 18px;
+  padding: 16px;
+  font-family: "gs-m";
+  color: #f5f7ff;
+  border-bottom: 1px solid rgba(165, 165, 165, 0.3137254902);
 }
-.BoardPage .inner .board-content--wrap .board:has(.no-search) td:nth-child(2), .BoardPage .inner .board-content--wrap .board:has(.no-search) td:nth-child(3), .BoardPage .inner .board-content--wrap .board:has(.no-search) td:nth-child(4) {
-  width: 0;
+.BoardPage .inner .board-content--wrap .board-component > div:first-child {
+  border-top: 2px solid #8e65ab;
 }
-.BoardPage .inner .board-content--wrap .board thead tr th:nth-child(1) {
-  width: auto;
-  padding-left: 16px;
-  text-align: left;
+.BoardPage .inner .board-content--wrap .board-component > div:last-child {
+  border-bottom: 2px solid #8e65ab;
 }
-.BoardPage .inner .board-content--wrap .board thead tr th:nth-child(2) {
-  width: 10%;
+.BoardPage .inner .board-content--wrap .board-component > div .title {
+  display: flex;
+  gap: 14px;
+  width: 100%;
+  margin-bottom: 12px;
 }
-.BoardPage .inner .board-content--wrap .board thead tr th:nth-child(3) {
-  width: 10%;
-}
-.BoardPage .inner .board-content--wrap .board thead tr th:nth-child(4) {
-  width: 8%;
-}
-.BoardPage .inner .board-content--wrap .board tbody tr td:nth-child(1) {
-  padding-left: 16px;
-  text-align: left;
-}
-.BoardPage .inner .board-content--wrap .board tbody tr td:nth-child(1) a {
-  display: block;
-  width: 90%;
-}
-.BoardPage .inner .board-content--wrap .board tbody tr td:nth-child(1) a .title {
-  display: inline-block;
-  max-width: 85%;
-  margin-right: 12px;
+.BoardPage .inner .board-content--wrap .board-component > div .title p {
+  color: #f5f7ff;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.BoardPage .inner .board-content--wrap .board tbody tr td.no-search {
+.BoardPage .inner .board-content--wrap .board-component > div .title .comment-num {
+  width: 10%;
+  font-size: 14px;
+  color: lightcoral;
+}
+.BoardPage .inner .board-content--wrap .board-component > div > div {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+  width: 100%;
+  font-size: 14px;
   color: #878c9e;
-  text-align: center;
+}
+.BoardPage .inner .board-content--wrap .board-component > div > div .like-num {
+  color: lightgoldenrodyellow;
 }
 
 .BoardViewPage .board-content {

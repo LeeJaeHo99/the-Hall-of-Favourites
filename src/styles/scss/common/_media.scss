@@ -262,6 +262,44 @@
     }
 }
 
+@media screen and (max-width: 960px){
+    div.BoardPage{
+        .inner{
+            .board-content--wrap{
+                .board{
+                    thead{
+                        tr{
+                            th{
+                                &:nth-child(3){
+                                    width: 14%;
+                                }
+                            }
+                        }
+                    }
+                }
+                .board-editor{
+                    flex-direction: column;
+
+                    .board-component--wrap{
+                        order: 2;
+                        width: 100%;
+
+                        .board-search--component{
+                            input{
+                                width: 70%;
+                            }
+                        }
+                    }
+                    .category-wrap{
+                        justify-content: flex-end;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }  
+}
+
 @media screen and (max-width: 860px){
     div.sub-page{
         padding-bottom: 100px;
@@ -407,6 +445,37 @@
     }
 }
 
+@media screen and (max-width: 720px){
+    div.BoardPage{
+        .board{
+            thead{
+                tr{
+                    th{
+                        font-size: 14px;
+                    }
+                }
+            }
+            tbody{
+                tr{
+                    td{
+                        font-size: 14px;
+                    }
+                    .title-td{
+                        a{
+                            .title{
+                                font-size: 14px;
+                            }
+                            .comment-num{
+                                font-size: 13px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 @media screen and (max-width: 680px){
     header{
         .inner{
@@ -548,6 +617,57 @@
         img{
             width: 12px;
             height: 12px;
+        }
+    }
+}
+
+@media screen and (max-width: 630px){
+    div.BoardPage{
+        .inner{
+            .board-content--wrap{
+                .board-editor{
+                    .board-component--wrap{
+                        padding: 16px;
+
+                        .board-search--component{
+                            flex-grow: 1;
+                        }
+                    }
+                    .category-wrap{
+                        margin-bottom: 16px;
+
+                        p{
+                            font-size: 14px;
+                        }
+                    }
+                }
+                .board{
+                    thead{
+                        tr{
+                            th{
+                                font-size: 13px;
+
+                                &:nth-child(2){
+                                    width: 12%;
+                                }
+                                &:nth-child(3){
+                                    width: 16%;
+                                }
+                                &:nth-child(4){
+                                    width: 12%;
+                                }
+                            }
+                        }
+                    }
+                    tbody{
+                        tr{
+                            td{
+                                font-size: 13px;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
@@ -1123,7 +1243,3 @@
         }
     }
 }
-
-
-
-// board-view 500px 댓글 테이블 수정

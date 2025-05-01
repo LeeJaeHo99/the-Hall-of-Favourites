@@ -51,68 +51,52 @@
                     }
                 }
             }
-            .board{
+            .board-component{
+                width: 100%;
                 margin-bottom: 40px;
 
-                &:has(.no-search){
-                    thead{
-                        display: none;
+                > div{
+                    width: 100%;
+                    padding: 16px;
+                    font-family: "gs-m";
+                    color: $white-text;
+                    border-bottom: 1px solid rgba(165, 165, 165, 0.3137254902);
+                    
+                    &:first-child{
+                        border-top: 2px solid $primary;
                     }
-                    td{
-                        &:nth-child(1){
-                            width: 100%;
-                            font-size: 18px;
-                        }
-                        &:nth-child(2), &:nth-child(3), &:nth-child(4){
-                            width: 0;
-                        }
+                    &:last-child{
+                        border-bottom: 2px solid $primary;
                     }
-                }
-                thead{
-                    tr{
-                        th{
-                            &:nth-child(1){
-                                width: auto;
-                                padding-left: 16px;
-                                text-align: left;
-                            }
-                            &:nth-child(2){
-                                width: 10%;
-                            }
-                            &:nth-child(3){
-                                width: 10%;
-                            }
-                            &:nth-child(4){
-                                width: 8%;
-                            }
+                    .title{
+                        display: flex;
+                        gap: 14px;
+                        width: 100%;
+                        margin-bottom: 12px;
+                        
+                        p{
+                            color: $white-text;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                        }
+                        .comment-num{
+                            width: 10%;
+                            font-size: 14px;
+                            color: lightcoral;
                         }
                     }
-                }
-                tbody{
-                    tr{
-                        td{
-                            &:nth-child(1){
-                                padding-left: 16px;
-                                text-align: left;
+                    > div{
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-start;
+                        gap: 6px;
+                        width: 100%;
+                        font-size: 14px;
+                        color: $gray-text;
 
-                                a{
-                                    display: block;
-                                    width: 90%;
-
-                                    .title{
-                                        display: inline-block;
-                                        max-width: 85%;
-                                        margin-right: 12px;
-                                        overflow: hidden;
-                                        text-overflow: ellipsis;
-                                        white-space: nowrap;
-                                    }
-                                }
-                            }
-                            &.no-search{
-                                color: $gray-text;
-                                text-align: center;
-                            }
+                        .like-num{
+                            color: lightgoldenrodyellow;
                         }
                     }
                 }

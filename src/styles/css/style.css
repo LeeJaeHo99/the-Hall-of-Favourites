@@ -432,12 +432,6 @@ footer {
     width: 100%;
     margin-bottom: 16px;
   }
-  div.InfoPage .content-top .left-content--wrap .player-wraper {
-    width: 200px;
-    min-width: 200px;
-    height: 200px;
-    min-height: 200px;
-  }
   div.InfoPage .content-top .left-content--wrap .content-box > div {
     padding: 20px;
   }
@@ -452,7 +446,7 @@ footer {
   }
   div.InfoPage .content-top .right-content--wrap {
     order: 3;
-    width: 60%;
+    width: 100%;
     padding-left: 16px;
   }
   div.InfoPage .story-component .story span {
@@ -606,6 +600,12 @@ footer {
   div.InfoPage .player-wraper {
     flex-direction: column;
   }
+  div.blind-content {
+    height: 320px;
+  }
+  div.blind-content p:first-child {
+    font-size: 32px;
+  }
 }
 @media screen and (max-width: 820px) {
   header div.inner {
@@ -730,6 +730,18 @@ footer {
     width: 12px;
     height: 12px;
   }
+  div.blind-content {
+    height: 240px;
+  }
+  div.blind-content p:first-child {
+    font-size: 26px;
+  }
+  div.blind-content p:nth-child(2) {
+    font-size: 20px;
+  }
+  div.blind-content .blind-rank--wrap {
+    font-size: 14px;
+  }
 }
 @media screen and (max-width: 630px) {
   div.BoardPage .inner .board-content--wrap .board-editor .board-component--wrap {
@@ -841,11 +853,26 @@ footer {
     width: 90%;
     margin-left: 16px;
   }
+  div.InfoPage .content-top .left-content--wrap .content-box > div {
+    padding: 14px;
+  }
   div.InfoPage .story-component {
     padding: 24px;
   }
   div.InfoPage .story-component .story span {
     font-size: 18px;
+  }
+  div.blind-content {
+    width: 100%;
+  }
+  div.blind-content p:first-child {
+    font-size: 20px;
+  }
+  div.blind-content p:nth-child(2) {
+    font-size: 16px;
+  }
+  div.blind-content .blind-rank--wrap {
+    gap: 10px;
   }
 }
 @media screen and (max-width: 500px) {
@@ -983,13 +1010,13 @@ footer {
   div.BoardPage .inner .board-content--wrap .board-component > div > div {
     font-size: 12px;
   }
-  .pagination-wrap {
+  div.pagination-wrap {
     gap: 8px;
   }
-  .pagination-wrap div {
+  div.pagination-wrap div {
     font-size: 14px;
   }
-  .pagination-wrap .move-btn img {
+  div.pagination-wrap .move-btn img {
     width: 20px;
     height: 20px;
   }
@@ -1000,9 +1027,6 @@ footer {
   }
   div.home div.inner .board-history-section {
     gap: 60px;
-  }
-  div.home div.inner .player-wraper {
-    flex-direction: column;
   }
   div.home div.inner .winner .winner-content {
     flex-direction: column;
@@ -1017,8 +1041,8 @@ footer {
     flex-direction: row;
   }
   div.home div.inner .winner .winner-content .left-content .player-wraper .music-player--wrap .music-thumbnail--img {
-    width: 96px;
-    height: 96px;
+    width: 80px;
+    height: 80px;
   }
   div.home div.inner .winner .winner-content .left-content .player-wraper .music-player--wrap .music-info .music-title {
     font-size: 20px;
@@ -1078,11 +1102,7 @@ footer {
   }
   div.InfoPage .content-top .left-content--wrap .player-wraper {
     gap: 0;
-    width: 160px;
-    min-width: 160px;
-    height: 160px;
-    min-height: 160px;
-    padding: 11px;
+    width: 90%;
   }
   div.InfoPage .content-top .left-content--wrap .player-wraper .music-player--wrap img {
     width: 80px;
@@ -1130,6 +1150,15 @@ footer {
   }
   div.BoardPage .inner .board-content--wrap .board-editor .board-component--wrap a.board-edit--btn span {
     display: none;
+  }
+  div.blind-content p:first-child {
+    font-size: 16px;
+  }
+  div.blind-content p:nth-child(2) {
+    font-size: 14px;
+  }
+  div.blind-content .blind-rank--wrap {
+    display: grid;
   }
 }
 @media screen and (max-width: 400px) {

@@ -15,23 +15,23 @@ async function postFetcher(api: string, body: BodyType) {
             }
         );
 
+        const result = await res.json();
+
         if (!res.ok) {
-            const result = await res.json().catch(() => null);
             throw new Error(result?.message || "데이터 전송에 실패했습니다.");
         }
-
-        const result = await res.json();
 
         if (!result) {
             throw new Error("서버에서 유효한 데이터를 받지 못했습니다.");
         }
 
-        return result?.data;
+        return result;
     }
     catch (e: unknown) {
         if (e instanceof Error) {
             throw new Error(e.message || "요청 중 오류가 발생했습니다.");
         }
+        throw e;
     }
 }
 
@@ -61,8 +61,8 @@ export const postCommentData = ({ id, name, text, pw }: FetchDataType) => {
 };
 
 // POST CHEER MSG
-export const postCheerMsgData = ({ text }: FetchDataType) => {
-    return postFetcher("postCheerMessage", {
-        cheerMsg: text,
+export const postCheerMsgData = ({ text, query }: FetchDataType) => {
+    return postFetcher(`postCheerMessage?q=${query}`, {
+        text: text,
     });
 };

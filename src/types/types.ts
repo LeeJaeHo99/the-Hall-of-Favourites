@@ -169,3 +169,24 @@ export interface MemberMainContentPropsType{
     title:  string;
     nameEn:  string;
 }
+
+export interface MemberType {
+    nameKo: string[];
+    nameEn: string;
+    group: string[];
+    birth: string;
+    age: string;
+    debutDate: string;
+    company: string;
+    likeHistory: number;
+    weekLike: number[];
+    todayLike: number[];
+    likeRecord: { date: string; user: string }[];
+    victory: number;
+    song: {
+        id: string;
+        title: string;
+    };
+    story: string[];
+    cheerMsg: string[];
+}

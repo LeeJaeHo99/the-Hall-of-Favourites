@@ -15,13 +15,17 @@ export async function POST(req: Request) {
         const db = (await connectDB).db("IdolRank");
         const collection = db.collection("member");
 
-        const result = await collection.updateMany(
+        const result = await collection.updateOne(
             { "nameKo.0": { $regex: query, $options: "i" } },
             { $push: { cheerMsg: text } }
         );
 
+        if (result.matchedCount === 0) {
+            return NextResponse.json({ message: "해당 멤버를 찾을 수 없습니다." }, { status: 404 });
+        }
+
         return NextResponse.json(
-            { message: "배열에 input 추가 완료", data: { matchedCount: result.matchedCount } },
+            { message: "응원 메시지가 저장되었습니다.", data: { matchedCount: result.matchedCount } },
             { status: 200 }
         );
     } catch (err) {

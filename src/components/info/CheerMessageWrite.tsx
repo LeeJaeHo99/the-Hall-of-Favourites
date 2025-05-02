@@ -6,9 +6,14 @@ import Image from 'next/image';
 import LoadSpinner from '../spinner/LoadSpinner';
 import ErrorMessage from '../ui/ErrorMessage';
 
-export default function CheerMessageWrite() {
+interface CheerMessageWriteProps {
+    memberName: string;
+}
+
+export default function CheerMessageWrite({ memberName }: CheerMessageWriteProps) {
     const { postHandler, isPost, isPostError } = usePostCheerMsg();
     const [text, setText] = useState('');
+
     const writeMsg = (e: React.ChangeEvent<HTMLInputElement>) => {
         setText(e.target.value);
     }
@@ -16,21 +21,21 @@ export default function CheerMessageWrite() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        try{
-            const result = await postHandler({ text });
-            console.log('result: ', result);
+        try {
+            const result = await postHandler({ text, query: memberName });
+            console.log('API 응답:', result);
 
-            if (result) {
+            if (result?.data?.matchedCount === 1) {
                 setText("");
-            }else{
-                throw new Error('네트워크 오류가 발생하였습니다.');
+                window.location.reload();
+            } else {
+                throw new Error(result?.message || '응원 메시지 저장에 실패했습니다.');
             }
         }
         catch (e) {
-            console.error(e);
-            return <ErrorMessage text={'댓글 작성 중 오류가 발생하였습니다.'}/>;
+            console.error('응원 메시지 저장 중 오류:', e);
+            return <ErrorMessage text={e instanceof Error ? e.message : '응원 메시지 저장 중 오류가 발생하였습니다.'}/>;
         }
-        window.location.reload();
     }
 
     if(isPost) return <LoadSpinner/>;

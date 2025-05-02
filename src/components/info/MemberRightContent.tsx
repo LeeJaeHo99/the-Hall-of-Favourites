@@ -1,6 +1,11 @@
 import CheerMessageWrite from "./CheerMessageWrite";
+import { MemberType } from '@/types/types';
 
-export default function RightContent({ memberData }) {
+interface RightContentProps {
+    memberData: MemberType;
+}
+
+export default function RightContent({ memberData }: RightContentProps) {
     const title = [
         "이름: ",
         "그룹: ",
@@ -28,7 +33,7 @@ export default function RightContent({ memberData }) {
                     </div>
                 ))}
             </div>
-            <CheerMessageWrite/>
+            <CheerMessageWrite memberName={memberData?.nameKo[0]}/>
         </div>
     );
 }

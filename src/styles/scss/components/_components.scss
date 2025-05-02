@@ -675,9 +675,12 @@
 }
 
 .error-message{
-    padding-bottom: 80px;
+    padding: 40px 0;
+    background: none;
     
     .blur-box{
+        display: flex;
+        justify-content: center;
         padding: 32px;
         border-radius: 12px;
         font-family: 'gs-b';

@@ -55,7 +55,6 @@ function BoardWrite() {
             }
 
             if (result) {
-                alert("게시글이 작성이 완료되었습니다.");
                 router.push(`/board/${result.result.insertedId}`);
             } else {
                 const error = await result.json();

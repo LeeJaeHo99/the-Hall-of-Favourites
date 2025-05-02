@@ -76,7 +76,6 @@ function BoardWrite() {
                 pw,
             })
 
-            alert('게시글이 수정되었습니다');
             router.push(`/board/${selectedWrite?._id ?? ''}`);
         }
         catch (e: unknown) {

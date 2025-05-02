@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useParams } from "next/navigation";
 import useGetFullWrite from "@/hooks/useGetFullWrite";
 

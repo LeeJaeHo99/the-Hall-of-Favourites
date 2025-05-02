@@ -22,10 +22,9 @@ export default function ContentMid({ content }) {
             }
 
             if (result.newCount) {
-                alert("게시글이 추천되었습니다.");
                 window.location.reload();
             } else {
-                alert("추천 실패");
+                alert("이미 추천한 게시물 입니다.");
             }
         } 
         catch (e) {

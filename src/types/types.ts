@@ -126,6 +126,7 @@ export interface PaginationPropsType {
 
 // WINNER
 export interface WinnerLeftPropsType {
+    cheerMessage: string[];
     song: {
         id: string;
         title: string;

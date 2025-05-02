@@ -57,6 +57,7 @@ export default function Winner() {
         <div className="winner">
             <div className="winner-content">
                 <WinnerLeft
+                    cheerMessage={memberData?.cheerMsg}
                     song={memberData?.song}
                     group={memberData?.group[2]}
                 />

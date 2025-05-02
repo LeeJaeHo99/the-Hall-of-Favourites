@@ -59,3 +59,10 @@ export const postCommentData = ({ id, name, text, pw }: FetchDataType) => {
         pw: pw,
     });
 };
+
+// POST CHEER MSG
+export const postCheerMsgData = ({ text }: FetchDataType) => {
+    return postFetcher("postCheerMessage", {
+        cheerMsg: text,
+    });
+};

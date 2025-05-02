@@ -1298,6 +1298,14 @@ footer {
   text-align: center;
   text-shadow: 0 0 6px;
 }
+.winner .winner-content .left-content .cheer-message--wrap .cheer-message.fadeIn {
+  opacity: 1;
+  transition: opacity 0.5s ease-in;
+}
+.winner .winner-content .left-content .cheer-message--wrap .cheer-message.fadeOut {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
 .winner .winner-content .right-content > div {
   padding: 16px;
   background-color: rgba(255, 255, 255, 0.05);

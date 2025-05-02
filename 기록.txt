@@ -1,8 +1,10 @@
 할일
-// 멤버 데이터 넣기
+// 시간이 10시 부터 시작함
 // 공유
 // SEO
-// 인풋 암호화
+// 멤버 데이터 넣기
+// 인풋 암호화 (xss, sql 인젝션)
+// alert 최대한 안쓰는 방향
 
 < API >
 postEndDay
@@ -14,3 +16,7 @@ likeMember
 
 postEndWeek
 // 월요일 AM 00:10에 weekLike의 배열 초기화
+
+
+
+postEndDay에 우승자 추가 필요

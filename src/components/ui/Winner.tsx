@@ -71,9 +71,7 @@ export default function Winner() {
                 <WinnerRight
                     victory={memberData?.victory}
                     likeHistory={memberData?.likeHistory}
-                    todayLike={
-                        memberData?.todayLike[memberData?.todayLike.length - 1]
-                    }
+                    todayLike={memberData?.todayLike?.reduce((a, b) => a + b, 0)}
                 />
             </div>
         </div>

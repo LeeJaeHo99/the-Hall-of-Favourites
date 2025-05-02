@@ -1,7 +1,7 @@
 const emoji: string[] = ["🥇", "🥈", "🥉", "💪", "💪"];
 const colors = ["#ffcc49", "#cdd0d4", "#c19a6b", "#d1de74", "#f1a183"];
 
-export default function CustomLegend({ payload }) {
+export default function CustomLegend({ payload }: { payload: { value: string | number }[] }) {
     return (
         <ul className="chart-legend">
             {payload.map((entry, index) => (

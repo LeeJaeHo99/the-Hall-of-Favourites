@@ -1,9 +1,4 @@
-interface RadioBtnProps {
-    id: string;
-    name: string;
-    checked: boolean;
-    onClick?: React.MouseEventHandler<HTMLInputElement>;
-}
+import { RadioBtnProps } from "@/types/types";
 
 export default function RadioBtn({id, name, checked, onClick}: RadioBtnProps){
     return (
@@ -14,7 +9,7 @@ export default function RadioBtn({id, name, checked, onClick}: RadioBtnProps){
                     id={id}
                     name={name}
                     checked={checked}
-                    onChange={onClick}
+                    onClick={onClick}
                 />
                 <span>{id}</span>
             </label>

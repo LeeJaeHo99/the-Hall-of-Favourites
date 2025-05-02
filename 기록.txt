@@ -1,5 +1,10 @@
 할일
-// 공유
+// 에러 삭제
+mongodb.ts
+winner.tsx
+RankingSection.tsx
+contentbot
+
 // 멤버 데이터 넣기
 
 < API >

@@ -16,14 +16,14 @@ export async function POST() {
         if (!todayLike || todayLike.length < 24) {
             const initialized = Array(24).fill(0);
             if (todayLike) {
-                todayLike.forEach((val, idx) => {
+                todayLike.forEach((val: number, idx: number) => {
                     initialized[idx] = val;
                 });
             }
             todayLike = initialized;
         }
 
-        const todayLikeSum = todayLike.reduce((a, b) => a + b, 0);
+        const todayLikeSum = todayLike.reduce((a: number, b: number) => a + b, 0);
 
         // 가장 큰 todayLikeSum 찾기
         if (todayLikeSum > maxLikeSum) {

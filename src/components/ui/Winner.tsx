@@ -8,7 +8,7 @@ import WinnerMain from "../winner/WinnerMain";
 import WinnerLeft from "../winner/WinnerLeft";
 import WinnerRight from "../winner/WinnerRight";
 import WinnerLoadComponent from "../spinner/WinnerLoadComponent";
-
+import { MemberDataType } from "@/types/types";
 
 export default function Winner() {
     const [isSunday, setIsSunday] = useState(false);
@@ -35,20 +35,20 @@ export default function Winner() {
         
         if (!isSunday) {
             const sorted = [...memberData]?.sort((a, b) => {
-                let aMem = a?.weekLike[a?.weekLike.length - 1];
-                let bMem = b?.weekLike[b?.weekLike.length - 1];
+                const aMem = a?.weekLike[a?.weekLike.length - 1];
+                const bMem = b?.weekLike[b?.weekLike.length - 1];
                 return bMem - aMem;
             })[0];
             setMemberData(sorted);
         } else {
             const sorted = [...memberData]?.sort((a, b) => {
-                let aMem = a?.weekLike.reduce((sum, cur) => sum + cur, 0);
-                let bMem = b?.weekLike.reduce((sum, cur) => sum + cur, 0);
+                const aMem = a?.weekLike.reduce((sum, cur) => sum + cur, 0);
+                const bMem = b?.weekLike.reduce((sum, cur) => sum + cur, 0);
                 return bMem - aMem;
             })[0];
             setMemberData(sorted);
         }
-    }, [memberData]);
+    }, [memberData, isSunday]);
 
     if(Array.isArray(memberData) || isLoad) return <WinnerLoadComponent/> 
     if(isError) return <ErrorMessage text={'우승자 정보를 불러오던 중 에러가 발생하였습니다.'}/>
@@ -57,22 +57,22 @@ export default function Winner() {
         <div className="winner">
             <div className="winner-content">
                 <WinnerLeft
-                    cheerMessage={memberData?.cheerMsg}
-                    song={memberData?.song}
-                    group={memberData?.group[2]}
+                    cheerMessage={(memberData as MemberDataType)?.cheerMsg?.reverse()}
+                    song={(memberData as MemberDataType)?.song}
+                    group={(memberData as MemberDataType)?.group[2]}
                 />
                 <WinnerMain
                     targetRef={targetRef}
                     isSunday={isSunday}
-                    groupL={memberData?.group[0]} 
-                    groupU={memberData?.group[1]} 
-                    nameKo={memberData?.nameKo[0]}
-                    nameEn={memberData?.nameEn}
+                    groupL={(memberData as MemberDataType)?.group[0]} 
+                    groupU={(memberData as MemberDataType)?.group[1]} 
+                    nameKo={(memberData as MemberDataType)?.nameKo[0]}
+                    nameEn={(memberData as MemberDataType)?.nameEn}
                 />
                 <WinnerRight
-                    victory={memberData?.victory}
-                    likeHistory={memberData?.likeHistory}
-                    todayLike={memberData?.todayLike?.reduce((a, b) => a + b, 0)}
+                    victory={(memberData as MemberDataType)?.victory}
+                    likeHistory={(memberData as MemberDataType)?.likeHistory}
+                    todayLike={(memberData as MemberDataType)?.todayLike?.reduce((a, b) => a + b, 0)}
                 />
             </div>
         </div>

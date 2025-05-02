@@ -2,16 +2,15 @@
 
 import { useState } from "react";
 import { useParams } from "next/navigation";
-import usePostComment from "@/hooks/usePostComment";
 import { CommentType } from '@/types/types';
-
-// 📀 COMPONENT
+import usePostComment from "@/hooks/usePostComment";
 import Image from "next/image";
 import DeleteCommentModal from "./DeleteCommentModal";
 import ErrorMessage from "../ui/ErrorMessage";
 import LoadSpinner from "@/components/spinner/LoadSpinner";
 
 export default function ContentBot({ comment }: CommentType) {
+    console.log(comment);
     const { postHandler, isPost, isPostError } = usePostComment();
     const params = useParams();
     const id = params.id;
@@ -25,7 +24,7 @@ export default function ContentBot({ comment }: CommentType) {
         setPw(e.target.value);
     };
     const [text, setText] = useState("");
-    const onChangeComment = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const onChangeComment = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setText(e.target.value);
     };
 
@@ -39,7 +38,7 @@ export default function ContentBot({ comment }: CommentType) {
         e.preventDefault();
         
         try {
-            const result = await postHandler({id, name, text, pw});
+            const result = await postHandler({id: id as string, name, text, pw});
             
             if (result) {
                 setName("");
@@ -56,14 +55,6 @@ export default function ContentBot({ comment }: CommentType) {
         window.location.reload();
     };
 
-    const onKeyDownEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === "Enter") {
-            e.preventDefault();
-            handleSubmit(e);
-            window.location.reload();
-        }
-    };
-
     if(isPost) return <LoadSpinner/>;
     if(isPostError) return <ErrorMessage text={"댓글 작성중 에러가 발생하였습니다."}/>;
 
@@ -71,7 +62,7 @@ export default function ContentBot({ comment }: CommentType) {
         <div className="content-bot">
             <div className="comment-wrap">
                 <div className="comment-num">
-                    전체댓글 <span>{comment?.length}</span>개
+                    전체댓글 <span>{Array.isArray(comment) ? comment.length : 0}</span>개
                 </div>
                 <table>
                     <thead>
@@ -90,8 +81,8 @@ export default function ContentBot({ comment }: CommentType) {
                                     <td>
                                         {isClickDelete === i && (
                                             <DeleteCommentModal
-                                                setIsClickDelete={setIsClickDelete}
-                                                param={params.id}
+                                                onClickDelete={onClickDelete}
+                                                param={Number(params.id)}
                                                 index={i}
                                             />
                                         )}
@@ -145,7 +136,6 @@ export default function ContentBot({ comment }: CommentType) {
                     <textarea
                         value={text}
                         onChange={onChangeComment}
-                        onKeyDown={onKeyDownEnter}
                         placeholder="댓글을 입력해주세요."
                         maxLength={60}
                         required

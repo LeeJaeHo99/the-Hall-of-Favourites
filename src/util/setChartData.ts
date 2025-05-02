@@ -44,7 +44,7 @@ export function transformChartData(data: { name: string; data: number[] }[]) {
         const hour = currentHour - length + 1 + i;
         const timeStr = `${hour.toString().padStart(2, '0')}:00`;
 
-        const entry: any = { time: timeStr };
+        const entry: { [key: string]: string | number } = { time: timeStr };
 
         data.forEach((member) => {
             entry[member.name] = member.data[i];

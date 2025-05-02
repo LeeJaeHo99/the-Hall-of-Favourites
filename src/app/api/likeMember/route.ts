@@ -60,7 +60,7 @@ export async function PATCH(req: Request) {
         if (!member.todayLike || member.todayLike.length < 24) {
             const initialized = Array(24).fill(0);
             if (member.todayLike) {
-                member.todayLike.forEach((val, idx) => initialized[idx] = val);
+                member.todayLike.forEach((val: number, idx: number) => initialized[idx] = val);
             }
             await collection.updateOne(
                 { "nameKo.0": nameKo },
@@ -68,7 +68,7 @@ export async function PATCH(req: Request) {
             );
         }
 
-        const result = await collection.updateOne(
+        await collection.updateOne(
             { "nameKo.0": nameKo },
             {
                 $inc: {

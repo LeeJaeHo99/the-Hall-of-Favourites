@@ -1,10 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
-interface CheerMessagePropsType {
-    cheerMessage: string[];
-}
+import { CheerMessagePropsType } from "@/types/types";
 
 export default function CheerMessage({ cheerMessage }: CheerMessagePropsType) {
     const [currentIndex, setCurrentIndex] = useState(0);

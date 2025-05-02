@@ -45,7 +45,7 @@ function BoardWrite() {
 
     useEffect(() => {
         if (Array.isArray(writeData)) {
-            const finded = writeData.find(write => write._id === params?.id?.[0]);
+            const finded = writeData.find(write => write._id === params.id?.[0]);
             if (finded) {
                 setSelectedWrite(finded);
                 

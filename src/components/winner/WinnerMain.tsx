@@ -14,11 +14,10 @@ export default function WinnerMain({ targetRef, isSunday, groupL, groupU, nameKo
             }}
         >
             <div className="main-content">
-                {isSunday ? (
-                    <p>👑 이번주 우승자 👑</p>
-                ) : (
-                    <p>🎉 오늘의 우승자 🎉</p>
-                )}
+                {isSunday 
+                    ? <p>👑 이번주 우승자 👑</p>
+                    : <p>🎉 오늘의 우승자 🎉</p>
+                }
                 <div className={`person-img--wrap ${isSunday && "sunday"}`}>
                     <Image
                         className="person-img"

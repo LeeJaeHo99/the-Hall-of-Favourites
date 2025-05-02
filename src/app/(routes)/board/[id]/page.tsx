@@ -2,9 +2,8 @@
 
 import { useEffect } from "react";
 import { useParams } from "next/navigation";
+import { WriteDataType, CommentType } from "@/types/types";
 import useGetFullWrite from "@/hooks/useGetFullWrite";
-
-// 📀 COMPONENT
 import Inner from "@/components/ui/Inner";
 import ContentTop from "@/components/board/ContentTop";
 import ContentMid from "@/components/board/ContentMid";
@@ -31,15 +30,15 @@ export default function BoardViewPage() {
             <Inner x={"center"} y={"column"}>
                 <div className="board-content blur-box">
                     <ContentTop
-                        title={writeData?.title}
-                        likeNum={writeData?.likeNum}
-                        commentNum={writeData?.comment?.length ?? 0}
-                        writer={writeData?.writer}
-                        date={writeData?.date}
-                        id={writeData?._id}
+                        title={(writeData as WriteDataType)?.title}
+                        likeNum={(writeData as WriteDataType)?.likeNum}
+                        commentNum={(writeData as WriteDataType)?.comment?.length ?? 0}
+                        writer={(writeData as WriteDataType)?.writer}
+                        date={(writeData as WriteDataType)?.date}
+                        id={(writeData as WriteDataType)?._id}
                     />
-                    <ContentMid content={writeData?.content} />
-                    <ContentBot comment={writeData?.comment} />
+                    <ContentMid content={(writeData as WriteDataType)?.content} />
+                    <ContentBot comment={(writeData as WriteDataType)?.comment} />
                 </div>
             </Inner>
         </div>

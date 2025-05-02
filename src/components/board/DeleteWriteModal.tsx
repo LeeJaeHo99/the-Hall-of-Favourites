@@ -2,44 +2,45 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
+import { WriteDataType } from '@/types/types';
 import useDeleteWrite from "@/hooks/useDeleteWrite";
 import useGetWrite from "@/hooks/useGetWrite";
-
 import Image from "next/image";
 
-export default function DeleteWriteModal({ onClick }) {
-    const { recentWrite, likeSortedWrite, isLoad, isError, setRecentWrite } = useGetWrite();
-    const { deleteHandler, isDeleteLoad, isDeleteError } = useDeleteWrite();
+export default function DeleteWriteModal({ onClick }: {onClick: () => void}) {
+    const { recentWrite, setRecentWrite } = useGetWrite();
+    const { deleteHandler } = useDeleteWrite();
     const router = useRouter();
     const params = useParams();
 
     const inputRef = useRef(null);
     const [inputPw, setInputPw] = useState("");
-    const onChangePw = (e) => {
+    const onChangePw = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputPw(e.target.value);
     };
 
     useEffect(() => {
         if (inputRef.current) {
-            inputRef.current.focus();
+            (inputRef.current as HTMLInputElement)?.focus();
         }
     }, []);
 
     useEffect(() => {
         if(Array.isArray(recentWrite)){
             const finded = [...recentWrite]?.find(data => data._id === params.id);
-            setRecentWrite(finded);
+            setRecentWrite((finded as WriteDataType));
         }
     }, [recentWrite]);
 
 
-    const onSubmitDelete = async (e) => {
+    const onSubmitDelete = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
         if(inputPw === ''){
             alert('비밀번호를 입력해주세요');
             return;
         }
-        const result = await deleteHandler(recentWrite?._id, inputPw);
+        const result = await deleteHandler((recentWrite as WriteDataType)?._id, inputPw);
 
         if (result === 'success') {
             alert("게시글이 삭제되었습니다.");

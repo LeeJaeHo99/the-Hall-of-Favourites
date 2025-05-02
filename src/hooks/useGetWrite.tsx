@@ -4,7 +4,7 @@ import { WriteDataType } from '../types/types';
 
 export default function useGetWrite() {
     const [writeData, setWriteData] = useState<WriteDataType[]>();
-    const [recentWrite, setRecentWrite] = useState<WriteDataType[]>([]);
+    const [recentWrite, setRecentWrite] = useState<WriteDataType[] | WriteDataType>([]);
     const [likeSortedWrite, setLikeSortedWrite] = useState<WriteDataType[]>([]); 
     const [isLoad, setIsLoad] = useState<boolean>(true);
     const [isError, setIsError] = useState<boolean>(false);

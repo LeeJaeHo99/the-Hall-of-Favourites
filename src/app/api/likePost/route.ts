@@ -2,7 +2,7 @@ import { connectDB } from "@/util/mongodb";
 import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
 
-export async function POST(req) {
+export async function POST(req: Request) {
     try {
         const clientIP = req.headers.get("x-forwarded-for")?.split(",")[0].trim() || req.ip;
         const { postId } = await req.json();

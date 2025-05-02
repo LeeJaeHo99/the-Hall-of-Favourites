@@ -35,7 +35,7 @@ export async function POST(req: Request) {
         });
     } catch (e) {
         return NextResponse.json(
-            { message: "서버 오류 발생", error: e.message },
+            { message: "서버 오류 발생", error: (e as Error).message },
             { status: 500 }
         );
     }

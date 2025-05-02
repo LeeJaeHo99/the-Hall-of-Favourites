@@ -3,7 +3,7 @@ import { getFullMemberData } from "@/util/getFetcher";
 import { MemberDataType } from '@/types/types';
 
 export default function useGetFullMember() {
-    const [memberData, setMemberData] = useState<MemberDataType[]>([]);
+    const [memberData, setMemberData] = useState<MemberDataType[] | MemberDataType>([]);
     const [isLoad, setIsLoad] = useState<boolean>(true);
     const [isError, setIsError] = useState<boolean>(false);
 

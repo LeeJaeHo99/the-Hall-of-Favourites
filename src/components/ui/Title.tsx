@@ -2,15 +2,11 @@
 
 import { motion } from "motion/react";
 import MoreViewBtn from "@/components/ui/MoreViewBtn";
+import { TitlePropsType } from "@/types/types";
 
-interface Title {
-    title: string;
-    desc?: string;
-    moreView?: boolean;
-    children?: React.ReactNode;
-}
 
-export default function Title({ title, desc, moreView, children }: Title) {
+
+export default function Title({ title, desc, moreView, children }: TitlePropsType) {
     return (
         <motion.h2
             className="section-title"

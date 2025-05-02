@@ -3,7 +3,7 @@ import { getFullWriteData } from "@/util/getFetcher";
 import { WriteDataType } from '../types/types';
 
 export default function useGetFullWrite(){
-    const [writeData, setWriteData] = useState<WriteDataType[]>([]);
+    const [writeData, setWriteData] = useState<WriteDataType[] | WriteDataType>([]);
     const [isLoad, setIsLoad] = useState<boolean>(true);
     const [isError, setIsError] = useState<boolean>(false);
 

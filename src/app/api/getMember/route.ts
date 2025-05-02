@@ -1,7 +1,7 @@
 import { connectDB } from "@/util/mongodb";
 import { NextResponse } from "next/server";
 
-export async function GET(req){
+export async function GET(req: Request){
     try{
         const db = (await connectDB).db('IdolRank');
         const collection = db.collection('member');

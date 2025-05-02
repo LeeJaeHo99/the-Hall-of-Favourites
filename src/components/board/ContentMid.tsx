@@ -6,7 +6,6 @@ import usePostLikePost from "@/hooks/usePostLikePost";
 
 // 📀 COMPONENT
 import LoadSpinner from "../spinner/LoadSpinner";
-import ErrorMessage from "../ui/ErrorMessage";
 
 export default function ContentMid({ content }) {
     const params = useParams();
@@ -15,13 +14,14 @@ export default function ContentMid({ content }) {
     const handleLike = async () => {
         try {
             const result = await postHandler(params.id);
+            console.log(result);
 
             if (!result) {
                 alert("추천 실패");
                 return;
             }
 
-            if (result.newCount) {
+            if (result.data) {
                 window.location.reload();
             } else {
                 alert("이미 추천한 게시물 입니다.");
@@ -34,7 +34,6 @@ export default function ContentMid({ content }) {
     };
 
     if(isPost) return <LoadSpinner/>;
-    if(isPostError) return <ErrorMessage text={"게시물 추천 중 에러가 발생하였습니다."}/>
 
     return (
         <div className="content-mid">

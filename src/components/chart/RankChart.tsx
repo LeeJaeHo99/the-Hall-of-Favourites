@@ -31,7 +31,7 @@ export default function RankChart({ data }: RankChartPropsType) {
                     tickLine={true}
                 />
                 <Tooltip cursor={false} content={<CustomTooltip />} />
-                <Legend content={CustomLegend} />
+                <Legend content={<CustomLegend payload={data.map(d => ({value: d.name}))} />} />
                 {data.map((member, i) => (
                     <Line
                         key={member.name}

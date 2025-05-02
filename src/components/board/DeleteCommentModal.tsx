@@ -5,41 +5,37 @@ import { useParams } from "next/navigation";
 import useDeleteCommnet from "@/hooks/useDeleteComment";
 import useGetWrite from "@/hooks/useGetWrite";
 import { DeleteCommentModalPropstype } from '@/types/types';
-
-// 📀 COMPONENT
 import Image from "next/image";
-import ErrorMessage from "@/components/ui/ErrorMessage";
-import LoadSpinner from "../spinner/LoadSpinner";
 
-export default function DeleteCommentModal({ setIsClickDelete, param, index }: DeleteCommentModalPropstype) {
-    const { recentWrite, likeSortedWrite, isLoad, isError, setRecentWrite } = useGetWrite();
-    const { deleteHandler, isDeleteLoad, isDeleteError } = useDeleteCommnet();
+export default function DeleteCommentModal({ onClickDelete, param, index }: DeleteCommentModalPropstype) {
+    const { recentWrite, setRecentWrite } = useGetWrite();
+    const { deleteHandler } = useDeleteCommnet();
 
     const params = useParams();
     const inputRef = useRef(null);
     const [inputPw, setInputPw] = useState("");
-    const onChangePw = (e) => {
+    const onChangePw = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputPw(e.target.value);
     };
 
     const closeModal = () => {
-        setIsClickDelete(null);
+        onClickDelete(null);
     }
 
     useEffect(() => {
         if (inputRef.current) {
-            inputRef.current.focus();
+            (inputRef.current as HTMLInputElement).focus();
         }
     }, []);
 
     useEffect(() => {
         if(Array.isArray(recentWrite)){
             const finded = [...recentWrite]?.find(data => data._id === params.id);
-            setRecentWrite(finded);
+            if(finded) setRecentWrite(finded);
         }
     }, [recentWrite]);
 
-    const onSubmitDelete = async (e) => {
+    const onSubmitDelete = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if(inputPw.length !== 4){

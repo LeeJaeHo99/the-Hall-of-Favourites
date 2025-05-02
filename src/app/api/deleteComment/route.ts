@@ -2,11 +2,11 @@ import { connectDB } from "@/util/mongodb";
 import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
 
-export async function DELETE(req) {
+export async function DELETE(req: Request) {
     try {
         const { searchParams } = new URL(req.url);
         const postId = searchParams.get("postId");
-        const commentIndex = parseInt(searchParams.get("commentIndex"));
+        const commentIndex = parseInt(searchParams.get("commentIndex") as string);
         const inputPw = searchParams.get("inputPw");
 
         if (!postId || isNaN(commentIndex) || !inputPw) {
@@ -43,7 +43,7 @@ export async function DELETE(req) {
         const updatedComments = [...post.comment];
         updatedComments.splice(commentIndex, 1);
 
-        const result = await collection.updateOne(
+        await collection.updateOne(
             { _id: new ObjectId(postId) },
             { $set: { comment: updatedComments } }
         );
@@ -56,6 +56,6 @@ export async function DELETE(req) {
             { status: 200 }
         );
     } catch (error) {
-        return NextResponse.json({ error: error.message }, { status: 500 });
+        return NextResponse.json({ error: (error as Error).message }, { status: 500 });
     }
 }

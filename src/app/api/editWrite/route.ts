@@ -2,7 +2,7 @@ import { connectDB } from "@/util/mongodb";
 import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
 
-export async function PATCH(req) {
+export async function PATCH(req: Request) {
     try {
         const body = await req.json();
         const { id, title, content, writer, pw } = body;

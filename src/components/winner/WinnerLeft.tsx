@@ -24,7 +24,7 @@ export default function WinnerLeft({ cheerMessage, song, group }: WinnerLeftProp
                     ease: [0, 0.71, 0.2, 1.01],
                 }}
             >
-                <CheerMessage cheerMessage={cheerMessage}/>
+                <CheerMessage cheerMessage={cheerMessage as string[]}/>
             </motion.div>
         </div>
     );

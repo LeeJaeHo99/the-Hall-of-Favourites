@@ -21,7 +21,7 @@ async function deleteFetcher(api: string) {
 }
 
 // WRITE
-export const deleteWrite = (id: string, pw: number) => {
+export const deleteWrite = (id: string, pw: string) => {
     return deleteFetcher(`deleteWrite?postId=${id}&inputPw=${pw}`);
 };
 

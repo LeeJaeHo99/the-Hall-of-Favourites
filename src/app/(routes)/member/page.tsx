@@ -94,7 +94,7 @@ export default function MemberPage() {
                                     desc={`${filteredMember?.nameKo[0]}`}
                                     trigger={trigger}
                                 />
-                                <RightContent memberData={filteredMember} />
+                                <RightContent memberData={filteredMember as MemberDataType} />
                             </div>
                             <Title
                                 title={"여담"}

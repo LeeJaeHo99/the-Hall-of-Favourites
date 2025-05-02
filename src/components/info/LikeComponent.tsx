@@ -1,6 +1,11 @@
 import Image from "next/image";
 
-export default function LikeComponent({onClickTrigger, onHandleLike}) {
+interface LikeComponentProps {
+    onClickTrigger: () => void;
+    onHandleLike: () => void;
+}
+
+export default function LikeComponent({onClickTrigger, onHandleLike}: LikeComponentProps) {
 
     return (
         <div className="blur-box" onClick={onClickTrigger}>

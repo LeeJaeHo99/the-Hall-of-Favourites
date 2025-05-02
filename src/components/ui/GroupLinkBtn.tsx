@@ -13,8 +13,8 @@ export default function GroupLinkBtn() {
         if(!Array.isArray(memberData)) return [];
         
         return [...memberData].sort((a, b) => {
-            let aMem = a.likeHistory;
-            let bMem = b.likeHistory;
+            const aMem = a.likeHistory;
+            const bMem = b.likeHistory;
             return bMem - aMem;
         }).slice(0, 10);
     }, [memberData]);

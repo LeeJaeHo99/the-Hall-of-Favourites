@@ -30,12 +30,11 @@ export default function BoardLoadComponet() {
                             <BoardSearch
                                 searchWord={""}
                                 onChangeSearchWord={loadFn}
-                                isSearch={""}
                                 setIsSearch={loadFn}
                             />
                         </div>
                         <Category
-                            category={""}
+                            category={true}
                             clickLeft={loadFn}
                             clickRight={loadFn}
                             leftText={"최신글"}
@@ -44,8 +43,8 @@ export default function BoardLoadComponet() {
                     </div>
                     <LoadSpinner/>
                     <Pagination
-                        data={""}
-                        pagination={""}
+                        data={[]}
+                        pagination={0}
                         setPagination={loadFn}
                     />
                 </div>

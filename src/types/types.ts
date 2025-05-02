@@ -36,9 +36,11 @@ export interface WriteDataType {
 }
 
 export interface CommentType {
-    name: string;
-    text: string;
-    pw: string;
+    comment: {
+        name: string;
+        text: string;
+        pw: string;
+    }
 }
 
 export interface MemberDataType {
@@ -63,6 +65,7 @@ export interface MemberDataType {
     victory: number;
     weekLike: number[];
     story?: string[];
+    cheerMsg?: string[];
 }
 
 // Board
@@ -112,21 +115,21 @@ export interface BoardDeleteProps {
 }
 
 export interface DeleteCommentModalPropstype {
-    setIsClickDelete: () => null;
+    onClickDelete: (i: number | null) => void;
     param: number;
     index: number;
 }
 
 export interface PaginationPropsType {
-    data?: WriteDataType[];
+    data: WriteDataType[];
     pagination: number;
-    setPagination: () => void;
+    setPagination: (value: number) => void;
 }
 
 
 // WINNER
 export interface WinnerLeftPropsType {
-    cheerMessage: string[];
+    cheerMessage?: string[];
     song: {
         id: string;
         title: string;
@@ -189,4 +192,43 @@ export interface MemberType {
     };
     story: string[];
     cheerMsg: string[];
+}
+
+export interface WriteType {
+    _id: string;
+    title: string;
+    date: string;
+    comment: CommentType[];
+}
+
+export interface CheerMessagePropsType {
+    cheerMessage: string[];
+}
+
+export interface MusicThumbnailPropsType {
+    song: {
+        id: string;
+        title: string;
+    };
+    group: string;
+}
+
+export interface RadioBtnProps {
+    id: string;
+    name: string;
+    checked: boolean;
+    onClick: () => void;
+}
+
+export interface TitlePropsType {
+    title: string;
+    desc?: string;
+    moreView?: boolean;
+    children?: React.ReactNode;
+}
+
+export interface TimeLeft {
+    hours: number;
+    minutes: number;
+    seconds: number;
 }

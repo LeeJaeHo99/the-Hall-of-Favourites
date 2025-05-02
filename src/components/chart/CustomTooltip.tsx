@@ -1,4 +1,16 @@
-export default function CustomTooltip({ active, payload, label }) {
+interface PayloadItem {
+    name: string;
+    value: number | string;
+    color: string;
+}
+
+interface CustomTooltipProps {
+    active?: boolean;
+    payload?: PayloadItem[];
+    label?: string;
+}
+
+export default function CustomTooltip({ active, payload, label }: CustomTooltipProps) {
     if (active && payload && payload.length) {
         return (
             <div className="chart-tooltip blur-box">

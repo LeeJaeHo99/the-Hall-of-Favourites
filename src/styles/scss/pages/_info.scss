@@ -105,33 +105,83 @@
         }
     }
     .right-content--wrap{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 16px;
         width: 24%;
-        padding: 24px;
-        border-radius: 16px;
+        
+        .profile-info{
+            width: 100%;
+            padding: 24px;
+            border-radius: 16px;
 
-        h2{
-            margin-bottom: 32px;
-            font-family: 'gs-m';
-            font-size: 28px;
-            text-align: center;
-        }
-        > div{
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            margin-bottom: 16px;
-
-            &:last-child{
-                margin-bottom: 0;
-            }
-            .title{
-                margin-right: 8px;
-                font-size: 18px;
-            }
-            .info{
+            h2{
+                margin-bottom: 32px;
                 font-family: 'gs-m';
-                font-size: 20px;
-                color: $primary;
+                font-size: 28px;
+                text-align: center;
+            }
+            > div{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                margin-bottom: 16px;
+    
+                &:last-child{
+                    margin-bottom: 0;
+                }
+                .title{
+                    margin-right: 8px;
+                    font-size: 18px;
+                }
+                .info{
+                    font-family: 'gs-m';
+                    font-size: 20px;
+                    color: $primary;
+                }
+            }
+        }
+        .cheer-message--input{
+            width: 100%;
+            padding: 18px;
+            border-radius: 12px;
+
+            .title{
+                margin-bottom: 16px;
+            }
+            form{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+
+                input{
+                    width: 90%;
+                    padding: 4px;
+                    border-radius: 4px;
+                    font-family: 'gs-m';
+                }
+                button{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 24px;
+                    height: 24px;
+                    background-color: rgb(255 255 255 / 25%);
+                    border-radius: 4px;
+
+                    &:hover{
+                        img{
+                            width: 14px;
+                            height: 14px;
+                        }
+                    }
+                    img{
+                        transition: all 0.3s;
+                    }
+                }
             }
         }
     }

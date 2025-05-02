@@ -377,7 +377,7 @@ footer {
   div.InfoPage .left-content--wrap .content-box > div .content {
     top: 60%;
   }
-  div.InfoPage .right-content--wrap > div .info {
+  div.InfoPage .right-content--wrap .profile-info > div .info {
     font-size: 18px;
   }
 }
@@ -401,7 +401,7 @@ footer {
   div.InfoPage .left-content--wrap .content-box > div .content span {
     font-size: 16px;
   }
-  div.InfoPage .right-content--wrap {
+  div.InfoPage .right-content--wrap .profile-info {
     padding: 16px;
   }
 }
@@ -452,6 +452,9 @@ footer {
   div.InfoPage .story-component .story span {
     line-height: 1.4;
   }
+  div.error-message .blur-box {
+    font-size: 26px;
+  }
 }
 @media screen and (max-width: 1020px) {
   .home div.inner {
@@ -490,10 +493,6 @@ footer {
   }
   div.inner .winner .winner-content .main-content .winner-desc .winner-group {
     font-size: 22px;
-  }
-  div.inner .winner .share-component img {
-    width: 38px;
-    height: 38px;
   }
   div.inner .player-wraper .music-player--wrap .music-thumbnail--img {
     width: 96px;
@@ -548,21 +547,20 @@ footer {
     gap: 24px;
   }
   div.inner .winner .winner-content .left-content {
+    flex-direction: column;
     order: 2;
+  }
+  div.inner .winner .winner-content .left-content > div {
+    width: 100%;
+  }
+  div.inner .winner .winner-content .right-content {
+    flex-direction: row;
   }
   div.inner .winner .winner-content .right-content > div .result {
     font-size: 16px;
   }
   div.inner .winner .winner-content .left-content, div.inner .winner .winner-content .right-content {
-    flex-direction: row;
     width: 100%;
-  }
-  div.inner .winner .share-component .logo-wrap {
-    gap: 32px;
-  }
-  div.inner .winner .share-component .logo-wrap img {
-    width: 52px;
-    height: 52px;
   }
   div.inner .player-wraper {
     justify-content: space-evenly;
@@ -629,6 +627,10 @@ footer {
   }
   div.InfoPage .main-content--wrap {
     padding-top: 40px;
+  }
+  div.error-message .blur-box {
+    padding: 32px 0;
+    font-size: 18px;
   }
 }
 @media screen and (max-width: 680px) {
@@ -814,10 +816,6 @@ footer {
   div.home div.inner .winner .winner-content .left-content .player-wraper .music-player--wrap .music-info .music-singer {
     font-size: 16px;
   }
-  div.home div.inner .winner .winner-content .left-content .share-component .logo-wrap img {
-    width: 38px;
-    height: 38px;
-  }
   div.home div.inner .winner .winner-content .main-content {
     margin-bottom: 12px;
   }
@@ -876,6 +874,11 @@ footer {
   }
   div.collecting-content {
     font-size: 24px;
+  }
+}
+@media screen and (max-width: 550px) {
+  div.error-message .blur-box {
+    font-size: 14px;
   }
 }
 @media screen and (max-width: 500px) {
@@ -1053,10 +1056,6 @@ footer {
   div.home div.inner .winner .winner-content .left-content .player-wraper .music-player--wrap .music-info .music-singer {
     font-size: 18px;
   }
-  div.home div.inner .winner .winner-content .left-content .share-component .logo-wrap img {
-    width: 48px;
-    height: 48px;
-  }
   div.home div.inner .winner .winner-content .right-content > div .title {
     font-size: 14px;
     letter-spacing: -0.4px;
@@ -1090,9 +1089,6 @@ footer {
   }
   div.home div.inner .winner .winner-content .right-content > div .title {
     font-size: 13px;
-  }
-  div.home div.inner .winner .winner-content .left-content .share-component {
-    padding: 12px;
   }
   div.home div.inner .board-preview .writing-wrap .writing .title {
     width: 70%;
@@ -1176,6 +1172,9 @@ footer {
   }
   div.collecting-content {
     font-size: 18px;
+  }
+  div.error-message .blur-box {
+    font-size: 12px;
   }
 }
 @media screen and (max-width: 400px) {
@@ -1282,27 +1281,22 @@ footer {
 .winner .winner-content .right-content > div {
   width: 80%;
 }
-.winner .winner-content .left-content .share-component {
+.winner .winner-content .left-content .cheer-message--wrap {
   padding: 16px;
   border-radius: 12px;
 }
-.winner .winner-content .left-content .share-component .title {
+.winner .winner-content .left-content .cheer-message--wrap .title {
   margin-bottom: 20px;
   font-family: "gs-m";
   font-size: 16px;
 }
-.winner .winner-content .left-content .share-component .logo-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-}
-.winner .winner-content .left-content .share-component .logo-wrap img {
-  cursor: pointer;
-  transition: all 0.3s;
-}
-.winner .winner-content .left-content .share-component .logo-wrap img:hover {
-  transform: scale(1.1);
+.winner .winner-content .left-content .cheer-message--wrap .cheer-message {
+  margin: 8px 0;
+  font-family: "gs-l";
+  color: lightgreen;
+  line-height: 1.4;
+  text-align: center;
+  text-shadow: 0 0 6px;
 }
 .winner .winner-content .right-content > div {
   padding: 16px;
@@ -1793,9 +1787,12 @@ footer {
 }
 
 .error-message {
-  padding-bottom: 80px;
+  padding: 40px 0;
+  background: none;
 }
 .error-message .blur-box {
+  display: flex;
+  justify-content: center;
   padding: 32px;
   border-radius: 12px;
   font-family: "gs-b";
@@ -2020,33 +2017,77 @@ footer {
   font-size: 28px;
 }
 .InfoPage .right-content--wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
   width: 24%;
+}
+.InfoPage .right-content--wrap .profile-info {
+  width: 100%;
   padding: 24px;
   border-radius: 16px;
 }
-.InfoPage .right-content--wrap h2 {
+.InfoPage .right-content--wrap .profile-info h2 {
   margin-bottom: 32px;
   font-family: "gs-m";
   font-size: 28px;
   text-align: center;
 }
-.InfoPage .right-content--wrap > div {
+.InfoPage .right-content--wrap .profile-info > div {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   margin-bottom: 16px;
 }
-.InfoPage .right-content--wrap > div:last-child {
+.InfoPage .right-content--wrap .profile-info > div:last-child {
   margin-bottom: 0;
 }
-.InfoPage .right-content--wrap > div .title {
+.InfoPage .right-content--wrap .profile-info > div .title {
   margin-right: 8px;
   font-size: 18px;
 }
-.InfoPage .right-content--wrap > div .info {
+.InfoPage .right-content--wrap .profile-info > div .info {
   font-family: "gs-m";
   font-size: 20px;
   color: #8e65ab;
+}
+.InfoPage .right-content--wrap .cheer-message--input {
+  width: 100%;
+  padding: 18px;
+  border-radius: 12px;
+}
+.InfoPage .right-content--wrap .cheer-message--input .title {
+  margin-bottom: 16px;
+}
+.InfoPage .right-content--wrap .cheer-message--input form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.InfoPage .right-content--wrap .cheer-message--input form input {
+  width: 90%;
+  padding: 4px;
+  border-radius: 4px;
+  font-family: "gs-m";
+}
+.InfoPage .right-content--wrap .cheer-message--input form button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+}
+.InfoPage .right-content--wrap .cheer-message--input form button:hover img {
+  width: 14px;
+  height: 14px;
+}
+.InfoPage .right-content--wrap .cheer-message--input form button img {
+  transition: all 0.3s;
 }
 .InfoPage .story-component {
   width: 80%;

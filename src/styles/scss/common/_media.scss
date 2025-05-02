@@ -36,9 +36,11 @@
             }
         }  
         .right-content--wrap{
-            > div{
-                .info{
-                    font-size: 18px;
+            .profile-info{
+                > div{
+                    .info{
+                        font-size: 18px;
+                    }
                 }
             }
         }
@@ -87,7 +89,9 @@
             }
         }
         .right-content--wrap{
-            padding: 16px;
+            .profile-info{
+                padding: 16px;
+            }
         }
     }
 }
@@ -222,12 +226,6 @@
                     font-size: 22px;
                 }
             }
-            .share-component{
-                img{
-                    width: 38px;
-                    height: 38px;
-                }
-            }
         }
         .player-wraper{
             .music-player--wrap{
@@ -302,9 +300,15 @@
                 gap: 24px;
 
                 .left-content{
+                    flex-direction: column;
                     order: 2;
+                    
+                    > div{
+                        width: 100%;
+                    }
                 }
                 .right-content{
+                    flex-direction: row;
                     > div{
                         .result{
                             font-size: 16px;
@@ -312,18 +316,7 @@
                     }
                 }
                 .left-content, .right-content{
-                    flex-direction: row;
                     width: 100%;
-                }
-            }
-            .share-component{
-                .logo-wrap{
-                    gap: 32px;
-                    
-                    img{
-                        width: 52px;
-                        height: 52px;
-                    }
                 }
             }
         }
@@ -720,14 +713,6 @@
                                 }
                             }
                         }
-                        .share-component{
-                            .logo-wrap{
-                                img{
-                                    width: 38px;
-                                    height: 38px;
-                                }
-                            }
-                        }
                     }
                     .main-content{
                         margin-bottom: 12px;
@@ -1099,14 +1084,6 @@
                                 }
                             }
                         }
-                        .share-component{
-                            .logo-wrap{
-                                img{
-                                    width: 48px;
-                                    height: 48px;
-                                }
-                            }
-                        }
                     }
                     .right-content{                        
                         > div{
@@ -1162,11 +1139,6 @@
                             .title{
                                 font-size: 13px;
                             }
-                        }
-                    }
-                    .left-content{
-                        .share-component{
-                            padding: 12px;
                         }
                     }
                 }

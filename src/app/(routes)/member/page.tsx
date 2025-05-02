@@ -6,7 +6,7 @@ import useGetFullMember from "@/hooks/useGetFullMember";
 import usePatchLikeMember from "@/hooks/usePatchLikeMember";
 import { MemberDataType, MemberMainContentPropsType } from "@/types/types";
 
-
+// 📀 COMPONENT
 import Inner from "@/components/ui/Inner";
 import Title from "@/components/ui/Title";
 import PersonImg from "@/components/ui/PersonImg";

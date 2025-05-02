@@ -101,7 +101,7 @@
             }
         }
         .left-content {
-            .share-component {
+            .cheer-message--wrap {
                 padding: 16px;
                 border-radius: 12px;
 
@@ -110,20 +110,13 @@
                     font-family: "gs-m";
                     font-size: 16px;
                 }
-                .logo-wrap {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    gap: 16px;
-
-                    img {
-                        cursor: pointer;
-                        transition: all 0.3s;
-
-                        &:hover {
-                            transform: scale(1.1);
-                        }
-                    }
+                .cheer-message{
+                    margin: 8px 0;
+                    font-family: 'gs-l';
+                    color: lightgreen;
+                    line-height: 1.4;
+                    text-align: center;
+                    text-shadow: 0 0 6px;
                 }
             }
         }

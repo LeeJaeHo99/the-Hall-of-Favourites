@@ -1,47 +1,62 @@
 import { connectDB } from "@/util/mongodb";
 import { NextResponse } from "next/server";
 
-export async function POST(req: Request) {
-    const { searchParams } = new URL(req.url);
-    const nameKo = searchParams.get("q");
-
+export async function POST() {
     const db = (await connectDB).db("IdolRank");
     const collection = db.collection("member");
-    const member = await collection.findOne({ "nameKo.0": nameKo });
 
-    // 🤖 WORK : 없는 멤버일 경우 중단
-    if (!member) {
-        return NextResponse.json(
-            { message: "멤버를 찾을 수 없습니다" },
-            { status: 404 }
-        );
-    }
+    const members = await collection.find({}).toArray();
 
-    if (!member.todayLike || member.todayLike.length < 24) {
-        const initialized = Array(24).fill(0);
-        if (member.todayLike) {
-            member.todayLike.forEach((val, idx) => (initialized[idx] = val));
+    let maxLikeSum = 0;
+    let maxLikeMemberId = null;
+
+    for (const member of members) {
+        let todayLike = member.todayLike;
+
+        if (!todayLike || todayLike.length < 24) {
+            const initialized = Array(24).fill(0);
+            if (todayLike) {
+                todayLike.forEach((val, idx) => {
+                    initialized[idx] = val;
+                });
+            }
+            todayLike = initialized;
         }
+
+        const todayLikeSum = todayLike.reduce((a, b) => a + b, 0);
+
+        // 가장 큰 todayLikeSum 찾기
+        if (todayLikeSum > maxLikeSum) {
+            maxLikeSum = todayLikeSum;
+            maxLikeMemberId = member._id;
+        }
+
+        // 주간 집계 및 todayLike 초기화
         await collection.updateOne(
-            { "nameKo.0": nameKo },
-            { $set: { todayLike: initialized } }
+            { _id: member._id },
+            {
+                $push: {
+                    weekLike: {
+                        $each: [todayLikeSum],
+                        $slice: -6,
+                    },
+                },
+                $set: {
+                    todayLike: Array(24).fill(0),
+                },
+            }
         );
     }
 
-    const todayLikeSum = member.todayLike.reduce((a, b) => a + b, 0);
+    // todayLikeSum이 가장 큰 멤버의 likeHistory +1
+    if (maxLikeMemberId) {
+        await collection.updateOne(
+            { _id: maxLikeMemberId },
+            {
+                $inc: { likeHistory: 1 },
+            }
+        );
+    }
 
-    await collection.updateOne(
-        { "nameKo.0": nameKo },
-        {
-            $push: {
-                weekLike: {
-                    $each: [todayLikeSum],
-                    $slice: -6,
-                },
-            },
-            $set: { todayLike: Array(24).fill(0) },
-        }
-    );
-
-    return NextResponse.json({ message: "하루 집계 완료" });
+    return NextResponse.json({ message: "모든 멤버 하루 집계 완료 및 좋아요 히스토리 업데이트" });
 }

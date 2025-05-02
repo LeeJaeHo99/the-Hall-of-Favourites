@@ -1,4 +1,6 @@
-export default function RightContent({memberData}) {
+import CheerMessageWrite from "./CheerMessageWrite";
+
+export default function RightContent({ memberData }) {
     const title = [
         "이름: ",
         "그룹: ",
@@ -7,16 +9,26 @@ export default function RightContent({memberData}) {
         "생일: ",
         "나이: ",
     ];
-    const data = [memberData?.nameKo[0], memberData?.group[2], memberData?.company, memberData?.debutDate, memberData?.birth, memberData?.age];
+    const data = [
+        memberData?.nameKo[0],
+        memberData?.group[2],
+        memberData?.company,
+        memberData?.debutDate,
+        memberData?.birth,
+        memberData?.age,
+    ];
     return (
-        <div className="right-content--wrap blur-box">
-            <h2>프로필</h2>
-            {title.map((titleData, i) => (
-                <div key={i}>
-                    <div className="title">{titleData}</div>
-                    <div className="info">{data[i]}</div>
-                </div>
-            ))}
+        <div className="right-content--wrap">
+            <div className="profile-info blur-box">
+                <h2>프로필</h2>
+                {title.map((titleData, i) => (
+                    <div key={i}>
+                        <div className="title">{titleData}</div>
+                        <div className="info">{data[i]}</div>
+                    </div>
+                ))}
+            </div>
+            <CheerMessageWrite/>
         </div>
     );
 }

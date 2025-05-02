@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { WinnerLeftPropsType } from '@/types/types';
 import { motion } from "motion/react";
 import MusicThumbnail from "../ui/MusicThumnail";
@@ -24,28 +23,9 @@ export default function WinnerLeft({ song, group }: WinnerLeftPropsType) {
                     ease: [0, 0.71, 0.2, 1.01],
                 }}
             >
-                <div className="share-component blur-box">
-                    <div className="title">공유하기</div>
-                    <div className="logo-wrap">
-                        <Image
-                            src={"/icons/kakao.png"}
-                            width={48}
-                            height={48}
-                            alt="카카오 아이콘"
-                        />
-                        <Image
-                            src={"/icons/x.png"}
-                            width={48}
-                            height={48}
-                            alt="x 아이콘"
-                        />
-                        <Image
-                            src={"/icons/instagram.png"}
-                            width={48}
-                            height={48}
-                            alt="인스타 아이콘"
-                        />
-                    </div>
+                <div className="cheer-message--wrap blur-box">
+                    <div className="title">응원 메시지</div>
+                    <div className="cheer-message">힘내세요 화이팅 🥰</div>
                 </div>
             </motion.div>
         </div>

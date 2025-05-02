@@ -37,10 +37,12 @@ export function transformChartData(data: { name: string; data: number[] }[]) {
     if (data.length === 0) return [];
 
     const length = data[0].data.length;
+    const now = new Date();
+    const currentHour = now.getHours();
 
     return Array.from({ length }).map((_, i) => {
-        const hour = 10 + i; // 시작 시간 (예: 10시부터 시작)
-        const timeStr = `${hour}:00`;
+        const hour = currentHour - length + 1 + i;
+        const timeStr = `${hour.toString().padStart(2, '0')}:00`;
 
         const entry: any = { time: timeStr };
 
@@ -51,3 +53,4 @@ export function transformChartData(data: { name: string; data: number[] }[]) {
         return entry;
     });
 }
+

@@ -17,3 +17,12 @@ likeMember
 
 postEndWeek
 // 월요일 AM 00:10에 weekLike의 배열 초기화
+
+
+
+txt 수빈
+txt 연준
+nct 재현
+the boyz 주연
+세븐틴 정한
+straykids 현진

@@ -8,8 +8,9 @@ import usePostLikePost from "@/hooks/usePostLikePost";
 import LoadSpinner from "../spinner/LoadSpinner";
 
 export default function ContentMid({ content }) {
+    console.log('content: ', content);
     const params = useParams();
-    const { postHandler, isPost, isPostError } = usePostLikePost();
+    const { postHandler, isPost } = usePostLikePost();
 
     const handleLike = async () => {
         try {

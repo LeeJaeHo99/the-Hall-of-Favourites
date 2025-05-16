@@ -818,6 +818,16 @@
 }
 
 @media screen and (max-width: 500px){
+    div.modal-wrap{
+        width: 220px;
+
+        .text-wrap{
+            font-size: 13px;
+        }
+        .modal-form button{
+            width: 22%;
+        }
+    }
     header{
         div.inner{
             justify-content: center !important;
@@ -949,6 +959,13 @@
                                 td{
                                     padding: 8px;
                                     font-size: 13px;
+
+                                    &:last-child{
+                                        .modal-wrap{
+                                            top: 33px;
+                                            left: -23%;
+                                        }
+                                    }
                                 }
                             }
                         }

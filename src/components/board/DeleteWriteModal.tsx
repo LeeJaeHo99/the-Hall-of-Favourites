@@ -30,7 +30,7 @@ export default function DeleteWriteModal({ onClick }: {onClick: () => void}) {
             const finded = [...recentWrite]?.find(data => data._id === params.id);
             setRecentWrite((finded as WriteDataType));
         }
-    }, [recentWrite]);
+    }, [recentWrite, setRecentWrite, params.id]);
 
 
     const onSubmitDelete = async (e: React.FormEvent<HTMLFormElement>) => {

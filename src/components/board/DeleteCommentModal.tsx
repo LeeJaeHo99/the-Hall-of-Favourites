@@ -33,7 +33,7 @@ export default function DeleteCommentModal({ onClickDelete, param, index }: Dele
             const finded = [...recentWrite]?.find(data => data._id === params.id);
             if(finded) setRecentWrite(finded);
         }
-    }, [recentWrite]);
+    }, [recentWrite, setRecentWrite, params.id]);
 
     const onSubmitDelete = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

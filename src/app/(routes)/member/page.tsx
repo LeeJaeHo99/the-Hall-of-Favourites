@@ -28,6 +28,7 @@ export default function MemberPage() {
     const { memberData, isLoad, isError } = useGetFullMember();
     const { patchHandler } = usePatchLikeMember();
     const [filteredMember, setFilteredMember] = useState<MemberDataType | null>(null);
+    console.log('filteredMember: ', filteredMember);
 
     useEffect(() => {
         if (Array.isArray(memberData) && q) {

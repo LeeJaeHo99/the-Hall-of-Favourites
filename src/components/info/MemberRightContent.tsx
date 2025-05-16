@@ -1,8 +1,8 @@
 import CheerMessageWrite from "./CheerMessageWrite";
-import { MemberType } from '@/types/types';
+import { MemberDataType } from '@/types/types';
 
 interface RightContentProps {
-    memberData: MemberType;
+    memberData: MemberDataType;
 }
 
 export default function RightContent({ memberData }: RightContentProps) {

@@ -196,7 +196,7 @@ export interface MemberType {
         id: string;
         title: string;
     };
-    story: string[];
+    story?: string[];
     cheerMsg: string[];
 }
 

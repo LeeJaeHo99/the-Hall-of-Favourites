@@ -12,34 +12,39 @@ export default function VictoryHistory() {
     const { memberData, isLoad, isError, setMemberData } = useGetFullMember();
 
     useEffect(() => {
-        setMemberData(memberData?.sort((a, b) => {
-            const aRank = a.victory;
-            const bRank = b.victory;
-            return bRank - aRank;
-        }).slice(0, 3));
+        if(Array.isArray(memberData)){
+            const sortData = [...memberData]?.sort((a, b) => {
+                const aRank = a.victory;
+                const bRank = b.victory;
+                return bRank - aRank;
+            }).slice(0, 3);
+            setMemberData(sortData);
+        }
     }, []);
 
     if(isLoad) return <VictoryHistoryLoadComponent/>
-    if(isError) return <ErrorMessage text={'우승 데이터를 불러오던 중 에러가 발생하였습니다.'}/>;
+    if(isError || !Array.isArray(memberData)) return <ErrorMessage text={'우승 데이터를 불러오던 중 에러가 발생하였습니다.'}/>;
+
+    const [gold, silver, bronze] = memberData;
 
     return (
         <div className="victory-history blur-box">
             <div className="silver">
                 <Profile
-                    nameKo={memberData[1]?.nameKo[0]}
-                    nameEn={memberData[1]?.nameEn}
-                    group={memberData[1]?.group[0]}
-                    history={memberData[1]?.victory}
+                    nameKo={silver?.nameKo[0]}
+                    nameEn={silver?.nameEn}
+                    group={silver?.group[0]}
+                    history={silver?.victory}
                 />
                 <div className="box">🥈</div>
                 <div className="box"></div>
             </div>
             <div className="gold">
                 <Profile
-                    nameKo={memberData[0]?.nameKo[0]}
-                    nameEn={memberData[0]?.nameEn}
-                    group={memberData[0]?.group[0]}
-                    history={memberData[0]?.victory}
+                    nameKo={gold?.nameKo[0]}
+                    nameEn={gold?.nameEn}
+                    group={gold?.group[0]}
+                    history={gold?.victory}
                 />
                 <div className="box">🥇</div>
                 <div className="box"></div>
@@ -47,10 +52,10 @@ export default function VictoryHistory() {
             </div>
             <div className="bronze">
                 <Profile
-                    nameKo={memberData[2]?.nameKo[0]}
-                    nameEn={memberData[2]?.nameEn}
-                    group={memberData[2]?.group[0]}
-                    history={memberData[2]?.victory}
+                    nameKo={bronze?.nameKo[0]}
+                    nameEn={bronze?.nameEn}
+                    group={bronze?.group[0]}
+                    history={bronze?.victory}
                 />
                 <div className="box">🥉</div>
             </div>

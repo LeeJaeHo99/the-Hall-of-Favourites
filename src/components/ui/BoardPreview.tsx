@@ -29,9 +29,9 @@ export default function BoardPreview() {
             />
             <div className="writing-wrap">
                     {
-                        category 
-                            ? recentWrite.map((write) => <BoardContent key={write._id} {...write} />) 
-                            : likeSortedWrite.map((write) => <BoardContent key={write._id} {...write} />)
+                        category
+                            ? (Array.isArray(recentWrite) ? recentWrite : [recentWrite])?.map((write: WriteType) => <BoardContent key={write._id} {...write} />)
+                            : (Array.isArray(likeSortedWrite) ? likeSortedWrite : [likeSortedWrite])?.map((write: WriteType) => <BoardContent key={write._id} {...write} />)
                     }
             </div>
         </div>

@@ -370,8 +370,9 @@
 
                                     .modal-wrap{
                                         position: absolute;
-                                        top: -45px;
+                                        top: 42px;
                                         left: 50%;
+                                        z-index: 999;
                                         transform: translateX(-50%);
                                     }
                                     button:not(.modal-wrap button){

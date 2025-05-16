@@ -7,7 +7,7 @@ export function checkIsBlindTime() {
     return h === 22 || (h === 23 && m < 50);
 
     // test
-    // return h === 19 || (h === 19 && m < 50);
+    // return h === 13 || (h === 13 && m < 59);
 }
 
 // 순위 집계 (PM 23:50 ~ PM 23:59)

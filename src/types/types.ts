@@ -78,6 +78,11 @@ export interface MemberDataType {
     cheerMsg?: string[];
 }
 
+export interface Top5Data{
+    name: string;
+    sum: number;
+}
+
 // Board
 export interface BoardPropsType {
     category: boolean;

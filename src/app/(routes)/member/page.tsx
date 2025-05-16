@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import useGetFullMember from "@/hooks/useGetFullMember";
 import usePatchLikeMember from "@/hooks/usePatchLikeMember";
@@ -17,7 +17,7 @@ import NoneInfo from "@/components/info/NoneInfo";
 import InfoLoadComponent from "@/components/spinner/InfoLoadComponent";
 import ErrorMessage from "@/components/ui/ErrorMessage";
 
-export default function MemberPage() {
+function MemberContent() {
     const [trigger, setTrigger] = useState(false);
     const onClickTrigger = () => {
         setTrigger(true);
@@ -28,7 +28,6 @@ export default function MemberPage() {
     const { memberData, isLoad, isError } = useGetFullMember();
     const { patchHandler } = usePatchLikeMember();
     const [filteredMember, setFilteredMember] = useState<MemberDataType | null>(null);
-    console.log('filteredMember: ', filteredMember);
 
     useEffect(() => {
         if (Array.isArray(memberData) && q) {
@@ -36,7 +35,6 @@ export default function MemberPage() {
             setFilteredMember(found ?? null);
         }
     }, [memberData, q]);
-
 
     // 🤖 WORK : 좋아요 클릭시 오늘, 전체 좋아요 +1
     const handleLike = async () => {
@@ -64,7 +62,6 @@ export default function MemberPage() {
             }
         }
     };
-    
 
     if (!filteredMember) return null;
     if(isLoad) return <InfoLoadComponent/>;
@@ -116,5 +113,13 @@ function MainContent({ group, nameEn, title, desc, trigger }: MemberMainContentP
             <PersonImg group={group} nameEn={nameEn} trigger={trigger}/>
             <Title title={title} desc={desc} />
         </div>
+    );
+}
+
+export default function MemberPage() {
+    return (
+        <Suspense fallback={<InfoLoadComponent />}>
+            <MemberContent />
+        </Suspense>
     );
 }

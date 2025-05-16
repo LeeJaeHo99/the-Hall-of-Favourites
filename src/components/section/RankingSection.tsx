@@ -13,6 +13,12 @@ import CollectingContent from "../chart/CollectingContent";
 import AnouningContent from "../chart/AnouningContent";
 import RankingLoadComponent from "../spinner/RankingLoadComponent";
 import ErrorMessage from "../ui/ErrorMessage";
+import { MemberDataType } from "@/types/types";
+
+interface Top5Data{
+    name: string;
+    sum: number;
+}
 
 export default function RankingSection() {
     const { memberData, isLoad, isError } = useGetFullMember();
@@ -21,16 +27,17 @@ export default function RankingSection() {
     const { top5, chartData } = useMemo(() => {
         if (!memberData) return { top5: [], chartData: [] };
         
-        const top5 = getTop5(memberData);
+        const top5 = getTop5(memberData as MemberDataType[]);
         const chartData = top5.map(member => ({
             name: member.name,
             data: getTodayLikeSums(
-                memberData.find(mem => mem.nameKo[0] === member.name)?.todayLike || []
+                (memberData as MemberDataType[]).find((mem: MemberDataType) => mem.nameKo[0] === member.name)?.todayLike || []
             )
         }));
-
+        
         return { top5, chartData };
     }, [memberData]);
+    console.log('top5Data: ', top5);
 
     if(isLoad) return <RankingLoadComponent/>
     if(isError) return <ErrorMessage text={'차트 데이터를 불러오던중 에러가 발생하였습니다.'}/>
@@ -44,7 +51,7 @@ export default function RankingSection() {
             {isCollectingTime 
                 ? <CollectingContent />
                 : isBlindTime 
-                    ? <BlindContent top5={top5} />
+                    ? <BlindContent top5={top5 as Top5Data[]} />
                     : isAnouncingTime
                         ? <AnouningContent/>
                         : <RankChart data={chartData} />

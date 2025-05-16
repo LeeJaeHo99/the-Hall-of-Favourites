@@ -7,14 +7,14 @@ import usePostLikePost from "@/hooks/usePostLikePost";
 // 📀 COMPONENT
 import LoadSpinner from "../spinner/LoadSpinner";
 
-export default function ContentMid({ content }) {
+export default function ContentMid({ content }: { content: string }) {
     console.log('content: ', content);
     const params = useParams();
     const { postHandler, isPost } = usePostLikePost();
 
     const handleLike = async () => {
         try {
-            const result = await postHandler(params.id);
+            const result = await postHandler(params.id as string);
             console.log(result);
 
             if (!result) {

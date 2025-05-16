@@ -1,6 +1,15 @@
 import MusicThumbnail from "@/components/ui/MusicThumnail";
-import { MemberLeftContentProps } from "@/types/types";
 import LikeComponent from "./LikeComponent";
+
+interface MemberLeftContentProps {
+    victory: number;
+    likeHistory: number;
+    todayLike: number;
+    song: { id: string; title: string };
+    group: string;
+    onClickTrigger: () => void;
+    onHandleLike: () => void;
+}
 
 export default function LeftContent({
     victory,

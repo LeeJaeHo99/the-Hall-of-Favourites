@@ -2,15 +2,15 @@
 
 import { useState } from "react";
 import { useParams } from "next/navigation";
-import { CommentType } from '@/types/types';
+import { CommentItem } from '@/types/types';
 import usePostComment from "@/hooks/usePostComment";
 import Image from "next/image";
 import DeleteCommentModal from "./DeleteCommentModal";
 import ErrorMessage from "../ui/ErrorMessage";
 import LoadSpinner from "@/components/spinner/LoadSpinner";
 
-export default function ContentBot({ comment }: CommentType) {
-    console.log(comment);
+export default function ContentBot({ comment }: { comment: CommentItem[] }) {
+    console.log('comment: ', comment);
     const { postHandler, isPost, isPostError } = usePostComment();
     const params = useParams();
     const id = params.id;
@@ -74,7 +74,7 @@ export default function ContentBot({ comment }: CommentType) {
                     </thead>
                     <tbody>
                         {Array.isArray(comment) && comment?.length > 0 ? (
-                            comment?.map((data: CommentType, i: number) => (
+                            comment?.map((data: CommentItem, i: number) => (
                                 <tr key={i}>
                                     <td>{data.name}</td>
                                     <td>{data.text}</td>

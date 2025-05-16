@@ -48,6 +48,7 @@ function BoardWrite() {
             }
 
             const result = await postHandler(title, content, writer, pw);
+            console.log('result: ', result);
 
             if (!result) {
                 alert("게시글 작성 실패");
@@ -55,7 +56,7 @@ function BoardWrite() {
             }
 
             if (result) {
-                router.push(`/board/${result.result.insertedId}`);
+                router.push(`/board/${result.data.result.insertedId}`);
             } else {
                 const error = await result.json();
                 alert(error.error);

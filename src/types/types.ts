@@ -43,6 +43,12 @@ export interface CommentType {
     }
 }
 
+export interface CommentItem {
+    name: string;
+    text: string;
+    pw: string;
+}
+
 export interface MemberDataType {
     _id: string;
     age: string;

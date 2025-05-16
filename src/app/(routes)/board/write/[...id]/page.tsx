@@ -55,7 +55,7 @@ function BoardWrite() {
                 setPw(finded.pw);
             }
         }
-    }, [writeData]);
+    }, [writeData, params.id, setSelectedWrite]);
 
     const { patchHandler } = usePatchWrite();
     

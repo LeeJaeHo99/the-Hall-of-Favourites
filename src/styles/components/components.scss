@@ -1,3 +1,7 @@
+@use '../common/color.scss' as *;
+@use '../common/fonts.scss' as *;
+@use '../common/animation.scss' as *;
+
 .inner {
     display: flex;
     align-items: center;

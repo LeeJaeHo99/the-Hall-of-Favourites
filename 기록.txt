@@ -26,3 +26,11 @@ nct 재현
 the boyz 주연
 세븐틴 정한
 straykids 현진
+
+
+
+
+
+./src/app/(routes)/board/[id]/page.tsx
+./src/app/(routes)/board/page.tsx
+./src/app/(routes)/board/write/[...id]/page.tsx

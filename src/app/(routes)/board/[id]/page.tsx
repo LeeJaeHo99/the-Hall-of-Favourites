@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useParams } from "next/navigation";
-import { WriteDataType, CommentType } from "@/types/types";
+import { WriteDataType, CommentItem } from "@/types/types";
 import useGetFullWrite from "@/hooks/useGetFullWrite";
 import Inner from "@/components/ui/Inner";
 import ContentTop from "@/components/board/ContentTop";
@@ -20,7 +20,7 @@ export default function BoardViewPage() {
             const filtered = [...writeData]?.filter(data => data._id === params.id)[0];
             setWriteData(filtered);
         }
-    }, [writeData]);
+    }, [writeData, params.id, setWriteData]);
 
     if(isLoad) return <BoardViewLoadComponent/>;
     if(isError) return <ErrorMessage text={'게시물을 불러오는 중 에러가 발생하였습니다.'}/>
@@ -38,7 +38,7 @@ export default function BoardViewPage() {
                         id={(writeData as WriteDataType)?._id}
                     />
                     <ContentMid content={(writeData as WriteDataType)?.content} />
-                    <ContentBot comment={(writeData as WriteDataType)?.comment} />
+                    <ContentBot comment={(writeData as WriteDataType)?.comment as unknown as CommentItem[]} />
                 </div>
             </Inner>
         </div>

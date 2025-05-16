@@ -1,0 +1,14 @@
+@use './common/reset.scss';
+@use './common/color.scss';
+@use './common/fonts.scss';
+@use './common/animation.scss';
+@use './common/common.scss';
+
+@use './components/components.scss';
+
+@use './pages/home.scss';
+@use './pages/info.scss';
+@use './pages/board.scss';
+@use './pages/admin.scss';
+
+@use './common/media.scss';

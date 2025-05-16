@@ -41,26 +41,27 @@ export default function BoardPage() {
 
     // 🤖 WORK : isSearch 변경시 searchList 데이터도 변경
     useEffect(() => {
-        setSearchList(writeData?.filter(write => write.title.includes(searchWord)).reverse());
+        if(Array.isArray(writeData)){
+            setSearchList(writeData?.filter(write => write.title.includes(searchWord)).reverse());
+        }
     }, [isSearch]);
 
     const [recentWrite, setRecentWrite] = useState([]);
     const [likeSortedWrite, setLikeSortedWrite] = useState([]);
 
     useEffect(() => {
-        setRecentWrite(
-            [...writeData]?.reverse().slice(pagination * 7, (pagination + 1) * 7)
-        );
+        if(Array.isArray(writeData)){
+            const recentData = [...writeData]?.reverse().slice(pagination * 7, (pagination + 1) * 7);
+            setRecentWrite(recentData);
 
-        setLikeSortedWrite(
-            [...writeData]
-                ?.sort((a, b) => {
-                    let aList = Number(a.likeNum);
-                    let bList = Number(b.likeNum);
-                    return bList - aList;
-                })
-                .slice(pagination * 7, (pagination + 1) * 7)
-        );
+        const likeSortedData = [...writeData]
+            ?.sort((a, b) => {
+                let aList = Number(a.likeNum);
+                let bList = Number(b.likeNum);
+                return bList - aList;
+            }).slice(pagination * 7, (pagination + 1) * 7);
+            setLikeSortedWrite(likeSortedData);
+        }
     }, [writeData, pagination]);
 
     if(isLoad) return <BoardLoadComponet/>;

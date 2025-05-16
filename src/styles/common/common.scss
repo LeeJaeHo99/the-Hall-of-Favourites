@@ -1,9 +1,11 @@
+@use './color.scss' as *;
+@use './fonts.scss' as *;
+@use './animation.scss' as *;
+
 html,
 body {
     color: $white-text;
 }
-
-// background: linear-gradient(to bottom, #c6b4d8, #d1a979, #c6b4d8);
 
 .sub-page{
     padding: 160px 0;

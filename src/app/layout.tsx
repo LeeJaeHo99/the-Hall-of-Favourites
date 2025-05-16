@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "@/styles/css/style.css";
+import "@/styles/style.scss";
 import Header from "@/components/ui/Header";
 import Footer from "@/components/ui/Footer";
 

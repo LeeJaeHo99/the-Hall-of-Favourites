@@ -13,12 +13,8 @@ export default function VictoryHistory() {
 
     useEffect(() => {
         if(Array.isArray(memberData)){
-            const sortData = [...memberData]?.sort((a, b) => {
-                const aRank = a.victory;
-                const bRank = b.victory;
-                return bRank - aRank;
-            }).slice(0, 3);
-            setMemberData(sortData);
+            const sortedData = [...memberData]?.sort((a, b) => b.victory - a.victory).slice(0, 3);
+            setMemberData(sortedData);
         }
     }, []);
 

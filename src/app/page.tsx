@@ -1,5 +1,5 @@
 import Inner from "@/components/ui/Inner";
-import NoticeModal from '../components/ui/NoticeModal';
+// import NoticeModal from '../components/ui/NoticeModal';
 import Winner from "@/components/ui/Winner";
 import RankingSection from "@/components/section/RankingSection";
 import SearchSection from "@/components/section/SearchSection";

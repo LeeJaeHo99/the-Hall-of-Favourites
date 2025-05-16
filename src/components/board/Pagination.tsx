@@ -4,6 +4,7 @@ import Image from "next/image";
 import { PaginationPropsType } from '@/types/types';
 
 export default function Pagination({ data, pagination, setPagination }: PaginationPropsType) {
+    
     const pageNum = Math.ceil(data?.length / 7);
     const arr = new Array(pageNum).fill(1);
     

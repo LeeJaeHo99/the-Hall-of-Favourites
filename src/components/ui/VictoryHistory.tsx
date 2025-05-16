@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { ProfileHistoryPropsType } from "@/types/types";
@@ -9,19 +8,13 @@ import VictoryHistoryLoadComponent from "../spinner/VictoryHistoryLoadComponent"
 import ErrorMessage from "./ErrorMessage";
 
 export default function VictoryHistory() {
-    const { memberData, isLoad, isError, setMemberData } = useGetFullMember();
-
-    useEffect(() => {
-        if(Array.isArray(memberData)){
-            const sortedData = [...memberData]?.sort((a, b) => b.victory - a.victory).slice(0, 3);
-            setMemberData(sortedData);
-        }
-    }, []);
+    const { memberData, isLoad, isError } = useGetFullMember();
 
     if(isLoad) return <VictoryHistoryLoadComponent/>
     if(isError || !Array.isArray(memberData)) return <ErrorMessage text={'우승 데이터를 불러오던 중 에러가 발생하였습니다.'}/>;
 
-    const [gold, silver, bronze] = memberData;
+    const sortedData = [...memberData].sort((a, b) => b.victory - a.victory).slice(0, 3);
+    const [gold, silver, bronze] = sortedData;
 
     return (
         <div className="victory-history blur-box">

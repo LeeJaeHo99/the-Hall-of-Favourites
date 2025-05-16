@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { usePagination } from "@/store/store";
 import useGetFullWrite from "@/hooks/useGetFullWrite";
+import { WriteDataType } from "@/types/types";
 
 // 📀 COMPONENT
 import Inner from "@/components/ui/Inner";
@@ -33,7 +34,7 @@ export default function BoardPage() {
     // 🤖 WORK : isSearch === True && searchWord의 텍스트를 searchList에 filter 해서 넣음
     const [searchWord, setSearchWord] = useState("");
     const [isSearch, setIsSearch] = useState<boolean>(false);
-    const [searchList, setSearchList] = useState([]);
+    const [searchList, setSearchList] = useState<WriteDataType[]>([]);
 
     const onChangeSearchWord = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchWord(e.target.value);
@@ -42,12 +43,13 @@ export default function BoardPage() {
     // 🤖 WORK : isSearch 변경시 searchList 데이터도 변경
     useEffect(() => {
         if(Array.isArray(writeData)){
-            setSearchList(writeData?.filter(write => write.title.includes(searchWord)).reverse());
+            const filteredData = writeData?.filter(write => write.title.includes(searchWord)).reverse();
+            setSearchList(filteredData);
         }
-    }, [isSearch]);
+    }, [writeData, setSearchList, searchWord]);
 
-    const [recentWrite, setRecentWrite] = useState([]);
-    const [likeSortedWrite, setLikeSortedWrite] = useState([]);
+    const [recentWrite, setRecentWrite] = useState<WriteDataType[]>([]);
+    const [likeSortedWrite, setLikeSortedWrite] = useState<WriteDataType[]>([]);
 
     useEffect(() => {
         if(Array.isArray(writeData)){
@@ -56,8 +58,8 @@ export default function BoardPage() {
 
         const likeSortedData = [...writeData]
             ?.sort((a, b) => {
-                let aList = Number(a.likeNum);
-                let bList = Number(b.likeNum);
+                const aList = Number(a.likeNum);
+                const bList = Number(b.likeNum);
                 return bList - aList;
             }).slice(pagination * 7, (pagination + 1) * 7);
             setLikeSortedWrite(likeSortedData);
@@ -65,7 +67,7 @@ export default function BoardPage() {
     }, [writeData, pagination]);
 
     if(isLoad) return <BoardLoadComponet/>;
-    if(isError) return <ErrorMessage text={'게시물을 불러오는 중 에러가 발생하였습니다.'}/>;
+    if(isError || !Array.isArray(writeData)) return <ErrorMessage text={'게시물을 불러오는 중 에러가 발생하였습니다.'}/>;
 
     return (
         <div className="BoardPage sub-page">
@@ -97,15 +99,15 @@ export default function BoardPage() {
                     </div>
                     <Board
                         category={category}
-                        recentWrite={...recentWrite}
-                        likeSortedWrite={...likeSortedWrite}
+                        recentWrite={recentWrite}
+                        likeSortedWrite={likeSortedWrite}
                         isSearch={isSearch}
                         searchList={searchList}
                     />
                     {
                         !isSearch && (
                             <Pagination
-                                data={...writeData}
+                                data={writeData}
                                 pagination={pagination}
                                 setPagination={setPagination}
                             />

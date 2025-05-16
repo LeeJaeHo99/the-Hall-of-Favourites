@@ -1,10 +1,27 @@
 import { connectDB } from "@/util/mongodb";
 import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
+import { UpdateFilter, Document } from "mongodb";
+import { Record, CommentType } from "@/types/types";
+
+interface WriteDataType extends Document {
+    _id: string;
+    title: string;
+    writer: string;
+    pw: string;
+    content: string;
+    comment: CommentType[];
+    date: string;
+    likeNum: number;
+    record: Record[];
+}
+
+
 
 export async function POST(req: Request) {
+    console.log('req: ', req);
     try {
-        const clientIP = req.headers.get("x-forwarded-for")?.split(",")[0].trim() || req.ip;
+        const clientIP = req.headers.get("x-forwarded-for")?.split(",")[0].trim() || "unknown";
         const { postId } = await req.json();
         const twentyFourHours = new Date(Date.now() - 24 * 60 * 60 * 1000);
 
@@ -36,7 +53,7 @@ export async function POST(req: Request) {
                         $slice: -300,
                     },
                 },
-            }
+            } as unknown as UpdateFilter<WriteDataType>
         );
 
         if (result.matchedCount === 0) {

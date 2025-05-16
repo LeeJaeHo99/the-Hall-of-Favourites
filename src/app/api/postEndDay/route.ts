@@ -1,5 +1,12 @@
 import { connectDB } from "@/util/mongodb";
 import { NextResponse } from "next/server";
+import { Document, UpdateFilter } from "mongodb";
+
+interface MemberData extends Document {
+    _id: string;
+    todayLike: number[];
+    weekLike: number[];
+}
 
 export async function POST() {
     const db = (await connectDB).db("IdolRank");
@@ -44,7 +51,7 @@ export async function POST() {
                 $set: {
                     todayLike: Array(24).fill(0),
                 },
-            }
+            } as unknown as UpdateFilter<MemberData>
         );
     }
 

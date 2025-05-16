@@ -1,5 +1,29 @@
 import { connectDB } from "@/util/mongodb";
+import { Document, UpdateFilter } from "mongodb";
 import { NextResponse } from "next/server";
+import { LikeRecord } from "@/types/types";
+
+interface MemberDataType extends Document {
+    _id: string;
+    age: string;
+    birth: string;
+    company: string;
+    debutDate: string;
+    group: string[];
+    likeHistory: number;
+    likeRecord: LikeRecord[];
+    nameEn: string;
+    nameKo: [string, string];
+    song: {
+        id: string;
+        title: string;
+    };
+    todayLike: number[];
+    victory: number;
+    weekLike: number[];
+    story?: string[];
+    cheerMsg?: string[];
+}
 
 // 🤖 WORK : 동일 IP에 한해서 한 멤버에게 1일1회 좋아요 가능
 const getUserIdentifier = (req: Request) => {
@@ -76,9 +100,12 @@ export async function PATCH(req: Request) {
                     likeHistory: incrementValue,
                 },
                 $push: {
-                    likeRecord: { date: todayKey, user: userId },
-                },
-            }
+                    likeRecord: {
+                        date: todayKey,
+                        user: userId
+                    } as LikeRecord
+                }
+            } as unknown as UpdateFilter<MemberDataType>
         );
 
         return NextResponse.json(

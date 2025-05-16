@@ -1,6 +1,19 @@
 import { connectDB } from "@/util/mongodb";
 import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
+import { CommentType, Record } from "@/types/types";
+import { Document, UpdateFilter } from "mongodb";
+
+interface WriteDataType extends Document {
+    _id: string;
+    title: string;
+    writer: string;
+    pw: string;
+    comment: CommentType[];
+    date: string;
+    likeNum: number;
+    record: Record[];
+}
 
 export async function POST(req: Request) {
     try {
@@ -19,7 +32,7 @@ export async function POST(req: Request) {
 
         const result = await collection.updateOne(
             { _id: new ObjectId(postId) },
-            { $push: { comment: { name, text, pw } } }
+            { $push: { comment: { name, text, pw } } } as unknown as UpdateFilter<WriteDataType>
         );
 
         if (result.matchedCount === 0) {

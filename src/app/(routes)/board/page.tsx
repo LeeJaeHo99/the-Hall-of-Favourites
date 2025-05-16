@@ -42,11 +42,13 @@ export default function BoardPage() {
 
     // 🤖 WORK : isSearch 변경시 searchList 데이터도 변경
     useEffect(() => {
-        if(Array.isArray(writeData)){
+        if(Array.isArray(writeData) && searchWord){
             const filteredData = writeData?.filter(write => write.title.includes(searchWord)).reverse();
             setSearchList(filteredData);
+        } else {
+            setSearchList([]);
         }
-    }, [writeData, setSearchList, searchWord]);
+    }, [writeData, searchWord]);
 
     const [recentWrite, setRecentWrite] = useState<WriteDataType[]>([]);
     const [likeSortedWrite, setLikeSortedWrite] = useState<WriteDataType[]>([]);
@@ -56,12 +58,12 @@ export default function BoardPage() {
             const recentData = [...writeData]?.reverse().slice(pagination * 7, (pagination + 1) * 7);
             setRecentWrite(recentData);
 
-        const likeSortedData = [...writeData]
-            ?.sort((a, b) => {
-                const aList = Number(a.likeNum);
-                const bList = Number(b.likeNum);
-                return bList - aList;
-            }).slice(pagination * 7, (pagination + 1) * 7);
+            const likeSortedData = [...writeData]
+                ?.sort((a, b) => {
+                    const aList = Number(a.likeNum);
+                    const bList = Number(b.likeNum);
+                    return bList - aList;
+                }).slice(pagination * 7, (pagination + 1) * 7);
             setLikeSortedWrite(likeSortedData);
         }
     }, [writeData, pagination]);

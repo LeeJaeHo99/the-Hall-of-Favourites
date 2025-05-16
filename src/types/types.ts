@@ -20,6 +20,11 @@ export interface IsSundayStore {
 }
 
 // Data
+export interface Record {
+    ip: string;
+    date: string;
+}
+
 export interface WriteDataType {
     _id: string;
     title: string;
@@ -29,10 +34,7 @@ export interface WriteDataType {
     comment: CommentType[];
     date: string;
     likeNum: number;
-    record?: {
-        ip: string;
-        date: string;
-    }[];
+    record: Record[];
 }
 
 export interface CommentType {
@@ -49,6 +51,11 @@ export interface CommentItem {
     pw: string;
 }
 
+export interface LikeRecord {
+    date: string;
+    user: string;
+}
+
 export interface MemberDataType {
     _id: string;
     age: string;
@@ -57,10 +64,7 @@ export interface MemberDataType {
     debutDate: string;
     group: string[];
     likeHistory: number;
-    likeRecord: {
-        date: string;
-        user: string;
-    }[];
+    likeRecord: LikeRecord[];
     nameEn: string;
     nameKo: [string, string];
     song: {

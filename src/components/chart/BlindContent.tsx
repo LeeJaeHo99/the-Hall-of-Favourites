@@ -5,7 +5,6 @@ interface BlindContentPropsType {
 }
 
 export default function BlindContent({ top5 }: BlindContentPropsType) {
-    console.log(top5);
     const colors: string[] = [
         "#ffcc49",
         "#cdd0d4",

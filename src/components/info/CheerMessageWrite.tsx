@@ -23,7 +23,6 @@ export default function CheerMessageWrite({ memberName }: CheerMessageWriteProps
 
         try {
             const result = await postHandler({ text, query: memberName });
-            console.log('API 응답:', result);
 
             if (result?.data?.matchedCount === 1) {
                 setText("");

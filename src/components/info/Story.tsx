@@ -1,5 +1,4 @@
 export default function Story({story}: {story?: string[]}){
-    console.log('story: ', story);
     return(
         <div className="story-component blur-box">
             {

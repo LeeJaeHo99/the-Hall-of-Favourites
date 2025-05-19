@@ -8,14 +8,12 @@ import usePostLikePost from "@/hooks/usePostLikePost";
 import LoadSpinner from "../spinner/LoadSpinner";
 
 export default function ContentMid({ content }: { content: string }) {
-    console.log('content: ', content);
     const params = useParams();
     const { postHandler, isPost } = usePostLikePost();
 
     const handleLike = async () => {
         try {
             const result = await postHandler(params.id as string);
-            console.log(result);
 
             if (!result) {
                 alert("추천 실패");

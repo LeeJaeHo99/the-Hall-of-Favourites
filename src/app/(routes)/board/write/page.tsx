@@ -48,7 +48,6 @@ function BoardWrite() {
             }
 
             const result = await postHandler(title, content, writer, pw);
-            console.log('result: ', result);
 
             if (!result) {
                 alert("게시글 작성 실패");

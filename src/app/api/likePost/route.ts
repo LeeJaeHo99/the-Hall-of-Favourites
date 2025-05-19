@@ -19,7 +19,6 @@ interface WriteDataType extends Document {
 
 
 export async function POST(req: Request) {
-    console.log('req: ', req);
     try {
         const clientIP = req.headers.get("x-forwarded-for")?.split(",")[0].trim() || "unknown";
         const { postId } = await req.json();

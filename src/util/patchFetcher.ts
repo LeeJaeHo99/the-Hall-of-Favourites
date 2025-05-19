@@ -3,7 +3,7 @@ import { FetchDataType } from "../types/types";
 async function patchFetcher(api: string, body: FetchDataType) {
     try {
         const res = await fetch(
-            `${process.env.NEXT_PUBLIC_API_URL}api/${api}`,
+            `${process.env.NEXT_PUBLIC_API_URL}/api/${api}`,
             {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json" },

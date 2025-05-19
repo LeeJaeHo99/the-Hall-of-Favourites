@@ -7,7 +7,7 @@ interface BodyType{
 async function postFetcher(api: string, body: BodyType) {
     try {
         const res = await fetch(
-            `${process.env.NEXT_PUBLIC_API_URL}api/${api}`,
+            `${process.env.NEXT_PUBLIC_API_URL}/api/${api}`,
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

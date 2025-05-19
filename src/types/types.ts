@@ -3,6 +3,8 @@ export interface FetchDataType {
     [key: string]: string;
 }
 
+
+
 // STORE
 export interface PaginationStore {
     pagination: number;

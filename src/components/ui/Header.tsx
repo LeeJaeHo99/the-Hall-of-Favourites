@@ -21,7 +21,7 @@ export default function Header() {
             <Inner x="between">
                 <div className={`burning ${isSaturday ? 'yes' : 'no'}`}>🔥 버닝 데이 🔥</div>
                 <h1>
-                    <Link href={"/"}>최애의 전당</Link>
+                    <Link href={"/"} className="title">최애의 전당</Link>
                     <div className="site-desc" onClick={onClick}>
                         ?
                     </div>

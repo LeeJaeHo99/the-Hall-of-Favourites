@@ -160,10 +160,12 @@ footer {
     .title,
     p,
     a{
+        margin-bottom: 8px;
         color: #a5a5a5;
         text-shadow: none;
-        &:first-child{
-            margin-bottom: 8px;
+
+        &:last-child{
+            margin-bottom: 0;
         }
     }
 }

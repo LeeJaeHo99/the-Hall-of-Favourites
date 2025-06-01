@@ -64,7 +64,7 @@ function MemberContent() {
     };
 
     if (!filteredMember) return null;
-    if(isLoad) return <InfoLoadComponent/>;
+    if(isLoad) return <div className="MemberPage InfoPage sub-page"></div>;
     if(isError) return <ErrorMessage text={'멤버 정보를 불러오는 중 에러가 발생하였습니다.'}/>;
 
     return (

@@ -21,6 +21,9 @@ export const metadata: Metadata = {
         locale: "ko_KR",
         type: "website",
     },
+    icons: {
+        icon: "/icons/favicon.png",
+    },
     twitter: {
         card: "summary_large_image",
         title: "최애의 전당",

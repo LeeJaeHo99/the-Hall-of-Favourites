@@ -22,12 +22,25 @@ export default function CheerMessage({ cheerMessage }: CheerMessagePropsType) {
         return () => clearInterval(interval);
     }, [cheerMessage]);
 
+    if (!cheerMessage || cheerMessage.length === 0) {
+        return (
+            <div className="cheer-message--wrap blur-box">
+                <div className="title">응원 메시지</div>
+                <div
+                    className={`cheer-message ${
+                        visible ? "fadeIn" : "fadeOut"
+                    }`}
+                >
+                    응원 메시지를 입력해주세요
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className="cheer-message--wrap blur-box">
             <div className="title">응원 메시지</div>
-            <div
-                className={`cheer-message ${visible ? 'fadeIn' : 'fadeOut'}`}
-            >
+            <div className={`cheer-message ${visible ? "fadeIn" : "fadeOut"}`}>
                 {cheerMessage[currentIndex]}
             </div>
         </div>

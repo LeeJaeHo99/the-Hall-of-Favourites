@@ -3,10 +3,13 @@
 @use '../common/animation.scss' as *;
 
 .InfoPage{
-    min-height: 100vh;
     margin-top: 0;
     padding-top: 100px;
+    
+    &.MemberPage-load{
+        min-height: 100vh;
 
+    }
     .content-top{
         display: flex;
         align-items: center;

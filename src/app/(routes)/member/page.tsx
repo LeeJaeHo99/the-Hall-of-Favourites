@@ -14,8 +14,8 @@ import LeftContent from "@/components/info/MemberLeftContent";
 import RightContent from "@/components/info/MemberRightContent";
 import Story from "@/components/info/Story";
 import NoneInfo from "@/components/info/NoneInfo";
-import InfoLoadComponent from "@/components/spinner/InfoLoadComponent";
 import ErrorMessage from "@/components/ui/ErrorMessage";
+import LoadSpinner from "@/components/spinner/LoadSpinner";
 
 function MemberContent() {
     const [trigger, setTrigger] = useState(false);
@@ -102,6 +102,16 @@ function MemberContent() {
                             </>
                         )
                 }
+            </Inner>
+        </div>
+    );
+}
+
+function InfoLoadComponent(){
+    return(
+        <div className="MemberPage MemberPage-load InfoPage sub-page">
+            <Inner>
+                <LoadSpinner/>
             </Inner>
         </div>
     );

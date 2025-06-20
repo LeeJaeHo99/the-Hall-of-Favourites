@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 export default function EditWriteModal({ onClick, link, pw }: {onClick: () => void, link: string, pw: string }) {
-    console.log('link: ', link);
     const [inputPw, setInputPw] = useState("");
     const inputRef = useRef<HTMLInputElement>(null);
     const router = useRouter();

@@ -9,7 +9,7 @@ export default function Pagination({ data, pagination, setPagination }: Paginati
     const arr = new Array(pageNum).fill(1);
     
     const plusPagination = () => {
-        if(!((pagination + 2) === pageNum)) return;
+        if(((pagination + 1) === pageNum)) return;
         setPagination(pagination + 1);
     }
     const minusPagination = () => {

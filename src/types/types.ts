@@ -99,7 +99,9 @@ export interface BoardTrPropsType {
 }
 
 export interface BoardEditPropsType {
-    [key: string]: string;
+    style: string;
+    text: string;
+    onClick: () => void;
 }
 
 export interface BoardSearchPropsType {
@@ -129,6 +131,7 @@ export interface ContentTopProps {
     setLikeNumState: (likeNum: number) => void;
     commentNumState: number;
     setCommentNumState: (commentNum: number) => void;
+    pw: string;
 }
 export interface BoardDeleteProps {
     style: string;

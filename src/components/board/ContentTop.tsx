@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import BoardEdit from "@/components/board/BoardEdit";
 import DeleteWriteModal from "@/components/board/DeleteWriteModal";
+import EditWriteModal from "@/components/board/EditWriteModal";
 
 export default function ContentTop({
     title,
@@ -18,10 +19,15 @@ export default function ContentTop({
     setLikeNumState,
     commentNumState,
     setCommentNumState,
+    pw
 }: ContentTopProps) {
-    const [isModal, setIsModal] = useState(false);
+    const [isDeleteModal, setIsDeleteModal] = useState(false);
     const onClickDeleteBtn = () => {
-        setIsModal((prev) => !prev);
+        setIsDeleteModal((prev) => !prev);
+    };
+    const [isEditModal, setIsEditModal] = useState(false);
+    const onClickEditBtn = () => {
+        setIsEditModal((prev) => !prev);
     };
 
     useEffect(() => {
@@ -36,10 +42,11 @@ export default function ContentTop({
                     <BoardEdit
                         style={"normal"}
                         text={"글 수정"}
-                        link={`/write/${id}`}
+                        onClick={onClickEditBtn}
                     />
+                    {isEditModal && <EditWriteModal onClick={onClickEditBtn} link={`/write/${id}`} pw={pw}/>}
                     <BoardDelete style={"red"} onClick={onClickDeleteBtn} />
-                    {isModal && <DeleteWriteModal onClick={onClickDeleteBtn} />}
+                    {isDeleteModal && <DeleteWriteModal onClick={onClickDeleteBtn} />}
                 </div>
                 <Link className="to-board" href={"/board"}>
                     게시판 목록으로 이동

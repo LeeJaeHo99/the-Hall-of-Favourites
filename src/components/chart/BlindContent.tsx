@@ -17,7 +17,7 @@ export default function BlindContent({ top5 }: BlindContentPropsType) {
     return (
         <div className="blind-content blur-box">
             <p>🔒 현재는 블라인드 투표시간 입니다 🔒</p>
-            <p>(아래는 PM 10:00 까지의 기록입니다)</p>
+            <p>(아래는 PM 11:00 까지의 기록입니다)</p>
             <div className="blind-rank--wrap">
                 {Array.isArray(top5) &&
                     top5.map(( idolItem: { name: string; sum: number }, i: number) => (

@@ -13,6 +13,7 @@ import ErrorMessage from "@/components/ui/ErrorMessage";
 
 export default function BoardViewPage() {
     const { writeData, isLoad, isError, setWriteData } = useGetFullWrite();
+
     const params = useParams();
     const [likeNumState, setLikeNumState] = useState(0);
     const [commentNumState, setCommentNumState] = useState(0);
@@ -48,6 +49,7 @@ export default function BoardViewPage() {
                         setLikeNumState={setLikeNumState}
                         commentNumState={commentNumState}
                         setCommentNumState={setCommentNumState}
+                        pw={(writeData as WriteDataType)?.pw}
                     />
                     <ContentMid content={(writeData as WriteDataType)?.content} clickLike={clickLike}/>
                     <ContentBot comment={(writeData as WriteDataType)?.comment as unknown as CommentItem[]} addComment={addComment}/>

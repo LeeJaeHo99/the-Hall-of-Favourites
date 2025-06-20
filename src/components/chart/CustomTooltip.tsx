@@ -7,14 +7,12 @@ interface PayloadItem {
 interface CustomTooltipProps {
     active?: boolean;
     payload?: PayloadItem[];
-    label?: string;
 }
 
-export default function CustomTooltip({ active, payload, label }: CustomTooltipProps) {
+export default function CustomTooltip({ active, payload }: CustomTooltipProps) {
     if (active && payload && payload.length) {
         return (
             <div className="chart-tooltip blur-box" style={{padding: "16px"}}>
-                {/* <p className="time">⏰ {label} ⏰</p> */}
                 <div>
                     {payload.map((entry, index) => (
                         <p

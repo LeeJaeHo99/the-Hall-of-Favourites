@@ -31,11 +31,13 @@ export async function POST() {
         }
 
         const todayLikeSum = todayLike.reduce((a: number, b: number) => a + b, 0);
+        console.log('todayLikeSum: ', todayLikeSum);
 
         // 가장 큰 todayLikeSum 찾기
         if (todayLikeSum > maxLikeSum) {
             maxLikeSum = todayLikeSum;
             maxLikeMemberId = member._id;
+            console.log('maxLikeMemberId: ', maxLikeMemberId);
         }
 
         // 주간 집계 및 todayLike 초기화
@@ -50,6 +52,7 @@ export async function POST() {
                 },
                 $set: {
                     todayLike: Array(24).fill(0),
+                    cheerMsg: [],
                 },
             } as unknown as UpdateFilter<MemberData>
         );
@@ -60,7 +63,7 @@ export async function POST() {
         await collection.updateOne(
             { _id: maxLikeMemberId },
             {
-                $inc: { likeHistory: 1 },
+                $inc: { victory: 1 },
             }
         );
     }

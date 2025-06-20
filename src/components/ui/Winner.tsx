@@ -35,8 +35,8 @@ export default function Winner() {
         
         if (!isSunday) {
             const sorted = [...memberData]?.sort((a, b) => {
-                const aMem = a?.todayLike.reduce((sum, cur) => sum + cur, 0);
-                const bMem = b?.todayLike.reduce((sum, cur) => sum + cur, 0);
+                const aMem = a?.weekLike[a?.weekLike.length - 1];
+                const bMem = b?.weekLike[b?.weekLike.length - 1];
                 return bMem - aMem;
             })[0];
             setMemberData(sorted);

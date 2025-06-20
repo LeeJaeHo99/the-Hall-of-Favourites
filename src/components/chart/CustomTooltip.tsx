@@ -13,8 +13,8 @@ interface CustomTooltipProps {
 export default function CustomTooltip({ active, payload, label }: CustomTooltipProps) {
     if (active && payload && payload.length) {
         return (
-            <div className="chart-tooltip blur-box">
-                <p className="time">⏰ {label} ⏰</p>
+            <div className="chart-tooltip blur-box" style={{padding: "16px"}}>
+                {/* <p className="time">⏰ {label} ⏰</p> */}
                 <div>
                     {payload.map((entry, index) => (
                         <p

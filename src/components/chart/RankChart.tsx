@@ -24,14 +24,34 @@ export default function RankChart({ data }: RankChartPropsType) {
 
     return (
         <ResponsiveContainer width="100%" height={440}>
-            <LineChart data={chartData}  margin={{ top: 20, right: 20, bottom: 20 }}>
-                <XAxis dataKey="time" interval={0}/>
+            <LineChart
+                data={chartData}
+                margin={{ top: 20, right: 20, bottom: 20 }}
+            >
+                <XAxis
+                    dataKey="time"
+                    interval={0}
+                    tickFormatter={(time: string) => {
+                        const [hour, minute] = time.split(":").map(Number);
+                        const newHour = (hour + 1) % 24;
+                        const paddedHour = newHour.toString().padStart(2, "0");
+                        return `${paddedHour}:${minute
+                            .toString()
+                            .padStart(2, "0")}`;
+                    }}
+                />
                 <YAxis
                     tick={{ fill: "#555", fontSize: 14, fontWeight: 500 }}
                     tickLine={true}
                 />
                 <Tooltip cursor={false} content={<CustomTooltip />} />
-                <Legend content={<CustomLegend payload={data.map(d => ({value: d.name}))} />} />
+                <Legend
+                    content={
+                        <CustomLegend
+                            payload={data.map((d) => ({ value: d.name }))}
+                        />
+                    }
+                />
                 {data.map((member, i) => (
                     <Line
                         key={member.name}

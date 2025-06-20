@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { CommentItem } from '@/types/types';
 import usePostComment from "@/hooks/usePostComment";
@@ -9,7 +9,7 @@ import DeleteCommentModal from "./DeleteCommentModal";
 import ErrorMessage from "../ui/ErrorMessage";
 import LoadSpinner from "@/components/spinner/LoadSpinner";
 
-export default function ContentBot({ comment }: { comment: CommentItem[] }) {
+export default function ContentBot({ comment, addComment }: { comment: CommentItem[], addComment: () => void }) {
     const { postHandler, isPost, isPostError } = usePostComment();
     const params = useParams();
     const id = params.id;
@@ -32,6 +32,17 @@ export default function ContentBot({ comment }: { comment: CommentItem[] }) {
         setIsClickDelete(i);
     };
 
+    const [comments, setComments] = useState<CommentItem[]>([]);
+    console.log(comments)
+
+    useEffect(() => {
+        if (Array.isArray(comment)) {
+            setComments([...comment]);
+        } else {
+            setComments([]);
+        }
+    }, [comment]);
+    
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -40,9 +51,12 @@ export default function ContentBot({ comment }: { comment: CommentItem[] }) {
             const result = await postHandler({id: id as string, name, text, pw});
             
             if (result) {
+                const newComment = [...comments, {name:name, pw:pw, text:text}];
+                setComments(newComment);
                 setName("");
                 setPw("");
                 setText("");
+                addComment();
             }else{
                 throw new Error('네트워크 오류가 발생하였습니다.');
             }
@@ -51,7 +65,6 @@ export default function ContentBot({ comment }: { comment: CommentItem[] }) {
             console.error(e);
             return <ErrorMessage text={'댓글 작성 중 오류가 발생하였습니다.'}/>;
         }
-        window.location.reload();
     };
 
     if(isPost) return <LoadSpinner/>;
@@ -61,7 +74,7 @@ export default function ContentBot({ comment }: { comment: CommentItem[] }) {
         <div className="content-bot">
             <div className="comment-wrap">
                 <div className="comment-num">
-                    전체댓글 <span>{Array.isArray(comment) ? comment.length : 0}</span>개
+                    전체댓글 <span>{comments.length}</span>개
                 </div>
                 <table>
                     <thead>
@@ -72,8 +85,8 @@ export default function ContentBot({ comment }: { comment: CommentItem[] }) {
                         </tr>
                     </thead>
                     <tbody>
-                        {Array.isArray(comment) && comment?.length > 0 ? (
-                            comment?.map((data: CommentItem, i: number) => (
+                        {comments?.length > 0 ? (
+                            comments?.map((data: CommentItem, i: number) => (
                                 <tr key={i}>
                                     <td>{data.name}</td>
                                     <td>{data.text}</td>
@@ -81,7 +94,7 @@ export default function ContentBot({ comment }: { comment: CommentItem[] }) {
                                         {isClickDelete === i && (
                                             <DeleteCommentModal
                                                 onClickDelete={onClickDelete}
-                                                param={Number(params.id)}
+                                                param={params.id as string}
                                                 index={i}
                                             />
                                         )}

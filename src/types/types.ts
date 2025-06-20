@@ -125,6 +125,10 @@ export interface ContentTopProps {
     commentNum: number;
     writer: string;
     date: string;
+    likeNumState: number;
+    setLikeNumState: (likeNum: number) => void;
+    commentNumState: number;
+    setCommentNumState: (commentNum: number) => void;
 }
 export interface BoardDeleteProps {
     style: string;
@@ -133,7 +137,7 @@ export interface BoardDeleteProps {
 
 export interface DeleteCommentModalPropstype {
     onClickDelete: (i: number | null) => void;
-    param: number;
+    param: string;
     index: number;
 }
 

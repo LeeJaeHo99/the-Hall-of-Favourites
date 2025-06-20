@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { WriteDataType, CommentItem } from "@/types/types";
 import useGetFullWrite from "@/hooks/useGetFullWrite";
@@ -14,7 +14,15 @@ import ErrorMessage from "@/components/ui/ErrorMessage";
 export default function BoardViewPage() {
     const { writeData, isLoad, isError, setWriteData } = useGetFullWrite();
     const params = useParams();
-
+    const [likeNumState, setLikeNumState] = useState(0);
+    const [commentNumState, setCommentNumState] = useState(0);
+    const clickLike = () => {
+        setLikeNumState(likeNumState + 1);
+    }
+    const addComment = () => {
+        setCommentNumState(commentNumState + 1);
+    }
+    
     useEffect(() => {
         if(Array.isArray(writeData)){
             const filtered = [...writeData]?.filter(data => data._id === params.id)[0];
@@ -36,9 +44,13 @@ export default function BoardViewPage() {
                         writer={(writeData as WriteDataType)?.writer}
                         date={(writeData as WriteDataType)?.date}
                         id={(writeData as WriteDataType)?._id}
+                        likeNumState={likeNumState}
+                        setLikeNumState={setLikeNumState}
+                        commentNumState={commentNumState}
+                        setCommentNumState={setCommentNumState}
                     />
-                    <ContentMid content={(writeData as WriteDataType)?.content} />
-                    <ContentBot comment={(writeData as WriteDataType)?.comment as unknown as CommentItem[]} />
+                    <ContentMid content={(writeData as WriteDataType)?.content} clickLike={clickLike}/>
+                    <ContentBot comment={(writeData as WriteDataType)?.comment as unknown as CommentItem[]} addComment={addComment}/>
                 </div>
             </Inner>
         </div>

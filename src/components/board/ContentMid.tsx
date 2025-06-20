@@ -3,11 +3,9 @@
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import usePostLikePost from "@/hooks/usePostLikePost";
-
-// 📀 COMPONENT
 import LoadSpinner from "../spinner/LoadSpinner";
 
-export default function ContentMid({ content }: { content: string }) {
+export default function ContentMid({ content, clickLike }: { content: string, clickLike: () => void }) {
     const params = useParams();
     const { postHandler, isPost } = usePostLikePost();
 
@@ -21,7 +19,7 @@ export default function ContentMid({ content }: { content: string }) {
             }
 
             if (result.data) {
-                window.location.reload();
+                clickLike();
             } else {
                 alert("이미 추천한 게시물 입니다.");
             }

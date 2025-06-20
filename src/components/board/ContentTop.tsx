@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BoardDeleteProps, ContentTopProps } from "../../types/types";
 import Link from "next/link";
 import Image from "next/image";
@@ -14,12 +14,21 @@ export default function ContentTop({
     writer,
     date,
     id,
+    likeNumState,
+    setLikeNumState,
+    commentNumState,
+    setCommentNumState,
 }: ContentTopProps) {
     const [isModal, setIsModal] = useState(false);
     const onClickDeleteBtn = () => {
         setIsModal((prev) => !prev);
     };
 
+    useEffect(() => {
+        setLikeNumState(likeNum);
+        setCommentNumState(commentNum);
+    }, [likeNum, commentNum, setLikeNumState, setCommentNumState]);
+    
     return (
         <>
             <div className="edit-btn">
@@ -41,10 +50,10 @@ export default function ContentTop({
                 <div className="data-wrap">
                     <div>
                         <div className="like">
-                            추천수: <span>{likeNum}</span>
+                            추천수: <span>{likeNumState}</span>
                         </div>
                         <div className="comment">
-                            댓글수: <span>{commentNum}</span>
+                            댓글수: <span>{commentNumState}</span>
                         </div>
                     </div>
                     <div>

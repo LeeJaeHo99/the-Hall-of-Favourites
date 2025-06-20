@@ -8,6 +8,8 @@ import { DeleteCommentModalPropstype } from '@/types/types';
 import Image from "next/image";
 
 export default function DeleteCommentModal({ onClickDelete, param, index }: DeleteCommentModalPropstype) {
+    console.log('param: ', param);
+    console.log('index: ', index);
     const { recentWrite, setRecentWrite } = useGetWrite();
     const { deleteHandler } = useDeleteCommnet();
 

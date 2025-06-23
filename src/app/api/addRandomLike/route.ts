@@ -10,8 +10,9 @@ export async function PATCH() {
     const db = client.db("IdolRank");
     const collection = db.collection("member");
 
-    const hour = (new Date().getUTCHours() + 9) % 24;
-    const targetIndex = hour + 1;
+    const KR_HOUR = new Date().getHours();
+    const CRON_HOUR = (new Date().getUTCHours() + 9) % 24;
+    const targetIndex = CRON_HOUR + 1;
 
     const members = await collection.find({}).toArray();
     
@@ -31,9 +32,17 @@ export async function PATCH() {
         const isBottom5 = bottom5Members.some(bottomMember => bottomMember._id.toString() === member._id.toString());
         
         if (isTop5) {
-            increment = getRandomInt(30, 150);
+            if(KR_HOUR > 2 && KR_HOUR < 8){
+                increment = getRandomInt(20, 50);
+            }else{
+                increment = getRandomInt(30, 200);
+            }
         } else if (isBottom5) {
-            increment = getRandomInt(10, 29);
+            if(KR_HOUR > 2 && KR_HOUR < 8){
+                increment = getRandomInt(0, 15);
+            }else{
+                increment = getRandomInt(10, 29);
+            }
         } else {
             const isHighTier = Math.random() < 0.5;
             increment = isHighTier ? getRandomInt(30, 50) : getRandomInt(10, 30);

@@ -10,7 +10,7 @@ export async function PATCH() {
     const db = client.db("IdolRank");
     const collection = db.collection("member");
 
-    const hour = new Date().getHours();
+    const hour = (new Date().getUTCHours() + 9) % 24;
     const targetIndex = hour + 1;
 
     const members = await collection.find({}).toArray();

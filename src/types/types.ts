@@ -159,6 +159,7 @@ export interface WinnerLeftPropsType {
         title: string;
     };
     group: string;
+    nameKo: string;
 }
 
 export interface WinnerMainPropsType {
@@ -227,6 +228,7 @@ export interface WriteType {
 
 export interface CheerMessagePropsType {
     cheerMessage: string[];
+    nameKo: string;
 }
 
 export interface MusicThumbnailPropsType {

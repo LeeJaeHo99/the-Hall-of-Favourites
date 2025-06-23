@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import MusicThumbnail from "../ui/MusicThumnail";
 import CheerMessage from '../ui/CheerMessage';
 
-export default function WinnerLeft({ cheerMessage, song, group }: WinnerLeftPropsType) {
+export default function WinnerLeft({ cheerMessage, song, group, nameKo }: WinnerLeftPropsType) {
     return (
         <div className="left-content">
             <motion.div
@@ -24,7 +24,7 @@ export default function WinnerLeft({ cheerMessage, song, group }: WinnerLeftProp
                     ease: [0, 0.71, 0.2, 1.01],
                 }}
             >
-                <CheerMessage cheerMessage={cheerMessage as string[]}/>
+                <CheerMessage cheerMessage={cheerMessage as string[]} nameKo={nameKo}/>
             </motion.div>
         </div>
     );

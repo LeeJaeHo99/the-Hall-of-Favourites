@@ -17,3 +17,8 @@ likeMember
 
 postEndWeek
 // 월요일 AM 00:10에 weekLike의 배열 초기화
+
+
+TODO
+1. 오늘의 좋아요 빼기
+=> 이게 있으면 순위를 숨기는 의미가 없음

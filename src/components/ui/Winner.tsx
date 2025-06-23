@@ -22,9 +22,9 @@ export default function Winner() {
     useEffect(() => {
         if (targetRef.current) {
             party.confetti(targetRef.current, {
-                count: 80,
-                size: 1.5,
-                spread: 70,
+                count: 60,
+                size: 1,
+                spread: 40,
             });
         }
     }, [memberData]);
@@ -60,6 +60,7 @@ export default function Winner() {
                     cheerMessage={(memberData as MemberDataType)?.cheerMsg?.reverse()}
                     song={(memberData as MemberDataType)?.song}
                     group={(memberData as MemberDataType)?.group[2]}
+                    nameKo={(memberData as MemberDataType)?.nameKo[0]}
                 />
                 <WinnerMain
                     targetRef={targetRef}

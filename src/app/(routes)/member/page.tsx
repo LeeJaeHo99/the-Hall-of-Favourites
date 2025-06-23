@@ -18,6 +18,12 @@ import ErrorMessage from "@/components/ui/ErrorMessage";
 import LoadSpinner from "@/components/spinner/LoadSpinner";
 
 function MemberContent() {
+    const [isSaturday, setIsSaturday] = useState(false);
+    console.log('isSaturday: ', isSaturday);
+    useEffect(() => {
+        setIsSaturday(new Date().getDay() === 6);
+    }, []);
+
     const [trigger, setTrigger] = useState(false);
     const onClickTrigger = () => {
         setTrigger(true);
@@ -48,11 +54,11 @@ function MemberContent() {
                     if (!prev) return prev;
                     const hour = new Date().getHours();
                     const newTodayLike = [...prev.todayLike];
-                    newTodayLike[hour] = (newTodayLike[hour] || 0) + 1;
+                    newTodayLike[hour] = isSaturday ? (newTodayLike[hour] || 0) + 2 : (newTodayLike[hour] || 0) + 1;
                     return {
                         ...prev,
                         todayLike: newTodayLike,
-                        likeHistory: prev.likeHistory + 1
+                        likeHistory: isSaturday ? prev.likeHistory + 2 : prev.likeHistory + 1
                     };
                 });
             }
@@ -79,7 +85,7 @@ function MemberContent() {
                                 <LeftContent
                                     victory={filteredMember?.victory}
                                     likeHistory={filteredMember?.likeHistory}
-                                    todayLike={filteredMember?.todayLike.reduce((a, b) => a + b, 0)}
+                                    // todayLike={filteredMember?.todayLike.reduce((a, b) => a + b, 0)}
                                     song={filteredMember?.song}
                                     group={filteredMember?.group[2]}
                                     onClickTrigger={onClickTrigger}

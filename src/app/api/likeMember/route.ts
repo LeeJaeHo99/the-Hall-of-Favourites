@@ -78,11 +78,11 @@ export async function PATCH(req: Request) {
 
         // 🤖 WORK : 현재 시간에 맞는 인덱스에 좋아요 +1
         const hour = new Date().getHours(); // 0~23
-        const todayLikeIndex = hour;
+        const todayLikeIndex = hour + 1;
 
         // 🤖 WORK : 만약 todayLike 배열이 24개가 아니라면 초기화
-        if (!member.todayLike || member.todayLike.length < 24) {
-            const initialized = Array(24).fill(0);
+        if (!member.todayLike || member.todayLike.length < 25) {
+            const initialized = Array(25).fill(0);
             if (member.todayLike) {
                 member.todayLike.forEach((val: number, idx: number) => initialized[idx] = val);
             }
@@ -97,7 +97,7 @@ export async function PATCH(req: Request) {
             {
                 $inc: {
                     [`todayLike.${todayLikeIndex}`]: incrementValue,
-                    likeHistory: incrementValue,
+                    // likeHistory: incrementValue,
                 },
                 $push: {
                     likeRecord: {

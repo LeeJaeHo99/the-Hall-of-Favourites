@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import usePostCheerMsg from '@/hooks/usePostCheerMsg';
 import Image from 'next/image';
 import LoadSpinner from '../spinner/LoadSpinner';
@@ -13,6 +14,7 @@ interface CheerMessageWriteProps {
 export default function CheerMessageWrite({ memberName }: CheerMessageWriteProps) {
     const { postHandler, isPost, isPostError } = usePostCheerMsg();
     const [text, setText] = useState('');
+    const router = useRouter();
 
     const writeMsg = (e: React.ChangeEvent<HTMLInputElement>) => {
         setText(e.target.value);
@@ -26,7 +28,7 @@ export default function CheerMessageWrite({ memberName }: CheerMessageWriteProps
 
             if (result?.data?.matchedCount === 1) {
                 setText("");
-                window.location.reload();
+                router.push('/');
             } else {
                 throw new Error(result?.message || '응원 메시지 저장에 실패했습니다.');
             }

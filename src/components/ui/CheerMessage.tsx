@@ -1,11 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { CheerMessagePropsType } from "@/types/types";
 
-export default function CheerMessage({ cheerMessage }: CheerMessagePropsType) {
+export default function CheerMessage({ cheerMessage, nameKo }: CheerMessagePropsType) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [visible, setVisible] = useState(true);
+    const router = useRouter();
+
+    const goWinnerPage = () => {
+        router.push(`member?q=${nameKo}`)
+    }
 
     useEffect(() => {
         if (!cheerMessage || cheerMessage.length === 0) return;
@@ -24,7 +30,7 @@ export default function CheerMessage({ cheerMessage }: CheerMessagePropsType) {
 
     if (!cheerMessage || cheerMessage.length === 0) {
         return (
-            <div className="cheer-message--wrap blur-box">
+            <div className="cheer-message--wrap blur-box" onClick={goWinnerPage} style={{cursor: 'pointer'}}>
                 <div className="title">응원 메시지</div>
                 <div
                     className={`cheer-message ${

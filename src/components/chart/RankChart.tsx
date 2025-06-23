@@ -31,14 +31,14 @@ export default function RankChart({ data }: RankChartPropsType) {
                 <XAxis
                     dataKey="time"
                     interval={0}
-                    tickFormatter={(time: string) => {
-                        const [hour, minute] = time.split(":").map(Number);
-                        const newHour = (hour + 1) % 24;
-                        const paddedHour = newHour.toString().padStart(2, "0");
-                        return `${paddedHour}:${minute
-                            .toString()
-                            .padStart(2, "0")}`;
-                    }}
+                    // tickFormatter={(time: string) => {
+                    //     const [hour, minute] = time.split(":").map(Number);
+                    //     const newHour = (hour + 1) % 24;
+                    //     const paddedHour = newHour.toString().padStart(2, "0");
+                    //     return `${paddedHour}:${minute
+                    //         .toString()
+                    //         .padStart(2, "0")}`;
+                    // }}
                 />
                 <YAxis
                     tick={{ fill: "#555", fontSize: 14, fontWeight: 500 }}

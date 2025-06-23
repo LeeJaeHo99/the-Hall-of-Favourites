@@ -20,8 +20,8 @@ export async function POST() {
     for (const member of members) {
         let todayLike = member.todayLike;
 
-        if (!todayLike || todayLike.length < 24) {
-            const initialized = Array(24).fill(0);
+        if (!todayLike || todayLike.length < 25) {
+            const initialized = Array(25).fill(0);
             if (todayLike) {
                 todayLike.forEach((val: number, idx: number) => {
                     initialized[idx] = val;
@@ -49,6 +49,7 @@ export async function POST() {
                         $each: [todayLikeSum],
                         $slice: -6,
                     },
+                    likeHistory: todayLikeSum,
                 },
                 $set: {
                     todayLike: Array(24).fill(0),

@@ -4,7 +4,7 @@ import LikeComponent from "./LikeComponent";
 interface MemberLeftContentProps {
     victory: number;
     likeHistory: number;
-    todayLike: number;
+    // todayLike: number;
     song: { id: string; title: string };
     group: string;
     onClickTrigger: () => void;
@@ -14,7 +14,7 @@ interface MemberLeftContentProps {
 export default function LeftContent({
     victory,
     likeHistory,
-    todayLike,
+    // todayLike,
     song,
     group,
     onClickTrigger,
@@ -38,12 +38,12 @@ export default function LeftContent({
                 </div>
             </div>
             <div className="content-box">
-                <div className="blur-box">
+                {/* <div className="blur-box">
                     <div className="title">오늘의 좋아요</div>
                     <div className="content">
                         <span>{todayLike}</span> <sub>회</sub>
                     </div>
-                </div>
+                </div> */}
                 <LikeComponent onClickTrigger={onClickTrigger} onHandleLike={onHandleLike}/>
             </div>
         </div>

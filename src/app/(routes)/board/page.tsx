@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { usePagination } from "@/store/store";
 import useGetFullWrite from "@/hooks/useGetFullWrite";
 import { WriteDataType } from "@/types/types";
@@ -17,6 +18,7 @@ import BoardLoadComponet from "@/components/spinner/BoardLoadComponet";
 import ErrorMessage from "@/components/ui/ErrorMessage";
 
 export default function BoardPage() {
+    const router = useRouter();
     const { writeData, isLoad, isError}= useGetFullWrite();
     const { pagination, setPagination } = usePagination();
     const [category, setCategory] = useState(true);
@@ -80,7 +82,7 @@ export default function BoardPage() {
                 <div className="board-content--wrap blur-box">
                     <div className="board-editor">
                         <div className="board-component--wrap">
-                            <BoardEdit style={'normal'} text={'글쓰기'} link={'write'}/>
+                            <BoardEdit style={'normal'} text={'글쓰기'} onClick={() => router.push('/board/write')}/>
                             <BoardSearch 
                                 searchWord={searchWord} 
                                 onChangeSearchWord={onChangeSearchWord} 

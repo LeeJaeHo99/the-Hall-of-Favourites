@@ -102,7 +102,6 @@ export interface BoardEditPropsType {
     style: string;
     text: string;
     onClick?: () => void;
-    link?: string;
 }
 
 export interface BoardSearchPropsType {

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "@/styles/style.scss";
 import Header from "@/components/ui/Header";
-import Footer from "@/components/ui/Footer";
+// import Footer from "@/components/ui/Footer";
 
 export const metadata: Metadata = {
     title: "최애의 전당",
@@ -42,7 +42,7 @@ export default function RootLayout({
             <body>
                 <Header />
                 {children}
-                <Footer />
+                {/* <Footer /> */}
             </body>
         </html>
     );

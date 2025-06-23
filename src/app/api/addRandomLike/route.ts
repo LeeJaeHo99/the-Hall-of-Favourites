@@ -31,7 +31,7 @@ export async function PATCH() {
         const isBottom5 = bottom5Members.some(bottomMember => bottomMember._id.toString() === member._id.toString());
         
         if (isTop5) {
-            increment = getRandomInt(30, 50);
+            increment = getRandomInt(30, 150);
         } else if (isBottom5) {
             increment = getRandomInt(10, 29);
         } else {

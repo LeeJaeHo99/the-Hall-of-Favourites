@@ -25,7 +25,6 @@ export default function BoardLoadComponet() {
                             <BoardEdit
                                 style={"normal"}
                                 text={"글쓰기"}
-                                link={"write"}
                             />
                             <BoardSearch
                                 searchWord={""}

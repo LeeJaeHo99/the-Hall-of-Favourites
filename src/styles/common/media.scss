@@ -155,7 +155,7 @@
             .right-content--wrap{
                 order: 3;
                 width: 100%;
-                padding-left: 16px;
+                // padding-left: 16px;
             }
         }
         .story-component{
@@ -1194,9 +1194,6 @@
     }
     div.InfoPage{
         .content-top{
-            .right-content--wrap{
-                width: 90%;
-            }
             .left-content--wrap{
                 .player-wraper{
                     gap: 0;

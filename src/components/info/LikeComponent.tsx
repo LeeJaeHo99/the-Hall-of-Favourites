@@ -8,7 +8,7 @@ interface LikeComponentProps {
 export default function LikeComponent({onClickTrigger, onHandleLike}: LikeComponentProps) {
 
     return (
-        <div className="blur-box" onClick={onClickTrigger}>
+        <div className="blur-box like-btn" onClick={onClickTrigger}>
             <div className="title">좋아요</div>
             <div className="content" onClick={onHandleLike}>
                 <Image

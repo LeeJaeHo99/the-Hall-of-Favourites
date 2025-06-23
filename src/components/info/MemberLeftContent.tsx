@@ -37,7 +37,7 @@ export default function LeftContent({
                     </div>
                 </div>
             </div>
-            <div className="content-box">
+            <div className="content-box like-btn-wrap">
                 {/* <div className="blur-box">
                     <div className="title">오늘의 좋아요</div>
                     <div className="content">

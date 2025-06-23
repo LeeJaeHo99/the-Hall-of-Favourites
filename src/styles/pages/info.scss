@@ -35,6 +35,14 @@
 
         > div{
             width: 100%;
+
+            &.like-btn-wrap{
+                width: 100%;
+
+                .like-btn{
+                    width: 100%;
+                }
+            }
         }
         .player-wraper{    
             justify-content: space-around;

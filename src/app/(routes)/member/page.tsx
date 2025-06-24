@@ -18,12 +18,6 @@ import ErrorMessage from "@/components/ui/ErrorMessage";
 import LoadSpinner from "@/components/spinner/LoadSpinner";
 
 function MemberContent() {
-    const [isSaturday, setIsSaturday] = useState(false);
-    console.log('isSaturday: ', isSaturday);
-    useEffect(() => {
-        setIsSaturday(new Date().getDay() === 6);
-    }, []);
-
     const [trigger, setTrigger] = useState(false);
     const onClickTrigger = () => {
         setTrigger(true);
@@ -48,20 +42,21 @@ function MemberContent() {
         const nameKo = filteredMember.nameKo[0];
     
         try {
-            const result = await patchHandler(nameKo);
-            if(result === 'success'){
-                setFilteredMember(prev => {
-                    if (!prev) return prev;
-                    const hour = new Date().getHours();
-                    const newTodayLike = [...prev.todayLike];
-                    newTodayLike[hour] = isSaturday ? (newTodayLike[hour] || 0) + 2 : (newTodayLike[hour] || 0) + 1;
-                    return {
-                        ...prev,
-                        todayLike: newTodayLike,
-                        likeHistory: isSaturday ? prev.likeHistory + 2 : prev.likeHistory + 1
-                    };
-                });
-            }
+            await patchHandler(nameKo);
+            // const result = await patchHandler(nameKo);
+            // if(result === 'success'){
+            //     setFilteredMember(prev => {
+            //         if (!prev) return prev;
+            //         const hour = new Date().getHours();
+            //         const newTodayLike = [...prev.todayLike];
+            //         newTodayLike[hour] = isSaturday ? (newTodayLike[hour] || 0) + 2 : (newTodayLike[hour] || 0) + 1;
+            //         return {
+            //             ...prev,
+            //             todayLike: newTodayLike,
+            //             likeHistory: isSaturday ? prev.likeHistory + 2 : prev.likeHistory + 1
+            //         };
+            //     });
+            // }
         } catch (e: unknown) {
             if(e instanceof Error){
                 alert('오늘은 이미 좋아요를 눌렀습니다.');
@@ -85,7 +80,6 @@ function MemberContent() {
                                 <LeftContent
                                     victory={filteredMember?.victory}
                                     likeHistory={filteredMember?.likeHistory}
-                                    // todayLike={filteredMember?.todayLike.reduce((a, b) => a + b, 0)}
                                     song={filteredMember?.song}
                                     group={filteredMember?.group[2]}
                                     onClickTrigger={onClickTrigger}

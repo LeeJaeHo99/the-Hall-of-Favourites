@@ -78,6 +78,7 @@ export interface MemberDataType {
     weekLike: number[];
     story?: string[];
     cheerMsg?: string[];
+    beforeLike: number;
 }
 
 export interface Top5Data{

@@ -73,7 +73,7 @@ export default function Winner() {
                 <WinnerRight
                     victory={(memberData as MemberDataType)?.victory}
                     likeHistory={(memberData as MemberDataType)?.likeHistory}
-                    todayLike={(memberData as MemberDataType)?.todayLike?.reduce((a, b) => a + b, 0)}
+                    beforeLike={(memberData as MemberDataType)?.beforeLike}
                 />
             </div>
         </div>

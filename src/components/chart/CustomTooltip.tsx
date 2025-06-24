@@ -11,14 +11,17 @@ interface CustomTooltipProps {
 
 export default function CustomTooltip({ active, payload }: CustomTooltipProps) {
     if (active && payload && payload.length) {
+        const sortedPayload = [...payload].sort((a, b) => {
+            const aVal = typeof a.value === 'number' ? a.value : 0;
+            const bVal = typeof b.value === 'number' ? b.value : 0;
+            return bVal - aVal;
+        });
+
         return (
-            <div className="chart-tooltip blur-box" style={{padding: "16px"}}>
+            <div className="chart-tooltip blur-box" style={{ padding: "16px" }}>
                 <div>
-                    {payload.map((entry, index) => (
-                        <p
-                            key={index}
-                            style={{ color: entry.color }}
-                        >
+                    {sortedPayload.map((entry, index) => (
+                        <p key={index} style={{ color: entry.color }}>
                             <span>{entry.name}</span>
                             <span>: {entry.value}</span>
                         </p>

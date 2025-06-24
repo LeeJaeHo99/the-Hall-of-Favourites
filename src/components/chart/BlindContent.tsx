@@ -13,6 +13,7 @@ export default function BlindContent({ top5 }: BlindContentPropsType) {
         "#d1de74",
         "#f1a183",
     ];
+    
     const emoji: string[] = ["🥇", "🥈", "🥉", "💪", "💪"];
 
     return (

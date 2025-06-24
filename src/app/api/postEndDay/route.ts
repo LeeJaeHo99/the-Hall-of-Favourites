@@ -49,11 +49,15 @@ export async function POST() {
                         $each: [todayLikeSum],
                         $slice: -6,
                     },
+                },
+                $inc: {
                     likeHistory: todayLikeSum,
                 },
                 $set: {
                     todayLike: Array(24).fill(0),
+                    beforeLike: todayLikeSum,
                     cheerMsg: [],
+                    likeRecord: [],
                 },
             } as unknown as UpdateFilter<MemberData>
         );

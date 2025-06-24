@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { WinnerRightPropsType } from '@/types/types';
 
-export default function WinnerRight({ victory, likeHistory, todayLike }: WinnerRightPropsType) {
+export default function WinnerRight({ victory, likeHistory, beforeLike }: WinnerRightPropsType) {
     return (
         <div className="right-content">
             <motion.div
@@ -38,9 +38,9 @@ export default function WinnerRight({ victory, likeHistory, todayLike }: WinnerR
                     ease: [0, 0.71, 0.2, 1.01],
                 }}
             >
-                <div className="title">오늘의 좋아요</div>
+                <div className="title">우승 좋아요 수</div>
                 <div className="result">
-                    총 <span>{todayLike}</span>회
+                    총 <span>{beforeLike}</span>회
                 </div>
             </motion.div>
         </div>

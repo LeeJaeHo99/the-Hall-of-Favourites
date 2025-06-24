@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { WriteDataType, CommentItem } from "@/types/types";
+import { WriteDataType, Comment } from "@/types/types";
 import useGetFullWrite from "@/hooks/useGetFullWrite";
 import Inner from "@/components/ui/Inner";
 import ContentTop from "@/components/board/ContentTop";
@@ -52,7 +52,7 @@ export default function BoardViewPage() {
                         pw={(writeData as WriteDataType)?.pw}
                     />
                     <ContentMid content={(writeData as WriteDataType)?.content} clickLike={clickLike}/>
-                    <ContentBot comment={(writeData as WriteDataType)?.comment as unknown as CommentItem[]} addComment={addComment}/>
+                    <ContentBot comment={(writeData as WriteDataType)?.comment as unknown as Comment[]} addComment={addComment}/>
                 </div>
             </Inner>
         </div>

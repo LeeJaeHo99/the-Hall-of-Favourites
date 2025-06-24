@@ -2,14 +2,14 @@
 
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
-import { CommentItem } from '@/types/types';
+import { Comment } from '@/types/types';
 import usePostComment from "@/hooks/usePostComment";
 import Image from "next/image";
 import DeleteCommentModal from "./DeleteCommentModal";
 import ErrorMessage from "../ui/ErrorMessage";
 import LoadSpinner from "@/components/spinner/LoadSpinner";
 
-export default function ContentBot({ comment, addComment }: { comment: CommentItem[], addComment: () => void }) {
+export default function ContentBot({ comment, addComment }: { comment: Comment[], addComment: () => void }) {
     const { postHandler, isPost, isPostError } = usePostComment();
     const params = useParams();
     const id = params.id;
@@ -32,7 +32,7 @@ export default function ContentBot({ comment, addComment }: { comment: CommentIt
         setIsClickDelete(i);
     };
 
-    const [comments, setComments] = useState<CommentItem[]>([]);
+    const [comments, setComments] = useState<Comment[]>([]);
     console.log(comments)
 
     useEffect(() => {
@@ -86,7 +86,7 @@ export default function ContentBot({ comment, addComment }: { comment: CommentIt
                     </thead>
                     <tbody>
                         {comments?.length > 0 ? (
-                            comments?.map((data: CommentItem, i: number) => (
+                            comments?.map((data: Comment, i: number) => (
                                 <tr key={i}>
                                     <td>{data.name}</td>
                                     <td>{data.text}</td>

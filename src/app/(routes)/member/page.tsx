@@ -4,9 +4,7 @@ import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import useGetFullMember from "@/hooks/useGetFullMember";
 import usePatchLikeMember from "@/hooks/usePatchLikeMember";
-import { MemberDataType, MemberMainContentPropsType } from "@/types/types";
-
-// 📀 COMPONENT
+import { MemberDataType } from "@/types/types";
 import Inner from "@/components/ui/Inner";
 import Title from "@/components/ui/Title";
 import PersonImg from "@/components/ui/PersonImg";
@@ -16,6 +14,14 @@ import Story from "@/components/info/Story";
 import NoneInfo from "@/components/info/NoneInfo";
 import ErrorMessage from "@/components/ui/ErrorMessage";
 import LoadSpinner from "@/components/spinner/LoadSpinner";
+
+interface MemberMainContentPropsType{
+    group: string;
+    trigger:  boolean;
+    desc:  string;
+    title:  string;
+    nameEn:  string;
+}
 
 function MemberContent() {
     const [trigger, setTrigger] = useState(false);

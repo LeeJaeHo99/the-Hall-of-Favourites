@@ -2,7 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { CheerMessagePropsType } from "@/types/types";
+
+interface CheerMessagePropsType {
+    cheerMessage: string[];
+    nameKo: string;
+}
 
 export default function CheerMessage({ cheerMessage, nameKo }: CheerMessagePropsType) {
     const [currentIndex, setCurrentIndex] = useState(0);

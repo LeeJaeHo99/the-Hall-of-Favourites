@@ -3,7 +3,12 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import JSConfetti from "js-confetti";
-import { PersonImgPropsType } from "../../types/types";
+
+interface PersonImgPropsType{
+    group: string;
+    nameEn: string;
+    trigger: boolean;
+}
 
 export default function PersonImg({
     group,

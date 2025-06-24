@@ -2,9 +2,13 @@
 
 import { motion } from "motion/react";
 import MoreViewBtn from "@/components/ui/MoreViewBtn";
-import { TitlePropsType } from "@/types/types";
 
-
+interface TitlePropsType {
+    title: string;
+    desc?: string;
+    moreView?: boolean;
+    children?: React.ReactNode;
+}
 
 export default function Title({ title, desc, moreView, children }: TitlePropsType) {
     return (

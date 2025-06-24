@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { postCommentData } from "@/util/postFetcher";
-import { FetchDataType } from '../types/types';
+import { FetchDataType } from '../types/common';
 
 export default function usePostComment() {
     const [isPost, setIsPost] = useState<boolean>(false);

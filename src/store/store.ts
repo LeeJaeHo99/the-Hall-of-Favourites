@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { PaginationStore } from '../types/types';
+import { PaginationStore } from '../types/common';
 
 export const usePagination = create<PaginationStore>((set) => ({
     pagination: 0,

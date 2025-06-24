@@ -1,7 +1,11 @@
 import { connectDB } from "@/util/mongodb";
 import { Document, UpdateFilter } from "mongodb";
 import { NextResponse } from "next/server";
-import { LikeRecord } from "@/types/types";
+
+interface LikeRecord {
+    date: string;
+    user: string;
+}
 
 interface MemberDataType extends Document {
     _id: string;

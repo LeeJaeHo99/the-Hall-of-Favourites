@@ -1,4 +1,9 @@
-import { RadioBtnProps } from "@/types/types";
+interface RadioBtnProps {
+    id: string;
+    name: string;
+    checked: boolean;
+    onClick: () => void;
+}
 
 export default function RadioBtn({id, name, checked, onClick}: RadioBtnProps){
     return (

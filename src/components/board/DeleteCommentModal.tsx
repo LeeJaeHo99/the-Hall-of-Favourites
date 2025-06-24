@@ -4,10 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import useDeleteCommnet from "@/hooks/useDeleteComment";
 import useGetWrite from "@/hooks/useGetWrite";
-import { DeleteCommentModalPropstype } from '@/types/types';
+import { DeleteCommentModalProps } from '@/types/board';
 import Image from "next/image";
 
-export default function DeleteCommentModal({ onClickDelete, param, index }: DeleteCommentModalPropstype) {
+export default function DeleteCommentModal({ onClickDelete, param, index }: DeleteCommentModalProps) {
     const { recentWrite, setRecentWrite } = useGetWrite();
     const { deleteHandler } = useDeleteCommnet();
 

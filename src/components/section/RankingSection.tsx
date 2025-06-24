@@ -4,8 +4,6 @@ import { useMemo } from "react";
 import { getTop5, getTodayLikeSums } from "@/util/setChartData";
 import useGetFullMember from "@/hooks/useGetFullMember";
 import useChartTime from "@/hooks/useChartTime";
-
-// 📀 COMPONENT
 import Title from "@/components/ui/Title";
 import RankChart from "../chart/RankChart";
 import BlindContent from "../chart/BlindContent";
@@ -13,12 +11,9 @@ import CollectingContent from "../chart/CollectingContent";
 import AnouningContent from "../chart/AnouningContent";
 import RankingLoadComponent from "../spinner/RankingLoadComponent";
 import ErrorMessage from "../ui/ErrorMessage";
-import { MemberDataType } from "@/types/types";
+import { MemberDataType, Top5Data } from "@/types/types";
 
-interface Top5Data{
-    name: string;
-    sum: number;
-}
+
 
 export default function RankingSection() {
     const { memberData, isLoad, isError } = useGetFullMember();

@@ -1,7 +1,8 @@
-import { Top5Data } from "@/types/types";
-
 interface BlindContentPropsType {
-    top5: Top5Data[];
+    top5: {    
+        name: string;
+        sum: number;
+    }[];
 }
 
 export default function BlindContent({ top5 }: BlindContentPropsType) {

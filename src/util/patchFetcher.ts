@@ -1,4 +1,4 @@
-import { FetchDataType } from "../types/types";
+import { FetchDataType } from "../types/common";
 
 async function patchFetcher(api: string, body: FetchDataType) {
     try {

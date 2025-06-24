@@ -1,5 +1,7 @@
 import { motion } from "motion/react";
-import { WinnerRightPropsType } from '@/types/types';
+interface WinnerRightPropsType {
+    [key: string]: number;
+}
 
 export default function WinnerRight({ victory, likeHistory, beforeLike }: WinnerRightPropsType) {
     return (

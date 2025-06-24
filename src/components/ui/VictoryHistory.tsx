@@ -2,10 +2,16 @@
 
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { ProfileHistoryPropsType } from "@/types/types";
 import useGetFullMember from "@/hooks/useGetFullMember";
 import VictoryHistoryLoadComponent from "../spinner/VictoryHistoryLoadComponent";
 import ErrorMessage from "./ErrorMessage";
+
+interface ProfileHistoryPropsType{
+    nameKo: string;
+    group: string;
+    nameEn: string;
+    history: number;
+}
 
 export default function VictoryHistory() {
     const { memberData, isLoad, isError } = useGetFullMember();

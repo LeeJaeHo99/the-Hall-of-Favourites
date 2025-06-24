@@ -1,12 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { BoardDeleteProps, ContentTopProps } from "../../types/types";
+import { ContentTopProps } from "../../types/types";
 import Link from "next/link";
 import Image from "next/image";
 import BoardEdit from "@/components/board/BoardEdit";
 import DeleteWriteModal from "@/components/board/DeleteWriteModal";
 import EditWriteModal from "@/components/board/EditWriteModal";
+import { BoardBtnType } from '../../types/board';
 
 export default function ContentTop({
     title,
@@ -77,7 +78,7 @@ export default function ContentTop({
     );
 }
 
-function BoardDelete({ style, onClick }: BoardDeleteProps) {
+function BoardDelete({ style, onClick }: BoardBtnType) {
     return (
         <div className={`board-edit--btn blur-box ${style}`} onClick={onClick}>
             <Image

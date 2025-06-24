@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { patchEditWrite } from "@/util/patchFetcher";
-import { FetchDataType } from '../types/types';
+import { FetchDataType } from '../types/common';
 
 export default function usePatchWrite() {
     const [isPatch, setIsPatch] = useState<boolean>(false);

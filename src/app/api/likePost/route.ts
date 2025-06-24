@@ -2,7 +2,7 @@ import { connectDB } from "@/util/mongodb";
 import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
 import { UpdateFilter, Document } from "mongodb";
-import { Record, CommentType } from "@/types/types";
+import { Record, Comment } from "@/types/types";
 
 interface WriteDataType extends Document {
     _id: string;
@@ -10,7 +10,7 @@ interface WriteDataType extends Document {
     writer: string;
     pw: string;
     content: string;
-    comment: CommentType[];
+    comment: Comment[];
     date: string;
     likeNum: number;
     record: Record[];

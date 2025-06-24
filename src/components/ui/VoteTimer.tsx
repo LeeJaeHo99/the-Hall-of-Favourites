@@ -1,8 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { TimeLeft } from "@/types/types";
 
+export interface TimeLeft {
+    hours: number;
+    minutes: number;
+    seconds: number;
+}
 
 export default function VoteTimer() {
     const [statusInfo, setStatusInfo] = useState<{

@@ -1,30 +1,13 @@
-// FETCH DATA TYPE
-export interface FetchDataType {
-    [key: string]: string;
-}
-
-
-
-// STORE
-export interface PaginationStore {
-    pagination: number;
-    setPagination: (page: number) => void;
-}
-
-export interface IsSaturdayStore {
-    isSaturday: boolean;
-    setIsSaturday: () => void;
-}
-
-export interface IsSundayStore {
-    isSunday: boolean;
-    setIsSunday: () => void;
-}
-
 // Data
 export interface Record {
     ip: string;
     date: string;
+}
+
+export interface Comment {
+    name: string;
+    text: string;
+    pw: string;
 }
 
 export interface WriteDataType {
@@ -33,25 +16,13 @@ export interface WriteDataType {
     writer: string;
     pw: string;
     content: string;
-    comment: CommentType[];
+    comment: Comment[];
     date: string;
     likeNum: number;
     record: Record[];
 }
 
-export interface CommentType {
-    comment: {
-        name: string;
-        text: string;
-        pw: string;
-    }
-}
 
-export interface CommentItem {
-    name: string;
-    text: string;
-    pw: string;
-}
 
 export interface LikeRecord {
     date: string;
@@ -134,18 +105,8 @@ export interface ContentTopProps {
     setCommentNumState: (commentNum: number) => void;
     pw: string;
 }
-export interface BoardDeleteProps {
-    style: string;
-    onClick: () => void;
-}
 
-export interface DeleteCommentModalPropstype {
-    onClickDelete: (i: number | null) => void;
-    param: string;
-    index: number;
-}
-
-export interface PaginationPropsType {
+export interface PaginationProps {
     data: WriteDataType[];
     pagination: number;
     setPagination: (value: number) => void;
@@ -174,88 +135,9 @@ export interface WinnerMainPropsType {
     nameEn: string;
 }
 
-export interface WinnerRightPropsType {
-    [key: string]: number;
-}
-
-export interface PersonImgPropsType{
-    group: string;
-    nameEn: string;
-    trigger: boolean;
-}
-
-export interface ProfileHistoryPropsType{
-    nameKo: string;
-    group: string;
-    nameEn: string;
-    history: number;
-}
-
-export interface MemberMainContentPropsType{
-    group: string;
-    trigger:  boolean;
-    desc:  string;
-    title:  string;
-    nameEn:  string;
-}
-
-export interface MemberType {
-    nameKo: string[];
-    nameEn: string;
-    group: string[];
-    birth: string;
-    age: string;
-    debutDate: string;
-    company: string;
-    likeHistory: number;
-    weekLike: number[];
-    todayLike: number[];
-    likeRecord: { date: string; user: string }[];
-    victory: number;
-    song: {
-        id: string;
-        title: string;
-    };
-    story?: string[];
-    cheerMsg: string[];
-}
-
 export interface WriteType {
     _id: string;
     title: string;
     date: string;
-    comment: CommentType[];
-}
-
-export interface CheerMessagePropsType {
-    cheerMessage: string[];
-    nameKo: string;
-}
-
-export interface MusicThumbnailPropsType {
-    song: {
-        id: string;
-        title: string;
-    };
-    group: string;
-}
-
-export interface RadioBtnProps {
-    id: string;
-    name: string;
-    checked: boolean;
-    onClick: () => void;
-}
-
-export interface TitlePropsType {
-    title: string;
-    desc?: string;
-    moreView?: boolean;
-    children?: React.ReactNode;
-}
-
-export interface TimeLeft {
-    hours: number;
-    minutes: number;
-    seconds: number;
+    comment: Comment[];
 }

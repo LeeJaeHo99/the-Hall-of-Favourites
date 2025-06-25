@@ -14,7 +14,7 @@ export default function WinnerRight({ victory, likeHistory, beforeLike }: Winner
                     ease: [0, 0.71, 0.2, 1.01],
                 }}
             >
-                <div className="title">역대 우승횟수</div>
+                <div className="title">우승횟수</div>
                 <div className="result">
                     총 <span>{victory}</span>회
                 </div>

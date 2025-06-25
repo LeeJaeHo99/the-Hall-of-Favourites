@@ -46,7 +46,7 @@
 ### 🔥 CORS 에러 🔥
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/4012f318-20cb-4eb7-8044-6dceb227d29a" width="480">
+  <img src="https://github.com/user-attachments/assets/2b0a34a3-64d4-46f7-b73d-1d99b3694d8a" width="480">
 </p>
 <p><strong>문제 상황</strong></p>
 <ul>

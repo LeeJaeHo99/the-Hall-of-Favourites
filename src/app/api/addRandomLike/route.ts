@@ -33,15 +33,15 @@ export async function PATCH() {
         
         if (isTop5) {
             if(KR_HOUR > 2 && KR_HOUR < 8){
-                increment = getRandomInt(20, 50);
+                increment = getRandomInt(20, 100);
             }else{
-                increment = getRandomInt(30, 200);
+                increment = getRandomInt(30, 500);
             }
         } else if (isBottom5) {
             if(KR_HOUR > 2 && KR_HOUR < 8){
-                increment = getRandomInt(0, 15);
+                increment = getRandomInt(0, 30);
             }else{
-                increment = getRandomInt(10, 29);
+                increment = getRandomInt(10, 80);
             }
         } else {
             const isHighTier = Math.random() < 0.5;

@@ -10,22 +10,22 @@
 - [성과 및 배운점](#프로젝트-소개)
 
 ## 📍 프로젝트 소개
-<a href="https://the-hall-of-favourites.vercel.app" target="blank">www.the-hall-of-favourites.vercel.app</a>
+<a href="https://www.myidolranking.com" target="blank">www.myidolranking.com</a>
 <p>기여도: 100%</p>
 <p align="center">
   <img src="https://github.com/user-attachments/assets/477aa3e9-827a-4563-ae41-9b1a20898169" width="800"/>
 </p>
 <p align="center">(메인 페이지)</p>
-<p>하루의 시작과 끝을 음악으로 채우는 감성적인 웹 서비스 <strong>"오느래 노래"</strong> 입니다.</p>
-<p>아침, 저녁마다 자동으로 곡이 갱신되며, 사용자들은 각 노래에 대한 감상평을 남길 수 있으며, 자신이 원하는 노래를 신청할 수 있습니다.</p>
+<p>K-POP 아이돌 팬들을 위한 실시간 투표 및 랭킹 시스템을 제공하는 <strong>"최애의 전당"</strong> 입니다.</p>
+<p>자신이 좋아하는 아이돌 멤버에게 매일 한 번씩 투표할 수 있으며, 가장 많은 투표를 받은 멤버가 다음날 메인 페이지에 우승자로 공개되는 구조입니다.</p>
 
 ## 📍 사용 기술 및 이유
 <p>
   <img src="https://github.com/user-attachments/assets/382dea93-0af9-4e8a-8d17-364780745d36" width="48">
   <strong>Next JS</strong>
 </p>
-<p>다양한 사용자들이 이용했으면 하는 마음에 NextJS의 <strong>SSR</strong> 기능을 사용하여, <strong>SEO 최적화</strong>와 <strong>빠른 초기 렌더링속도</strong>를 위해 선택했습니다.</p>
-<p>실제로 성능 최적화를 통해 FCP는 <strong>0.2초까지 단축</strong>되었습니다.</p>
+<p>투표 시스템과 제유게시판 등 다양한 기능이 존재하는 프로젝트를 NextJS의 API ROUTES 로 인해 프론트엔드와 백엔드를 하나의 프로젝트에서 관리 가능하기 편하다는 생각이 들었습니다.</p>
+<p>또한, 실제 배포를 위해 React 보다 SSR로 인해 SEO에 최적화 되어있는 장점으로 선택하게 되었습니다.</p>
 
 <p>
   <img src="https://github.com/user-attachments/assets/6a9b273e-d93a-40f9-8a9e-3a956bc2648b" width="48">
@@ -35,29 +35,21 @@
 <p>그렇게 런타임시 발생하는 오류를 줄여 <strong>안정적인 코드를 작성</strong>할 수 있었습니다.</p>
 
 <p>
-  <img src="https://github.com/user-attachments/assets/89b94b53-0144-429c-b70f-55ef625e1c0f" width="48">
-  <strong>Zustand</strong>
-</p>
-<p>Context API, Redux 등 이전에 사용했던 상태관리 라이브러리와 비교하여, Zustand는 <strong>코드 가독성</strong>이 뛰어난 부분이 마음에 들었고,</p>
-<p>또한, 상태가 변경될 때 해당 상태를 사용하는 컴포넌트만 리렌더링되어, <strong>성능면에서 효율</strong>적인 라이브러리라고 생각해 선택했습니다.</p>
-
-<p>
   <img src="https://github.com/user-attachments/assets/4785c7a5-7e60-4ac8-9fc4-0402117175e5" width="48">
-  <strong>Tanstack Query</strong>
+  <strong>Jest + React Testing Library</strong>
 </p>
-<p>이전에 추천된 음악을 소개하는 페이지가 존재하는데, 추후 서비스 기간이 길어지게 된다면 <strong>한번에 많은 양의 데이터</strong>를 가져오느라 해당 <strong>페이지의 진입 속도가 매우 느릴것 같다</strong>는 고민을 했습니다.</p>
-<p>그래서 무한 스크롤을 이용해, 첫 진입 시 몇개의 데이터만 불러오고, 이후 사용자가 스크롤시 데이터를 추가로 불러오는 방식으로 구현했습니다.</p>
-<p>현재는 데이터 양이 적어, 큰 효과를 보이고 있진 않지만, <strong>시간이 지날 수록 데이터 양이 증가하면 더욱 효과적</strong>일 것 같다고 생각하여 선택했습니다.</p>
+<p>React 컴포넌트 테스트에 최적화 되어있으며, 에러를 조기 발견할 수 있고 추후 긴 시간동안 서비스를 진행할 수록 안정성이 있다 생각해 선택하였습니다.</p>
 
 <p>
   <img src="https://github.com/user-attachments/assets/78e19658-3cdb-4325-84aa-7b26a30e1068" width="48">
   <strong>Mongo DB</strong>
 </p>
-<p>MongoDB는 JSON 기반 구조로, 프론트엔드에서 다루는 객체와 거의 동일하게 데이터를 저장할 수 있어서 <strong>초기 개발속도가 빠르고</strong>, 구조 변경이 용이하다는 점이 유용하다 생각되어 선택하게 되었습니다.</p>
+<p>JSON 기반 구조로 인해 빠르게 개발이 진행 가능하다고 생각하였고,</p>
+<p>개발하면서 <strong>데이터의 구조 변경이 편리</strong>하다는 장점으로 인해 선택하였습니다.</p>
 
 ## 📍 트러블 슈팅
 
-### 🔥 Youtube iframe 로딩 이슈 🔥
+### 🔥 투표 시스템 중복 방지 이슈 🔥
 <p><strong>문제 상황</strong></p>
 <ul>
   <li>음악 재생 버튼을 클릭해도 간헐적으로 <strong>재생이 되지 않는 현상</strong>이 발생했습니다.</li>

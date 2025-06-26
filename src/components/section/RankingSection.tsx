@@ -33,8 +33,8 @@ export default function RankingSection() {
         return { top5, chartData };
     }, [memberData]);
 
-    if(isLoad) return <RankingLoadComponent/>
-    if(isError) return <ErrorMessage text={'차트 데이터를 불러오던중 에러가 발생하였습니다.'}/>
+    if(isLoad) return <RankingLoadComponent/>;
+    if(isError) return <ErrorMessage text={'차트 데이터를 불러오던중 에러가 발생하였습니다.'}/>;
 
     return (
         <section className="page-section ranking-section">

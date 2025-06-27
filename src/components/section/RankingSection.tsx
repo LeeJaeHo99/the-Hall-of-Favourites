@@ -30,7 +30,7 @@ export default function RankingSection() {
             )
         }));
         
-        return { top5, chartData };
+        return { top5, chartData }
     }, [memberData]);
 
     if(isLoad) return <RankingLoadComponent/>;

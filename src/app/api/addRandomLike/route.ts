@@ -1,10 +1,6 @@
 import { connectDB } from "@/util/mongodb"; 
 import { NextResponse } from "next/server";
 
-function getRandomInt(min: number, max: number): number {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
 export async function PATCH() {
     const client = await connectDB;
     const db = client.db("IdolRank");
@@ -27,21 +23,25 @@ export async function PATCH() {
 
     const bulkOps = members.map((member) => {
         let increment: number;
+
+        function getRandomInt(min: number, max: number): number {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
         
         const isTop5 = top5Members.some(topMember => topMember._id.toString() === member._id.toString());
         const isBottom5 = bottom5Members.some(bottomMember => bottomMember._id.toString() === member._id.toString());
         
         if (isTop5) {
             if(KR_HOUR > 2 && KR_HOUR < 8){
-                increment = getRandomInt(20, 100);
+                increment = getRandomInt(10, 25);
             }else{
-                increment = getRandomInt(30, 500);
+                increment = getRandomInt(30, 50);
             }
         } else if (isBottom5) {
             if(KR_HOUR > 2 && KR_HOUR < 8){
-                increment = getRandomInt(0, 30);
+                increment = getRandomInt(0, 10);
             }else{
-                increment = getRandomInt(10, 80);
+                increment = getRandomInt(10, 40);
             }
         } else {
             const isHighTier = Math.random() < 0.5;

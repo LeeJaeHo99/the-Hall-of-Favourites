@@ -33,19 +33,19 @@ export async function PATCH() {
         
         if (isTop5) {
             if(KR_HOUR > 2 && KR_HOUR < 8){
-                increment = getRandomInt(10, 25);
+                increment = getRandomInt(3, 10);
             }else{
-                increment = getRandomInt(30, 50);
+                increment = getRandomInt(10, 20);
             }
         } else if (isBottom5) {
             if(KR_HOUR > 2 && KR_HOUR < 8){
-                increment = getRandomInt(0, 10);
+                increment = getRandomInt(1, 5);
             }else{
-                increment = getRandomInt(10, 40);
+                increment = getRandomInt(3, 10);
             }
         } else {
             const isHighTier = Math.random() < 0.5;
-            increment = isHighTier ? getRandomInt(30, 50) : getRandomInt(10, 30);
+            increment = isHighTier ? getRandomInt(3, 10) : getRandomInt(1, 5);
         }
 
         const todayLike = Array.isArray(member.todayLike)
